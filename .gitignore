@@ -68,3 +68,7 @@ yarn-debug.log*
 
 # Mac file
 .DS_Store
+
+# log??
+.ash_history
+_roothome/.bundle/
