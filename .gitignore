@@ -73,3 +73,4 @@ yarn-debug.log*
 .ash_history
 _roothome/.bundle/
 _roothome/.cache/
+_roothome/.bash_history
