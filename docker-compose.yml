@@ -8,11 +8,11 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     env_file: .env
     tty: true
     stdin_open: true
-  
+
   rails:
     build:
       context: ./rails_app
@@ -37,7 +37,7 @@ services:
       - 8888:80
     volumes:
       - pma-session:/sessions
-    depends_on: 
+    depends_on:
       - rails
     env_file: .env
 

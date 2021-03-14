@@ -60,3 +60,10 @@ EXPOSE ${PORT}
 # Start the main process.
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
+
+# entrypoint.sh に記述とします。---＞ちょっとまちに
+
+# Start the main process.
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
+
