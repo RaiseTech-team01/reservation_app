@@ -3,6 +3,6 @@ test:
   encoding: unicode
   pool: 5
   database: rails_app_test
-  username: postgres
-  password: postgres
+  username: root
+  password: root
   host: localhost

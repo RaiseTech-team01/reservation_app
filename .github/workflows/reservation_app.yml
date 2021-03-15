@@ -9,8 +9,8 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_USER: postgres
-          MYSQL_PASSWORD: postgres
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
@@ -35,7 +35,10 @@ jobs:
           cp -v config/database.yml.ci config/database.yml
           bundle exec rails db:create
           bundle exec rails db:schema:load
-        env_file: .env
+        env:
+          RAILS_ENV: test
+          MYSQL_USER: $MYSQL_USER
+          MYSQL_PASSWORD: $MYSQL_PASSWORD
 
       - name: Rubocop
         run: bundle exec rubocop --parallel
