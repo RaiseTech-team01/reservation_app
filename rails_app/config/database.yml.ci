@@ -1,0 +1,8 @@
+test:
+  adapter: mysql
+  encoding: unicode
+  pool: 5
+  database: rails_app_test
+  username: root
+  password: root
+  host: localhost

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 APP_ROOT = File.expand_path("..", __dir__)
 Dir.chdir(APP_ROOT) do
-  yarn = ENV["PATH"].split(File::PATH_SEPARATOR).
+  yarn = ENV["PATH"].split(File::PATH_SEPARATOR). # rubocop:disable Style/InverseMethods
            select {|dir| File.expand_path(dir) != __dir__ }.
            product(["yarn", "yarn.cmd", "yarn.ps1"]).
            map {|dir, file| File.expand_path(file, dir) }.
