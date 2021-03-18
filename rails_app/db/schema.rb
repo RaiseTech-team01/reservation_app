@@ -25,9 +25,13 @@ ActiveRecord::Schema.define(version: 2021_03_17_132119) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name"
-    t.string "nickname"
+    t.string "furigana"
     t.string "image"
     t.string "email"
+    t.string "tel"
+    t.string "birthday"
+    t.string "six"
+    t.string "address"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
