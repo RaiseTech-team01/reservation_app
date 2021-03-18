@@ -5,19 +5,23 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  address                :string(255)
 #  allow_password_change  :boolean          default(FALSE)
+#  birthday               :string(255)
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string(255)
 #  confirmed_at           :datetime
 #  email                  :string(255)
 #  encrypted_password     :string(255)      default(""), not null
+#  furigana               :string(255)
 #  image                  :string(255)
 #  name                   :string(255)
-#  nickname               :string(255)
 #  provider               :string(255)      default("email"), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  six                    :string(255)
+#  tel                    :string(255)
 #  tokens                 :text(65535)
 #  uid                    :string(255)      default(""), not null
 #  unconfirmed_email      :string(255)
