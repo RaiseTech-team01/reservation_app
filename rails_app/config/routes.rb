@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for "User", at: "auth"
 
-  # mount_devise_token_auth_for "Store", at: "auth"
+  # mount_devise_token_auth_for "Store", at: "store_auth"
+
   # as :store do
   #   # Define routes for Store within this block.
   # end
