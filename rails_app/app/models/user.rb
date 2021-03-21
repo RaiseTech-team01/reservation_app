@@ -48,4 +48,11 @@ class User < ApplicationRecord
   has_many :deliveries, dependent: :destroy
   has_many :word_mouths, dependent: :destroy
   has_many :store_discount_info_notifications, dependent: :destroy
+
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :furigana, presence: true, length: { maximum: 100 }
+  validates :tel, presence: true, format: { with: /[0-9]/ }, length: { maximum: 21 }
+  validates :birthday, presence: true, format: { with: /[0-9]/ }, length: { maximum: 10 }
+  validates :six, presence: true, format: { with: /[a-zA-Z]/ }, length: { maximum: 10 }
+  validates :address, presence: true, length: { maximum: 255 }
 end
