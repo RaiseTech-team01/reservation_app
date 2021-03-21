@@ -29,9 +29,18 @@ class DeviseTokenAuthCreateStores < ActiveRecord::Migration[6.1]
 
       ## User Info
       t.string :name
-      t.string :nickname
-      t.string :image
+      t.string :furigana
       t.string :email
+      t.string :tel
+      t.string :fax
+      t.string :postal_code
+      t.string :address
+      t.string :url
+      t.string :seat
+      t.string :restaurant
+      t.string :genre
+      t.string :responsible_party
+      t.string :other
 
       ## Tokens
       t.text :tokens

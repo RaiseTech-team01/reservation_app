@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_03_18_121944) do
-
   create_table "calendars", charset: "utf8mb4", force: :cascade do |t|
     t.string "business_hours"
     t.string "regular_holiday"
@@ -82,9 +81,18 @@ ActiveRecord::Schema.define(version: 2021_03_18_121944) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name"
-    t.string "nickname"
-    t.string "image"
+    t.string "furigana"
     t.string "email"
+    t.string "tel"
+    t.string "fax"
+    t.string "postal_code"
+    t.string "address"
+    t.string "url"
+    t.string "seat"
+    t.string "restaurant"
+    t.string "genre"
+    t.string "responsible_party"
+    t.string "other"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
