@@ -11,15 +11,20 @@
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string(255)
 #  confirmed_at           :datetime
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string(255)
 #  email                  :string(255)
 #  encrypted_password     :string(255)      default(""), not null
 #  furigana               :string(255)
 #  image                  :string(255)
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string(255)
 #  name                   :string(255)
 #  provider               :string(255)      default("email"), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  sign_in_count          :integer          default(0), not null
 #  six                    :string(255)
 #  tel                    :string(255)
 #  tokens                 :text(65535)
