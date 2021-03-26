@@ -1,0 +1,47 @@
+version: '3'
+services:
+  db:
+    image: mariadb:10.5.8
+    restart: always
+    ports:
+      - ${DB_PORT}:3306
+    # volumes:
+    #   - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    env_file: .env
+    tty: true
+    stdin_open: true
+
+  # rails:
+  #   build:
+  #     context: ./rails_app
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - ${BACKEND_PORT}:3000
+  #   volumes:
+  #     - ./rails_app/:/rails_app
+  #     - rails-bundle:/user/local/bundle
+  #     - ./_roothome/:/root
+  #   depends_on:
+  #     - db
+  #   env_file: .env
+  #   tty: true
+  #   stdin_open: true
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     - PMA_HOST=${DB_HOST}
+  #   ports:
+  #     - 8888:80
+  #   volumes:
+  #     - pma-session:/sessions
+  #   depends_on:
+  #     - rails
+  #   env_file: .env
+
+# volumes:
+#   # rails-bundle:
+#   db-data:
+#   pma-session:
