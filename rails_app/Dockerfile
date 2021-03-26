@@ -32,41 +32,28 @@ ADD Gemfile.lock ${APP_HOME}/Gemfile.lock
 # ADD webpacker.yml ${APP_HOME}/config/
 
 #/rails_appディレクトリ上でbundle install
-# RUN apk update \
-#     && apk upgrade \
-#     && apk add --update --no-cache ${RUNTIME_PACKAGES} \
-#     && apk add --update --no-cache --virtual=.build-dependencies ${DEV_PACKAGES} \
-#     && bundle install --jobs=4 \
-#     && yarn install \
-#     && rm -rf /usr/local/bundle/cache/*.gem \
-#         && find /usr/local/bundle/gems/ -name "*.c" -delete \
-#         && find /usr/local/bundle/gems/ -name "*.o" -delete \
-#     && apk del --purge .build-dependencies \
-#     && rm -rf /var/cache/apk/ && mkdir /var/cache/apk/
+RUN apk update \
+    && apk upgrade \
+    && apk add --update --no-cache ${RUNTIME_PACKAGES} \
+    && apk add --update --no-cache --virtual=.build-dependencies ${DEV_PACKAGES} \
+    && bundle install --jobs=4 \
+    && yarn install \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+        && find /usr/local/bundle/gems/ -name "*.c" -delete \
+        && find /usr/local/bundle/gems/ -name "*.o" -delete \
+    && apk del --purge .build-dependencies \
+    && rm -rf /var/cache/apk/ && mkdir /var/cache/apk/
 #    && curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 #    && rails webpacker:install
 
-# COPY . ${APP_HOME}
+COPY . ${APP_HOME}
 
-# COPY entrypoint.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.sh
-# ENTRYPOINT ["entrypoint.sh"]
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 
 
-# EXPOSE ${PORT}
-
-# entrypoint.sh に記述とします。---＞ちょっとまちに
-
-# Start the main process.
-
-# CMD ["rails", "server", "-b", "0.0.0.0"]
-
-# entrypoint.sh に記述とします。---＞ちょっとまちに
-
-# Start the main process.
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
+EXPOSE ${PORT}
 
 # entrypoint.sh に記述とします。---＞ちょっとまちに
 
