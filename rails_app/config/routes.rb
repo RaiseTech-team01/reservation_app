@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      mount_devise_token_auth_for "User", at: "auth", controllers: {
-        registrations: "api/v1/auth/registrations",
-        sessions: "api/v1/auth/sessions",
-      }
+      namespace :users do
+        mount_devise_token_auth_for "User", at: "auth", controllers: {
+          registrations: "api/v1/users/auth/registrations",
+          sessions: "api/v1/users/auth/sessions",
+        }
+      end
     end
   end
 
