@@ -6,12 +6,12 @@ FactoryBot.define do
     furigana { Gimei.name.katakana }
     tel { Faker::Bank.account_number(digits: 12) }
     fax { Faker::Bank.account_number(digits: 12) }
-    postal_code { "" }
+    postal_code { Faker::Number.number(digits: 7) }
     address { Gimei.address.town.kanji }
-    url { "" }
-    seat { "" }
-    restaurant { "" }
-    genre { "" }
-    responsible_party { "" }
+    url { "https://sample.com" }
+    seat { Faker::Number.number(digits: 3) }
+    restaurant { "飲食" }
+    genre { Faker::Food.dish }
+    responsible_party { Faker::Name.name }
   end
 end
