@@ -22,4 +22,6 @@
 class Deliverie < ApplicationRecord
   belongs_to :user
   belongs_to :store
+
+  validates :deliverer, presence: true
 end
