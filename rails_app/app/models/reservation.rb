@@ -29,6 +29,8 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :store
 
+  has_many :payment, dependent: :destroy
+
   validates :date_at, presence: true
   validates :date_on, presence: true
   validates :number_people, presence: true, length: { maximum: 3 }
