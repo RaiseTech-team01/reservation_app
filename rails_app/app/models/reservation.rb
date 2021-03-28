@@ -4,8 +4,8 @@
 #
 #  id                 :bigint           not null, primary key
 #  budget             :integer
-#  date_at            :string(255)
-#  date_on            :string(255)
+#  date_at            :datetime
+#  date_on            :datetime
 #  inquiry            :text(65535)
 #  menu               :string(255)
 #  number_people      :integer
@@ -29,8 +29,8 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :store
 
-  validates :date_at, presence: true, length: { maximum: 11 }
-  validates :date_on, presence: true, length: { maximum: 11 }
+  validates :date_at, presence: true
+  validates :date_on, presence: true
   validates :number_people, presence: true, length: { maximum: 3 }
   validates :menu, presence: true, length: { maximum: 50 }
   validates :budget, presence: true, length: { maximum: 6 }
