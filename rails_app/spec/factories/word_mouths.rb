@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  body       :text(65535)
 #  title      :string(255)
-#  visit_day  :string(255)
+#  visit_day  :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  store_id   :bigint           not null

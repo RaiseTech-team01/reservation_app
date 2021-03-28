@@ -4,8 +4,8 @@
 #
 #  id                 :bigint           not null, primary key
 #  budget             :integer
-#  date_at            :string(255)
-#  date_on            :string(255)
+#  date_at            :datetime
+#  date_on            :datetime
 #  inquiry            :text(65535)
 #  menu               :string(255)
 #  number_people      :integer

@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2021_03_18_121944) do
   end
 
   create_table "reservations", charset: "utf8mb4", force: :cascade do |t|
-    t.string "date_at"
-    t.string "date_on"
+    t.datetime "date_at"
+    t.datetime "date_on"
     t.integer "number_people"
     t.string "menu"
     t.integer "budget"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_121944) do
   end
 
   create_table "word_mouths", charset: "utf8mb4", force: :cascade do |t|
-    t.string "visit_day"
+    t.datetime "visit_day"
     t.string "title"
     t.text "body"
     t.bigint "user_id", null: false
