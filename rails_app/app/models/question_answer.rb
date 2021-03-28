@@ -19,4 +19,7 @@
 #
 class QuestionAnswer < ApplicationRecord
   belongs_to :store
+
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :body, presence: true
 end
