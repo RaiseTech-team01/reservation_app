@@ -29,8 +29,8 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :store
 
-  validates :date_at, presence: true, length: { maximum: 11 }
-  validates :date_on, presence: true, length: { maximum: 11 }
+  validates :date_at, presence: true
+  validates :date_on, presence: true
   validates :number_people, presence: true, length: { maximum: 3 }
   validates :menu, presence: true, length: { maximum: 50 }
   validates :budget, presence: true, length: { maximum: 6 }
