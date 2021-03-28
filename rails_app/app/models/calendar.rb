@@ -21,4 +21,8 @@
 #
 class Calendar < ApplicationRecord
   belongs_to :store
+
+  validates :business_hours, presence: true
+  validates :regular_holiday, presence: true
+  validates :title, length: { maximum: 50 }
 end
