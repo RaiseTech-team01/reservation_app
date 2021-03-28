@@ -23,5 +23,5 @@ class Deliverie < ApplicationRecord
   belongs_to :user
   belongs_to :store
 
-  validates :deliverer, presence: true
+  validates :deliverer, presence: true, length: { maximum: 50 }
 end
