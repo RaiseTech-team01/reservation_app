@@ -27,14 +27,16 @@
 #
 FactoryBot.define do
   factory :reservation do
-    date_at { "" }
-    date_on { "" }
-    number_people { "" }
-    menu { "MyString" }
-    budget { "" }
+    date_at { Faker::Date.between(from: "2021-03-23", to: "2121-09-25") }
+    date_on { Faker::Date.between(from: "2021-03-23", to: "2121-09-25") }
+    number_people { Faker::Number.number(digits: 3) }
+    menu { Faker::Food.dish }
+    budget { Faker::Number.number(digits: 6) }
     inquiry { "MyText" }
-    reservation_number { "MyString" }
-    user { nil }
-    store { nil }
+    reservation_number { Faker::String.random(length: 12) }
+
+    # association :user, factory: :user の略
+    user
+    store
   end
 end
