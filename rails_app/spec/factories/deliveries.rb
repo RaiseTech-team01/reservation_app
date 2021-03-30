@@ -3,7 +3,7 @@
 # Table name: deliveries
 #
 #  id         :bigint           not null, primary key
-#  deliverer  :string(255)
+#  deliverer  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  store_id   :bigint           not null
@@ -21,8 +21,9 @@
 #
 FactoryBot.define do
   factory :deliverie do
-    deliverer { "MyString" }
-    user { nil }
-    store { nil }
+    deliverer { Faker::Number.number(digits: 3) }
+
+    user
+    store
   end
 end
