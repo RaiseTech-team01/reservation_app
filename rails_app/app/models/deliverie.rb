@@ -3,7 +3,7 @@
 # Table name: deliveries
 #
 #  id         :bigint           not null, primary key
-#  deliverer  :string(255)
+#  deliverer  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  store_id   :bigint           not null
@@ -23,5 +23,5 @@ class Deliverie < ApplicationRecord
   belongs_to :user
   belongs_to :store
 
-  validates :deliverer, presence: true, length: { maximum: 50 }
+  validates :deliverer, presence: true, length: { maximum: 3 }
 end
