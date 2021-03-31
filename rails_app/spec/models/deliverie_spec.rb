@@ -26,7 +26,6 @@ RSpec.describe Deliverie, type: :model do
     let(:deliverie) { build(:deliverie) }
 
     it "デリバリー配達手配がsできる" do
-      binding.pry
       expect(deliverie).to be_valid
     end
   end

@@ -23,10 +23,11 @@
 #
 FactoryBot.define do
   factory :word_mouth do
-    visit_day { "" }
-    title { "MyString" }
-    body { "MyText" }
-    user { nil }
-    store { nil }
+    visit_day { Faker::Date.between(from: "2021-03-23", to: "2121-09-25") }
+    title { Faker::Blockchain::Ethereum.address }
+    body { Faker::String.random }
+
+    user
+    store
   end
 end
