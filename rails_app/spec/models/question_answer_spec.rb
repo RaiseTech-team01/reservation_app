@@ -20,5 +20,11 @@
 require "rails_helper"
 
 RSpec.describe QuestionAnswer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "必要な情報が揃っている場合" do
+    let(:question_answer) { build(:question_answer) }
+
+    it "Q & A が登録できる" do
+      expect(question_answer).to be_valid
+    end
+  end
 end
