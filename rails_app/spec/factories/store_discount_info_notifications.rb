@@ -22,9 +22,10 @@
 #
 FactoryBot.define do
   factory :store_discount_info_notification do
-    title { "MyString" }
+    title { Faker::Job.employment_type }
     body { "MyText" }
-    user { nil }
-    store { nil }
+
+    user
+    store
   end
 end
