@@ -3,7 +3,7 @@
 # Table name: deliveries
 #
 #  id         :bigint           not null, primary key
-#  deliverer  :string(255)
+#  deliverer  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  store_id   :bigint           not null
@@ -22,5 +22,11 @@
 require "rails_helper"
 
 RSpec.describe Deliverie, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "必要な情報が揃っている場合" do
+    let(:deliverie) { build(:deliverie) }
+
+    it "デリバリー配達手配がsできる" do
+      expect(deliverie).to be_valid
+    end
+  end
 end

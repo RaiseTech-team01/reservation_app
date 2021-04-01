@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_03_28_133435) do
   end
 
   create_table "deliveries", charset: "utf8mb4", force: :cascade do |t|
-    t.string "deliverer"
+    t.integer "deliverer"
     t.bigint "user_id", null: false
     t.bigint "store_id", null: false
     t.datetime "created_at", precision: 6, null: false

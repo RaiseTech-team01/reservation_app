@@ -23,5 +23,11 @@
 require "rails_helper"
 
 RSpec.describe StoreDiscountInfoNotification, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "必要な情報が揃っている場合" do
+    let(:store_discount_info_notification) { build(:store_discount_info_notification) }
+
+    it "店舗割引情報通知できる" do
+      expect(store_discount_info_notification).to be_valid
+    end
+  end
 end
