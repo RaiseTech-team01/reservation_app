@@ -27,7 +27,6 @@ RSpec.describe StoreDiscountInfoNotification, type: :model do
     let(:store_discount_info_notification) { build(:store_discount_info_notification) }
 
     it "店舗割引情報通知できる" do
-      binding.pry
       expect(store_discount_info_notification).to be_valid
     end
   end
