@@ -22,5 +22,11 @@
 require "rails_helper"
 
 RSpec.describe Calendar, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "必要な情報が揃っている場合" do
+    let(:calendar) { build(:calendar) }
+
+    it "カレンダー登録できる" do
+      expect(calendar).to be_valid
+    end
+  end
 end
