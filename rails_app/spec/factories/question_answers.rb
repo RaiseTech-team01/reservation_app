@@ -19,8 +19,9 @@
 #
 FactoryBot.define do
   factory :question_answer do
-    title { "MyString" }
-    body { "MyText" }
-    store { nil }
+    title { Faker::Blockchain::Ethereum.address }
+    body { Faker::String.random }
+
+    store
   end
 end

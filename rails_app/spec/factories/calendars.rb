@@ -21,10 +21,12 @@
 #
 FactoryBot.define do
   factory :calendar do
-    business_hours { "MyString" }
-    regular_holiday { "MyString" }
-    title { "MyString" }
-    body { "MyText" }
-    store { nil }
+    I18n.locale = "ja"
+    business_hours { Faker::Time.between(from: DateTime.now, to: DateTime.now) }
+    regular_holiday { Faker::Business.credit_card_expiry_date }
+    title { Faker::Blockchain::Ethereum.address }
+    body { Faker::String.random }
+
+    store
   end
 end

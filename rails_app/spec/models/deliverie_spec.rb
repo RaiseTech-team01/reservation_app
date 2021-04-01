@@ -22,5 +22,11 @@
 require "rails_helper"
 
 RSpec.describe Deliverie, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "必要な情報が揃っている場合" do
+    let(:deliverie) { build(:deliverie) }
+
+    it "デリバリー配達手配がsできる" do
+      expect(deliverie).to be_valid
+    end
+  end
 end
