@@ -25,7 +25,7 @@ RSpec.describe Deliverie, type: :model do
   context "必要な情報が揃っている場合" do
     let(:deliverie) { build(:deliverie) }
 
-    it "デリバリー配達手配がsできる" do
+    it "デリバリー配達手配ができる" do
       expect(deliverie).to be_valid
     end
   end
