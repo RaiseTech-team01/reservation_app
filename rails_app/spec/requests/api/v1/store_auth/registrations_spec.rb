@@ -38,7 +38,7 @@ RSpec.describe "Api::V1::StoreAuth::Registrations", type: :request do # rubocop:
     context "新規登録するStoreのpass認証が違う時" do
       let(:params) { attributes_for(:store, password: 123_456, password_confirmation: 123_457) }
 
-      it "do Error" do
+      it "登録出来ない" do
         subject
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -48,7 +48,7 @@ RSpec.describe "Api::V1::StoreAuth::Registrations", type: :request do # rubocop:
       let!(:store) { create(:store, email: "Exsample@xxx.com") }
       let(:params) { attributes_for(:store, email: "Exsample@xxx.com") }
 
-      it "do Error" do
+      it "登録出来ない" do
         subject
         expect(response).to have_http_status(:unprocessable_entity)
       end
