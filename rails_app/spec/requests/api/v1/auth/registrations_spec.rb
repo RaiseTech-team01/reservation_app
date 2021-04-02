@@ -22,7 +22,7 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do # rubocop:disab
         end
       end
 
-      context "新規登録するUser情報が正しい時" do
+      context "新規登録する User 情報が正しい時" do
         # """ このテストはただ, リクエスト情報の確認をしてるだけ """
         let(:params) { attributes_for(:user, password: 123_456, password_confirmation: 123_456) }
 
@@ -37,8 +37,8 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do # rubocop:disab
       end
     end
 
-    describe "異常系" do
-      context "新規登録するUserのpass認証が違う時" do
+    describe "異常系" do # rubocop:disable Metrics/BlockLength
+      context "新規登録するUser の pass認証が違う時" do
         let(:params) { attributes_for(:user, password: 123_456, password_confirmation: 123_457) }
 
         it "登録出来ない" do
@@ -47,9 +47,54 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do # rubocop:disab
         end
       end
 
-      context "新規登録するUserのEmailがすでに登録されている時" do
+      context "新規登録する User のEmail がすでに登録されている時" do
         let!(:user) { create(:user, email: "Exsample@xxx.com") }
         let(:params) { attributes_for(:user, email: "Exsample@xxx.com") }
+
+        it "登録出来ない" do
+          subject
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context "新規登録する User のフリガナの入力がない時" do
+        let(:params) { attributes_for(:user, furigana: nil) }
+
+        it "登録出来ない" do
+          subject
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context "新規登録する User の電話番号の入力がない時" do
+        let(:params) { attributes_for(:user, tel: nil) }
+
+        it "登録出来ない" do
+          subject
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context "新規登録する User の誕生日の入力がない時" do
+        let(:params) { attributes_for(:user, birthday: nil) }
+
+        it "登録出来ない" do
+          subject
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context "新規登録する User の性別の入力がない時" do
+        let(:params) { attributes_for(:user, six: nil) }
+
+        it "登録出来ない" do
+          subject
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+
+      context "新規登録する User のアドレスの入力がない時" do
+        let(:params) { attributes_for(:user, address: nil) }
 
         it "登録出来ない" do
           subject
