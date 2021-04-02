@@ -57,7 +57,7 @@ class Store < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :furigana, presence: true, length: { maximum: 100 }
   validates :tel, presence: true, format: { with: /[0-9]/ }, length: { maximum: 21 }
-  validates :fax, presence: true, format: { with: /[0-9]/ }, length: { maximum: 21 }
+  validates :fax, format: { with: /[0-9]/ }, length: { maximum: 21 }
   validates :postal_code, presence: true, format: { with: /[0-9]/ }, length: { maximum: 7 }
   validates :address, presence: true
   validates :url, presence: true
