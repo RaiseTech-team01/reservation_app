@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'home/top5'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for "User", at: "auth", controllers: {
