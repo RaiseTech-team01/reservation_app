@@ -30,6 +30,7 @@ services:
     tty: true
     stdin_open: true
 
+  # 今回フロントで、phpmyadminは、使用しないのでコメントアウト
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin
   #   environment:
