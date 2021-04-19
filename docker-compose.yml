@@ -1,7 +1,8 @@
 version: '3'
 services:
   db:
-    image: mariadb:10.5.8
+    image: mariadb:10.5.9
+
     restart: always
     ports:
       - ${DB_PORT}:3306
@@ -29,19 +30,20 @@ services:
     tty: true
     stdin_open: true
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      - PMA_HOST=${DB_HOST}
-    ports:
-      - 8888:80
-    volumes:
-      - pma-session:/sessions
-    depends_on:
-      - rails
-    env_file: .env
+  # 今回フロントで、phpmyadminは、使用しないのでコメントアウト
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     - PMA_HOST=${DB_HOST}
+  #   ports:
+  #     - 8888:80
+  #   volumes:
+  #     - pma-session:/sessions
+  #   depends_on:
+  #     - rails
+  #   env_file: .env
 
 volumes:
   rails-bundle:
   db-data:
-  pma-session:
+  # pma-session:
