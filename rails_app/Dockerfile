@@ -9,10 +9,10 @@ FROM ruby:3.0.0-alpine3.12
 
 # ---------環境で、書き換えを--------
 # for MAC
-# ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers vim git bash zsh curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
+ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers vim git bash zsh curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
 
 # for win
-ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers exa fd ripgrep vim git tmux bash zsh fish fzf curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
+# ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers exa fd ripgrep vim git tmux bash zsh fish fzf curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
 # --------------------------------
 
 ENV DEV_PACKAGES "build-base curl-dev"
@@ -54,27 +54,6 @@ ENTRYPOINT ["entrypoint.sh"]
 
 
 EXPOSE ${PORT}
-
-# entrypoint.sh に記述とします。---＞ちょっとまちに
-
-# Start the main process.
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
-
-# entrypoint.sh に記述とします。---＞ちょっとまちに
-
-# Start the main process.
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
-
-# entrypoint.sh に記述とします。---＞ちょっとまちに
-
-# Start the main process.
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
 
 # entrypoint.sh に記述とします。---＞ちょっとまちに
 
