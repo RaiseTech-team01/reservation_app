@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  get "home/top" => "home#top"
+  get "home/top", to: "home#top"
 
   namespace :api do
     namespace :v1 do
@@ -14,8 +13,8 @@ Rails.application.routes.draw do
         sessions: "api/v1/store_auth/sessions",
       }
 
-      namespace :reversion do
-        resources :registrations, only: [:create, :destroy]
+      namespace :stores do
+        resources :reservations
       end
     end
   end
