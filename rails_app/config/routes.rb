@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "home/top", to: "home#top"
+
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for "User", at: "auth", controllers: {
@@ -11,8 +13,8 @@ Rails.application.routes.draw do
         sessions: "api/v1/store_auth/sessions",
       }
 
-      namespace :reversion do
-        resources :registrations, only: [:create, :destroy]
+      namespace :stores do
+        resources :reservations
       end
     end
   end
