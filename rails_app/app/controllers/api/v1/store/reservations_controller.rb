@@ -1,6 +1,11 @@
 class Api::V1::Store::ReservationsController < Api::V1::BaseApiController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!, except: [:create]
+  before_action :authenticate_user!, only: [:create]
+
+  def index
+    reservations = Reservation.where_store_id(params["store_id"])
+    render json: reservations
+  end
 
   def create
     reversion = current_user.reservations.build(reversion_params)
