@@ -4,10 +4,16 @@ class Api::V1::Store::ReservationsController < Api::V1::BaseApiController
 
   def create
     reversion = current_user.reservations.build(reversion_params)
+
+    # 生成した予約番号を呼び出し
+    reversion.reservation_number = reversion.create_reservation_num
+
+    # 指定店舗があることを確認し格納
     reversion.store_id = Store.find(params["store_id"]).id
+
     reversion.save!
 
-    render json: reversion, serializer: Api::V1::ReservationSerializer
+    render json: reversion, serializer: Api::V1::ReservationCreateSerializer
   end
 
   private
