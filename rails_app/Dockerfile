@@ -34,6 +34,7 @@ ADD Gemfile.lock ${APP_HOME}/Gemfile.lock
 #/rails_appディレクトリ上でbundle install
 RUN apk update \
     && apk upgrade \
+    && apk add --update --no-cache less \
     && apk add --update --no-cache ${RUNTIME_PACKAGES} \
     && apk add --update --no-cache --virtual=.build-dependencies ${DEV_PACKAGES} \
     && bundle install --jobs=4 \
@@ -60,4 +61,3 @@ EXPOSE ${PORT}
 # Start the main process.
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
-
