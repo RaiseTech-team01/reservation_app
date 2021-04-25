@@ -1,3 +1,3 @@
 class Api::V1::StoreSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name
 end
