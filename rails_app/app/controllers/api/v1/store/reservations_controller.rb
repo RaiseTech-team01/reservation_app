@@ -4,7 +4,7 @@ class Api::V1::Store::ReservationsController < Api::V1::BaseApiController
 
   def index
     reservations = Reservation.where_store_id(params["store_id"])
-    render json: reservations
+    render json: reservations, each_serializer: Api::V1::ReservationIndexSerializer
   end
 
   def create
