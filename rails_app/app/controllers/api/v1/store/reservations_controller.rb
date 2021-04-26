@@ -7,6 +7,12 @@ class Api::V1::Store::ReservationsController < Api::V1::BaseApiController
     render json: reservations, each_serializer: Api::V1::ReservationIndexSerializer
   end
 
+  def show
+    reservation = Reservation.where_store_id(params["store_id"])
+    detail = reservation.find(params[:id])
+    render json: detail, serializer: Api::V1::ReservationShowSerializer
+  end
+
   def create
     reversion = current_user.reservations.build(reversion_params)
     # 生成した予約番号を呼び出し
