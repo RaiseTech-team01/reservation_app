@@ -15,7 +15,7 @@
                 tel: "12345678#{i}",
                 fax: "12345678#{i}",
                 postal_code: "1234567",
-                url: "http://sample#{i}",
+                url: "http://sample#{i}.com",
                 address: "大阪",
                 seat: "#{i}#{i}#{i}",
                 restaurant: "店舗名#{i}",
