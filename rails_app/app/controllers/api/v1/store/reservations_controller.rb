@@ -1,6 +1,6 @@
 class Api::V1::Store::ReservationsController < Api::V1::BaseApiController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create, :update]
 
   def index
     reservations = Reservation.where_store_id(params["store_id"])
@@ -22,6 +22,16 @@ class Api::V1::Store::ReservationsController < Api::V1::BaseApiController
     reversion.save!
 
     render json: reversion, serializer: Api::V1::ReservationCreateSerializer
+  end
+
+  def update
+    # 対象の予約を検索する
+    reservation = Reservation.where_store_id(params["store_id"])
+    detail = reservation.find(params[:id])
+    # リクエストで変更のある値を更新
+    detail.update!(reversion_params)
+
+    render json: detail, serializer: Api::V1::ReservationShowSerializer
   end
 
   private
