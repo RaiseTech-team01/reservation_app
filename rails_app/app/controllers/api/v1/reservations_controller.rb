@@ -3,40 +3,42 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
   before_action :authenticate_user!, only: [:create, :update]
 
   def index
-    reservations = Reservation.where_store_id(params["store_id"])
+    # 指定店舗の一覧を表示
+    reservations = Reservation.search_store(params["store_id"])
     render json: reservations, each_serializer: Api::V1::ReservationIndexSerializer
   end
 
   def show
-    reservation = Reservation.where_store_id(params["store_id"])
-    detail = reservation.find(params[:id])
-    render json: detail, serializer: Api::V1::ReservationShowSerializer
+    # 指定店舗の選択した予約詳細を表示
+    reservation = Reservation.search_store(params["store_id"])
+    reservation = reservation.find(params[:id])
+    render json: reservation, serializer: Api::V1::ReservationShowSerializer
   end
 
   def create
-    reversion = current_user.reservations.build(reversion_params)
+    reservation = current_user.reservations.build(reservation_params)
     # 生成した予約番号を呼び出し
-    reversion.reservation_number = reversion.create_reservation_num
+    reservation.reservation_number = reservation.create_reservation_num
     # 指定店舗があることを確認し格納
-    reversion.store_id = Store.find(params["store_id"]).id
-    reversion.save!
+    reservation.store_id = Store.find(params["store_id"]).id
+    reservation.save!
 
-    render json: reversion, serializer: Api::V1::ReservationCreateSerializer
+    render json: reservation, serializer: Api::V1::ReservationCreateSerializer
   end
 
   def update
     # 対象の予約を検索する
-    reservation = Reservation.where_store_id(params["store_id"])
-    detail = reservation.find(params[:id])
+    reservation = Reservation.search_store(params["store_id"])
+    reservation = reservation.find(params[:id])
     # リクエストで変更のある値を更新
-    detail.update!(reversion_params)
+    reservation.update!(reservation_params)
 
-    render json: detail, serializer: Api::V1::ReservationShowSerializer
+    render json: reservation, serializer: Api::V1::ReservationShowSerializer
   end
 
   private
 
-    def reversion_params
+    def reservation_params
       params.require(:reservation).permit(:date_at, :date_on, :number_people, :menu, :budget,
                                           :inquiry, :user_id, :store_id)
     end
