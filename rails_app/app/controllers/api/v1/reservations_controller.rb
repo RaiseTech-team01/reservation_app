@@ -28,7 +28,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   def update
     # 対象の予約を検索する
-    reservation = Reservation.search_store(params["store_id"])
+    reservation = current_user.reservations.search_store(params["store_id"])
     reservation = reservation.find(params[:id])
     # リクエストで変更のある値を更新
     reservation.update!(reservation_params)
