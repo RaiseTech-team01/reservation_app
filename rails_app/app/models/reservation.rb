@@ -25,6 +25,8 @@
 #  fk_rails_...  (store_id => stores.id)
 #  fk_rails_...  (user_id => users.id)
 #
+require "securerandom"
+
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :store
@@ -37,4 +39,12 @@ class Reservation < ApplicationRecord
   validates :menu, presence: true, length: { maximum: 50 }
   validates :budget, presence: true, length: { maximum: 6 }
   validates :reservation_number, presence: true, length: { maximum: 12 }
+
+  def self.where_store_id(store_id)
+    where(store_id: store_id)
+  end
+
+  def create_reservation_num
+    SecureRandom.hex(6)
+  end
 end
