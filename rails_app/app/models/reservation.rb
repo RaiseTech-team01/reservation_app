@@ -40,8 +40,8 @@ class Reservation < ApplicationRecord
   validates :budget, presence: true, length: { maximum: 6 }
   validates :reservation_number, presence: true, length: { maximum: 12 }
 
-  def self.where_store_id(store_id)
-    where(store_id: store_id)
+  def self.search_store(store)
+    where(store: store)
   end
 
   def create_reservation_num
