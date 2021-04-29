@@ -1,6 +1,6 @@
 class Api::V1::ReservationsController < Api::V1::BaseApiController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!, only: [:create, :update]
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
 
   def index
     # 指定店舗の一覧を表示
@@ -34,6 +34,12 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     reservation.update!(reservation_params)
 
     render json: reservation, serializer: Api::V1::ReservationShowSerializer
+  end
+
+  def destroy
+    reservation = current_user.reservations.search_store(params["store_id"])
+    reservation = reservation.find(params[:id])
+    reservation.destroy!
   end
 
   private
