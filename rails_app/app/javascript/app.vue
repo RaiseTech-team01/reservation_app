@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <header class="h-16 bg-black">
-      <img class="h-44" src="images/banner.png" alt="banner">
+      <img class="h-44" src="/banner.png" alt="banner">
     </header>
     <main class="mt-28"><!-- min-widthを設定する -->
       <div class="h-16 text-center flex flex-row justify-center items-center">
