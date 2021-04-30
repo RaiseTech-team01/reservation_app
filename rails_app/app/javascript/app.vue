@@ -28,19 +28,19 @@
           <div>
             <form class="mt-10 ml-10">
               <div>
-                <label class="text-2xl text-blue-800 mr-3" for="login_id">ID</label>
-                <input class="w-80 h-10 border-blue-800 border-2" name="login_id" type="text"><br>
+                <label class="text-2xl text-blue-800 mr-3" for="email">ID</label>
+                <input class="w-80 h-10 border-blue-800 border-2" name="email" type="text"><br>
               </div>
               <div class="mt-10">
-                <label class="text-2xl text-blue-800 mr-3" for="login_pass">パスワード</label>
-                <input class="w-56 h-10 border-blue-800 border-2" name="login_pass" type="password"><br>
+                <label class="text-2xl text-blue-800 mr-3" for="password">パスワード</label>
+                <input class="w-56 h-10 border-blue-800 border-2" name="password" type="password"><br>
               </div>
               <div id="login_checkbox" class="mt-10">
                 <input id="is_auto_login" class="w-20 border-blue-800 border-2" name="is_auto_login" type="checkbox">
                 <label class="text-xl text-blue-800" for="is_auto_login">次からは自動でログインする</label><br>
               </div>
               <div class="mt-10 text-center">
-                <input class="w-40 h-12 mr-8 p-1 text-2xl text-blue-800 bg-yellow-400" type="submit" value="ログイン">
+                <input class="w-40 h-12 mr-8 p-1 text-2xl text-blue-800 bg-yellow-400" type="submit" :loading="loading" @click="submit" value="ログイン">
                 <input class="w-40 h-12 p-1 text-2xl text-blue-800 bg-yellow-400" type="button" value="戻る">
               </div>
           </form>
@@ -59,10 +59,46 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Router from "../router/router";
+
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
+      name:  '',
+      loading: false,
+      email: '',
+      password: '',
+    }
+  },
+
+  methods: {
+    async submit() {
+      this.loading = true
+      const params = {
+        email: this.email,
+        password: this.password,
+      }
+      await axios
+        .post("/api/v1/users/auth/sign_in", params)
+        .then(response => {
+          localStorage.setItem("access-token", response.headers["access-token"]);
+          localStorage.setItem("uid", response.headers["uid"]);
+          localStorage.setItem("client", response.headers["client"]);
+
+          Router.push("/");
+
+          // TODO: Vuex でログイン状態を管理するようになったら消す
+          window.location.reload();
+        })
+        .catch(e => {
+          // TODO: 適切な Error 表示
+          alert(e.response.data.errors.full_messages);
+        })
+        .finally(() => {
+          this.loading = false
+        })
+        console.log("hi")
     }
   }
 }
