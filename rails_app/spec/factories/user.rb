@@ -7,7 +7,7 @@ FactoryBot.define do
     image { "" }
     tel { Faker::Bank.account_number(digits: 12) }
     birthday { Faker::Code.npi }
-    six { "gender" }
+    gender { "gender" }
     address { Gimei.address.town.kanji }
   end
 end
