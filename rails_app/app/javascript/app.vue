@@ -60,7 +60,7 @@
 
 <script>
 import axios from 'axios'
-import Router from "../router/router";
+import Router from "./router/router";
 
 export default {
   data: function () {
