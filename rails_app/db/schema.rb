@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2021_03_28_133435) do
     t.string "email"
     t.string "tel"
     t.string "birthday"
-    t.string "six"
+    t.string "gender"
     t.string "address"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false

@@ -85,7 +85,7 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do # rubocop:disab
       end
 
       context "新規登録する User の性別の入力がない時" do
-        let(:params) { attributes_for(:user, six: nil) }
+        let(:params) { attributes_for(:user, gender: nil) }
 
         it "登録出来ない" do
           subject

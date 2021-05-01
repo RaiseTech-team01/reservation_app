@@ -14,6 +14,7 @@
 #  email                  :string(255)
 #  encrypted_password     :string(255)      default(""), not null
 #  furigana               :string(255)
+#  gender                 :string(255)
 #  image                  :string(255)
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string(255)
@@ -23,7 +24,6 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
 #  sign_in_count          :integer          default(0), not null
-#  six                    :string(255)
 #  tel                    :string(255)
 #  tokens                 :text(65535)
 #  uid                    :string(255)      default(""), not null
