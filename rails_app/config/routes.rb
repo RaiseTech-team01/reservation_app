@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "home/top", to: "home#top"
+  get "home/top" => "home#top"
 
   namespace :api do
     namespace :v1 do
