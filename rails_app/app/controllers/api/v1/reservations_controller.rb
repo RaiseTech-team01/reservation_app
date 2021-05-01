@@ -32,8 +32,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     reservation = reservation.find(params[:id])
     # リクエストで変更のある値を更新
     reservation.update!(reservation_params)
-
-    render json: reservation, serializer: Api::V1::ReservationShowSerializer
+    render json: reservation, serializer: Api::V1::ReservationUpdateSerializer
   end
 
   def destroy
