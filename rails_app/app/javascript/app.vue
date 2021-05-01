@@ -76,33 +76,33 @@ p {
 
 /* ラベルのスタイル　*/
 #login_checkbox label {
-  padding-left:		38px;			/* ラベルの位置 */
-  line-height:		32px;
-  display:		inline-block;
-  cursor:			pointer;
-  position:		relative;
+  padding-left: 38px; /* ラベルの位置 */
+  line-height: 32px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
 }
 
 /* ボックスのスタイル */
 #login_checkbox label:before {
-  content:		'';
-  width:			32px;			/* ボックスの横幅 */
-  height:			32px;			/* ボックスの縦幅 */
-  display:		inline-block;
-  position:		absolute;
-  left:			0;
-  background-color:	#fff;
+  content: '';
+  width: 32px; /* ボックスの横幅 */
+  height: 32px; /* ボックスの縦幅 */
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  background-color: #fff;
   border: 2px solid #1E40AF;
 }
 /* 元のチェックボックスを表示しない */
 #login_checkbox input[type=checkbox] {
-  display:		none;
+  display: none;
 }
 /* チェックした時のスタイル */
 #login_checkbox input[type=checkbox]:checked + label:before {
-  content:		'\2713';		/* チェックの文字 */ 
-  font-size:		24px;			/* チェックのサイズ */
-  color:			#fff;			/* チェックの色 */
-  background-color:	#06f;			/* チェックした時の色 */
+  content: '\2713'; /* チェックの文字 */ 
+  font-size: 24px; /* チェックのサイズ */
+  color: #fff; /* チェックの色 */
+  background-color: #06f; /* チェックした時の色 */
 }
 </style>
