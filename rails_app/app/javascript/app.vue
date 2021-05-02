@@ -29,11 +29,11 @@
             <form class="mt-10 ml-10">
               <div>
                 <label class="text-2xl text-blue-800 mr-3" for="email">ID</label>
-                <input class="w-80 h-10 border-blue-800 border-2" name="email" type="text"><br>
+                <input class="w-80 h-10 border-blue-800 border-2" name="email" v-model="email" type="text"><br>
               </div>
               <div class="mt-10">
                 <label class="text-2xl text-blue-800 mr-3" for="password">パスワード</label>
-                <input class="w-56 h-10 border-blue-800 border-2" name="password" type="password"><br>
+                <input class="w-56 h-10 border-blue-800 border-2" name="password" v-model="password" type="password"><br>
               </div>
               <div id="login_checkbox" class="mt-10">
                 <input id="is_auto_login" class="w-20 border-blue-800 border-2" name="is_auto_login" type="checkbox">
@@ -80,7 +80,7 @@ export default {
         password: this.password,
       }
       await axios
-        .post("/api/v1/users/auth/sign_in", params)
+        .post("/api/v1/auth/sign_in", params)
         .then(response => {
           localStorage.setItem("access-token", response.headers["access-token"]);
           localStorage.setItem("uid", response.headers["uid"]);
@@ -93,7 +93,15 @@ export default {
         })
         .catch(e => {
           // TODO: 適切な Error 表示
-          alert(e.response.data.errors.full_messages);
+          if (e.response) {
+            console.log(e.response.data);
+            console.log(e.response.status);
+            console.log(e.response.headers);
+          } else if (error.request) {
+            console.log(e.request);
+          } else {
+            console.log('Error', e.message);
+          }
         })
         .finally(() => {
           this.loading = false

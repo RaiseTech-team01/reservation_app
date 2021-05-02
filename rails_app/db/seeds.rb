@@ -2,6 +2,11 @@
   user_pass = Faker::Internet.password(min_length: 8, max_length: 20)
   store_pass = Faker::Internet.password(min_length: 8, max_length: 20)
 
+  puts "-----------------"
+  puts "user: #{user_pass}"
+  puts "store: #{store_pass}"
+  puts "-----------------"
+
   user = User.create!(name: "ユーザー#{i}",
                       email: "user#{i}@sample.com",
                       furigana: "ユーザー#{i}",
