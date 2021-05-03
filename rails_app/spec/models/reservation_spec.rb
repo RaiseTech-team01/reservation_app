@@ -47,6 +47,7 @@ RSpec.describe Reservation, type: :model do # rubocop:disable Metrics/BlockLengt
 
       it "予約登録ができない" do
         expect(reservation).not_to be_valid
+        expect(reservation.errors.errors[0].type).to eq :blank
       end
     end
 
@@ -55,6 +56,7 @@ RSpec.describe Reservation, type: :model do # rubocop:disable Metrics/BlockLengt
 
       it "予約登録ができない" do
         expect(reservation).not_to be_valid
+        expect(reservation.errors.errors[0].type).to eq :blank
       end
     end
 
@@ -71,6 +73,7 @@ RSpec.describe Reservation, type: :model do # rubocop:disable Metrics/BlockLengt
 
       it "予約登録ができない" do
         expect(reservation).not_to be_valid
+        expect(reservation.errors.errors[0].type).to eq :blank
       end
     end
 
@@ -79,6 +82,7 @@ RSpec.describe Reservation, type: :model do # rubocop:disable Metrics/BlockLengt
 
       it "予約登録ができない" do
         expect(reservation).not_to be_valid
+        expect(reservation.errors.errors[0].type).to eq :blank
       end
     end
 
