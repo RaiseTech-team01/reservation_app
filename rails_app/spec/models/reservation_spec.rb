@@ -91,6 +91,39 @@ RSpec.describe Reservation, type: :model do # rubocop:disable Metrics/BlockLengt
 
       it "予約登録ができない" do
         expect(reservation).not_to be_valid
+        expect(reservation.errors.errors[0].type).to eq :blank
+      end
+    end
+  end
+
+  describe "関数のテスト" do
+    # TODO: どう書けば良いか不明
+    # context "指定した店舗IDが存在する時" do
+    #   let(:reservation) { create(:reservation) }
+
+    #   it "店舗IDを返す" do
+    #     expect(reservation.search_store(reservation.store_id)).to eq(reservation.store_id)
+    #   end
+    # end
+
+    context "発行した予約番号が12桁である時" do
+      let(:reservation) { build(:reservation, reservation_number: nil) }
+
+      it "ランダムな12桁の文字列を返す" do
+        reservation_num = reservation.create_reservation_num
+        expect(reservation_num.length).to eq 12
+      end
+    end
+
+    # TODO: そもそもこのテストの書き方が正しいか、不明
+    context "発行した予約番号が12桁でない時" do
+      let(:reservation) { build(:reservation, reservation_number: nil) }
+      let(:reservation_num) { reservation.create_reservation_num }
+      # 返り値に対して、無理矢理文字数を足しているだけなので、本来のテスト確認の意図からずれている??
+      let(:reservation_over_length) { reservation_num.concat("a") }
+
+      it "ランダムな12桁の文字列でない値を返す" do
+        expect(reservation_over_length.length).not_to eq 12
       end
     end
   end
