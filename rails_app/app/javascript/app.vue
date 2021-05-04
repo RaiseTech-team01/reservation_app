@@ -27,15 +27,23 @@
           </div>
           <div>
             <form class="mt-10 ml-10">
-              <div>
-                <label class="text-2xl text-blue-800 mr-3" for="email">ID</label>
-                <input class="w-80 h-10 border-blue-800 border-2" name="email" v-model="email" type="text"><br>
-              </div>
-              <div class="mt-10">
-                <label class="text-2xl text-blue-800 mr-3" for="password">パスワード</label>
-                <input class="w-56 h-10 border-blue-800 border-2" name="password" v-model="password" type="password"><br>
-              </div>
-              <div id="login_checkbox" class="mt-10">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="pr-3 pb-10 text-2xl text-blue-800 text-right border-none">ID</th>
+                    <td class="border-none pb-10">
+                      <input data-v-6fb8108a="" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email">
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="pr-3 text-2xl text-blue-800 text-right border-none">パスワード</th>
+                    <td class="border-none">
+                      <input data-v-6fb8108a="" name="password" type="password" class="w-80 h-10 border-blue-800 border-2" autocomplete="on">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="login_checkbox" class="mt-10 text-center">
                 <input id="is_auto_login" class="w-20 border-blue-800 border-2" name="is_auto_login" type="checkbox">
                 <label class="text-xl text-blue-800" for="is_auto_login">次からは自動でログインする</label><br>
               </div>
