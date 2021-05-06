@@ -10,8 +10,8 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   def show
     # 指定店舗の選択した予約詳細を表示
-    reservation = current_user.reservations.where(params["store_id"])
-    reservation = reservation.find(params[:id])
+    reservations = current_user.reservations.where(params["store_id"])
+    reservation = reservations.find(params[:id])
     render json: reservation, serializer: Api::V1::ReservationSerializer
   end
 
