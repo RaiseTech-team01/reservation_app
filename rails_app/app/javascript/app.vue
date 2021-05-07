@@ -1,18 +1,12 @@
 <template>
   <div class="main">
-    <header class="h-16 bg-black">
-      <img class="h-44" src="/banner.png" alt="banner">
-    </header>
+    <dir class="header">
+    <Header/>
+    </dir>
     <main class="mt-28"><!-- min-widthを設定する -->
-      <div class="h-16 text-center flex flex-row justify-center items-center">
-        <!-- 文字を縦の中心に -->
-        <span class="flex flex-col justify-center nav-btn">予約入力</span>
-        <span class="flex flex-col justify-center nav-btn">予約一覧</span>
-        <span class="flex flex-col justify-center nav-btn">閲覧履歴</span>
-        <span class="flex flex-col justify-center nav-btn">予約履歴</span>
-        <span class="flex flex-col justify-center nav-btn text-xl font-bold">アカウント設定</span>
-      </div>
-
+      <dir class="navigation">
+        <Navigation/>
+      </dir>
       <div class="flex justify-center h-screen">
         <div class="bg-gray-300" style="width: 500px">
           <div>
@@ -59,16 +53,19 @@
           </div>
         </div>
       </div>
+      <dir class="footer">
+        <Footer/>
+      </dir>
     </main>
-    <footer class="flex flex-col justify-center h-16 bg-black">
-      <p class="text-center text-white">@WebDev01.corp</p>
-    </footer>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Router from "./router/router";
+import Header from "./components/layout/Header.vue"
+import Navigation from "./components/layout/Navigation.vue"
+import Footer from "./components/layout/Footer.vue"
 
 export default {
   data: function () {
@@ -78,6 +75,12 @@ export default {
       email: '',
       password: '',
     }
+  },
+
+  components: {
+    Header,
+    Navigation,
+    Footer
   },
 
   methods: {
