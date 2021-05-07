@@ -1,10 +1,10 @@
 <template>
-  <div class="main">
-    <dir class="header">
-    <Header/>
+  <div class="main m-0">
+    <dir class="header m-0 text-center">
+      <Header/>
     </dir>
     <main class="mt-28"><!-- min-widthを設定する -->
-      <dir class="navigation">
+      <dir class="navigation m-0">
         <Navigation/>
       </dir>
       <div class="flex justify-center h-screen">
