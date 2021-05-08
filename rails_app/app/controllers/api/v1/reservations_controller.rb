@@ -1,6 +1,6 @@
 class Api::V1::ReservationsController < Api::V1::BaseApiController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!, only: [:index, :show, :create, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     # 指定店舗の一覧を表示
