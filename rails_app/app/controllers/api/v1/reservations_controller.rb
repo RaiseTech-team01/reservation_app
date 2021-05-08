@@ -28,16 +28,16 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   def update
     # 対象の予約を検索する
-    reservation = current_user.reservations.search_store(params["store_id"])
-    reservation = reservation.find(params[:id])
+    reservations = current_user.reservations.where(params["store_id"])
+    reservation = reservations.find(params[:id])
     # リクエストで変更のある値を更新
     reservation.update!(reservation_params)
     render json: reservation, serializer: Api::V1::ReservationSerializer
   end
 
   def destroy
-    reservation = current_user.reservations.search_store(params["store_id"])
-    reservation = reservation.find(params[:id])
+    reservations = current_user.reservations.where(params["store_id"])
+    reservation = reservations.find(params[:id])
     reservation.destroy!
   end
 
