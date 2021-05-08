@@ -1,16 +1,6 @@
 name: reviewdog
 on: [pull_request]
 jobs:
-  execute:
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_USER: $MYSQL_USER
-          MYSQL_PASSWORD: $MYSQL_PASSWORD
   rubocop:
     name: runner / rubocop
     runs-on: ubuntu-latest

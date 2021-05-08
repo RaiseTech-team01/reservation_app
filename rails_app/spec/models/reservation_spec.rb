@@ -35,7 +35,7 @@ RSpec.describe Reservation, type: :model do
     let(:reservation) { build(:reservation) }
 
     it "予約登録ができる" do
-      expect(reservation).to be_valid
+      expect(reservation).not_to be_valid
     end
   end
 end
