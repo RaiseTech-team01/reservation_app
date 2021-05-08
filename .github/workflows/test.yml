@@ -40,7 +40,14 @@ jobs:
           MYSQL_USER: $MYSQL_USER
           MYSQL_PASSWORD: $MYSQL_PASSWORD
 
-      - name: Rubocop
-        run: bundle exec rubocop --parallel
-      - name: RSpec
-        run: bundle exec rspec
+      # - name: Rubocop
+      #   run: bundle exec rubocop --parallel
+      # - name: RSpec
+      #   run: bundle exec rspec
+      - name: rubocop
+        uses: reviewdog/action-rubocop@v1
+        with:
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review # Default is github-pr-check
