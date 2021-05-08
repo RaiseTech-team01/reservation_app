@@ -4,13 +4,6 @@ jobs:
   execute:
     runs-on: ubuntu-latest
     services:
-      # postgres:
-        # image: postgres:12
-        # ports:
-        #   - 5432:5432
-        # env:
-        #   POSTGRES_USER: postgres
-        #   POSTGRES_PASSWORD: postgres
       mysql:
         image: mysql
         ports:
@@ -30,7 +23,8 @@ jobs:
       - name: Cache gems
         uses: actions/cache@v1
         with:
-          path: vendor/bundle
+          # path: vendor/bundle
+          path: bundle config set --local path
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
