@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v1
         with:
           # path: vendor/bundle
-          path: bundle config set --local path
+          # path: bundle config set --local path
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
