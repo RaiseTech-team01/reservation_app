@@ -23,7 +23,7 @@ jobs:
       - name: Cache gems
         uses: actions/cache@v1
         with:
-          # path: vendor/bundle
+          path: vendor/bundle
           # path: bundle config set --local path
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
