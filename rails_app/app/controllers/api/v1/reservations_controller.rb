@@ -17,12 +17,20 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   def create
     reservation = current_user.reservations.build(reservation_params)
+
     # 生成した予約番号を格納
     reservation.reservation_number = reservation.create_reservation_num
-    # 指定店舗があることを確認し格納
-    reservation.store_id = Store.find(params[:store_id]).id
-    reservation.save!
 
+    # 指定店舗があることを確認し格納
+    begin
+      reservation.store_id = Store.find(params[:store_id]).id
+    rescue => e
+      ErrorUtility.log_and_notify(e)
+      # TODO: 予約検索ページに遷移させる
+      return false
+    end
+
+    reservation.save!
     render json: reservation, serializer: Api::V1::ReservationSerializer
   end
 
