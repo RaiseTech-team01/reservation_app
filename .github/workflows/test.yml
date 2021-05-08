@@ -43,6 +43,7 @@ jobs:
       # - name: Rubocop
       #   run: bundle exec rubocop --parallel
       - name: RSpec
+        run: docker-compose exec rails bash
         run: bundle exec rspec
       - name: rubocop
         uses: reviewdog/action-rubocop@v1
