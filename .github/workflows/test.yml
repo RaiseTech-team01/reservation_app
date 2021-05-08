@@ -4,7 +4,7 @@ jobs:
   execute:
     runs-on: ubuntu-latest
     services:
-      postgres:
+      # postgres:
         # image: postgres:12
         # ports:
         #   - 5432:5432
