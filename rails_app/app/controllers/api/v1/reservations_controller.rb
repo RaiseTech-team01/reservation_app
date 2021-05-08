@@ -36,7 +36,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
   end
 
   def destroy
-    reservations = current_user.reservations.where(params["store_id"])
+    reservations = current_user.reservations.where(params[:store_id])
     reservation = reservations.find(params[:id])
     reservation.destroy!
   end
