@@ -62,10 +62,10 @@
 
 <script>
 import axios from 'axios'
-import Router from "./router/router";
-import Header from "./components/layout/Header.vue"
-import Navigation from "./components/layout/Navigation.vue"
-import Footer from "./components/layout/Footer.vue"
+import Router from "../router/router";
+import Header from "./layout/Header.vue"
+import Navigation from "./layout/Navigation.vue"
+import Footer from "./layout/Footer.vue"
 
 export default {
   data: function () {
