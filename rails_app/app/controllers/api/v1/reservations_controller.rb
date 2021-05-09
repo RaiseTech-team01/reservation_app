@@ -25,7 +25,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     begin
       reservation.store_id = Store.find(params[:store_id]).id
     rescue => e
-      ErrorUtility.log_and_notify(e)
+      ErrorUtility.log(e)
       # TODO: 予約検索ページに遷移させる
       return false
     end
