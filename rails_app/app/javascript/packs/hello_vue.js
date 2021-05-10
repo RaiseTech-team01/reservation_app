@@ -6,10 +6,15 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
+import VueRouter from "vue-router";
+import router from "../router/router.js";
 import App from '../app.vue'
+
+Vue.use(VueRouter);
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
+    router,
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)

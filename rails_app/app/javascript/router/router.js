@@ -10,6 +10,10 @@ const router = new Router({
   routes: [
     //ルーティングの設定
     {
+      path: '/',
+      component: Login
+    },
+    {
       path: '/sign_up',
       component: Registration
     },
