@@ -48,7 +48,7 @@
           </form>
           <div class="text-center mt-10 text-blue-800">
             <p class="mx-auto w-96 text-xl break-words text-left">アカウント未登録の方は下記から登録してください。</p>
-            <input class="mt-4 w-80 h-12 p-1 text-2xl text-blue-800 bg-yellow-400" type="button" value="新規登録">
+            <input class="mt-4 w-80 h-12 p-1 text-2xl text-blue-800 bg-yellow-400" type="button" value="新規登録" @click="goToRegistration">
           </div>
           </div>
         </div>
@@ -118,6 +118,9 @@ export default {
           this.loading = false
         })
         console.log("hi")
+    },
+    goToRegistration() {
+      Router.push("/sign_up");
     }
   }
 }
