@@ -32,10 +32,6 @@
             <form>
             <table>
               <tr>
-                <td>ご要望のID</td>
-                <td><input type="text"></td>
-              </tr>
-              <tr>
                 <td>氏名</td>
                 <td><input type="text"></td>
               </tr>
