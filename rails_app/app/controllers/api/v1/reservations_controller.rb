@@ -1,5 +1,4 @@
 class Api::V1::ReservationsController < Api::V1::BaseApiController
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
@@ -34,7 +33,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
   def update
     # 対象の予約を検索する
     reservations = current_user.reservations.where(store_id: params[:store_id])
-    reservation = reservations.find(params[:id])
+    reservation = reservations.find_by!(params[:id])
 
     # リクエストで変更のある値を更新
     reservation.update!(reservation_params)
@@ -53,9 +52,5 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     def reservation_params
       params.require(:reservation).permit(:date_at, :date_on, :number_people, :menu, :budget,
                                           :inquiry, :user_id, :store_id)
-    end
-
-    def record_not_found
-      render plain: "404 Not Found", status: :not_found
     end
 end
