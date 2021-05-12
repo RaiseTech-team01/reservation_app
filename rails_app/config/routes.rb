@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get "home/top" => "home#top"
+  root to: "home#top"
+
+  get "home/top", to: "home#top"
+  get "/sign_up", to: "home#top"
+  get "/login", to: "home#top"
 
   namespace :api do
     namespace :v1 do
@@ -13,8 +17,10 @@ Rails.application.routes.draw do
         sessions: "api/v1/store_auth/sessions",
       }
 
-      resources :store do
-        resources :reservations
+      namespace :store do
+        resources :store do
+          resources :reservations
+        end
       end
     end
   end
