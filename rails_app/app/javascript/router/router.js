@@ -22,6 +22,10 @@ const router = new Router({
       component: Registration
     },
     {
+      path: '/sign_up_confirm',
+      component: RegistrationConfirm
+    },
+    {
       path: '/login',
       component: Login
     },
