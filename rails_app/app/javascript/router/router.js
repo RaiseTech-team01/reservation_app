@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Registration from "../components/Registration.vue";
+import RegistrationConfirm from "../components/RegistrationConfirm.vue";
 import Login from "../components/Login.vue";
 
 Vue.use(Router);
