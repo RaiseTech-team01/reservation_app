@@ -6,11 +6,11 @@
     <main class="mt-28"><!-- min-widthを設定する -->
       <div class="h-16 text-center flex flex-row justify-center items-center">
         <!-- 文字を縦の中心に -->
-        <span class="flex flex-col justify-center w-1/6 mr-1 h-16 text-2xl bg-red-500 text-white">予約入力</span>
-        <span class="flex flex-col justify-center w-1/6 mr-1 h-16 text-2xl bg-red-500 text-white">予約一覧</span>
-        <span class="flex flex-col justify-center w-1/6 mr-1 h-16 text-2xl bg-red-500 text-white">閲覧履歴</span>
-        <span class="flex flex-col justify-center w-1/6 mr-1 h-16 text-2xl bg-red-500 text-white">予約履歴</span>
-        <span class="flex flex-col justify-center w-1/6 mr-1 h-16 text-xl font-bold bg-red-500 text-white">アカウント設定</span>
+        <span class="flex flex-col justify-center nav-btn">予約入力</span>
+        <span class="flex flex-col justify-center nav-btn">予約一覧</span>
+        <span class="flex flex-col justify-center nav-btn">閲覧履歴</span>
+        <span class="flex flex-col justify-center nav-btn">予約履歴</span>
+        <span class="flex flex-col justify-center nav-btn text-xl font-bold">アカウント設定</span>
       </div>
 
       <div class="flex justify-center h-screen">
@@ -27,20 +27,28 @@
           </div>
           <div>
             <form class="mt-10 ml-10">
-              <div>
-                <label class="text-2xl text-blue-800 mr-3" for="login_id">ID</label>
-                <input class="w-80 h-10 border-blue-800 border-2" name="login_id" type="text"><br>
-              </div>
-              <div class="mt-10">
-                <label class="text-2xl text-blue-800 mr-3" for="login_pass">パスワード</label>
-                <input class="w-56 h-10 border-blue-800 border-2" name="login_pass" type="password"><br>
-              </div>
-              <div id="login_checkbox" class="mt-10">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="pr-3 pb-10 text-2xl text-blue-800 text-right border-none">ID</th>
+                    <td class="border-none pb-10">
+                      <input data-v-6fb8108a="" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email">
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="pr-3 text-2xl text-blue-800 text-right border-none">パスワード</th>
+                    <td class="border-none">
+                      <input data-v-6fb8108a="" name="password" type="password" class="w-80 h-10 border-blue-800 border-2" autocomplete="on">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="login_checkbox" class="mt-10 text-center">
                 <input id="is_auto_login" class="w-20 border-blue-800 border-2" name="is_auto_login" type="checkbox">
                 <label class="text-xl text-blue-800" for="is_auto_login">次からは自動でログインする</label><br>
               </div>
               <div class="mt-10 text-center">
-                <input class="w-40 h-12 mr-8 p-1 text-2xl text-blue-800 bg-yellow-400" type="submit" value="ログイン">
+                <input class="w-40 h-12 mr-8 p-1 text-2xl text-blue-800 bg-yellow-400" type="submit" :loading="loading" @click="submit" value="ログイン">
                 <input class="w-40 h-12 p-1 text-2xl text-blue-800 bg-yellow-400" type="button" value="戻る">
               </div>
           </form>
@@ -59,10 +67,54 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Router from "./router/router";
+
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
+      name:  '',
+      loading: false,
+      email: '',
+      password: '',
+    }
+  },
+
+  methods: {
+    async submit() {
+      this.loading = true
+      const params = {
+        email: this.email,
+        password: this.password,
+      }
+      await axios
+        .post("/api/v1/auth/sign_in", params)
+        .then(response => {
+          localStorage.setItem("access-token", response.headers["access-token"]);
+          localStorage.setItem("uid", response.headers["uid"]);
+          localStorage.setItem("client", response.headers["client"]);
+
+          Router.push("/");
+
+          // TODO: Vuex でログイン状態を管理するようになったら消す
+          window.location.reload();
+        })
+        .catch(e => {
+          // TODO: 適切な Error 表示
+          if (e.response) {
+            console.log(e.response.data);
+            console.log(e.response.status);
+            console.log(e.response.headers);
+          } else if (error.request) {
+            console.log(e.request);
+          } else {
+            console.log('Error', e.message);
+          }
+        })
+        .finally(() => {
+          this.loading = false
+        })
+        console.log("hi")
     }
   }
 }
