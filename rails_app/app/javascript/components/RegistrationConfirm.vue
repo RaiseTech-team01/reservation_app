@@ -15,7 +15,7 @@
               <span> > </span>
               <a class="font-bold" href="index.html">ログイン</a>
               <span> > </span>
-              <a class="font-bold" href="index.html">新規登録入力</a>
+              <a class="font-bold" href="index.html">新規登録確認</a>
             </h3>
           </div>
           <div>
@@ -28,40 +28,44 @@
             </div>
           </div>
           <div>
-            <p>お客様の情報を入力してください</p>
+            <p>下記の情報を登録して良いですか？</p>
             <form>
             <table>
               <tr>
+                <td>ID</td>
+                <td></td>
+              </tr>
+              <tr>
                 <td>氏名</td>
-                <td><input type="text"></td>
+                <td></td>
               </tr>
               <tr>
                 <td>カナ</td>
-                <td><input type="text"></td>
+                <td></td>
               </tr>
               <tr>
                 <td>メールアドレス</td>
-                <td><input type="email"></td>
+                <td></td>
               </tr>
               <tr>
                 <td>電話番号</td>
-                <td><input type="tel"></td>
+                <td></td>
               </tr>
               <tr>
                 <td>年齢</td>
-                <td><input type="text"></td>
+                <td></td>
               </tr>
               <tr>
                 <td>性別</td>
-                <td><input type="text"></td>
+                <td></td>
               </tr>
               <tr>
                 <td>住所</td>
-                <td><input type="text"></td>
+                <td></td>
               </tr>
             </table>
             <div>
-              <input type="button" value="登　録">
+              <input type="button" value="登録完了">
               <input type="button" value="戻　る">
             </div>
             </form>
