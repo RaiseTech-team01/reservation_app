@@ -40,6 +40,14 @@
                 <td><input type="text"></td>
               </tr>
               <tr>
+                <td>メールアドレス</td>
+                <td><input type="email"></td>
+              </tr>
+              <tr>
+                <td>電話番号</td>
+                <td><input type="tel"></td>
+              </tr>
+              <tr>
                 <td>年齢</td>
                 <td><input type="text"></td>
               </tr>
@@ -50,14 +58,6 @@
               <tr>
                 <td>住所</td>
                 <td><input type="text"></td>
-              </tr>
-              <tr>
-                <td>メールアドレス</td>
-                <td><input type="email"></td>
-              </tr>
-              <tr>
-                <td>電話番号</td>
-                <td><input type="tel"></td>
               </tr>
             </table>
             <div>

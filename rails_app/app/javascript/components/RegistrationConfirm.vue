@@ -44,6 +44,14 @@
                 <td></td>
               </tr>
               <tr>
+                <td>メールアドレス</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>電話番号</td>
+                <td></td>
+              </tr>
+              <tr>
                 <td>年齢</td>
                 <td></td>
               </tr>
@@ -53,14 +61,6 @@
               </tr>
               <tr>
                 <td>住所</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>メールアドレス</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>電話番号</td>
                 <td></td>
               </tr>
             </table>
