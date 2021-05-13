@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/sign_up_confirm", to: "home#top"
   get "/sign_up_complete", to: "home#top"
   get "/login", to: "home#top"
+  get "/account_info", to: "home#top"
 
   namespace :api do
     namespace :v1 do
