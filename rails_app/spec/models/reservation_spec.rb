@@ -97,15 +97,6 @@ RSpec.describe Reservation, type: :model do # rubocop:disable Metrics/BlockLengt
   end
 
   describe "関数のテスト" do
-    # TODO: どう書けば良いか不明
-    # context "指定した店舗IDが存在する時" do
-    #   let(:reservation) { create(:reservation) }
-
-    #   it "店舗IDを返す" do
-    #     expect(reservation.search_store(reservation.store_id)).to eq(reservation.store_id)
-    #   end
-    # end
-
     context "発行した予約番号が12桁である時" do
       let(:reservation) { build(:reservation, reservation_number: nil) }
 
