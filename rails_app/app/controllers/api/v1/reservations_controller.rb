@@ -1,4 +1,5 @@
 class Api::V1::ReservationsController < Api::V1::BaseApiController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
@@ -48,6 +49,16 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
   end
 
   private
+
+    def record_not_found
+      # TODO: この書き方は間違っている.
+      # JSON形式で、クライアントにも伝わる適切なErrorメッセージを書く
+      render json: {
+        store_id: params[:store_id],
+        status: 404,
+        messege: "申し訳ありません。指定した予約データは存在しません",
+      }, status: :not_found
+    end
 
     def reservation_params
       params.require(:reservation).permit(:date_at, :date_on, :number_people, :menu, :budget,
