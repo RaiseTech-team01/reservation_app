@@ -1,5 +1,6 @@
 require "rails_helper"
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe "Api::V1::Reservations", type: :request do
   describe "[予約一覧表示のテスト] GET /api/v1/store/:store_id/reservations" do
     subject { get(api_v1_store_reservations_path(store_id), headers: headers) }
@@ -10,6 +11,15 @@ RSpec.describe "Api::V1::Reservations", type: :request do
 
       let(:store) { create(:store) }
       let(:store_id) { store.id }
+
+      context "指定店舗の予約がない時" do
+        it "一覧表示は空で返す" do
+          subject
+          res = JSON.parse(response.body)
+          expect(res.length).to eq 0
+          expect(response).to have_http_status(:ok)
+        end
+      end
 
       context "指定店舗の予約一覧を表示する時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
         # 予約を生成
@@ -35,3 +45,4 @@ RSpec.describe "Api::V1::Reservations", type: :request do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
