@@ -19,10 +19,8 @@ Rails.application.routes.draw do
         sessions: "api/v1/store_auth/sessions",
       }
 
-      namespace :store do
-        resources :store do
-          resources :reservations
-        end
+      resources :store do
+        resources :reservations
       end
     end
   end
