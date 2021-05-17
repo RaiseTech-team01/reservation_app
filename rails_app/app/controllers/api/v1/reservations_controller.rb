@@ -1,26 +1,31 @@
 class Api::V1::ReservationsController < Api::V1::BaseApiController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!, only: [:index, :show, :create, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     # 指定店舗の一覧を表示
-    reservations = current_user.reservations.where(params["store_id"])
+    reservations = current_user.reservations.where(store_id: params[:store_id])
     render json: reservations, each_serializer: Api::V1::ReservationSerializer
   end
 
   def show
     # 指定店舗の選択した予約詳細を表示
-    reservations = current_user.reservations.where(params["store_id"])
+    reservations = current_user.reservations.where(store_id: params[:store_id])
     reservation = reservations.find(params[:id])
     render json: reservation, serializer: Api::V1::ReservationSerializer
   end
 
   def create
+    # 店舗がない場合、処理が止まってしまう
+    # TODO: nil を無くす
     reservation = current_user.reservations.build(reservation_params)
+
     # 生成した予約番号を格納
     reservation.reservation_number = reservation.create_reservation_num
+
     # 指定店舗があることを確認し格納
-    reservation.store_id = Store.find(params["store_id"]).id
+    reservation.store_id = Store.find(params[:store_id]).id
     reservation.save!
 
     render json: reservation, serializer: Api::V1::ReservationSerializer
@@ -28,20 +33,32 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   def update
     # 対象の予約を検索する
-    reservation = current_user.reservations.search_store(params["store_id"])
-    reservation = reservation.find(params[:id])
+    reservations = current_user.reservations.where(store_id: params[:store_id])
+    reservation = reservations.find_by!(params[:id])
+
     # リクエストで変更のある値を更新
     reservation.update!(reservation_params)
+
     render json: reservation, serializer: Api::V1::ReservationSerializer
   end
 
   def destroy
-    reservation = current_user.reservations.search_store(params["store_id"])
-    reservation = reservation.find(params[:id])
+    reservations = current_user.reservations.where(store_id: params[:store_id])
+    reservation = reservations.find(params[:id])
     reservation.destroy!
   end
 
   private
+
+    def record_not_found
+      # TODO: この書き方は間違っている.
+      # JSON形式で、クライアントにも伝わる適切なErrorメッセージを書く
+      render json: {
+        store_id: params[:store_id],
+        status: 404,
+        messege: "申し訳ありません。指定した予約データは存在しません",
+      }, status: :not_found
+    end
 
     def reservation_params
       params.require(:reservation).permit(:date_at, :date_on, :number_people, :menu, :budget,
