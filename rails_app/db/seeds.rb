@@ -6,7 +6,6 @@
   logger.debug "-----------------"
   logger.debug "user#{i}  pass: #{user_pass}"
   logger.debug "store#{i} pass: #{store_pass}"
-  logger.debug "-----------------"
 
   user = User.create!(name: "ユーザー#{i}",
                       email: "user#{i}@sample.com",
