@@ -2,10 +2,10 @@
   user_pass = Faker::Internet.password(min_length: 8, max_length: 20)
   store_pass = Faker::Internet.password(min_length: 8, max_length: 20)
 
-  puts "-----------------"
-  puts "user: #{user_pass}"
-  puts "store: #{store_pass}"
-  puts "-----------------"
+  logger = Logger.new("log/seed.log")
+  logger.debug "-----------------"
+  logger.debug "user#{i}  pass: #{user_pass}"
+  logger.debug "store#{i} pass: #{store_pass}"
 
   user = User.create!(name: "ユーザー#{i}",
                       email: "user#{i}@sample.com",
