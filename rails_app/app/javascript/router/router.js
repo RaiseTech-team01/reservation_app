@@ -4,6 +4,7 @@ import Registration from "../components/Registration.vue";
 import RegistrationConfirm from "../components/RegistrationConfirm.vue";
 import RegistrationCompletion from "../components/RegistrationCompletion.vue";
 import Login from "../components/Login.vue";
+import AccountInfo from "../components/AccountInfo.vue";
 
 Vue.use(Router);
 
@@ -34,6 +35,10 @@ const router = new Router({
     {
       path: '/login',
       component: Login
+    },
+    {
+      path: '/account_info',
+      component: AccountInfo
     },
   ],
 });
