@@ -49,8 +49,11 @@ RSpec.describe "Api::V1::Reservations", type: :request do
 
       describe "異常系" do
         context "ログインユーザでない時" do
-          it "予約一覧表示できない" do
-            # TODO
+          # 予約を生成
+          let!(:reservation) { create(:reservation, store_id: store_id) }
+
+          it "認証されず、予約一覧表示がみれない" do
+            subject == 401
           end
         end
       end
@@ -58,37 +61,58 @@ RSpec.describe "Api::V1::Reservations", type: :request do
   end
 
   describe "[予約詳細表示のテスト] GET /api/v1/store/:store_id/reservations/:id" do
-    subject { get(api_v1_store_reservations_path(store_id, id), headers: headers) }
+    subject { get(api_v1_store_reservation_path(store_id, reservation_id), headers: headers) }
 
     context "ユーザーと、店舗を作成" do
       let(:current_user) { create(:user) }
 
       let(:store) { create(:store) }
       let(:store_id) { store.id }
+      # sign_in
+      let(:headers) { current_user.create_new_auth_token }
 
       describe "正常系" do
-        # sign_in
-        let(:headers) { current_user.create_new_auth_token }
+        context "指定店舗の指定予約がある時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+          # 予約生成
+          let(:reservation) { create(:reservation, user: current_user, store_id: store_id, date_on: "15:00:00") }
+          let(:reservation_id) { reservation.id }
+          # ex) "2044-09-01"
+          let(:date_at) { 0..9 }
+          # ex) 15:00:00
+          let(:date_on) { 11..18 }
 
-        context "指定店舗の予約があり詳細を選択した時" do
-          let!(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
+          it "予約詳細が確認できる" do # rubocop:disable RSpec/ExampleLength
+            subject
+            res = JSON.parse(response.body)
 
-          it "予約詳細画面が確認できる" do
-            # TODO
+            expect(res.keys).to eq ["id", "date_at", "date_on", "number_people", "menu", "budget",
+                                    "inquiry", "reservation_number", "store", "user"]
+            expect(res["id"]).to eq reservation.id
+            expect(res["date_at"][date_at]).to eq reservation.date_at.to_s[date_at]
+            expect(res["date_on"][date_on]).to eq reservation.date_on.to_s[date_on]
+            expect(res["number_people"]).to eq reservation.number_people
+            expect(res["menu"]).to eq reservation.menu
+            expect(res["budget"]).to eq reservation.budget
+            expect(res["inquiry"]).to eq reservation.inquiry
+            expect(res["reservation_number"]).to eq reservation.reservation_number
+
+            expect(res["store"]["name"]).to eq store.name
+            expect(res["store"]["email"]).to eq store.email
+            expect(res["store"]["tel"]).to eq store.tel
+            expect(res["store"]["fax"]).to eq store.fax
+
+            expect(response).to have_http_status(:ok)
           end
         end
       end
 
       describe "異常系" do
-        context "ログインユーザでない時" do
-          it "予約詳細表示できない" do
-            # TODO
-          end
-        end
+        context "指定店舗の指定予約がない時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+          let(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
+          let(:reservation_id) { reservation.id.to_i + 1 }
 
-        context "指定店舗の指定した詳細が存在していない時" do
-          it "Not found, status 404が返ってくる" do
-            # TODO
+          it "適切なエラーメッセージが返ってくる" do
+            subject == 404
           end
         end
       end
