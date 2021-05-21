@@ -120,7 +120,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
   end
 
   describe "[予約登録のテスト] POST /api/v1/store/:store_id/reservations/" do
-    subject { post(api_v1_store_reservations_path(store_id), headers: headers) }
+    subject { post(api_v1_store_reservations_path(store_id), params: params, headers: headers) }
 
     context "ユーザーと、店舗を作成" do
       let(:current_user) { create(:user) }
@@ -128,9 +128,31 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:store) { create(:store) }
       let(:store_id) { store.id }
 
-      context "指定店舗が存在していて予約する時" do
-        it "予約する事ができる" do
-          # TODO
+      context "指定店舗が存在していて予約する時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+        # sign_in
+        let(:headers) { current_user.create_new_auth_token }
+        let(:params) { { reservation: attributes_for(:reservation, date_on: "15:00:00") } }
+        # ex) "2044-09-01"
+        let(:date_at) { 0..9 }
+        # ex) 15:00:00
+        let(:date_on) { 11..18 }
+
+        it "予約する事ができる" do # rubocop:disable RSpec/ExampleLength
+          # subject
+          expect { subject }.to change { Reservation.count }.by(1)
+          res = JSON.parse(response.body)
+
+          expect(response).to have_http_status(:ok)
+
+          expect(res.keys).to eq ["id", "date_at", "date_on", "number_people", "menu", "budget",
+                                  "inquiry", "reservation_number", "store", "user"]
+          expect(res["date_at"][date_at]).to eq params[:reservation][:date_at].to_s
+          expect(res["date_on"][date_on]).to eq params[:reservation][:date_on].to_s
+          expect(res["number_people"]).to eq params[:reservation][:number_people]
+          expect(res["menu"]).to eq params[:reservation][:menu]
+          expect(res["budget"]).to eq params[:reservation][:budget]
+          expect(res["inquiry"]).to eq params[:reservation][:inquiry]
+          expect(res["reservation_number"].length).to eq 12
         end
       end
 
