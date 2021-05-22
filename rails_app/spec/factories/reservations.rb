@@ -35,7 +35,7 @@ FactoryBot.define do
     number_people { Faker::Number.number(digits: 3) }
     menu { Faker::Food.dish }
     budget { Faker::Number.number(digits: 6) }
-    inquiry { "MyText" }
+    inquiry { Faker::String.random(length: 3..20)}
     reservation_number { Faker::String.random(length: 12) }
 
     # association :user, factory: :user の略
