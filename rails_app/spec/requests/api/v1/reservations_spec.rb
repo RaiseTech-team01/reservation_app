@@ -53,7 +53,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
           let!(:reservation) { create(:reservation, store_id: store_id) }
 
           it "認証されず、予約一覧表示がみれない" do
-            subject == 401
+            expect(response).to have_http_status(:unauthorized)
           end
         end
       end
@@ -111,8 +111,14 @@ RSpec.describe "Api::V1::Reservations", type: :request do
           let(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
           let(:reservation_id) { reservation.id.to_i + 1 }
 
-          it "適切なエラーメッセージが返ってくる" do
-            subject == 404
+          it "予約データが存在しない例外処理が実行される" do
+            subject
+            expect(response).to have_http_status(:not_found)
+
+            res = JSON.parse(response.body)
+            expect(res["store_id"]).to eq store_id.to_s
+            expect(res["status"]).to eq 404
+            expect(res["messege"]).to eq "申し訳ありません。指定した予約データは存在しません"
           end
         end
       end
@@ -124,13 +130,12 @@ RSpec.describe "Api::V1::Reservations", type: :request do
 
     context "ユーザーと、店舗を作成" do
       let(:current_user) { create(:user) }
+      let(:headers) { current_user.create_new_auth_token }
 
       let(:store) { create(:store) }
       let(:store_id) { store.id }
 
       context "指定店舗が存在していて予約する時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
-        # sign_in
-        let(:headers) { current_user.create_new_auth_token }
         let(:params) { { reservation: attributes_for(:reservation, date_on: "15:00:00") } }
         # ex) "2044-09-01"
         let(:date_at) { 0..9 }
@@ -138,7 +143,6 @@ RSpec.describe "Api::V1::Reservations", type: :request do
         let(:date_on) { 11..18 }
 
         it "予約する事ができる" do # rubocop:disable RSpec/ExampleLength
-          # subject
           expect { subject }.to change { Reservation.count }.by(1)
           res = JSON.parse(response.body)
 
@@ -157,8 +161,17 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       end
 
       context "指定店舗が存在しない時" do
-        it "予約する事ができない" do
-          # TODO
+        let(:params) { { reservation: attributes_for(:reservation) } }
+        let(:store_id) { store.id.to_i + 1 }
+
+        it "予約データが存在しない例外処理が実行される" do
+          subject
+          expect(response).to have_http_status(:not_found)
+
+          res = JSON.parse(response.body)
+          expect(res["store_id"]).to eq store_id.to_s
+          expect(res["status"]).to eq 404
+          expect(res["messege"]).to eq "申し訳ありません。指定した予約データは存在しません"
         end
       end
     end
