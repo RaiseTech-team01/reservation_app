@@ -53,6 +53,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
           let!(:reservation) { create(:reservation, store_id: store_id) }
 
           it "認証されず、予約一覧表示がみれない" do
+            subject
             expect(response).to have_http_status(:unauthorized)
           end
         end
@@ -164,7 +165,8 @@ RSpec.describe "Api::V1::Reservations", type: :request do
         let(:params) { { reservation: attributes_for(:reservation) } }
         let(:store_id) { store.id.to_i + 1 }
 
-        it "予約データが存在しない例外処理が実行される" do
+        # REVIEW: 例外メッセージが不適切。「店舗が存在しません」としたい
+        it "指定店舗が存在しない例外処理が実行される" do
           subject
           expect(response).to have_http_status(:not_found)
 
@@ -178,30 +180,38 @@ RSpec.describe "Api::V1::Reservations", type: :request do
   end
 
   describe "[予約更新のテスト] PATCH /api/v1/store/:store_id/reservations/:id" do
-    subject { patch(api_v1_store_reservations_path(store_id, id), headers: headers) }
+    subject { patch(api_v1_store_reservation_path(store_id, reservation_id), params: params, headers: headers) }
 
     context "ユーザーと、店舗を作成" do
       let(:current_user) { create(:user) }
+      let(:headers) { current_user.create_new_auth_token }
 
       let(:store) { create(:store) }
       let(:store_id) { store.id }
 
-      context "指定店舗の存在する予約を更新しようとした時" do
-        it "予約詳細を更新できる" do
-          # TODO
-        end
-      end
+      context "指定店舗の存在する予約を更新しようとした時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+        # 予約する
+        let(:params) { { reservation: attributes_for(:reservation), store_id: store_id, reservation_id: reservation_id } }
 
-      context "指定店舗が存在しない時" do
-        it "Not found, status 404が返ってくる" do
-          # TODO
+        # 更新する
+        let(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
+        let(:reservation_id) { reservation.id }
+
+        it "予約詳細を更新できる" do
+          expect { subject }.to change { reservation.reload.number_people }.from(reservation.number_people).to(params[:reservation][:number_people]) &
+                                change { reservation.reload.menu }.from(reservation.menu).to(params[:reservation][:menu]) &
+                                change { reservation.reload.budget }.from(reservation.budget).to(params[:reservation][:budget]) &
+                                change { reservation.reload.inquiry }.from(reservation.inquiry).to(params[:reservation][:inquiry]) &
+                                not_change { reservation.reload.reservation_number } &
+                                not_change { reservation.reload.store_id } &
+                                not_change { reservation.reload.created_at }
         end
       end
     end
   end
 
   describe "[予約取り消しのテスト] DELETE /api/v1/store/:store_id/reservations/:id" do
-    subject { delete(api_v1_store_reservations_path(store_id, id), headers: headers) }
+    subject { delete(api_v1_store_reservation_path(store_id, id), headers: headers) }
 
     context "ユーザーと、店舗を作成" do
       let(:current_user) { create(:user) }
