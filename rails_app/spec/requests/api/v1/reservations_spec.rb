@@ -1,6 +1,6 @@
 require "rails_helper"
 
-# rubocop:disable Metrics/BlockLength, RSpec/NestedGroups, RSpec/RepeatedExampleGroupBody
+# rubocop:disable Metrics/BlockLength, RSpec/NestedGroups, RSpec/MultipleMemoizedHelpers
 RSpec.describe "Api::V1::Reservations", type: :request do
   describe "[予約一覧表示のテスト] GET /api/v1/store/:store_id/reservations" do
     subject { get(api_v1_store_reservations_path(store_id), headers: headers) }
@@ -24,7 +24,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
           end
         end
 
-        context "指定店舗の予約一覧を表示する時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+        context "指定店舗の予約一覧を表示する時" do
           # 予約を生成
           let!(:reservation1) { create(:reservation, user: current_user, store_id: store_id, updated_at: 1.days.ago) }
           let!(:reservation2) { create(:reservation, user: current_user, store_id: store_id, updated_at: 2.days.ago) }
@@ -66,14 +66,14 @@ RSpec.describe "Api::V1::Reservations", type: :request do
 
     context "ユーザーと、店舗を作成" do
       let(:current_user) { create(:user) }
-
-      let(:store) { create(:store) }
-      let(:store_id) { store.id }
       # sign_in
       let(:headers) { current_user.create_new_auth_token }
 
+      let(:store) { create(:store) }
+      let(:store_id) { store.id }
+
       describe "正常系" do
-        context "指定店舗の指定予約がある時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+        context "指定店舗の指定予約がある時" do
           # 予約生成
           let(:reservation) { create(:reservation, user: current_user, store_id: store_id, date_on: "15:00:00") }
           let(:reservation_id) { reservation.id }
@@ -108,7 +108,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       end
 
       describe "異常系" do
-        context "指定店舗の指定予約がない時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+        context "指定店舗の指定予約がない時" do
           let(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
           let(:reservation_id) { reservation.id.to_i + 1 }
 
@@ -136,7 +136,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:store) { create(:store) }
       let(:store_id) { store.id }
 
-      context "指定店舗が存在していて予約する時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+      context "指定店舗が存在していて予約する時" do
         let(:params) { { reservation: attributes_for(:reservation, date_on: "15:00:00") } }
         # ex) "2044-09-01"
         let(:date_at) { 0..9 }
@@ -189,7 +189,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:store) { create(:store) }
       let(:store_id) { store.id }
 
-      context "指定店舗の存在する予約を更新しようとした時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
+      context "指定店舗の存在する予約を更新しようとした時" do
         # 予約する
         let(:params) { { reservation: attributes_for(:reservation), store_id: store_id, reservation_id: reservation_id } }
 
@@ -211,35 +211,44 @@ RSpec.describe "Api::V1::Reservations", type: :request do
   end
 
   describe "[予約取り消しのテスト] DELETE /api/v1/store/:store_id/reservations/:id" do
-    subject { delete(api_v1_store_reservation_path(store_id, id), headers: headers) }
+    subject { delete(api_v1_store_reservation_path(store_id, reservation_id), headers: headers) }
 
     context "ユーザーと、店舗を作成" do
       let(:current_user) { create(:user) }
+      let(:headers) { current_user.create_new_auth_token }
 
       let(:store) { create(:store) }
       let(:store_id) { store.id }
 
-      context "指定店舗の存在する予約を取り消そうとした時" do
-        it "予約取り消しができる" do
-          # TODO
+      context "指定店舗の予約が存在していてキャンセルしたい時" do
+        # 予約生成
+        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
+        let(:reservation_id) { reservation.id }
+
+        it "予約をキャンセルできる" do
+          expect { subject }.to change { Reservation.count }.by(-1)
+          # 204 No Content
+          expect(response).to have_http_status(:no_content)
         end
       end
 
-      context "指定店舗が存在しない時" do
-        it "Not found, status 404が返ってくる" do
-          # TODO
-        end
-      end
+      context "ログインしたuserが他のuserの記事を削除しようとする時" do
+        # 他のログインしたuserで記事作成
+        let(:other_user) { create(:user) }
+        let!(:reservation) { create(:reservation, user: other_user, store_id: store_id) }
+        let(:reservation_id) { reservation.id.to_i + 1 }
 
-      context "指定店舗の存在しない予約を削除しようとした時" do
-        it "Not found, status 404が返ってくる" do
-          # TODO
-          # "store_id": "1",
-          # "status": 404,
-          # "messege": "申し訳ありません。指定した予約データは存在しません"
+        it "予約をキャンセルできない" do
+          subject
+          expect(response).to have_http_status(:not_found)
+
+          res = JSON.parse(response.body)
+          expect(res["store_id"]).to eq store_id.to_s
+          expect(res["status"]).to eq 404
+          expect(res["messege"]).to eq "申し訳ありません。指定した予約データは存在しません"
         end
       end
     end
   end
 end
-# rubocop:enable Metrics/BlockLength, RSpec/NestedGroups, RSpec/RepeatedExampleGroupBody
+# rubocop:enable Metrics/BlockLength, RSpec/NestedGroups, RSpec/MultipleMemoizedHelpers
