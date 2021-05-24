@@ -5,3 +5,7 @@
 .nav-btn {
   @apply w-1/6 mr-1 h-16 text-2xl bg-red-500 text-white;
 }
+
+.arrow-block {
+  @apply inline-block py-12 w-28 h-32 text-2xl bg-blue-800 text-white rounded-r-full;
+}
