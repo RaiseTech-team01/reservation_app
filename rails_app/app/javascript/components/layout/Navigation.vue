@@ -1,5 +1,5 @@
 <template>
-  <div class="h-16 text-center flex flex-row justify-center items-center">
+  <div class="hidden md:block h-16 text-center flex flex-row justify-center items-center">
     <!-- 文字を縦の中心に -->
     <span class="flex flex-col justify-center w-1/6 mr-1 h-16 text-2xl bg-red-500 hover:bg-red-700 active:bg-yellow-700 text-white cursor-pointer">予約入力</span>
     <span class="flex flex-col justify-center w-1/6 mr-1 h-16 text-2xl bg-red-500 hover:bg-red-700 active:bg-yellow-700 text-white cursor-pointer">予約一覧</span>

@@ -3,11 +3,7 @@
   <dir class="header m-0 text-center pl-0">
     <Header />
   </dir>
-  <main class="mt-28">
-    <!-- min-widthを設定する -->
-    <dir class="navigation m-0 pl-0">
-      <Navigation />
-    </dir>
+  <main>
     <div class="flex justify-center">
       <div class="bg-gray-300" style="width: 766px">
         <div>
