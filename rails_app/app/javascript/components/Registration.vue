@@ -12,11 +12,11 @@
       <div class="bg-gray-300 pb-16" style="width: 766px">
         <div>
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
-            <a class="font-bold" href="index.html">トップ</a>
+            <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
             <span> > </span>
-            <a class="font-bold" href="index.html">ログイン</a>
+            <a class="font-bold hover:text-blue-500" href="index.html">ログイン</a>
             <span> > </span>
-            <a class="font-bold" href="index.html">新規登録入力</a>
+            <a class="font-bold hover:text-blue-500" href="index.html">新規登録入力</a>
           </h3>
         </div>
         <div class="mt-16">
@@ -78,8 +78,8 @@
               </tr>
             </table>
             <div class="text-center space-x-8 mt-14">
-              <input class="inline-block px-16 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800" type="button" value="登　録" />
-              <input class="inline-block px-16 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800" type="button" value="戻　る" />
+              <input class="inline-block px-16 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600" type="button" value="登　録" />
+              <input class="inline-block px-16 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600" type="button" value="戻　る" />
             </div>
           </form>
         </div>
