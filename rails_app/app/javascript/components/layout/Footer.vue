@@ -1,5 +1,5 @@
 <template>
   <footer class="flex flex-col justify-center h-16 bg-black">
-    <p class="text-center text-white">@WebDev01.corp</p>
+    <p class="text-center text-yellow-300 text-lg">@WebDev01.corp</p>
   </footer>
 </template>
