@@ -52,7 +52,7 @@
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding pl-4 md:pl-6 text-blue-800">メール<br class="md:hidden" />アドレス</td>
                 <td>
                   <p class="w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold white break-all">
-                    あああ
+                    Ichiro.Tanaka@smail.com
                   </p>
                 </td>
               </tr>
