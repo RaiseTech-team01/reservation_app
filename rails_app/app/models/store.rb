@@ -61,7 +61,7 @@ class Store < ApplicationRecord
   validates :postal_code, presence: true, format: { with: /[0-9]/ }, length: { maximum: 7 }
   validates :address, presence: true
   validates :url, presence: true
-  validates :seat, presence: true, format: { with: /[0-9]/ }, length: { maximum: 100 }
+  validates :seat, presence: true, format: { with: /[0-9]/ }, length: { maximum: 3 }
   validates :restaurant, presence: true, length: { maximum: 50 }
   validates :genre, presence: true, length: { maximum: 50 }
   validates :responsible_party, presence: true, length: { maximum: 50 }
