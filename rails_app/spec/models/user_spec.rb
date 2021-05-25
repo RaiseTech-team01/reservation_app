@@ -69,7 +69,7 @@ RSpec.describe User, type: :model do
       end
 
       context "電話番号が21文字以下の時" do
-        let(:user) { build(:user, tel: 1 * 21) }
+        let(:user) { build(:user, tel: ("1" * 21).to_i) }
 
         it "ユーザー登録できる" do
           expect(user).to be_valid
@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
       end
 
       context "生年月日が10文字以下の時" do
-        let(:user) { build(:user, birthday: 1 * 10) }
+        let(:user) { build(:user, birthday: ("1" * 10).to_i) }
 
         it "ユーザー登録できる" do
           expect(user).to be_valid
