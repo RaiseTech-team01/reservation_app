@@ -27,64 +27,64 @@
         <div>
           <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">下記の情報を登録して良いですか？</h2>
           <form>
-            <table class="m-2 md:m-10 table-auto max-w-full">
+            <table class="m-2 mt-10 table-auto max-w-full md:w-full md:text-center">
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl mg:text-4xl form-table-padding pl-4 md:pl-6 text-blue-800">氏名</td>
-                <td class="block md:table-cell space-x-4">
+                <td class="block md:w-1/5 md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">氏名</td>
+                <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
                   <div>
-                    <p class="md:text-center w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold">
+                    <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                       田中　一郎
                     </p>
                   </div>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl mg:text-4xl form-table-padding pl-4 md:pl-6 text-blue-800">カナ</td>
-                <td class="block md:table-cell">
+                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">カナ</td>
+                <td class="block md:table-cell pb-6 md:pb-0">
                   <div>
-                    <p class="md:text-center w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold">
+                    <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                       タナカ　イチロウ
                     </p>
                   </div>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-2xl md:text-3xl form-table-padding pl-4 md:pl-6 text-blue-800">メールアドレス</td>
-                <td class="block md:table-cell">
-                  <p class="md:text-center w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold break-all">
-                    Ichiro.Tanaka@smail.com
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">メール<br class="hidden md:block">アドレス</td>
+                <td class="block md:table-cell pb-6 md:pb-0">
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
+                    Ichiro.Tanaka@smail.comIchiro.Tanaka@smail.comIchiro.Tanaka@smail.comIchiro.Tanaka@smail.com
                   </p>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-2xl md:text-4xl form-table-padding pl-4 md:pl-6 text-blue-800">電話番号</td>
-                <td class="block md:table-cell">
-                  <p class="md:text-center w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold">
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">電話<br class="hidden md:block">番号</td>
+                <td class="block md:table-cell pb-6 md:pb-0">
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                     080-1111-2222
                   </p>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding pl-4 md:pl-6 text-blue-800">年齢</td>
-                <td class="block md:table-cell">
-                  <p class="md:text-center w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold">
+                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">年齢</td>
+                <td class="block md:table-cell pb-6 md:pb-0">
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                     31 歳
                   </p>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding pl-4 md:pl-6 text-blue-800">性別</td>
-                <td class="block md:table-cell">
-                  <p class="md:text-center w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold">
+                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">性別</td>
+                <td class="block md:table-cell pb-6 md:pb-0">
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                     男性
                   </p>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding pl-4 md:pl-6 text-blue-800">住所</td>
-                <td class="block md:table-cell">
-                  <p class="md:text-center w-full md:w-96 md:mr-4 pl-4 text-3xl text-blue-800 font-bold break-all">
-                    千葉県千葉市美浜区1-1
+                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">住所</td>
+                <td class="block md:table-cell pb-6 md:pb-0">
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
+                    千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1
                   </p>
                 </td>
               </tr>
