@@ -1,48 +1,42 @@
 <template>
-  <div class="main m-0">
-    <dir class="header m-0 text-center">
-      <Header/>
-    </dir>
-    <main class="mt-28"><!-- min-widthを設定する -->
-      <dir class="navigation m-0">
-        <Navigation/>
-      </dir>
-      <div class="flex justify-center h-screen">
-        <div class="bg-gray-300" style="width: 500px">
-          <div>
-            <h3 class="mt-4 ml-4 text-xl text-blue-800">
-              <a class="font-bold" href="index.html">トップ</a>
-              <span> > </span>
-              <a class="font-bold" href="index.html">ログイン</a>
-              <span> > </span>
-              <a class="font-bold" href="index.html">新規登録完了</a>
-            </h3>
-          </div>
-          <div>
-            <div>
-              <p>
-                <span>入力</span>
-                <span>確認</span>
-                <span>登録</span>
-              </p>
-            </div>
-          </div>
-          <div>
-            <p>登録を完了いたしました。</p>
-            <p>ありがとうございました。</p>
-            <form>
-              <div>
-                <input type="button" value="登 録 完 了">
-              </div>
-            </form>
-          </div>
+<div class="main m-0 h-screen flex flex-col justify-between">
+  <dir class="header m-0 text-center pl-0">
+    <Header />
+  </dir>
+  <main class="flex justify-center h-full">
+    <div class="bg-gray-300 " style="width: 766px">
+      <div>
+        <h3 class="mt-10 ml-4 text-xl text-blue-800">
+          <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
+          <span> > </span>
+          <a class="font-bold hover:text-blue-500" href="index.html">ログイン</a>
+          <span> > </span>
+          <a class="font-bold hover:text-blue-500" href="index.html">新規登録完了</a>
+        </h3>
+      </div>
+      <div class="mt-16">
+        <div>
+          <p class="whitespace-nowrap flex justify-around md:justify-center md:space-x-12 md:transform md:scale-125 md:flex-none">
+            <span class="arrow-block-inactive">入力</span>
+            <span class="arrow-block-inactive">確認</span>
+            <span class="arrow-block">登録</span>
+          </p>
         </div>
       </div>
-      <dir class="footer">
-        <Footer/>
-      </dir>
-    </main>
-  </div>
+      <div>
+        <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">登録を完了いたしました。<br />ありがとうございました。</h2>
+        <form>
+          <div class="text-center space-x-4 md:space-x-8 mt-14 pb-28">
+            <input class="inline-block w-3/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="ログインする" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+    <dir class="footer m-0 pl-0">
+      <Footer />
+    </dir>
+</div>
 </template>
 
 <script>
