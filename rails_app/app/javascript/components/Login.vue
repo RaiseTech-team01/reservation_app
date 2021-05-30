@@ -84,6 +84,7 @@ export default {
   },
 
   methods: {
+    // ログイン情報を送信する
     async submit() {
       this.loading = true
       const params = {
