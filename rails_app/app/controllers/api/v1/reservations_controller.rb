@@ -16,29 +16,21 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     render json: reservation, serializer: Api::V1::ReservationSerializer
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     reservations_date_at = current_user.reservations.pluck(:date_at)
     params_date_at = Time.zone.parse(params[:date_at])
 
-    # FIXME: 予約が空の場合、current_date 関数にとんでしまう
-    # [] のような時
+    # 予約がない場合
+    if reservations_date_at.empty?
+      return create_reservation
+    end
 
     # 予約重複の確認
     current_user.reservations.find_each do |reservation|
       next if params_date_at == reservation[:date_at]
 
       unless reservations_date_at.include?(params_date_at)
-        binding.pry
-        reservation = current_user.reservations.build(reservation_params)
-
-        # 生成した予約番号を格納
-        reservation.reservation_number = reservation.create_reservation_num
-
-        # 指定店舗があることを確認し格納
-        reservation.store_id = Store.find(params[:store_id]).id
-        reservation.save!
-
-        return render json: reservation, serializer: Api::V1::ReservationSerializer
+        return create_reservation
       end
     end
     current_date
@@ -78,6 +70,19 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
         date_at: params[:date_at],
         messege: "すでに予約した時間帯と被ってます",
       }, status: :ok
+    end
+
+    def create_reservation
+      reservation = current_user.reservations.build(reservation_params)
+
+      # 生成した予約番号を格納
+      reservation.reservation_number = reservation.create_reservation_num
+
+      # 指定店舗があることを確認し格納
+      reservation.store_id = Store.find(params[:store_id]).id
+      reservation.save!
+
+      render json: reservation, serializer: Api::V1::ReservationSerializer
     end
 
     def reservation_params
