@@ -16,19 +16,32 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     render json: reservation, serializer: Api::V1::ReservationSerializer
   end
 
-  def create
-    # 店舗がない場合、処理が止まってしまう
-    # TODO: nil を無くす
-    reservation = current_user.reservations.build(reservation_params)
+  def create # rubocop:disable Metrics/AbcSize
+    reservations_date_at = current_user.reservations.pluck(:date_at)
+    params_date_at = Time.zone.parse(params[:date_at])
 
-    # 生成した予約番号を格納
-    reservation.reservation_number = reservation.create_reservation_num
+    # FIXME: 予約が空の場合、current_date 関数にとんでしまう
+    # [] のような時
 
-    # 指定店舗があることを確認し格納
-    reservation.store_id = Store.find(params[:store_id]).id
-    reservation.save!
+    # 予約重複の確認
+    current_user.reservations.find_each do |reservation|
+      next if params_date_at == reservation[:date_at]
 
-    render json: reservation, serializer: Api::V1::ReservationSerializer
+      unless reservations_date_at.include?(params_date_at)
+        binding.pry
+        reservation = current_user.reservations.build(reservation_params)
+
+        # 生成した予約番号を格納
+        reservation.reservation_number = reservation.create_reservation_num
+
+        # 指定店舗があることを確認し格納
+        reservation.store_id = Store.find(params[:store_id]).id
+        reservation.save!
+
+        return render json: reservation, serializer: Api::V1::ReservationSerializer
+      end
+    end
+    current_date
   end
 
   def update
@@ -58,6 +71,13 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
         status: 404,
         messege: "申し訳ありません。指定した予約データは存在しません",
       }, status: :not_found
+    end
+
+    def current_date
+      render json: {
+        date_at: params[:date_at],
+        messege: "すでに予約した時間帯と被ってます",
+      }, status: :ok
     end
 
     def reservation_params
