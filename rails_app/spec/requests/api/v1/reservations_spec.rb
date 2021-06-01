@@ -137,7 +137,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:store_id) { store.id }
 
       context "指定店舗が存在していて予約する時" do
-        let(:params) { { reservation: attributes_for(:reservation, date_on: "15:00:00") } }
+        let(:params) { { reservation: attributes_for(:reservation, date_at: "2021-01-02", date_on: "15:00:00") } }
         # ex) "2044-09-01"
         let(:date_at) { 0..9 }
         # ex) 15:00:00
@@ -151,8 +151,8 @@ RSpec.describe "Api::V1::Reservations", type: :request do
 
           expect(res.keys).to eq ["id", "date_at", "date_on", "number_people", "menu", "budget",
                                   "inquiry", "reservation_number", "store", "user"]
-          expect(res["date_at"][date_at]).to eq params[:reservation][:date_at].to_s
-          expect(res["date_on"][date_on]).to eq params[:reservation][:date_on].to_s
+          expect(res["date_at"][date_at]).to eq params[:reservation][:date_at]
+          expect(res["date_on"][date_on]).to eq params[:reservation][:date_on]
           expect(res["number_people"]).to eq params[:reservation][:number_people]
           expect(res["menu"]).to eq params[:reservation][:menu]
           expect(res["budget"]).to eq params[:reservation][:budget]
