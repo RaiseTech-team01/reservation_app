@@ -18,7 +18,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   def create
     reservations_date_at = current_user.reservations.pluck(:date_at)
-    params_date_at = Time.zone.parse(params[:date_at])
+    params_date_at = Time.zone.parse(reservation_params[:date_at])
 
     # 予約がない場合
     if reservations_date_at.empty?
