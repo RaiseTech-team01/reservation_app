@@ -67,7 +67,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
     def current_date
       render json: {
-        date_at: params[:date_at],
+        date_at: reservation_params[:date_at],
         messege: "すでに予約した時間帯と被ってます",
       }, status: :ok
     end
