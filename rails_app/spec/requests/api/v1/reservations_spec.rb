@@ -136,7 +136,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:store) { create(:store) }
       let(:store_id) { store.id }
 
-      context "指定店舗が存在していて予約する時" do
+      context "指定店舗が存在していて初期予約する時" do
         let(:params) { { reservation: attributes_for(:reservation, date_at: "2021-01-02", date_on: "15:00:00") } }
         # ex) "2044-09-01"
         let(:date_at) { 0..9 }
@@ -158,6 +158,47 @@ RSpec.describe "Api::V1::Reservations", type: :request do
           expect(res["budget"]).to eq params[:reservation][:budget]
           expect(res["inquiry"]).to eq params[:reservation][:inquiry]
           expect(res["reservation_number"].length).to eq 12
+        end
+      end
+
+      context "指定店舗が存在していて予約時間が重複していない時" do
+        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id, date_at: "2021-01-02", date_on: "14:00:00") }
+        let(:params) { { reservation: attributes_for(:reservation, date_at: "2021-01-01", date_on: "15:00:00") } }
+        # ex) "2044-09-01"
+        let(:date_at) { 0..9 }
+        # ex) 15:00:00
+        let(:date_on) { 11..18 }
+
+        it "予約する事ができる" do # rubocop:disable RSpec/ExampleLength
+          expect { subject }.to change { Reservation.count }.by(1)
+          res = JSON.parse(response.body)
+
+          expect(response).to have_http_status(:ok)
+
+          expect(res.keys).to eq ["id", "date_at", "date_on", "number_people", "menu", "budget",
+                                  "inquiry", "reservation_number", "store", "user"]
+
+          expect(res["date_at"][date_at]).to eq params[:reservation][:date_at]
+          expect(res["date_on"][date_on]).to eq params[:reservation][:date_on]
+          expect(res["number_people"]).to eq params[:reservation][:number_people]
+          expect(res["menu"]).to eq params[:reservation][:menu]
+          expect(res["budget"]).to eq params[:reservation][:budget]
+          expect(res["inquiry"]).to eq params[:reservation][:inquiry]
+          expect(res["reservation_number"].length).to eq 12
+        end
+      end
+
+      context "既に予約している時間に予約しようとした時" do
+        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id, date_at: "2021-01-02", date_on: "15:00:00") }
+        let(:params) { { reservation: attributes_for(:reservation, date_at: "2021-01-02", date_on: "15:00:00") } }
+
+        it "予約できないメッセージが表示させる" do
+          subject
+          res = JSON.parse(response.body)
+
+          expect(response).to have_http_status(:ok)
+          expect(res["date_at"]).to eq params[:reservation][:date_at]
+          expect(res["messege"]).to eq "すでに予約した時間帯と被ってます"
         end
       end
 
