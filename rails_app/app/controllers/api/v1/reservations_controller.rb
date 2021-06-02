@@ -33,7 +33,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
         return create_reservation
       end
     end
-    current_date
+    duplicate_reservation
   end
 
   def update
@@ -65,7 +65,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
       }, status: :not_found
     end
 
-    def current_date
+    def duplicate_reservation
       render json: {
         date_at: reservation_params[:date_at],
         messege: "すでに予約した時間帯と被ってます",
