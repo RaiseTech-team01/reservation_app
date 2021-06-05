@@ -17,18 +17,23 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
   end
 
   def create
-    # 店舗がない場合、処理が止まってしまう
-    # TODO: nil を無くす
-    reservation = current_user.reservations.build(reservation_params)
+    reservations_date_at = current_user.reservations.pluck(:date_at)
+    params_date_at = Time.zone.parse(reservation_params[:date_at])
 
-    # 生成した予約番号を格納
-    reservation.reservation_number = reservation.create_reservation_num
+    # 予約がない場合
+    if reservations_date_at.empty?
+      return create_reservation
+    end
 
-    # 指定店舗があることを確認し格納
-    reservation.store_id = Store.find(params[:store_id]).id
-    reservation.save!
+    # 予約重複の確認
+    current_user.reservations.find_each do |reservation|
+      next if params_date_at == reservation[:date_at]
 
-    render json: reservation, serializer: Api::V1::ReservationSerializer
+      unless reservations_date_at.include?(params_date_at)
+        return create_reservation
+      end
+    end
+    duplicate_reservation
   end
 
   def update
@@ -58,6 +63,26 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
         status: 404,
         messege: "申し訳ありません。指定した予約データは存在しません",
       }, status: :not_found
+    end
+
+    def duplicate_reservation
+      render json: {
+        date_at: reservation_params[:date_at],
+        messege: "すでに予約した時間帯と被ってます",
+      }, status: :ok
+    end
+
+    def create_reservation
+      reservation = current_user.reservations.build(reservation_params)
+
+      # 生成した予約番号を格納
+      reservation.reservation_number = reservation.create_reservation_num
+
+      # 指定店舗があることを確認し格納
+      reservation.store_id = Store.find(params[:store_id]).id
+      reservation.save!
+
+      render json: reservation, serializer: Api::V1::ReservationSerializer
     end
 
     def reservation_params
