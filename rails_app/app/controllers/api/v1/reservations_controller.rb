@@ -33,7 +33,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
         return create_reservation
       end
     end
-    duplicate_reservation
+    self.duplicate_reservation
   end
 
   def update
