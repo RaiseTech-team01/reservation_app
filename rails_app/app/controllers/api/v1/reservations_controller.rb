@@ -85,6 +85,32 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
       render json: reservation, serializer: Api::V1::ReservationSerializer
     end
 
+    def duplicate_reservation
+      render json: {
+        date_at: reservation_params[:date_at],
+        status: 200,
+        messege: "すでに予約した時間帯と被ってます。",
+      }, status: :ok
+    end
+
+    def no_seat_reservation
+      render json: {
+        seat: reservation_params[:number_people],
+        status: 200,
+        messege: "申し訳ありません。予約席が一杯で予約できません。",
+      }, status: :ok
+    end
+
+    def record_not_found
+      # TODO: この書き方は間違っている.
+      # JSON形式で、クライアントにも伝わる適切なErrorメッセージを書く
+      render json: {
+        store_id: params[:store_id],
+        status: 404,
+        messege: "申し訳ありません。指定した予約データは存在しません",
+      }, status: :not_found
+    end
+
     def reservation_params
       params.require(:reservation).permit(:date_at, :date_on, :number_people, :menu, :budget,
                                           :inquiry, :user_id, :store_id)
