@@ -154,7 +154,7 @@
               </tr>
             </table>
             <div>
-              <h3 class="mt-8 mb-8 font-bold text-2xl md:text-3xl text-center text-blue-800">個人情報保護方針への同意</h3>
+              <h3 class="mt-8 mb-8 font-bold text-2xl md:text-3xl text-center text-blue-800"><span class="underline">個人情報保護方針</span>への同意</h3>
               <p class="flex justify-center space-x-8">
                 <label>
                   <input class="radiox inline-block mr-2 align-middle" type="radio" name="privacy_policy" value="yes">
