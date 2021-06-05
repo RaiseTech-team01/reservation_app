@@ -36,7 +36,7 @@ class DeviseTokenAuthCreateStores < ActiveRecord::Migration[6.1]
       t.string :postal_code
       t.string :address
       t.string :url
-      t.string :seat
+      t.integer :seat
       t.string :restaurant
       t.string :genre
       t.string :responsible_party

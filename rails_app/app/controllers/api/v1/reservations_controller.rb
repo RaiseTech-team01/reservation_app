@@ -33,7 +33,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
         return create_reservation
       end
     end
-    duplicate_reservation
+    self.duplicate_reservation
   end
 
   def update
@@ -55,24 +55,9 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   private
 
-    def record_not_found
-      # TODO: この書き方は間違っている.
-      # JSON形式で、クライアントにも伝わる適切なErrorメッセージを書く
-      render json: {
-        store_id: params[:store_id],
-        status: 404,
-        messege: "申し訳ありません。指定した予約データは存在しません",
-      }, status: :not_found
-    end
-
-    def duplicate_reservation
-      render json: {
-        date_at: reservation_params[:date_at],
-        messege: "すでに予約した時間帯と被ってます",
-      }, status: :ok
-    end
-
     def create_reservation
+      return unless self.check_reservation_seat
+
       reservation = current_user.reservations.build(reservation_params)
 
       # 生成した予約番号を格納
@@ -83,6 +68,51 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
       reservation.save!
 
       render json: reservation, serializer: Api::V1::ReservationSerializer
+    end
+
+    def check_reservation_seat
+      # REVIEW: テーブル毎に予約席を処理できるようにしたい
+
+      num_of_reservation_people = reservation_params[:number_people].to_i
+      store_seat_num = Store.find(params[:store_id]).seat
+
+      if store_seat_num >= num_of_reservation_people
+        residual_seat = store_seat_num - num_of_reservation_people
+
+        Store.find(params[:store_id]).seat = residual_seat
+        return true
+      end
+
+      if store_seat_num < num_of_reservation_people
+        self.no_seat_reservation
+        false
+      end
+    end
+
+    def duplicate_reservation
+      render json: {
+        date_at: reservation_params[:date_at],
+        status: 200,
+        messege: "すでに予約した時間帯と被ってます。",
+      }, status: :ok
+    end
+
+    def no_seat_reservation
+      render json: {
+        seat: reservation_params[:number_people],
+        status: 200,
+        messege: "申し訳ありません。予約席が一杯で予約できません。",
+      }, status: :ok
+    end
+
+    def record_not_found
+      # TODO: この書き方は間違っている.
+      # JSON形式で、クライアントにも伝わる適切なErrorメッセージを書く
+      render json: {
+        store_id: params[:store_id],
+        status: 404,
+        messege: "申し訳ありません。指定した予約データは存在しません",
+      }, status: :not_found
     end
 
     def reservation_params
