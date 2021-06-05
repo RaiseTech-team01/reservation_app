@@ -55,24 +55,24 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
 
   private
 
-    def record_not_found
-      # TODO: この書き方は間違っている.
-      # JSON形式で、クライアントにも伝わる適切なErrorメッセージを書く
-      render json: {
-        store_id: params[:store_id],
-        status: 404,
-        messege: "申し訳ありません。指定した予約データは存在しません",
-      }, status: :not_found
-    end
-
-    def duplicate_reservation
-      render json: {
-        date_at: reservation_params[:date_at],
-        messege: "すでに予約した時間帯と被ってます",
-      }, status: :ok
-    end
-
     def create_reservation
+      # 予約席の有無
+      reservation_number_people = reservation_params[:number_people].to_i
+      store_seat = Store.find(params[:store_id]).seat.to_i
+
+      if store_seat >= reservation_number_people
+        residual_seat = store_seat - reservation_number_people
+
+        Store.find(params[:store_id]).seat = residual_seat
+      end
+
+      if store_seat < reservation_number_people
+        # 予約席が足りません
+        self.no_seat_reservation
+
+        return false
+      end
+
       reservation = current_user.reservations.build(reservation_params)
 
       # 生成した予約番号を格納
