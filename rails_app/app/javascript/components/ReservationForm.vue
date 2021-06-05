@@ -1,7 +1,7 @@
 <template>
 <div class="main m-0">
   <dir class="header m-0 text-center pl-0">
-    <header />
+    <Header />
   </dir>
   <main>
     <div class="flex justify-center">
@@ -30,7 +30,7 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">店舗</td>
                 <td class="space-x-4">
                   <div class="flex justify-between space-x-4 md:flex-none">
-                    <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
+                    <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" name="store_name" type="text" />
                   </div>
                 </td>
               </tr>
@@ -38,7 +38,7 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">日付</td>
                 <td>
                   <div class="flex justify-start space-x-2 md:flex-none">
-                    <select class="w-1/4 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl cursor-pointer" type="text" />
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="month" type="text">
                       <option class="text-xl" value="1">1</option>
                       <option class="text-xl" value="2">2</option>
                       <option class="text-xl" value="3">3</option>
@@ -53,7 +53,7 @@
                       <option class="text-xl" value="12">12</option>
                     </select>
                     <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">月</span>
-                    <select class="w-1/4 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl cursor-pointer" type="text" />
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="day" type="text">
                       <option class="text-xl" value="1">1</option>
                       <option class="text-xl" value="2">2</option>
                       <option class="text-xl" value="3">3</option>
@@ -94,7 +94,7 @@
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">時間帯</td>
                 <td>
                   <div class="flex justify-start space-x-2 md:flex-none">
-                    <select class="w-1/4 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl cursor-pointer" type="text" />
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="hour" type="text">
                       <option class="text-xl" value="1">1</option>
                       <option class="text-xl" value="2">2</option>
                       <option class="text-xl" value="3">3</option>
@@ -120,7 +120,7 @@
                       <option class="text-xl" value="23">23</option>
                     </select>
                     <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">時</span>
-                    <select class="w-1/4 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl cursor-pointer" type="text" />
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="minute" type="text">
                       <option class="text-xl" value="00">00</option>
                       <option class="text-xl" value="05">05</option>
                       <option class="text-xl" value="10">10</option>
@@ -141,14 +141,14 @@
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">ご利用人数</td>
                 <td>
-                  <input class="w-1/3 md:w-28 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="tel" />
+                  <input class="w-1/3 md:w-28 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" name="guests_number" type="number" />
                   <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">名様</span>
                 </td>
               </tr>
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">ご予算</td>
                 <td>
-                  <input class="w-1/2 md:w-40 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
+                  <input class="w-1/2 md:w-40 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="price" />
                   <span class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">円</span>
                 </td>
               </tr>
@@ -157,12 +157,12 @@
               <h3 class="mt-8 mb-8 font-bold text-2xl md:text-3xl text-center text-blue-800">個人情報保護方針への同意</h3>
               <p class="flex justify-center space-x-8">
                 <label>
-                  <input class="inline-block transform scale-150 mr-2 align-middle" type="radio" name="privacy_policy"" value="yes">
-                  <span class="mt-4 mb-4 text-xl md:text-2xl text-center align-middle text-blue-800 hover:text-blue-600">同意する</span>
+                  <input class="radiox inline-block mr-2 align-middle" type="radio" name="privacy_policy" value="yes">
+                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意する</span>
                 </label>
                 <label>
-                  <input class="inline-block transform scale-150 mx-2 align-middle" type="radio" name="privacy_policy" value="no">
-                  <span class="mt-4 mb-4 text-xl md:text-2xl text-center align-middle text-blue-800 hover:text-blue-600">同意しない</span>
+                  <input class="radiox inline-block mx-2 align-middle" type="radio" name="privacy_policy" value="no">
+                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意しない</span>
                 </label>
               </p>
             </div>
@@ -175,7 +175,7 @@
       </div>
     </div>
     <dir class="footer m-0 pl-0">
-      <footer />
+      <Footer />
     </dir>
   </main>
 </div>
@@ -208,5 +208,8 @@ export default {
 p {
   font-size: 2em;
   text-align: center;
+}
+.radiox {
+  transform: scale(2, 2);
 }
 </style>
