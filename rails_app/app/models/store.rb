@@ -24,7 +24,7 @@
 #  reset_password_token   :string(255)
 #  responsible_party      :string(255)
 #  restaurant             :string(255)
-#  seat                   :integer
+#  seat                   :string(255)
 #  tel                    :string(255)
 #  tokens                 :text(65535)
 #  uid                    :string(255)      default(""), not null

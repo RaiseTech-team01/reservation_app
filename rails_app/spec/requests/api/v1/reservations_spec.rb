@@ -133,11 +133,11 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:current_user) { create(:user) }
       let(:headers) { current_user.create_new_auth_token }
 
-      let(:store) { create(:store, seat: 100) }
+      let(:store) { create(:store) }
       let(:store_id) { store.id }
 
       context "指定店舗が存在していて初期予約する時" do
-        let(:params) { { reservation: attributes_for(:reservation, date_at: "2021-01-02", date_on: "15:00:00", number_people: 100) } }
+        let(:params) { { reservation: attributes_for(:reservation, date_at: "2021-01-02", date_on: "15:00:00") } }
         # ex) "2044-09-01"
         let(:date_at) { 0..9 }
         # ex) 15:00:00
@@ -162,10 +162,8 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       end
 
       context "指定店舗が存在していて予約時間が重複していない時" do
-        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id, date_at: "2021-01-02", date_on: "14:00:00", number_people: 100) }
-        let(:params) {
-          { reservation: attributes_for(:reservation, user: current_user, store_id: store_id, date_at: "2021-01-01", date_on: "15:00:00", number_people: 100) }
-        }
+        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id, date_at: "2021-01-02", date_on: "14:00:00") }
+        let(:params) { { reservation: attributes_for(:reservation, date_at: "2021-01-01", date_on: "15:00:00") } }
         # ex) "2044-09-01"
         let(:date_at) { 0..9 }
         # ex) 15:00:00
@@ -200,8 +198,7 @@ RSpec.describe "Api::V1::Reservations", type: :request do
 
           expect(response).to have_http_status(:ok)
           expect(res["date_at"]).to eq params[:reservation][:date_at]
-          expect(res["status"]).to eq 200
-          expect(res["messege"]).to eq "すでに予約した時間帯と被ってます。"
+          expect(res["messege"]).to eq "すでに予約した時間帯と被ってます"
         end
       end
 
@@ -218,19 +215,6 @@ RSpec.describe "Api::V1::Reservations", type: :request do
           expect(res["store_id"]).to eq store_id.to_s
           expect(res["status"]).to eq 404
           expect(res["messege"]).to eq "申し訳ありません。指定した予約データは存在しません"
-        end
-      end
-
-      context "予約席が足りない場合" do
-        let(:params) { { reservation: attributes_for(:reservation, number_people: 101) } }
-
-        it "予約できない" do
-          subject
-          res = JSON.parse(response.body)
-
-          expect(res["seat"]).to eq 101.to_s
-          expect(res["status"]).to eq 200
-          expect(res["messege"]).to eq "申し訳ありません。予約席が一杯で予約できません。"
         end
       end
     end

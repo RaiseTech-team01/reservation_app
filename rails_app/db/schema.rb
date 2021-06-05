@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_035421) do
     t.string "postal_code"
     t.string "address"
     t.string "url"
-    t.integer "seat"
+    t.string "seat"
     t.string "restaurant"
     t.string "genre"
     t.string "responsible_party"
