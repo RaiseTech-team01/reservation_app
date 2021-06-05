@@ -25,7 +25,7 @@
                         postal_code: "1234567",
                         url: "http://sample#{i}.com",
                         address: "大阪",
-                        seat: "#{i}#{i}#{i}",
+                        seat: i * 100,
                         restaurant: "店舗名#{i}",
                         genre: "飲食業",
                         responsible_party: "担当者#{i}",
