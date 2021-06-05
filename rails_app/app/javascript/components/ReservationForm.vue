@@ -1,9 +1,13 @@
 <template>
 <div class="main m-0">
+  <div id="fa_container"></div>
   <dir class="header m-0 text-center pl-0">
     <Header />
   </dir>
   <main>
+    <dir class="navigation m-0 p-0">
+      <Navigation/>
+    </dir>
     <div class="flex justify-center">
       <div class="bg-gray-300" style="width: 766px">
         <div>
@@ -200,6 +204,13 @@ export default {
   },
 
   methods: {
+  },
+
+  mounted() {
+    let scriptEl = document.createElement('script')
+    scriptEl.setAttribute('src', 'https://kit.fontawesome.com/98c77f9d64.js')
+    scriptEl.setAttribute('crossorigin', 'anonymous')
+    document.head.appendChild(scriptEl)
   }
 }
 </script>
