@@ -56,22 +56,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
   private
 
     def create_reservation
-      # 予約席の有無
-      reservation_number_people = reservation_params[:number_people].to_i
-      store_seat = Store.find(params[:store_id]).seat.to_i
-
-      if store_seat >= reservation_number_people
-        residual_seat = store_seat - reservation_number_people
-
-        Store.find(params[:store_id]).seat = residual_seat
-      end
-
-      if store_seat < reservation_number_people
-        # 予約席が足りません
-        self.no_seat_reservation
-
-        return false
-      end
+      return unless self.check_reservation_seat
 
       reservation = current_user.reservations.build(reservation_params)
 
@@ -83,6 +68,25 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
       reservation.save!
 
       render json: reservation, serializer: Api::V1::ReservationSerializer
+    end
+
+    def check_reservation_seat
+      # REVIEW: テーブル毎に予約席を処理できるようにしたい
+
+      reservation_number_people = reservation_params[:number_people].to_i
+      store_seat = Store.find(params[:store_id]).seat.to_i
+
+      if store_seat >= reservation_number_people
+        residual_seat = store_seat - reservation_number_people
+
+        Store.find(params[:store_id]).seat = residual_seat
+        return true
+      end
+
+      if store_seat < reservation_number_people
+        self.no_seat_reservation
+        false
+      end
     end
 
     def duplicate_reservation
