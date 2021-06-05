@@ -74,7 +74,7 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
       # REVIEW: テーブル毎に予約席を処理できるようにしたい
 
       num_of_reservation_people = reservation_params[:number_people].to_i
-      store_seat_num = Store.find(params[:store_id]).seat.to_i
+      store_seat_num = Store.find(params[:store_id]).seat
 
       if store_seat_num >= num_of_reservation_people
         residual_seat = store_seat_num - num_of_reservation_people
