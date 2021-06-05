@@ -26,13 +26,13 @@
                   <tr>
                     <th class="pr-3 pb-10 text-2xl text-blue-800 text-right border-none">ID</th>
                     <td class="border-none pb-10">
-                      <input data-v-6fb8108a="" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email">
+                      <input id="user_email" data-v-6fb8108a="" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email">
                     </td>
                   </tr>
                   <tr>
                     <th class="pr-3 text-2xl text-blue-800 text-right border-none">パスワード</th>
                     <td class="border-none">
-                      <input data-v-6fb8108a="" name="password" type="password" class="w-80 h-10 border-blue-800 border-2" autocomplete="on">
+                      <input id="user_pass" data-v-6fb8108a="" name="password" type="password" class="w-80 h-10 border-blue-800 border-2" autocomplete="on">
                     </td>
                   </tr>
                 </tbody>
@@ -42,13 +42,13 @@
                 <label class="text-xl text-blue-800" for="is_auto_login">次からは自動でログインする</label><br>
               </div>
               <div class="mt-10 text-center">
-                <input class="w-40 h-12 mr-8 p-1 text-2xl text-blue-800 bg-yellow-400" type="submit" :loading="loading" @click="submit" value="ログイン">
+                <input class="w-40 h-12 mr-8 p-1 text-2xl text-blue-800 bg-yellow-400" type="submit" :loading="loading" @click.prevent="submit" value="ログイン">
                 <input class="w-40 h-12 p-1 text-2xl text-blue-800 bg-yellow-400" type="button" value="戻る">
               </div>
             </form>
             <div class="text-center mt-10 text-blue-800">
               <p class="mx-auto w-96 text-xl break-words text-left">アカウント未登録の方は下記から登録してください。</p>
-              <input class="mt-4 w-80 h-12 p-1 text-2xl text-blue-800 bg-yellow-400" type="button" value="新規登録" @click="goToRegistration">
+              <input class="mt-4 w-80 h-12 p-1 text-2xl text-blue-800 bg-yellow-400" type="button" value="新規登録" @click.prevent="goToRegistration">
             </div>
           </div>
         </div>
@@ -86,6 +86,8 @@ export default {
   methods: {
     // ログイン情報を送信する
     async submit() {
+      this.email = document.getElementById("user_email").value
+      this.password = document.getElementById("user_pass").value
       this.loading = true
       const params = {
         email: this.email,
