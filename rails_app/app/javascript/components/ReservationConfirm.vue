@@ -58,7 +58,7 @@
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">ご利用人数</td>
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800 whitespace-nowrap">ご利用人数</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                     5名様
@@ -66,7 +66,7 @@
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">ご予算</td>
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">ご予算</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                     3,000円
@@ -74,7 +74,7 @@
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">個人情報保護方針</td>
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">個人情報<br class="hidden md:block">保護方針</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
                     同意する
