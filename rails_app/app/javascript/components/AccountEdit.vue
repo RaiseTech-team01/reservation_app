@@ -76,10 +76,10 @@
         </div>
       </div>
     </div>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
   </main>
+  <dir class="footer m-0 pl-0">
+    <Footer />
+  </dir>
 </div>
 </template>
 

@@ -53,10 +53,10 @@
           </div>
         </div>
       </div>
-      <dir class="footer">
-        <Footer/>
-      </dir>
     </main>
+    <dir class="footer">
+      <Footer/>
+    </dir>
   </div>
 </template>
 
