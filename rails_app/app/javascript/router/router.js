@@ -8,6 +8,7 @@ import AccountInfo from "../components/AccountInfo.vue";
 import AccountEdit from "../components/AccountEdit.vue";
 import ReservationForm from "../components/ReservationForm.vue";
 import ReservationConfirm from "../components/ReservationConfirm.vue";
+import ReservationCompletion from "../components/ReservationCompletion.vue";
 
 Vue.use(Router);
 
@@ -54,6 +55,10 @@ const router = new Router({
     {
       path: '/reservation_confirm',
       component: ReservationConfirm
+    },
+    {
+      path: '/reservation_complete',
+      component: ReservationCompletion
     },
   ],
 });
