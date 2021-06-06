@@ -5,7 +5,7 @@
     <Header />
   </dir>
   <main>
-    <dir class="navigation m-0 p-0">
+    <dir class="navigation hidden md:block m-0 p-0">
       <Navigation/>
     </dir>
     <div class="flex justify-center">
@@ -211,6 +211,10 @@ export default {
     scriptEl.setAttribute('src', 'https://kit.fontawesome.com/98c77f9d64.js')
     scriptEl.setAttribute('crossorigin', 'anonymous')
     document.head.appendChild(scriptEl)
+
+    scriptEl = document.createElement('script')
+    scriptEl.setAttribute('src', 'https://code.jquery.com/jquery-1.10.2.js')
+    document.head.appendChild(scriptEl)
   }
 }
 </script>
@@ -222,5 +226,8 @@ p {
 }
 .radiox {
   transform: scale(2, 2);
+}
+.sp_menu_toggle {
+  display: none;
 }
 </style>
