@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/account_info", to: "home#top"
   get "/account_edit", to: "home#top"
   get "/reservation_form", to: "home#top"
+  get "/reservation_confirm", to: "home#top"
 
   namespace :api do
     namespace :v1 do

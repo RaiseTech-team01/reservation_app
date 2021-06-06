@@ -8,7 +8,7 @@
         <Navigation/>
       </dir>
       <div class="flex justify-center h-screen">
-        <div class="bg-gray-300" style="width: 500px">
+        <div class="bg-gray-300 info-container">
           <div>
             <h3 class="mt-4 ml-4 text-xl text-blue-800">
               <a class="font-bold" href="index.html">トップ</a>

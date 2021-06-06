@@ -4,15 +4,16 @@
     <Header />
   </dir>
   <main>
+    <dir class="navigation hidden md:block m-0 p-0">
+      <Navigation/>
+    </dir>
     <div class="flex justify-center">
       <div class="bg-gray-300 info-container">
         <div>
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
             <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
             <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="index.html">ログイン</a>
-            <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="index.html">新規登録確認</a>
+            <a class="font-bold hover:text-blue-500" href="index.html">予約登録確認</a>
           </h3>
         </div>
         <div class="mt-16">
@@ -25,72 +26,64 @@
           </div>
         </div>
         <div>
-          <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">下記の情報を登録して良いですか？</h2>
+          <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">ご予約内容は下記でよろしいですか？</h2>
           <form>
             <table class="m-2 mt-10 table-auto max-w-full md:w-full md:text-center">
               <tr class="h-24">
-                <td class="block md:w-1/5 md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">氏名</td>
+                <td class="block md:w-1/5 md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">店舗</td>
                 <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
                   <div>
                     <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                      田中　一郎
+                      イロハ駅前店
                     </p>
                   </div>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">カナ</td>
+                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">日付</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <div>
                     <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                      タナカ　イチロウ
+                      2021年3月21日
                     </p>
                   </div>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">メール<br class="hidden md:block">アドレス</td>
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">時間帯</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
-                    Ichiro.Tanaka@smail.comIchiro.Tanaka@smail.comIchiro.Tanaka@smail.comIchiro.Tanaka@smail.com
+                    18時00分～
                   </p>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">電話<br class="hidden md:block">番号</td>
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800 whitespace-nowrap">ご利用人数</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                    080-1111-2222
+                    5名様
                   </p>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">年齢</td>
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">ご予算</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                    31 歳
+                    3,000円
                   </p>
                 </td>
               </tr>
               <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">性別</td>
+                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">個人情報<br class="hidden md:block">保護方針</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                    男性
-                  </p>
-                </td>
-              </tr>
-              <tr class="h-24">
-                <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">住所</td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
-                    千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1
+                    同意する
                   </p>
                 </td>
               </tr>
             </table>
             <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="登録完了" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="送　信" />
               <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" />
             </div>
           </form>
