@@ -9,11 +9,11 @@
       </div>
     </div>
     <ul class="absolute w-screen hidden overflow-hidden sp_menu_toggle h-screen bg-gray-300">
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 hover:bg-gray-200 hover:text-blue-600 border-b-2"><a href="">予約入力</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 hover:bg-gray-200 hover:text-blue-600 border-b-2"><a href="">予約一覧</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 hover:bg-gray-200 hover:text-blue-600 border-b-2"><a href="">閲覧履歴</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 hover:bg-gray-200 hover:text-blue-600 border-b-2"><a href="">予約履歴</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 hover:bg-gray-200 hover:text-blue-600 border-b-2"><a href="">アカウント設定</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">予約入力</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">予約一覧</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">閲覧履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">予約履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">アカウント設定</a></li>
     </ul>
     <img class="hidden md:block mx-auto" src="/banner.png" alt="banner">
   </header>
