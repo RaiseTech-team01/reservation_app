@@ -38,3 +38,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.sp_menu_toggle {
+  display: none;
+}
+</style>
