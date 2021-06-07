@@ -18,8 +18,8 @@
         </div>
         <div class="mt-16 flex flex-col mx-16">
           <div>
-            <table class="text-2xl font-bold text-blue-800 mx-4 md:table block">
-              <tr class="border-t-2 border-blue-800 md:table-row block">
+            <table class="text-2xl font-bold text-blue-800 border-t-2 border-blue-800 mx-4 md:table block">
+              <tr class="md:table-row block">
                 <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">居酒屋A イロハ駅前店</td>
                 <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細"></td>
@@ -40,8 +40,8 @@
             </div>
           </div>
           <div>
-            <table class="text-2xl font-bold text-blue-800 mx-4 md:table block">
-              <tr class="border-t-2 border-blue-800 md:table-row block">
+            <table class="text-2xl font-bold text-blue-800 border-t-2 md:border-b-2 border-blue-800 mx-4 md:table block">
+              <tr class="md:table-row block">
                 <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">居酒屋B ホヘト駅前店</td>
                 <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細"></td>
@@ -53,7 +53,7 @@
               </tr>
               <tr class="md:table-row block mt-4">
                 <td class="pl-2 md:p-2 md:table-cell block"></td>
-                <td class="pl-2 md:p-2 md:table-cell block">人数：3名　<br class="md:hidden" />コース予約：なし</td>
+                <td class="pl-2 md:p-2 md:table-cell block">人数：2名　<br class="md:hidden" />コース予約：あり</td>
               </tr>
             </table>
             <div class="my-4 pb-4 md:my-0 text-center space-x-6 md:hidden border-b-2 border-blue-800">
