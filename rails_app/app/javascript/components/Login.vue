@@ -100,10 +100,17 @@ export default {
           localStorage.setItem("uid", response.headers["uid"])
           localStorage.setItem("client", response.headers["client"])
 
-          Router.push("/")
+          // Router.push("/")
+
+
+        // Vuex store
+          this.$store.dispatch('updateuserData', response.data.data)
+          //  画面遷移先を変更
+          Router.push("/account_info")
 
           // TODO: Vuex でログイン状態を管理するようになったら消す
-          window.location.reload()
+            //  window.location.reload()
+
         })
         .catch(e => {
           // TODO: 適切な Error 表示
