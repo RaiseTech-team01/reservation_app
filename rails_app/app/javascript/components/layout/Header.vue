@@ -2,6 +2,9 @@
   <header>
     <div class="w-screen flex justify-center justify-items-center h-16 bg-black">
       <h3 class="relative text-yellow-300 text-base md:text-2xl p-4 font-mono">Reservation App</h3>
+      <div @click="signout">
+        <i class="far fa-user-circle absolute top-4 right-20 text-yellow-300 hover:text-yellow-200 text-4xl text-center cursor-pointer"></i>
+      </div>
       <div id="sp_toggle" class="md:hidden" @click="toggle_navigation">
         <i id="hamburger-btn" class="fas fa-bars absolute top-4 right-4 text-yellow-300 hover:text-yellow-200 text-4xl text-center cursor-pointer"></i>
         <!-- xボタンのhiddenを有効にするためspanを追加 -->
@@ -34,7 +37,10 @@ export default {
           $('body, html').css({"overflow": "visible", "height": "auto"});
         }
       })
-    }
+    },
+    signout() {
+      // ここにログアウト用の処理を入れる..
+    },
   },
 }
 </script>
