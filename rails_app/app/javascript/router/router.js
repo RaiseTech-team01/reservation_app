@@ -6,6 +6,10 @@ import RegistrationCompletion from "../components/RegistrationCompletion.vue";
 import Login from "../components/Login.vue";
 import AccountInfo from "../components/AccountInfo.vue";
 import AccountEdit from "../components/AccountEdit.vue";
+import ReservationForm from "../components/ReservationForm.vue";
+import ReservationConfirm from "../components/ReservationConfirm.vue";
+import ReservationCompletion from "../components/ReservationCompletion.vue";
+import ReservationList from "../components/ReservationList.vue";
 
 Vue.use(Router);
 
@@ -44,6 +48,22 @@ const router = new Router({
     {
       path: '/account_edit',
       component: AccountEdit
+    },
+    {
+      path: '/reservation_form',
+      component: ReservationForm
+    },
+    {
+      path: '/reservation_confirm',
+      component: ReservationConfirm
+    },
+    {
+      path: '/reservation_complete',
+      component: ReservationCompletion
+    },
+    {
+      path: '/reservation_list',
+      component: ReservationList
     },
   ],
 });

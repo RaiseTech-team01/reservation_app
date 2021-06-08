@@ -4,7 +4,7 @@
     <Header />
   </dir>
   <main class="flex justify-center h-full">
-    <div class="bg-gray-300 " style="width: 766px">
+    <div class="bg-gray-300 info-container">
       <div>
         <h3 class="mt-10 ml-4 text-xl text-blue-800">
           <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
@@ -33,9 +33,9 @@
       </div>
     </div>
   </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
+  <dir class="footer m-0 pl-0">
+    <Footer />
+  </dir>
 </div>
 </template>
 
