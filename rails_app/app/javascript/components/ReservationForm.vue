@@ -1,5 +1,8 @@
 <template>
 <div class="main m-0">
+  <div class="calendar">
+    <Calendar />
+  </div>
   <div id="fa_container"></div>
   <dir class="header m-0 text-center pl-0">
     <Header />
@@ -42,53 +45,10 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">日付</td>
                 <td>
                   <div class="flex justify-start space-x-2 md:flex-none">
-                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="month" type="text required">
-                      <option class="text-xl" value="1">1</option>
-                      <option class="text-xl" value="2">2</option>
-                      <option class="text-xl" value="3">3</option>
-                      <option class="text-xl" value="4">4</option>
-                      <option class="text-xl" value="5">5</option>
-                      <option class="text-xl" value="6">6</option>
-                      <option class="text-xl" value="7">7</option>
-                      <option class="text-xl" value="8">8</option>
-                      <option class="text-xl" value="9">9</option>
-                      <option class="text-xl" value="10">10</option>
-                      <option class="text-xl" value="11">11</option>
-                      <option class="text-xl" value="12">12</option>
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="month" type="text" required @click="show_calendar">
                     </select>
                     <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">月</span>
-                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="day" type="text" required>
-                      <option class="text-xl" value="1">1</option>
-                      <option class="text-xl" value="2">2</option>
-                      <option class="text-xl" value="3">3</option>
-                      <option class="text-xl" value="4">4</option>
-                      <option class="text-xl" value="5">5</option>
-                      <option class="text-xl" value="6">6</option>
-                      <option class="text-xl" value="7">7</option>
-                      <option class="text-xl" value="8">8</option>
-                      <option class="text-xl" value="9">9</option>
-                      <option class="text-xl" value="10">10</option>
-                      <option class="text-xl" value="11">11</option>
-                      <option class="text-xl" value="12">12</option>
-                      <option class="text-xl" value="13">13</option>
-                      <option class="text-xl" value="14">14</option>
-                      <option class="text-xl" value="15">15</option>
-                      <option class="text-xl" value="16">16</option>
-                      <option class="text-xl" value="17">17</option>
-                      <option class="text-xl" value="18">18</option>
-                      <option class="text-xl" value="19">19</option>
-                      <option class="text-xl" value="20">20</option>
-                      <option class="text-xl" value="21">21</option>
-                      <option class="text-xl" value="22">22</option>
-                      <option class="text-xl" value="23">23</option>
-                      <option class="text-xl" value="24">24</option>
-                      <option class="text-xl" value="25">25</option>
-                      <option class="text-xl" value="26">26</option>
-                      <option class="text-xl" value="27">27</option>
-                      <option class="text-xl" value="28">28</option>
-                      <option class="text-xl" value="29">29</option>
-                      <option class="text-xl" value="30">30</option>
-                      <option class="text-xl" value="31">31</option>
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="day" type="text" required @click="show_calendar">
                     </select>
                     <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">日</span>
                   </div>
@@ -145,14 +105,14 @@
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">ご利用人数</td>
                 <td>
-                  <input class="w-1/3 md:w-28 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" name="guests_number" type="number" min="1" step="1" value="2" required />
+                  <input class="w-1/3 md:w-28 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl text-blue-800" name="guests_number" type="number" min="1" step="1" value="2" required />
                   <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">名様</span>
                 </td>
               </tr>
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">ご予算</td>
                 <td>
-                  <input class="w-1/2 md:w-40 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" name="price" type="number" min="500" step="500" value="3000" required />
+                  <input class="w-1/2 md:w-40 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl text-blue-800" name="price" type="number" min="500" step="500" value="3000" required />
                   <span class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">円</span>
                 </td>
               </tr>
@@ -190,6 +150,7 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
+import Calendar from "./dialog/Calendar.vue"
 
 export default {
   data: function () {
@@ -200,10 +161,20 @@ export default {
   components: {
     Header,
     Navigation,
-    Footer
+    Footer,
+    Calendar
   },
 
   methods: {
+    show_calendar(event) {
+      if (!$("#calendar-dialog").is(':visible')) {
+        event.target.blur()
+        $("#calendar-bg").show()
+        $("#calendar-dialog").show("normal", function() {
+          $('body, html').css({"overflow": "hidden", "height": "100%"});
+        });
+      }
+    },
   },
 }
 </script>
@@ -215,8 +186,5 @@ p {
 }
 .radiox {
   transform: scale(2, 2);
-}
-.sp_menu_toggle {
-  display: none;
 }
 </style>
