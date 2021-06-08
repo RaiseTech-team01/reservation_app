@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/reservation_form", to: "home#top"
   get "/reservation_confirm", to: "home#top"
   get "/reservation_complete", to: "home#top"
+  get "/reservation_list", to: "home#top"
 
   namespace :api do
     namespace :v1 do
