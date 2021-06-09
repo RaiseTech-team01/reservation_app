@@ -3,6 +3,9 @@
   <div class="calendar">
     <Calendar />
   </div>
+  <div class="timetable">
+    <Timetable />
+  </div>
   <div id="fa_container"></div>
   <dir class="header m-0 text-center pl-0">
     <Header />
@@ -58,45 +61,10 @@
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">時間帯</td>
                 <td>
                   <div class="flex justify-start space-x-2 md:flex-none">
-                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="hour" type="text" required>
-                      <option class="text-xl" value="1">1</option>
-                      <option class="text-xl" value="2">2</option>
-                      <option class="text-xl" value="3">3</option>
-                      <option class="text-xl" value="4">4</option>
-                      <option class="text-xl" value="5">5</option>
-                      <option class="text-xl" value="6">6</option>
-                      <option class="text-xl" value="7">7</option>
-                      <option class="text-xl" value="8">8</option>
-                      <option class="text-xl" value="9">9</option>
-                      <option class="text-xl" value="10">10</option>
-                      <option class="text-xl" value="11">11</option>
-                      <option class="text-xl" value="12">12</option>
-                      <option class="text-xl" value="13">13</option>
-                      <option class="text-xl" value="14">14</option>
-                      <option class="text-xl" value="15">15</option>
-                      <option class="text-xl" value="16">16</option>
-                      <option class="text-xl" value="17">17</option>
-                      <option class="text-xl" value="18">18</option>
-                      <option class="text-xl" value="19">19</option>
-                      <option class="text-xl" value="20">20</option>
-                      <option class="text-xl" value="21">21</option>
-                      <option class="text-xl" value="22">22</option>
-                      <option class="text-xl" value="23">23</option>
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="hour" type="text" required @click="show_timetable">
                     </select>
                     <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">時</span>
-                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="minute" type="text" required>
-                      <option class="text-xl" value="00">00</option>
-                      <option class="text-xl" value="05">05</option>
-                      <option class="text-xl" value="10">10</option>
-                      <option class="text-xl" value="15">15</option>
-                      <option class="text-xl" value="20">20</option>
-                      <option class="text-xl" value="25">25</option>
-                      <option class="text-xl" value="30">30</option>
-                      <option class="text-xl" value="35">35</option>
-                      <option class="text-xl" value="40">40</option>
-                      <option class="text-xl" value="45">45</option>
-                      <option class="text-xl" value="50">50</option>
-                      <option class="text-xl" value="55">55</option>
+                    <select class="w-20 md:w-20 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-blue-800 text-3xl cursor-pointer" name="minute" type="text" required @click="show_timetable">
                     </select>
                     <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">分</span>
                   </div>
@@ -151,6 +119,7 @@ import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
 import Calendar from "./dialog/Calendar.vue"
+import Timetable from "./dialog/Timetable.vue"
 
 export default {
   data: function () {
@@ -162,7 +131,8 @@ export default {
     Header,
     Navigation,
     Footer,
-    Calendar
+    Calendar,
+    Timetable
   },
 
   methods: {
@@ -171,6 +141,15 @@ export default {
         event.target.blur()
         $("#calendar-bg").show()
         $("#calendar-dialog").show("normal", function() {
+          $('body, html').css({"overflow": "hidden", "height": "100%"});
+        });
+      }
+    },
+    show_timetable(event) {
+      if (!$("#timetable-dialog").is(':visible')) {
+        event.target.blur()
+        $("#timetable-bg").show()
+        $("#timetable-dialog").show("normal", function() {
           $('body, html').css({"overflow": "hidden", "height": "100%"});
         });
       }
