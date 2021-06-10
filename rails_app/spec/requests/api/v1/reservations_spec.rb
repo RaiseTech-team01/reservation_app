@@ -1,6 +1,5 @@
 require "rails_helper"
 
-# rubocop:disable Metrics/BlockLength, RSpec/NestedGroups, RSpec/MultipleMemoizedHelpers
 RSpec.describe "Api::V1::Reservations", type: :request do
   describe "[予約一覧表示のテスト] GET /api/v1/store/:store_id/reservations" do
     subject { get(api_v1_store_reservations_path(store_id), headers: headers) }
