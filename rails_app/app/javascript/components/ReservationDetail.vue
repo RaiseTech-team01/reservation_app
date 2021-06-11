@@ -13,7 +13,7 @@
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
             <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
             <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="index.html">予約詳細</a>
+            <a class="font-bold hover:text-blue-500" href="index.html">予約内容詳細</a>
           </h3>
         </div>
         <div>
