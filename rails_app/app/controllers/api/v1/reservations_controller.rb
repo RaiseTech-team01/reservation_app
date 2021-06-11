@@ -51,8 +51,10 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     reservations = current_user.reservations.where(store_id: params[:store_id])
     reservation = reservations.find(params[:id])
 
-    # 予約席を増やす
-    Store.find(params[:store_id]).seat += reservation[:number_people]
+    # 予約席をキャンセル分増やす
+    search_store = Store.find(params[:store_id])
+    residual_seat = search_store.seat + reservation[:number_people]
+    search_store.update!(seat: residual_seat)
 
     reservation.destroy!
   end
