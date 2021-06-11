@@ -10,6 +10,7 @@ import ReservationForm from "../components/ReservationForm.vue";
 import ReservationConfirm from "../components/ReservationConfirm.vue";
 import ReservationCompletion from "../components/ReservationCompletion.vue";
 import ReservationList from "../components/ReservationList.vue";
+import ReservationDetail from "../components/ReservationDetail.vue";
 
 Vue.use(Router);
 
@@ -64,6 +65,10 @@ const router = new Router({
     {
       path: '/reservation_list',
       component: ReservationList
+    },
+    {
+      path: '/reservation_detail',
+      component: ReservationDetail
     },
   ],
 });
