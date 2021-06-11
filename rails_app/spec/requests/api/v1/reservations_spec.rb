@@ -274,12 +274,12 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:current_user) { create(:user) }
       let(:headers) { current_user.create_new_auth_token }
 
-      let(:store) { create(:store) }
+      let(:store) { create(:store, seat: 110) }
       let(:store_id) { store.id }
 
       context "指定店舗の予約が存在していてキャンセルしたい時" do
         # 予約生成
-        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
+        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id, number_people: 100) }
         let(:reservation_id) { reservation.id }
 
         it "予約をキャンセルできる" do
