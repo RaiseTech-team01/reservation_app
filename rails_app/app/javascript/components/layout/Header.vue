@@ -11,7 +11,7 @@
       <div v-else>
         <i @click="$data.isOpenMenu2 = !$data.isOpenMenu2" class="far fa-user-circle absolute top-4 right-20 text-gray-300 hover:text-gray-200 text-4xl text-center cursor-pointer"></i>
         <transition name="fade">
-          <p v-if="$data.isOpenMenu2" @click="signin" v-on:mouseout="$data.isOpenMenu1 = false" class="absolute top-16 right-10 w-28 text-center p-2 bg-gray-100 hover:bg-gray-200 border shadow-md text-blue-800 cursor-pointer">ログイン</p>
+          <p v-if="$data.isOpenMenu2" @click="signin" v-on:mouseout="$data.isOpenMenu2 = false" class="absolute top-16 right-10 w-28 text-center p-2 bg-gray-100 hover:bg-gray-200 border shadow-md text-blue-800 cursor-pointer">ログイン</p>
         </transition>
       </div>
       <div id="sp_toggle" class="md:hidden" @click="toggle_navigation">
