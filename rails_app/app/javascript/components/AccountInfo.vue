@@ -72,7 +72,8 @@
               <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">住所</td>
               <td class="block md:table-cell pb-6 md:pb-0">
                 <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
-                  千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1
+                  千葉県千葉市<br>
+
                 </p>
               </td>
             </tr>
@@ -114,7 +115,7 @@ export default {
 
 // 追加
   computed: {
-    name() {
+   name() {
       console.log(this.$store.getters.userData.name)
       return this.$store.getters.userData.name;
 

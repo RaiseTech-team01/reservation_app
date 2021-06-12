@@ -10,6 +10,8 @@ import VueRouter from "vue-router";
 import router from "../router/router.js";
 import App from '../app.vue'
 import Vuex from 'vuex'
+import store from  '../store'
+
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -44,41 +46,6 @@ Vue.use(Vuex);
 
 
 
-const store = new Vuex.Store({
-  state: {
-    "userData" :
-        {
-          "email"  : "",
-          "uid"   :  "",
-          "id"   :   "0",
-          "provider"  : "",
-          "allow_password_change" : false,
-          "name" : "",
-          "furigana" : "",
-          "image" : null,
-          "tel" : "",
-          "birthday" : "",
-          "gender" : "",
-          "address" : ""
-        }
-
-  },
-  getters: {
-    userData(state) {
-      return state.userData
-    }
-  },
-  mutations: {
-    setuserData(state, data) {
-      state.userData = data
-    }
-  },
-  actions: {
-    updateuserData({ commit }, data) {
-      commit('setuserData', data)
-    }
-  }
-})
 
 
 

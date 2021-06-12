@@ -23,6 +23,9 @@
 </template>
 
 <script>
+// import axios from 'axios'
+// import Router from "../router/router";
+
 export default {
   methods: {
     toggle_navigation() {
@@ -40,6 +43,16 @@ export default {
     },
     signout() {
       // ここにログアウト用の処理を入れる..
+      // axios
+      //     .post("/api/v1/auth/sign_out", params)
+      //     .then(response => {
+      //       localStorage.setItem("access-token", response.headers["access-token"])
+      //       localStorage.setItem("uid", response.headers["uid"])
+      //       localStorage.setItem("client", response.headers["client"])
+      //
+      //       Router.push("/login")
+      //
+
     },
   },
 }
