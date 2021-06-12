@@ -20,20 +20,11 @@
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
             <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
             <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="index.html">予約登録入力</a>
+            <a class="font-bold hover:text-blue-500" href="index.html">予約内容変更</a>
           </h3>
         </div>
-        <div class="mt-16">
-          <div>
-            <p class="whitespace-nowrap flex justify-around md:justify-center md:space-x-12 md:transform md:scale-125 md:flex-none">
-              <span class="arrow-block">入力</span>
-              <span class="arrow-block-inactive">確認</span>
-              <span class="arrow-block-inactive">登録</span>
-            </p>
-          </div>
-        </div>
         <div>
-          <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">ご希望のご予約内容</h2>
+          <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">ご予約内容の変更</h2>
           <form>
             <table class="m-2 md:m-10 table-auto">
               <tr>
@@ -85,22 +76,9 @@
                 </td>
               </tr>
             </table>
-            <div>
-              <h3 class="mt-8 mb-8 font-bold text-2xl md:text-3xl text-center text-blue-800"><span class="underline">個人情報保護方針</span>への同意</h3>
-              <p class="flex justify-center space-x-8">
-                <label>
-                  <input class="radiox inline-block mr-2 align-middle" type="radio" name="privacy_policy" value="yes" required>
-                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意する</span>
-                </label>
-                <label>
-                  <input class="radiox inline-block mx-2 align-middle" type="radio" name="privacy_policy" value="no" required>
-                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意しない</span>
-                </label>
-              </p>
-            </div>
             <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="送信確認" />
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="更　新" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="キャンセル" />
             </div>
           </form>
         </div>
