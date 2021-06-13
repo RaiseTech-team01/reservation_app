@@ -14,6 +14,8 @@ import ReservationDetail from "../components/ReservationDetail.vue";
 import ReservationEdit from "../components/ReservationEdit.vue";
 import ReservationHistory from "../components/ReservationHistory.vue";
 
+import StoreLogin from "../components/StoreLogin.vue";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -79,6 +81,10 @@ const router = new Router({
     {
       path: '/reservation_history',
       component: ReservationHistory
+    },
+    {
+      path: '/store_login',
+      component: StoreLogin
     },
   ],
 });
