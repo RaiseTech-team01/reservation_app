@@ -86,15 +86,10 @@
               </tr>
             </table>
             <div>
-              <h3 class="mt-8 mb-8 font-bold text-2xl md:text-3xl text-center text-blue-800"><span class="underline">個人情報保護方針</span>への同意</h3>
-              <p class="flex justify-center space-x-8">
+              <p class="flex justify-start space-x-8 mt-10 md:ml-16 ml-8">
                 <label>
-                  <input class="radiox inline-block mr-2 align-middle" type="radio" name="privacy_policy" value="yes" required>
-                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意する</span>
-                </label>
-                <label>
-                  <input class="radiox inline-block mx-2 align-middle" type="radio" name="privacy_policy" value="no" required>
-                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意しない</span>
+                  <input class="radiox inline-block mr-2 align-middle transform scale-150" type="checkbox" name="privacy_policy" value="yes" required>
+                  <span class="mt-4 mb-4 text-2xl md:text-3xl font-bold align-middle text-blue-800 hover:text-blue-600">個人情報保護方針に同意する</span>
                 </label>
               </p>
             </div>
