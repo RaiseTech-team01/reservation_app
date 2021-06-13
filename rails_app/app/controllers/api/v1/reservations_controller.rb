@@ -41,6 +41,8 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     reservations = current_user.reservations.where(store_id: params[:store_id])
     reservation = reservations.find_by!(params[:id])
 
+    return unless self.check_reservation_seat
+
     # リクエストで変更のある値を更新
     reservation.update!(reservation_params)
 
