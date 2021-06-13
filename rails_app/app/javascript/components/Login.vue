@@ -26,7 +26,7 @@
                   <tr>
                     <th class="pr-3 pb-10 text-2xl text-blue-800 text-right border-none">ID</th>
                     <td class="border-none pb-10">
-                      <input id="user_email" data-v-6fb8108a="" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email">
+                      <input id="user_email" data-v-6fb8108a="" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email" placeholder="tanaka@sample.com">
                     </td>
                   </tr>
                   <tr>
