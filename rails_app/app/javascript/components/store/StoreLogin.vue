@@ -30,8 +30,8 @@
 
 <script>
 import axios from 'axios'
-import Router from "../router/router";
-import '../css/bootstrap.min.css'
+import Router from "../../router/router";
+import '../../css/bootstrap.min.css'
 
 export default {
   data: function () {
@@ -44,13 +44,6 @@ export default {
   },
 
   components: {
-  },
-
-  mounted() {
-    let scriptEl = document.createElement('link')
-    scriptEl.setAttribute('rel', 'stylesheet')
-    scriptEl.setAttribute('href', '../css/bootstrap.min.css')
-    document.head.appendChild(scriptEl)
   },
 
   methods: {

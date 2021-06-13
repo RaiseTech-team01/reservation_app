@@ -14,7 +14,7 @@ import ReservationDetail from "../components/ReservationDetail.vue";
 import ReservationEdit from "../components/ReservationEdit.vue";
 import ReservationHistory from "../components/ReservationHistory.vue";
 
-import StoreLogin from "../components/StoreLogin.vue";
+import StoreLogin from "../components/store/StoreLogin.vue";
 import StoreReservationList from "../components/store/StoreReservationList.vue";
 
 Vue.use(Router);
