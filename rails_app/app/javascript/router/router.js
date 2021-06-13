@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Registration from "../components/Registration.vue";
+import RegistrationForm from "../components/RegistrationForm.vue";
 import RegistrationConfirm from "../components/RegistrationConfirm.vue";
 import RegistrationCompletion from "../components/RegistrationCompletion.vue";
 import Login from "../components/Login.vue";
@@ -30,7 +30,7 @@ const router = new Router({
     },
     {
       path: '/sign_up',
-      component: Registration
+      component: RegistrationForm
     },
     {
       path: '/sign_up_confirm',

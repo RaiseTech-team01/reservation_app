@@ -32,8 +32,8 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">氏名</td>
                 <td class="space-x-4">
                   <div class="flex justify-between space-x-2 md:flex-none">
-                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
-                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
+                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="田中" />
+                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="一郎" />
                   </div>
                 </td>
               </tr>
@@ -41,39 +41,39 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">カナ</td>
                 <td>
                   <div class="flex justify-between space-x-2 md:flex-none">
-                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
-                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
+                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="タナカ" />
+                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="イチロウ" />
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">メール<br class="md:hidden" />アドレス</td>
                 <td>
-                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="email" />
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="email" placeholder="tanaka@sample.com" />
                 </td>
               </tr>
               <tr>
                 <td class="text-2xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">電話<br class="md:hidden" />番号</td>
                 <td>
-                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="tel" />
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="tel" placeholder="080-1111-2222" />
                 </td>
               </tr>
               <tr>
                 <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">年齢</td>
                 <td>
-                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
+                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="28" />
                 </td>
               </tr>
               <tr>
                 <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">性別</td>
                 <td>
-                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
+                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="男性" />
                 </td>
               </tr>
               <tr>
                 <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">住所</td>
                 <td>
-                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" />
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="千葉県千葉市美浜区1-1" />
                 </td>
               </tr>
             </table>
