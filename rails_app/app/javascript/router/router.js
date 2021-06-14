@@ -16,6 +16,7 @@ import ReservationHistory from "../components/ReservationHistory.vue";
 
 import StoreLogin from "../components/store/StoreLogin.vue";
 import StoreReservationList from "../components/store/StoreReservationList.vue";
+import StoreAccountForm from "../components/store/StoreAccountForm.vue";
 
 Vue.use(Router);
 
@@ -90,6 +91,10 @@ const router = new Router({
     {
       path: '/store_reservation_list',
       component: StoreReservationList
+    },
+    {
+      path: '/store_account_form',
+      component: StoreAccountForm
     },
   ],
 });
