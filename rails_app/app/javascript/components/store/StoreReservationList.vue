@@ -3,9 +3,9 @@
   <dir class="storeheader m-0 text-center">
     <StoreHeader />
   </dir>
-  <div class="container-fluid">
-    <div class="row">
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="container-fluid mt-20">
+    <div class="row flex justify-center">
+      <main class="col-md-9">
         <h2>予約一覧画面</h2>
         <div class="table-responsive">
           <table class="table table-striped table-sm">

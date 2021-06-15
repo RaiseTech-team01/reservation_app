@@ -1,5 +1,4 @@
 <template>
-<!-- モバイル用ヘッダー -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">店舗管理</a>
