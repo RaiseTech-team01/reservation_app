@@ -106,6 +106,8 @@ export default {
         // Vuex store
 
           this.$store.dispatch('userData/update', response.data.data)
+          this.$store.dispatch('auth/updateLogin', true)
+
           //  画面遷移先を変更
           Router.push("/account_info")
 

@@ -2,7 +2,7 @@
   <header>
     <div class="w-screen flex justify-center justify-items-center h-16 bg-black">
       <h3 class="relative text-yellow-300 text-base md:text-2xl p-4 font-mono">Reservation App</h3>
-      <div v-if="isLogin() === true">
+      <div v-if="isLogin === true">
         <i @click="$data.isOpenMenu1 = !$data.isOpenMenu1" class="far fa-user-circle absolute top-4 right-20 text-yellow-300 hover:text-yellow-200 text-4xl text-center cursor-pointer"></i>
         <transition name="fade">
           <p v-if="$data.isOpenMenu1" @click="signout" v-on:mouseout="$data.isOpenMenu1 = false" class="absolute top-16 right-10 w-28 text-center p-2 bg-gray-100 hover:bg-gray-200 border shadow-md text-blue-800 cursor-pointer">ログアウト</p>
@@ -35,6 +35,8 @@
 // import axios from 'axios'
 // import Router from "../router/router";
 
+import Router from "../../router/router";
+
 export default {
   data: function () {
     return {
@@ -42,6 +44,16 @@ export default {
       isOpenMenu2: false,
     }
   },
+  // storeの価が変わると、computedが実行される
+  computed: {
+    isLogin() {
+      // TODO ログイン状態を真偽値で返す
+       return this.$store.getters.auth.isLogin;
+    },
+  },
+
+
+
   methods: {
     toggle_navigation() {
       $(".sp_menu_toggle").slideToggle("normal", function() {
@@ -59,15 +71,23 @@ export default {
 
     signin() {
       // TODO ログイン処理
+      Router.push("/login")
+
     },
     signout() {
       // TODO ログアウト処理
-    },
-    isLogin() {
-      // TODO ログイン状態を真偽値で返す
-      return false
+      // DELETE http://localhost:3000/api/v1/auth/sign_out
+      localStorage.removeItem("access-token")
+      localStorage.removeItem("uid")
+      localStorage.removeItem("client")
+      this.$store.dispatch('auth/updateLogin', false)
+
+
+      Router.push("/login")
 
     },
+    // isLogin() は、computedへ移動
+
   },
 }
 </script>
