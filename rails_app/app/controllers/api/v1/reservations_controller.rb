@@ -41,6 +41,8 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
     reservations = current_user.reservations.where(store_id: params[:store_id])
     reservation = reservations.find_by!(params[:id])
 
+    return unless self.check_reservation_seat
+
     # リクエストで変更のある値を更新
     reservation.update!(reservation_params)
 
@@ -50,6 +52,12 @@ class Api::V1::ReservationsController < Api::V1::BaseApiController
   def destroy
     reservations = current_user.reservations.where(store_id: params[:store_id])
     reservation = reservations.find(params[:id])
+
+    # 予約席をキャンセル分増やす
+    search_store = Store.find(params[:store_id])
+    residual_seat = search_store.seat + reservation[:number_people]
+    search_store.update!(seat: residual_seat)
+
     reservation.destroy!
   end
 

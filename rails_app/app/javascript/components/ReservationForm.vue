@@ -40,7 +40,7 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">店舗</td>
                 <td class="space-x-4">
                   <div class="flex justify-between space-x-4 md:flex-none">
-                    <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" name="store_name" type="text" />
+                    <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" name="store_name" type="text" placeholder="イロハ駅前店" />
                   </div>
                 </td>
               </tr>
@@ -73,28 +73,23 @@
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">ご利用人数</td>
                 <td>
-                  <input class="w-1/3 md:w-28 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl text-blue-800" name="guests_number" type="number" min="1" step="1" value="2" required />
+                  <input class="w-1/3 md:w-28 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl text-blue-800" name="guests_number" type="number" min="1" step="1" required placeholder="2" />
                   <span class="inline-block px-2 text-3xl md:text-4xl whitespace-nowrap form-table-padding text-blue-800">名様</span>
                 </td>
               </tr>
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">ご予算</td>
                 <td>
-                  <input class="w-1/2 md:w-40 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl text-blue-800" name="price" type="number" min="500" step="500" value="3000" required />
+                  <input class="w-1/2 md:w-40 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl text-blue-800" name="price" type="number" min="500" step="500" required placeholder="3000" />
                   <span class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">円</span>
                 </td>
               </tr>
             </table>
             <div>
-              <h3 class="mt-8 mb-8 font-bold text-2xl md:text-3xl text-center text-blue-800"><span class="underline">個人情報保護方針</span>への同意</h3>
-              <p class="flex justify-center space-x-8">
+              <p class="flex justify-start space-x-8 mt-10 md:ml-16 ml-8">
                 <label>
-                  <input class="radiox inline-block mr-2 align-middle" type="radio" name="privacy_policy" value="yes" required>
-                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意する</span>
-                </label>
-                <label>
-                  <input class="radiox inline-block mx-2 align-middle" type="radio" name="privacy_policy" value="no" required>
-                  <span class="mt-4 mb-4 text-xl md:text-2xl font-bold text-center align-middle text-blue-800 hover:text-blue-600">同意しない</span>
+                  <input class="radiox inline-block mr-2 align-middle transform scale-150" type="checkbox" name="privacy_policy" value="yes" required>
+                  <span class="mt-4 mb-4 text-2xl md:text-3xl font-bold align-middle text-blue-800 hover:text-blue-600">個人情報保護方針に同意する</span>
                 </label>
               </p>
             </div>

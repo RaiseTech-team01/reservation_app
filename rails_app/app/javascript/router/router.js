@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Registration from "../components/Registration.vue";
+import RegistrationForm from "../components/RegistrationForm.vue";
 import RegistrationConfirm from "../components/RegistrationConfirm.vue";
 import RegistrationCompletion from "../components/RegistrationCompletion.vue";
 import Login from "../components/Login.vue";
@@ -13,6 +13,10 @@ import ReservationList from "../components/ReservationList.vue";
 import ReservationDetail from "../components/ReservationDetail.vue";
 import ReservationEdit from "../components/ReservationEdit.vue";
 import ReservationHistory from "../components/ReservationHistory.vue";
+
+import StoreLogin from "../components/store/StoreLogin.vue";
+import StoreReservationList from "../components/store/StoreReservationList.vue";
+import StoreAccountForm from "../components/store/StoreAccountForm.vue";
 
 Vue.use(Router);
 
@@ -30,7 +34,7 @@ const router = new Router({
     },
     {
       path: '/sign_up',
-      component: Registration
+      component: RegistrationForm
     },
     {
       path: '/sign_up_confirm',
@@ -79,6 +83,18 @@ const router = new Router({
     {
       path: '/reservation_history',
       component: ReservationHistory
+    },
+    {
+      path: '/store_login',
+      component: StoreLogin
+    },
+    {
+      path: '/store_reservation_list',
+      component: StoreReservationList
+    },
+    {
+      path: '/store_account_form',
+      component: StoreAccountForm
     },
   ],
 });

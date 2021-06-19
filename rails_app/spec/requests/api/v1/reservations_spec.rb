@@ -243,15 +243,15 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:current_user) { create(:user) }
       let(:headers) { current_user.create_new_auth_token }
 
-      let(:store) { create(:store) }
+      let(:store) { create(:store, seat: 100) }
       let(:store_id) { store.id }
 
       context "指定店舗の存在する予約を更新しようとした時" do
         # 予約する
-        let(:params) { { reservation: attributes_for(:reservation), store_id: store_id, reservation_id: reservation_id } }
+        let(:params) { { reservation: attributes_for(:reservation, user: current_user, number_people: 50), store_id: store_id } }
 
         # 更新する
-        let(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
+        let(:reservation) { create(:reservation, user: current_user, store_id: store_id, number_people: 100) }
         let(:reservation_id) { reservation.id }
 
         it "予約詳細を更新できる" do
@@ -274,12 +274,12 @@ RSpec.describe "Api::V1::Reservations", type: :request do
       let(:current_user) { create(:user) }
       let(:headers) { current_user.create_new_auth_token }
 
-      let(:store) { create(:store) }
+      let(:store) { create(:store, seat: 110) }
       let(:store_id) { store.id }
 
       context "指定店舗の予約が存在していてキャンセルしたい時" do
         # 予約生成
-        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id) }
+        let!(:reservation) { create(:reservation, user: current_user, store_id: store_id, number_people: 100) }
         let(:reservation_id) { reservation.id }
 
         it "予約をキャンセルできる" do
@@ -289,8 +289,8 @@ RSpec.describe "Api::V1::Reservations", type: :request do
         end
       end
 
-      context "ログインしたuserが他のuserの記事を削除しようとする時" do
-        # 他のログインしたuserで記事作成
+      context "ログインしたuserが他のuserの予約を削除しようとする時" do
+        # 他のログインしたuserで予約作成
         let(:other_user) { create(:user) }
         let!(:reservation) { create(:reservation, user: other_user, store_id: store_id) }
         let(:reservation_id) { reservation.id.to_i + 1 }

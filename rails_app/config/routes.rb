@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   root to: "home#top"
 
   get "home/top", to: "home#top"
@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get "/reservation_detail", to: "home#top"
   get "/reservation_history", to: "home#top"
   get "/reservation_edit", to: "home#top"
+  get "/store_login", to: "home#top"
+  get "/store_reservation_list", to: "home#top"
+  get "/store_account_form", to: "home#top"
 
   namespace :api do
     namespace :v1 do
