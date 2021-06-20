@@ -36,6 +36,7 @@
 // import Router from "../router/router";
 
 import Router from "../../router/router";
+import axios from 'axios';
 
 export default {
   data: function () {
@@ -74,9 +75,36 @@ export default {
       Router.push("/login")
 
     },
-    signout() {
+
+    async signout() {
       // TODO ログアウト処理
       // DELETE http://localhost:3000/api/v1/auth/sign_out
+      
+      var key_headers = {
+        headers : {
+          "Accept":"application/json",
+          "access-token":localStorage.getItem('access-token'),
+          "uid":localStorage.getItem('uid'),
+          "client":localStorage.getItem('client')
+        }
+      }
+
+      // rail logout api
+      await axios
+          .delete("/api/v1/auth/sign_out", key_headers )
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            // console.log(error);
+            return false;
+          })
+          .finally(function () {
+            // always executed
+          });
+
+
+
       localStorage.removeItem("access-token")
       localStorage.removeItem("uid")
       localStorage.removeItem("client")
