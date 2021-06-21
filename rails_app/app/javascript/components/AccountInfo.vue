@@ -20,7 +20,6 @@
               <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
                 <div>
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-<!--                    田中　一郎-->
                     {{name}}
                   </p>
                 </div>
