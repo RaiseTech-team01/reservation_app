@@ -4,3 +4,4 @@ const getters = {
     // ここに追記していく
 }
 export default getters
+

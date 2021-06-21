@@ -12,7 +12,6 @@ import App from '../app.vue'
 import Vuex from 'vuex'
 import store from  '../store'
 
-
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
@@ -38,16 +37,8 @@ Vue.use(Vuex);
 //   }
 // })
 
-
-
 // 参考データ
 // {"data":{"email":"user1@sample.com","uid":"user1@sample.com","id":1,"provider":"email","allow_password_change":false,"name":"ユーザー1","furigana":"ユーザー1","image":null,"tel":"123456781","birthday":"20210411","gender":"男","address":"大阪"}}⏎
-
-
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
@@ -61,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log(app)
 })
 
-
 // The above code uses Vue without the compiler, which means you cannot
 // use Vue to target elements in your existing html templates. You would
 // need to always use single file components.
@@ -74,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //   {{message}}
 //   <app></app>
 // </div>
-
 
 // import Vue from 'vue/dist/vue.esm'
 // import App from '../app.vue'
@@ -114,3 +103,4 @@ document.addEventListener('DOMContentLoaded', () => {
 //     components: { App }
 //   })
 // })
+

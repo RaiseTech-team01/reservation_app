@@ -118,11 +118,8 @@ export default {
    name() {
       console.log(this.$store.getters.userData.name)
       return this.$store.getters.userData.name;
-
     }
   }
-
-
 }
 </script>
 
@@ -131,3 +128,4 @@ p {
   font-size: 2em;
 }
 </style>
+

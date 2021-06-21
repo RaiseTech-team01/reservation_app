@@ -4,7 +4,6 @@
 // }
 // export default getters
 
-
 const state =  {
     "isLogin"  : false
 }
@@ -22,14 +21,12 @@ const actions = {
     }
 }
 
-
 export default {
     namespaced: true,
     state,
     mutations,
     actions
 }
-
 
 // const store = new Vuex.Store({
 //     state: {
@@ -69,3 +66,4 @@ export default {
 //         }
 //     }
 // })
+

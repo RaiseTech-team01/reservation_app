@@ -53,8 +53,6 @@ export default {
     },
   },
 
-
-
   methods: {
     toggle_navigation() {
       $(".sp_menu_toggle").slideToggle("normal", function() {
@@ -103,13 +101,10 @@ export default {
             // always executed
           });
 
-
-
       localStorage.removeItem("access-token")
       localStorage.removeItem("uid")
       localStorage.removeItem("client")
       this.$store.dispatch('auth/updateLogin', false)
-
 
       Router.push("/login")
 
@@ -125,3 +120,4 @@ export default {
   display: none;
 }
 </style>
+
