@@ -79,7 +79,7 @@ export default {
     async signout() {
       // TODO ログアウト処理
       // DELETE http://localhost:3000/api/v1/auth/sign_out
-      
+
       var key_headers = {
         headers : {
           "Accept":"application/json",

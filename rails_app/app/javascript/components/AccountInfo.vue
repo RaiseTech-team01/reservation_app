@@ -113,7 +113,7 @@ export default {
   methods: {
   },
 
-// 追加
+// Vuexの動作確認のために追加（JSONの戻り値の取り出/雛形）
   computed: {
    name() {
       console.log(this.$store.getters.userData.name)
