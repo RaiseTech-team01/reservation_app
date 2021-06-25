@@ -18,7 +18,7 @@ import StoreLogin from "../components/store/StoreLogin.vue";
 import StoreReservationList from "../components/store/StoreReservationList.vue";
 import StoreAccountForm from "../components/store/StoreAccountForm.vue";
 import StoreAccountConfirm from "../components/store/StoreAccountConfirm.vue";
-import StoreUserList from "../components/store/UserList.vue";
+import StoreUserList from "../components/store/StoreUserList.vue";
 
 Vue.use(Router);
 
