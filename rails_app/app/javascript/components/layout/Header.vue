@@ -21,10 +21,10 @@
       </div>
     </div>
     <ul class="absolute w-screen hidden overflow-hidden sp_menu_toggle h-screen bg-gray-300">
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_form">予約入力</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_list">予約一覧</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_view_history">閲覧履歴</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_history">予約履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2" @click="goToReservationForm">予約入力</li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/reservation_list">予約一覧</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/reservation_view_history">閲覧履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/reservation_history">予約履歴</a></li>
       <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/settings">アカウント設定</a></li>
     </ul>
     <img class="hidden md:block mx-auto" src="/banner.png" alt="banner">
@@ -32,12 +32,8 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import Router from "../router/router";
-
 import Router from "../../router/router";
 import axios from 'axios';
-
 export default {
   data: function () {
     return {
@@ -111,20 +107,20 @@ export default {
     },
     // isLogin() は、computedへ移動
     
-    goToRegistrationForm() {
-      Router.push("/registration_form")
+    goToReservationForm() {
+      Router.push("/reservation_form")
     },
-    goToRegistrationList() {
-      Router.push("/registration_list")
+    goToReservationList() {
+      Router.push("/reservation_list")
     },
-    goToRegistrationViewHistory() {
-      Router.push("/registration_view_history")
+    goToReservationViewHistory() {
+      Router.push("/reservation_view_history")
     },
-    goToRegistrationHistory() {
-      Router.push("/registration_history")
+    goToReservationHistory() {
+      Router.push("/reservation_history")
     },
-    goToSettings() {
-      Router.push("/settings")
+    goToAccountSettings() {
+      Router.push("/account_info")
     },
   },
 }

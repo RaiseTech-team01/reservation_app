@@ -47,7 +47,6 @@
               </div>
               <div class="col-12 mb-3">
                 <h2>新規登録ユーザ</h2>
-                新規登録したユーザを5件表示する
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>

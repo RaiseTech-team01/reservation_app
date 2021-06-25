@@ -16,18 +16,18 @@
             <a class="font-bold hover:text-blue-500" href="index.html">予約履歴</a>
           </h3>
         </div>
-        <div class="mt-16 flex flex-col mx-16">
+        <div class="mt-16 flex flex-col mx-16 mb-16">
           <div>
             <table class="text-2xl font-bold text-blue-800 border-t-2 border-blue-800 mx-4 md:table block">
               <tr class="md:table-row block">
                 <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">居酒屋A イロハ駅前店</td>
-                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細"></td>
+                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail"></td>
               </tr>
               <tr class="md:table-row block mt-4">
                 <td class="pl-2 md:p-2 md:table-cell block">予約日時：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">2021年3月20日 18:00～</td>
-                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更"></td>
+                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToDetail"></td>
               </tr>
               <tr class="md:table-row block mt-4">
                 <td class="pl-2 md:p-2 md:table-cell block"></td>
@@ -57,16 +57,11 @@
               </tr>
             </table>
             <div class="my-4 pb-4 md:my-0 text-center space-x-6 md:hidden border-b-2 border-blue-800">
-              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細">
-              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更">
+              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail">
+              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit">
             </div>
           </div>
         </div>
-        <form>
-          <div class="text-center space-x-4 md:space-x-8 mt-14 pb-28">
-            <input class="inline-block w-40 py-2 rounded-xl font-bold bg-yellow-300 md:text-4xl text-3xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" @click.prevent="back" />
-          </div>
-        </form>
       </div>
     </div>
   </main>
@@ -101,9 +96,6 @@ export default {
     goToEdit() {
       Router.push("/reservation_edit")
     },
-    back() {
-      Router.back()
-    }
   }
 }
 </script>
