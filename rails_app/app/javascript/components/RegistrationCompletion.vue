@@ -27,7 +27,7 @@
         <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">登録を完了いたしました。<br />ありがとうございました。</h2>
         <form>
           <div class="text-center space-x-4 md:space-x-8 mt-14 pb-28">
-            <input class="inline-block w-3/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="ログインする" />
+            <input class="inline-block w-3/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="ログインする" @click.prevent="login" />
           </div>
         </form>
       </div>
