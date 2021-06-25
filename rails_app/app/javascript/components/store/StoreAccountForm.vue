@@ -6,8 +6,8 @@
   <div class="container">
     <main>
       <div class="py-5 text-center">
-        <h2>店舗アカウント登録確認</h2>
-        <p class="lead">お客様の店舗用のアカウントを登録いたします。<br>内容の確認をお願いいたします。</p>
+        <h2>店舗アカウント登録</h2>
+        <p class="lead">お客様の店舗用のアカウントを作成いたします。<br>情報の登録をお願いいたします。</p>
       </div>
 
       <div class="row g-5 flex justify-center">
@@ -15,72 +15,107 @@
           <form class="needs-validation" @submit="validate" novalidate>
             <div class="row g-3">
               <div class="col-12">
-                <h4>名前</h4>
-                <p class="">居酒屋 太平洋</p>
+                <label for="firstName" class="form-label">名前 <span class="text-muted">必須</span></label>
+                <input type="text" class="form-control" id="storeName" placeholder="居酒屋 太平洋" value="" required>
               </div>
               <div class="col-12">
-                <h4>ふりがな</h4>
-                <p class="">いざかや たいへいよう</p>
+                <label for="firstName" class="form-label">ふりがな</label>
+                <input type="text" class="form-control" id="storeName" placeholder="いざかや たいへいよう" value="" required>
               </div>
               <div class="col-12">
-                <h4>メールアドレス</h4>
-                <p class="">you@example.com</p>
+                <label for="email" class="form-label">メールアドレス <span class="text-muted">必須</span></label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                <div class="invalid-feedback">
+                  有効なメールアドレスを記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>パスワード</h4>
-                <p class="">********</p>
+                <label for="password" class="form-label">パスワード <span class="text-muted">必須</span></label>
+                <input type="password" class="form-control" id="password" placeholder="080-1111-222">
+                <div class="invalid-feedback">
+                  電話番号を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>パスワード（確認）</h4>
-                <p class="">********</p>
+                <label for="password-confirm" class="form-label">パスワード（確認） <span class="text-muted">必須</span></label>
+                <input type="password" class="form-control" id="password-confirm" placeholder="080-1111-222">
+                <div class="invalid-feedback">
+                  電話番号を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>電話番号</h4>
-                <p class="">080-1111-2222</p>
+                <label for="tel" class="form-label">電話番号 <span class="text-muted">必須</span></label>
+                <input type="tel" class="form-control" id="tel" placeholder="080-1111-222">
+                <div class="invalid-feedback">
+                  電話番号を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>FAX番号</h4>
-                <p class="">03-4444-5555</p>
+                <label for="fax" class="form-label">FAX番号</label>
+                <input type="tel" class="form-control" id="fax" placeholder="03-4444-5555">
+                <div class="invalid-feedback">
+                  FAX番号を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>郵便番号</h4>
-                <p class="">111-0043</p>
+                <label for="postal-code" class="form-label">郵便番号 <span class="text-muted">必須</span></label>
+                <input type="number" class="form-control" id="postal-code" placeholder="111-0043">
+                <div class="invalid-feedback">
+                  郵便番号を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>店舗住所</h4>
-                <p class="">東京都台東区駒形1-1</p>
+                <label for="address" class="form-label">店舗住所 <span class="text-muted">必須</span></label>
+                <input type="text" class="form-control" id="address" placeholder="東京都台東区駒形1-1" required>
+                <div class="invalid-feedback">
+                  店舗の所在地を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>店舗URL</h4>
-                <p class="">http://izakaya.com/iroha</p>
+                <label for="store-url" class="form-label">店舗URL</label>
+                <input type="url" class="form-control" id="store-url" placeholder="http://izakaya.com/iroha" value="" required>
+                <div class="invalid-feedback">
+                  店舗のURLを記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>店舗名</h4>
-                <p class="">いろは駅前店</p>
+                <label for="store-name" class="form-label">店舗名 <span class="text-muted">必須</span></label>
+                <input type="text" class="form-control" id="store-name" placeholder="いろは駅前店" value="" required>
+                <div class="invalid-feedback">
+                  店舗名を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>座席数</h4>
-                <p class="">100</p>
+                <label for="sear-num" class="form-label">座席数 <span class="text-muted">必須</span></label>
+                <input type="number" class="form-control" id="sear-num" placeholder="100" value="" required>
+                <div class="invalid-feedback">
+                  座席数を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>業態</h4>
-                <p class="">飲食業</p>
+                <label for="genre" class="form-label">業態 <span class="text-muted">必須</span></label>
+                <input type="text" class="form-control" id="genre" placeholder="飲食業" value="" required>
+                <div class="invalid-feedback">
+                  業態を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>責任者名</h4>
-                <p class="">担当者A</p>
+                <label for="responsible-party" class="form-label">責任者名 <span class="text-muted">必須</span></label>
+                <input type="text" class="form-control" id="responsible-party" placeholder="担当者A" value="" required>
+                <div class="invalid-feedback">
+                  業態を記載してください。
+                </div>
               </div>
               <div class="col-12">
-                <h4>その他</h4>
-                <p class="">アレルギー品目：大豆、牛乳、小麦粉</p>
+                <label for="others" class="form-label">その他</label>
+                <input type="text" class="form-control" id="others" placeholder="アレルギー品目：大豆、牛乳、小麦粉" value="" required>
+                <div class="invalid-feedback">
+                  追記する情報がありましたら記載してください。
+                </div>
               </div>
             </div>
           </form>
         </div>
-      </div>
-      <div class="text-center">
-        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block">登　録</button>
-        <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block">戻　る</button>
       </div>
     </main>
 
@@ -125,7 +160,7 @@ export default {
 
 <style scoped>
 p {
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: center;
 }
 
