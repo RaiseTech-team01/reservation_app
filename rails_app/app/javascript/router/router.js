@@ -17,6 +17,8 @@ import ReservationHistory from "../components/ReservationHistory.vue";
 import StoreLogin from "../components/store/StoreLogin.vue";
 import StoreReservationList from "../components/store/StoreReservationList.vue";
 import StoreAccountForm from "../components/store/StoreAccountForm.vue";
+import StoreAccountConfirm from "../components/store/StoreAccountConfirm.vue";
+import UserList from "../components/store/UserList.vue";
 
 Vue.use(Router);
 
@@ -95,6 +97,14 @@ const router = new Router({
     {
       path: '/store_account_form',
       component: StoreAccountForm
+    },
+    {
+      path: '/store_account_confirm',
+      component: StoreAccountConfirm
+    },
+    {
+      path: '/user_list',
+      component: UserList
     },
   ],
 });
