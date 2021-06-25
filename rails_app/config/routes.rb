@@ -19,7 +19,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   get "/store_reservation_list", to: "home#top"
   get "/store_account_form", to: "home#top"
   get "/store_account_confirm", to: "home#top"
-  get "/user_list", to: "home#top"
+  get "/store_user_list", to: "home#top"
 
   namespace :api do
     namespace :v1 do
