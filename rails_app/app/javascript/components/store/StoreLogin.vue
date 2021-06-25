@@ -21,8 +21,8 @@
           <input type="checkbox" value="remember-me"> ログイン情報を保存する
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
-      <button class="w-100 mt-4 btn btn-lg btn-info" type="submit">アカウントを登録</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" @click.prevent="submit">ログイン</button>
+      <button class="w-100 mt-4 btn btn-lg btn-info" type="submit" @click.prevent="goTo">アカウントを登録</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
   </main>
@@ -87,7 +87,7 @@ export default {
         console.log("hi")
     },
     goToRegistration() {
-      Router.push("/sign_up")
+      Router.push("/store_account_form")
     }
   }
 }

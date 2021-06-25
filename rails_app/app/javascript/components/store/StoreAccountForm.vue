@@ -118,8 +118,8 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block">登録確認</button>
-        <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block">戻　る</button>
+        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="goToAccountConfirm">登録確認</button>
+        <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block" @click.prevent="back">戻　る</button>
       </div>
     </main>
 
@@ -157,6 +157,12 @@ export default {
         event.stopPropagation()
       }
       event.target.classList.add('was-validated')
+    },
+    goToAccountConfirm() {
+      Router.push("/store_account_confirm")
+    },
+    back() {
+      Router.back()
     }
   }
 }

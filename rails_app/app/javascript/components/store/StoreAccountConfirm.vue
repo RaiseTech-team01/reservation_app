@@ -79,8 +79,8 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block">登　録</button>
-        <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block">戻　る</button>
+        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="goToDashBoard">登　録</button>
+        <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block" @click.prevent="back">戻　る</button>
       </div>
     </main>
 
@@ -118,6 +118,12 @@ export default {
         event.stopPropagation()
       }
       event.target.classList.add('was-validated')
+    },
+    goToDashBoard() {
+      Router.push("/store_dash_board")
+    },
+    back() {
+      Router.back()
     }
   }
 }

@@ -27,7 +27,7 @@
               <tr class="md:table-row block mt-4">
                 <td class="pl-2 md:p-2 md:table-cell block">予約日時：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">2021年3月20日 18:00～</td>
-                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToDetail"></td>
+                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit"></td>
               </tr>
               <tr class="md:table-row block mt-4">
                 <td class="pl-2 md:p-2 md:table-cell block"></td>

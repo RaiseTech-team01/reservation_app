@@ -15,7 +15,7 @@
               <div class="col-12 card border-danger mb-3">
                 <h4 class="text-danger p-2">アカウント削除</h4>
                 <div class="text-center mb-5">
-                  <button type="button" class="m-3 px-5 btn btn-danger btn-lg btn-block">アカウントを削除する</button>
+                  <button type="button" class="m-3 px-5 btn btn-danger btn-lg btn-block" @click.prevent="deleteAccount">アカウントを削除する</button>
                 </div>
               </div>
             </div>
@@ -58,6 +58,10 @@ export default {
         event.stopPropagation()
       }
       event.target.classList.add('was-validated')
+    },
+    deleteAccount() {
+      // TODO アカウントを削除する
+      alert("TODO: アカウントを削除する")
     }
   }
 }
