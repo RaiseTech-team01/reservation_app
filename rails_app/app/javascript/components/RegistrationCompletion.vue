@@ -58,6 +58,14 @@ export default {
   },
 
   methods: {
+    login() {
+      // TODO ログイン処理
+
+      this.goToAccountInfo()
+    },
+    goToAccountInfo() {
+      Router.push("/account_info")
+    }
   }
 }
 </script>

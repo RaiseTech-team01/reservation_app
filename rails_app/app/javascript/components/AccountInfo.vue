@@ -78,8 +78,8 @@
             </tr>
           </table>
           <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-            <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="編　集" />
-            <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" />
+            <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="編　集" @click.prevent="goToAccountEdit" />
+            <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" @click.prevent="back" />
           </div>
         </div>
       </div>
@@ -110,6 +110,12 @@ export default {
   },
 
   methods: {
+    goToAccountEdit() {
+      Router.push("/account_edit")
+    },
+    back() {
+      Router.back()
+    },
   },
 
 // Vuexの動作確認のために追加（JSONの戻り値の取り出/雛形）

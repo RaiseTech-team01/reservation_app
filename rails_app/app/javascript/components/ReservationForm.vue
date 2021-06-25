@@ -94,8 +94,8 @@
               </p>
             </div>
             <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="送信確認" />
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="送信確認" @click.prevent="goToConfirm" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" @click.prevent="back" />
             </div>
           </form>
         </div>
@@ -149,6 +149,12 @@ export default {
         });
       }
     },
+    goToConfirm() {
+      Router.push("/reservation_confirm")
+    },
+    back() {
+      Router.back()
+    }
   },
 }
 </script>

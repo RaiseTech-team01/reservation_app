@@ -21,11 +21,11 @@
       </div>
     </div>
     <ul class="absolute w-screen hidden overflow-hidden sp_menu_toggle h-screen bg-gray-300">
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">予約入力</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">予約一覧</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">閲覧履歴</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">予約履歴</a></li>
-      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="">アカウント設定</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_form">予約入力</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_list">予約一覧</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_view_history">閲覧履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/registration_history">予約履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/settings">アカウント設定</a></li>
     </ul>
     <img class="hidden md:block mx-auto" src="/banner.png" alt="banner">
   </header>
@@ -110,7 +110,22 @@ export default {
 
     },
     // isLogin() は、computedへ移動
-
+    
+    goToRegistrationForm() {
+      Router.push("/registration_form")
+    },
+    goToRegistrationList() {
+      Router.push("/registration_list")
+    },
+    goToRegistrationViewHistory() {
+      Router.push("/registration_view_history")
+    },
+    goToRegistrationHistory() {
+      Router.push("/registration_history")
+    },
+    goToSettings() {
+      Router.push("/settings")
+    },
   },
 }
 </script>
