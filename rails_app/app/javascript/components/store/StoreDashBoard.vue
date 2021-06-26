@@ -34,12 +34,14 @@
                       <td>2021/06/27</td>
                       <td>土</td>
                       <td>8</td>
-                      <td>46</td>                    </tr>
+                      <td>46</td>
+                    </tr>
                     <tr>
                       <td>2021/06/28</td>
                       <td>日</td>
                       <td>1</td>
-                      <td>10</td>                    </tr>
+                      <td>10</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
