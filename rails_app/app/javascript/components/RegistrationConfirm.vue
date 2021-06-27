@@ -33,7 +33,7 @@
                 <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
                   <div>
                     <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                      田中　一郎
+                      {{registrationUserData.last_name}}{{registrationUserData.first_name}}
                     </p>
                   </div>
                 </td>
@@ -90,8 +90,8 @@
               </tr>
             </table>
             <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="登録完了" @click.prevent="goToComplete" />
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" @click.prevent="back" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="登録完了" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" />
             </div>
           </form>
         </div>
@@ -129,7 +129,14 @@ export default {
     back() {
       Router.back();
     }
-  }
+  },
+
+  computed: {
+    ...mapGetters([
+      'registrationUserData',
+    ])
+  },
+  
 }
 </script>
 

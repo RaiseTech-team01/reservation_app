@@ -32,8 +32,8 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">氏名</td>
                 <td class="space-x-4">
                   <div class="flex justify-between space-x-2 md:flex-none">
-                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="田中" />
-                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="一郎" />
+                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" v-model="userData.last_name" placeholder="田中" />
+                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" v-model="userData.first_name" placeholder="一郎" />
                   </div>
                 </td>
               </tr>
@@ -41,44 +41,56 @@
                 <td class="text-3xl mg:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">カナ</td>
                 <td>
                   <div class="flex justify-between space-x-2 md:flex-none">
-                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="タナカ" />
-                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="イチロウ" />
+                    <input class="w-1/2 md:w-44 h-12 md:mr-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" v-model="userData.last_furigana" placeholder="タナカ" />
+                    <input class="w-1/2 md:w-44 h-12 md:ml-4 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" v-model="userData.first_furigana" placeholder="イチロウ" />
                   </div>
                 </td>
               </tr>
               <tr>
                 <td class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">メール<br class="md:hidden" />アドレス</td>
                 <td>
-                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="email" placeholder="tanaka@sample.com" />
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="email" v-model="userData.email" placeholder="tanaka@sample.com" />
                 </td>
               </tr>
               <tr>
                 <td class="text-2xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">電話<br class="md:hidden" />番号</td>
                 <td>
-                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="tel" placeholder="080-1111-2222" />
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="tel" v-model="userData.tel" placeholder="080-1111-2222" />
                 </td>
               </tr>
               <tr>
                 <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">年齢</td>
                 <td>
-                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="28" />
+                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" v-model="userData.birthday" placeholder="28" />
                 </td>
               </tr>
               <tr>
                 <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">性別</td>
                 <td>
-                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="男性" />
+                  <input class="w-1/2 md:w-44 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" v-model="userData.gender" placeholder="男性" />
                 </td>
               </tr>
               <tr>
                 <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">住所</td>
                 <td>
-                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" placeholder="千葉県千葉市美浜区1-1" />
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="text" v-model="userData.address" placeholder="千葉県千葉市美浜区1-1" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">パスワード</td>
+                <td>
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="password" v-model="userData.password" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-3xl md:text-4xl whitespace-nowrap form-table-padding p-4 md:p-6 text-blue-800">パスワード確認</td>
+                <td>
+                  <input class="w-full md:w-96 h-12 border-2 md:border-4 border-blue-700 bg-gray-100 pl-4 text-3xl" type="password" v-model="userData.password_confirmation" />
                 </td>
               </tr>
             </table>
             <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="登　録" @click.prevent="goToConfirm" />
+              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="登　録" @click.prevent="confirm" />
               <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" @click.prevent="back" />
             </div>
           </form>
@@ -101,6 +113,19 @@ import Footer from "./layout/Footer.vue"
 export default {
   data: function () {
     return {
+      userData: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        first_furigana: "",
+        last_furigana: "",
+        tel: "",
+        birthday: "",
+        gender: "",
+        address: "",
+        password: "",
+        password_confirmation: ""
+      }
     }
   },
 
@@ -111,7 +136,9 @@ export default {
   },
 
   methods: {
-    goToConfirm() {
+    confirm () {
+      this.$store.dispatch('registraitonUserData/update', this.userData)
+      //  画面遷移先を変更
       Router.push("/sign_up_confirm")
     },
     back() {
