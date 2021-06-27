@@ -137,7 +137,8 @@ export default {
 
   methods: {
     confirm () {
-      this.$store.dispatch('registraitonUserData/update', this.userData)
+      console.log(this.userData)
+      this.$store.dispatch('registrationUserData/update', this.userData)
       //  画面遷移先を変更
       Router.push("/sign_up_confirm")
     },
