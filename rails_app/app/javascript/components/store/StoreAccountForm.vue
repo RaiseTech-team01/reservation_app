@@ -117,6 +117,10 @@
           </form>
         </div>
       </div>
+      <div class="text-center">
+        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block">登録確認</button>
+        <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block">戻　る</button>
+      </div>
     </main>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
