@@ -9,16 +9,16 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">ダッシュボード</a>
+          <span class="nav-link active" aria-current="page" @click="goToDashBoard">ダッシュボード</span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">予約一覧画面</a>
+          <span class="nav-link" @click="goToReservationList">予約一覧画面</span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">ユーザ一覧画面</a>
+          <span class="nav-link" @click="goToUserList">ユーザ一覧画面</span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">設定</a>
+          <span class="nav-link" @click="goToSettings">設定</span>
         </li>
       </ul>
     </div>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import Router from "../../router/router";
 import '../../css/bootstrap.min.css'
 import '../../css/bootstrap/offcanvas.css'
 
@@ -39,7 +40,19 @@ export default {
   methods: {
     toggleHamburger() {
       document.querySelector('.offcanvas-collapse').classList.toggle('open')
-    }
+    },
+    goToDashBoard() {
+      Router.push("/store_dash_board")
+    },
+    goToReservationList() {
+      Router.push("/store_reservation_list")
+    },
+    goToUserList() {
+      Router.push("/store_user_list")
+    },
+    goToSettings() {
+      Router.push("/store_settings")
+    },
   },
 }
 

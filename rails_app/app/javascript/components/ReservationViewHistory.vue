@@ -13,7 +13,7 @@
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
             <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
             <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="index.html">予約一覧</a>
+            <a class="font-bold hover:text-blue-500" href="index.html">予約閲覧履歴</a>
           </h3>
         </div>
         <div class="mt-16 flex flex-col mx-16 mb-16">
@@ -96,9 +96,6 @@ export default {
     goToEdit() {
       Router.push("/reservation_edit")
     },
-    back() {
-      Router.back()
-    }
   }
 }
 </script>

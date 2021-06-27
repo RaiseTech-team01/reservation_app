@@ -33,7 +33,7 @@
           </p>
           <form>
             <div class="text-center space-x-4 md:space-x-8 mt-14 pb-28">
-              <input class="inline-block w-3/5 py-2 rounded-xl font-bold bg-yellow-300 md:text-4xl text-3xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="トップへ" />
+              <input class="inline-block w-3/5 py-2 rounded-xl font-bold bg-yellow-300 md:text-4xl text-3xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="トップへ" @click.prevent="goToTop" />
             </div>
           </form>
         </div>
@@ -65,6 +65,9 @@ export default {
   },
 
   methods: {
+    goToTop() {
+      Router.push("/account_info")
+    }
   }
 }
 </script>
