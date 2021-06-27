@@ -23,7 +23,7 @@
               <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
                 <div>
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                    {{name}}
+                    {{userData.name}}
                   </p>
                 </div>
               </td>
@@ -98,6 +98,7 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
+import { mapGetters } from 'vuex'
 
 export default {
   data: function () {
@@ -121,12 +122,21 @@ export default {
   },
 
 // Vuexの動作確認のために追加（JSONの戻り値の取り出/雛形）
+//   computed: {
+//    name() {
+//       console.log(this.$store.getters.userData.name)
+//       return this.$store.getters.userData.name;
+//     }
+//   }
+// 下記の内容に変更。
   computed: {
-   name() {
-      console.log(this.$store.getters.userData.name)
-      return this.$store.getters.userData.name;
-    }
-  }
+    ...mapGetters([
+      'userData',
+    ])
+  },
+  
+  
+  
 }
 </script>
 
