@@ -96,14 +96,24 @@ export default {
       await axios
         .post("/api/v1/auth/sign_in", params)
         .then(response => {
+
           localStorage.setItem("access-token", response.headers["access-token"])
           localStorage.setItem("uid", response.headers["uid"])
           localStorage.setItem("client", response.headers["client"])
 
-          Router.push("/")
+          // Router.push("/")
+
+        // Vuex store
+
+          this.$store.dispatch('userData/update', response.data.data)
+          this.$store.dispatch('auth/updateLogin', true)
+
+          //  画面遷移先を変更
+          Router.push("/account_info")
 
           // TODO: Vuex でログイン状態を管理するようになったら消す
-          window.location.reload()
+            //  window.location.reload()
+
         })
         .catch(e => {
           // TODO: 適切な Error 表示
@@ -167,3 +177,4 @@ p {
   background-color: #06f; /* チェックした時の色 */
 }
 </style>
+

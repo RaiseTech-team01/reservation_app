@@ -20,7 +20,7 @@
               <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
                 <div>
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                    田中　一郎
+                    {{name}}
                   </p>
                 </div>
               </td>
@@ -71,7 +71,8 @@
               <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">住所</td>
               <td class="block md:table-cell pb-6 md:pb-0">
                 <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
-                  千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1千葉県千葉市美浜区1-1
+                  千葉県千葉市<br>
+
                 </p>
               </td>
             </tr>
@@ -109,6 +110,14 @@ export default {
   },
 
   methods: {
+  },
+
+// Vuexの動作確認のために追加（JSONの戻り値の取り出/雛形）
+  computed: {
+   name() {
+      console.log(this.$store.getters.userData.name)
+      return this.$store.getters.userData.name;
+    }
   }
 }
 </script>
@@ -118,3 +127,4 @@ p {
   font-size: 2em;
 }
 </style>
+
