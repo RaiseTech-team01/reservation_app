@@ -14,7 +14,7 @@ const state =  {
 
 const mutations = {
   setdata(state, data) {
-    state.first_name = data.fisrt_name
+    state.first_name = data.first_name
     state.last_name = data.last_name
     state.email = data.email
     state.first_furigana = data.first_furigana
