@@ -323,6 +323,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  devise
   devise_token_auth
   dotenv-rails
   factory_bot_rails
