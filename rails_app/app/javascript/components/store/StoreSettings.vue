@@ -38,8 +38,6 @@
 
 <script>
 import StoreHeader from "../layout/StoreHeader.vue"
-import '../../css/bootstrap.min.css'
-import '../../css/bootstrap/offcanvas.css'
 
 export default {
   data: function () {
@@ -67,6 +65,8 @@ export default {
 }
 </script>
 
+<style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../../assets/stylesheets/offcanvas.css"></style>
 <style scoped>
 p {
   font-size: 1.5em;

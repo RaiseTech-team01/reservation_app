@@ -17,3 +17,7 @@
 .info-container {
   width: 766px;
 }
+
+body {
+  padding-top: 0px;
+}
