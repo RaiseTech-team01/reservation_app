@@ -7,7 +7,7 @@
       </div>
       <h1 class="h3 mb-3 fw-normal">管理画面ログイン</h1>
 
-      <div id="errorDisplay" v-bind:class="{error: hasError}" class="my-4 pb-0 alert alert-danger" role="alert">
+      <div v-show="hasError" class="my-4 pb-0 alert alert-danger" role="alert">
         <p>{{ errorMessage }}</p>
       </div>
       <div class="form-floating">
@@ -45,7 +45,7 @@ export default {
       email: '',
       password: '',
       hasError: false,
-      errorMessage: "",
+      errorMessage: "ログインに失敗しました。",
     }
   },
 
@@ -159,13 +159,4 @@ body {
     font-size: 3.5rem;
   }
 }
-
-#errorDisplay {
-  display: none;
-}
-
-#errorDisplay.error {
-  display: block !important;
-}
-
 </style>
