@@ -5,7 +5,7 @@
     </dir>
     <main>
       <!-- min-widthを設定する -->
-      <dir class="navigation m-0 pl-0">
+      <dir class="navigation m-0 pl-0 hidden md:block">
         <Navigation/>
       </dir>
       <div class="flex justify-center">
@@ -101,7 +101,7 @@
             </form>
             <div class="text-center mt-10 text-blue-800 mb-28">
               <p
-                class="my-4 text-xl md:text-2xl font-bold align-middle text-blue-800"
+                class="my-4 px-4 text-2xl leading-relaxed align-middle text-blue-800"
               >
                 アカウント未登録の方は下記から登録してください。
               </p>
@@ -202,10 +202,6 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
 
 /* ラベルのスタイル　*/
 #login_checkbox label {
