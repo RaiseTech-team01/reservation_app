@@ -7,6 +7,9 @@
       </div>
       <h1 class="h3 mb-3 fw-normal">管理画面ログイン</h1>
 
+      <div id="errorDisplay" v-bind:class="{error: hasError}" class="my-4 pb-0 alert alert-danger" role="alert">
+        <p>{{ errorMessage }}</p>
+      </div>
       <div class="form-floating">
         <input type="email" class="form-control" id="user_email" placeholder="name@example.com">
         <label for="floatingInput">メールアドレス</label>
@@ -41,6 +44,8 @@ export default {
       loading: false,
       email: '',
       password: '',
+      hasError: false,
+      errorMessage: "",
     }
   },
 
@@ -72,6 +77,9 @@ export default {
         .catch(e => {
           // TODO: 適切な Error 表示
           if (e.response) {
+            this.hasError = true;
+            this.errorMessage = e.response.data.errors[0]
+
             console.log(e.response.data)
             console.log(e.response.status)
             console.log(e.response.headers)
@@ -150,6 +158,14 @@ body {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
+}
+
+#errorDisplay {
+  display: none;
+}
+
+#errorDisplay.error {
+  display: block !important;
 }
 
 </style>
