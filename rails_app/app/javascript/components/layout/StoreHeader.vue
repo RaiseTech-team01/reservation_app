@@ -27,9 +27,7 @@
 </template>
 
 <script>
-import Router from "../../router/router";
-import '../../css/bootstrap.min.css'
-import '../../css/bootstrap/offcanvas.css'
+import Router from "../../router/router"
 
 export default {
   data: function () {
@@ -58,6 +56,8 @@ export default {
 
 </script>
 
+<style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../../assets/stylesheets/offcanvas.css"></style>
 <style scoped>
 .bd-placeholder-img {
   font-size: 1.125rem;

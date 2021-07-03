@@ -35,7 +35,6 @@
 <script>
 import axios from 'axios'
 import Router from "../../router/router";
-import '../../css/bootstrap.min.css'
 
 export default {
   data: function () {
@@ -100,6 +99,7 @@ export default {
 }
 </script>
 
+<style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
 <style scoped>
 
 /* --- start signin.css ---- */
