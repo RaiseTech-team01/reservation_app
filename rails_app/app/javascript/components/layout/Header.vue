@@ -53,33 +53,12 @@
         ></span>
       </div>
     </div>
-    <ul class="relative w-screen hidden overflow-hidden sp_menu_toggle h-screen bg-gray-300">
-      <li
-        class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"
-        @click="goToReservationForm"
-      >
-        予約入力
-      </li>
-      <li
-        class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"
-      >
-        <a href="/reservation_list">予約一覧</a>
-      </li>
-      <li
-        class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"
-      >
-        <a href="/reservation_view_history">閲覧履歴</a>
-      </li>
-      <li
-        class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"
-      >
-        <a href="/reservation_history">予約履歴</a>
-      </li>
-      <li
-        class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"
-      >
-        <a href="/settings">アカウント設定</a>
-      </li>
+    <ul v-if="isLogin === true"  class="absolute w-screen hidden overflow-hidden sp_menu_toggle h-screen bg-gray-300">
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2" @click="goToReservationForm">予約入力</li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/reservation_list">予約一覧</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/reservation_view_history">閲覧履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/reservation_history">予約履歴</a></li>
+      <li class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"><a href="/settings">アカウント設定</a></li>
     </ul>
     <img
       class="md:block mx-auto bg-gray-400 h-48"
