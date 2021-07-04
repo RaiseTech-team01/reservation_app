@@ -53,9 +53,7 @@
         ></span>
       </div>
     </div>
-    <ul
-      class="relative w-screen hidden overflow-hidden sp_menu_toggle h-screen bg-gray-300"
-    >
+    <ul class="relative w-screen hidden overflow-hidden sp_menu_toggle h-screen bg-gray-300">
       <li
         class="text-2xl text-blue-800 font-bold p-6 border-blue-800 active:bg-gray-200 active:text-blue-600 border-b-2"
         @click="goToReservationForm"
