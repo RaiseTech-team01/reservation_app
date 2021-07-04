@@ -129,11 +129,16 @@ export default {
       const addUserParams = this.$store.getters.registrationUserData
       addUserParams.name = addUserParams.last_name+ " " + addUserParams.first_name
       addUserParams.furigana = addUserParams.last_furigana + " " + addUserParams.first_furigana
-
+      addUserParams.email = addUserParams.email
+      addUserParams.tel = addUserParams.tel
+      addUserParams.birthday = addUserParams.birthday
+      addUserParams.gender = addUserParams.gender
+      addUserParams.address = addUserParams.address
+      addUserParams.password = addUserParams.password
+      addUserParams.password_confirmation = addUserParams.password_confirmation
       delete addUserParams.errs
       delete addUserParams.last_furigana
-
-
+      
       axios
         .post("/api/v1/auth/", addUserParams)
         .then(function (response) {
@@ -170,7 +175,7 @@ p {
 
 
 
-//
+//  calc age
 // name: `${this.registrationUserData.last_name} + " " + ${this.registrationUserData.first_name}`,
 // furigana: `${this.registrationUserData.last_furigana} + " " + ${this.registrationUserData.first_furigana}`,
 //
