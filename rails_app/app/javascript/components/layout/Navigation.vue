@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <div class="h-16 text-center flex flex-row justify-center">
     <span
