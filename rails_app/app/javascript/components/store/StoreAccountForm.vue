@@ -5,7 +5,7 @@
   </dir>
   <div class="container">
     <main>
-      <div class="py-5 text-center">
+      <div class="mt-5 py-5 text-center">
         <h2>店舗アカウント登録</h2>
         <p class="lead">お客様の店舗用のアカウントを作成いたします。<br>情報の登録をお願いいたします。</p>
       </div>
@@ -16,99 +16,99 @@
             <div class="row g-3">
               <div class="col-12">
                 <label for="firstName" class="form-label">名前 <span class="text-muted">必須</span></label>
-                <input type="text" class="form-control" id="storeName" placeholder="居酒屋 太平洋" value="" required>
+                <input type="text" class="form-control" id="storeName" placeholder="居酒屋 太平洋" v-model="storeData.name" required>
               </div>
               <div class="col-12">
                 <label for="firstName" class="form-label">ふりがな</label>
-                <input type="text" class="form-control" id="storeName" placeholder="いざかや たいへいよう" value="" required>
+                <input type="text" class="form-control" id="storeName" placeholder="いざかや たいへいよう" v-model="storeData.furigana" required>
               </div>
               <div class="col-12">
                 <label for="email" class="form-label">メールアドレス <span class="text-muted">必須</span></label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" v-model="storeData.email">
                 <div class="invalid-feedback">
                   有効なメールアドレスを記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="password" class="form-label">パスワード <span class="text-muted">必須</span></label>
-                <input type="password" class="form-control" id="password" placeholder="080-1111-222">
+                <input type="password" class="form-control" id="password"  v-model="storeData.password">
                 <div class="invalid-feedback">
                   電話番号を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="password-confirm" class="form-label">パスワード（確認） <span class="text-muted">必須</span></label>
-                <input type="password" class="form-control" id="password-confirm" placeholder="080-1111-222">
+                <input type="password" class="form-control" id="password-confirm" v-model="storeData.password_confirmation">
                 <div class="invalid-feedback">
                   電話番号を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="tel" class="form-label">電話番号 <span class="text-muted">必須</span></label>
-                <input type="tel" class="form-control" id="tel" placeholder="080-1111-222">
+                <input type="tel" class="form-control" id="tel" placeholder="080-1111-222" v-model="storeData.tel">
                 <div class="invalid-feedback">
                   電話番号を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="fax" class="form-label">FAX番号</label>
-                <input type="tel" class="form-control" id="fax" placeholder="03-4444-5555">
+                <input type="tel" class="form-control" id="fax" placeholder="03-4444-5555" v-model="storeData.fax">
                 <div class="invalid-feedback">
                   FAX番号を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="postal-code" class="form-label">郵便番号 <span class="text-muted">必須</span></label>
-                <input type="number" class="form-control" id="postal-code" placeholder="111-0043">
+                <input type="number" class="form-control" id="postal-code" placeholder="1110043" v-model="storeData.postal_code">
                 <div class="invalid-feedback">
                   郵便番号を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="address" class="form-label">店舗住所 <span class="text-muted">必須</span></label>
-                <input type="text" class="form-control" id="address" placeholder="東京都台東区駒形1-1" required>
+                <input type="text" class="form-control" id="address" placeholder="東京都台東区駒形1-1" v-model="storeData.address" required>
                 <div class="invalid-feedback">
                   店舗の所在地を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="store-url" class="form-label">店舗URL</label>
-                <input type="url" class="form-control" id="store-url" placeholder="http://izakaya.com/iroha" value="" required>
+                <input type="url" class="form-control" id="store-url" placeholder="http://izakaya.com/iroha" v-model="storeData.url" required>
                 <div class="invalid-feedback">
                   店舗のURLを記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="store-name" class="form-label">店舗名 <span class="text-muted">必須</span></label>
-                <input type="text" class="form-control" id="store-name" placeholder="いろは駅前店" value="" required>
+                <input type="text" class="form-control" id="store-name" placeholder="いろは駅前店" v-model="storeData.restaurant" required>
                 <div class="invalid-feedback">
                   店舗名を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="sear-num" class="form-label">座席数 <span class="text-muted">必須</span></label>
-                <input type="number" class="form-control" id="sear-num" placeholder="100" value="" required>
+                <input type="number" class="form-control" id="sear-num" placeholder="100" v-model="storeData.seat" required>
                 <div class="invalid-feedback">
                   座席数を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="genre" class="form-label">業態 <span class="text-muted">必須</span></label>
-                <input type="text" class="form-control" id="genre" placeholder="飲食業" value="" required>
+                <input type="text" class="form-control" id="genre" placeholder="飲食業" v-model="storeData.genre" required>
                 <div class="invalid-feedback">
                   業態を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="responsible-party" class="form-label">責任者名 <span class="text-muted">必須</span></label>
-                <input type="text" class="form-control" id="responsible-party" placeholder="担当者A" value="" required>
+                <input type="text" class="form-control" id="responsible-party" placeholder="担当者A" v-model="storeData.responsible_party" required>
                 <div class="invalid-feedback">
                   業態を記載してください。
                 </div>
               </div>
               <div class="col-12">
                 <label for="others" class="form-label">その他</label>
-                <input type="text" class="form-control" id="others" placeholder="アレルギー品目：大豆、牛乳、小麦粉" value="" required>
+                <input type="text" class="form-control" id="others" placeholder="アレルギー品目：大豆、牛乳、小麦粉" v-model="storeData.other" required>
                 <div class="invalid-feedback">
                   追記する情報がありましたら記載してください。
                 </div>
@@ -118,7 +118,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="goToAccountConfirm">登録確認</button>
+        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="submit">登録確認</button>
         <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block" @click.prevent="back">戻　る</button>
       </div>
     </main>
@@ -136,11 +136,31 @@
 </template>
 
 <script>
+import axios from 'axios'
 import StoreHeader from "../layout/StoreHeader.vue"
 
 export default {
   data: function () {
     return {
+        error: false,
+        errorMessage: '',
+        storeData: {
+            name: '',
+            email: '',
+            furigana: '',
+            tel: '',
+            fax: '',
+            postal_code: '',
+            url: '',
+            address: '',
+            seat: '',
+            restaurant: '',
+            genre: '',
+            responsible_party: '',
+            other: '',
+            password: '',
+            password_confirmation: ''
+        }
     }
   },
 
@@ -155,6 +175,54 @@ export default {
         event.stopPropagation()
       }
       event.target.classList.add('was-validated')
+    },
+    // 店舗情報を送信する
+    async submit() {
+      this.loading = true
+      const params = {
+            name: this.storeData.name,
+            email: this.storeData.email,
+            furigana: this.storeData.furigana,
+            tel: this.storeData.tel,
+            fax: this.storeData.fax,
+            postal_code: this.storeData.postal_code,
+            url: this.storeData.url,
+            address: this.storeData.address,
+            seat: this.storeData.seat,
+            restaurant: this.storeData.restaurant,
+            genre: this.storeData.genre,
+            responsible_party: this.storeData.responsible_party,
+            other: this.storeData.other,
+            password: this.storeData.password,
+            password_confirmation: this.storeData.password_confirmation,
+      }
+      await axios
+        .post("/api/v1/store_auth/", params)
+        .then(response => {
+
+          Router.push("/store_account_confirm")
+
+          // TODO: Vuex でログイン状態を管理するようになったら消す
+          window.location.reload()
+        })
+        .catch(e => {
+          // TODO: 適切な Error 表示
+          if (e.response) {
+            this.hasError = true;
+            this.errorMessage = e.response.data.errors[0]
+
+            console.log(e.response.data)
+            console.log(e.response.status)
+            console.log(e.response.headers)
+          } else if (error.request) {
+            console.log(e.request)
+          } else {
+            console.log('Error', e.message)
+          }
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
     goToAccountConfirm() {
       Router.push("/store_account_confirm")
