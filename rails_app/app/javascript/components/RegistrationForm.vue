@@ -26,6 +26,7 @@
         </div>
         <div>
           <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">お客様の情報を入力してください</h2>
+          <p v-for="item in $store.getters.registrationUserData.errs" class="text-red-800">{{ item }}</p>
           <form>
             <table class="m-2 md:m-10 table-auto">
               <tr>

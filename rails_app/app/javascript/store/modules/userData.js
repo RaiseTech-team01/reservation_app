@@ -1,36 +1,39 @@
-// const getters = {
-//     userData: state => state.userData,
-//     // ここに追記していく
-// }
-// export default getters
-
-
 const state =  {
-    "email"  : "",
-    "uid"   :  "",
-    "id"   :   "0",
-    "provider"  : "",
-    "allow_password_change" : false,
-    "name" : "",
-    "furigana" : "",
-    "image" : null,
-    "tel" : "",
-    "birthday" : "",
-    "gender" : "",
-    "address" : ""
-
+    email:"",
+    uid:"",
+    id:"",
+    provider:"",
+    allow_password_change:false,
+    name:"",
+    furigana:"",
+    image:null,
+    tel:"",
+    birthday:"",
+    gender:"",
+    address:"",
 }
 
 const mutations = {
-    setname(state, data) {
-        state.name = data
+  setname(state, data) {
+    state.email = data.email
+    state.uid = data.uid
+    state.id = data.id
+    state.provider = data.provider
+    state.allow_password_change = data.allow_password_change
+    state.name = data.name
+    state.furigana = data.furigana
+    state.image = data.image
+    state.tel = data.tel
+    state.birthday = data.birthday
+    state.gender = data.gender
+    state.address = data.address
     }
 }
 
 const actions = {
     update({ commit }, data) {
         console.log(data)
-        commit('setname', data.name)
+        commit('setname', data)
     }
 }
 
@@ -41,44 +44,3 @@ export default {
     mutations,
     actions
 }
-
-
-// const store = new Vuex.Store({
-//     state: {
-//         "userHeaders" :
-//             {
-//                 "access-token" : "",
-//                 "uid" : "",
-//                 "client" : ""
-//             },
-//
-//         "userData" :
-//             {
-//                 "email"  : "",
-//                 "uid"   :  "",
-//                 "id"   :   "0",
-//                 "provider"  : "",
-//                 "allow_password_change" : false,
-//                 "name" : "",
-//                 "furigana" : "",
-//                 "image" : null,
-//                 "tel" : "",
-//                 "birthday" : "",
-//                 "gender" : "",
-//                 "address" : ""
-//             }
-//
-//     },
-//
-//     mutations: {
-//         setuserData(state, data) {
-//             state.userData = data
-//         }
-//     },
-//     actions: {
-//         updateuserData({ commit }, data) {
-//             commit('setuserData', data)
-//         }
-//     }
-// })
-

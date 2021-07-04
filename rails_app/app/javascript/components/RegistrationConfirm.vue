@@ -126,24 +126,28 @@ export default {
 
   methods: {
     goToComplete: function () {
-      var addUserParams = {
-        name: `${this.registrationUserData.last_name} + " " + ${this.registrationUserData.first_name}`,
-        furigana: `${this.registrationUserData.last_furigana} + " " + ${this.registrationUserData.first_furigana}`,
-        email: `${this.registrationUserData.email}`,
-        tel: `${this.registrationUserData.tel}`,
-        birthday: `${this.registrationUserData.birthday}`,
-        gender: `${this.registrationUserData.gender}`,
-        address: `${this.registrationUserData.address}`,
-        password: `${this.registrationUserData.password}`,
-        password_confirmation: `${this.registrationUserData.password_confirmation}`,
-      }
+      const addUserParams = this.$store.getters.registrationUserData
+      addUserParams.name = addUserParams.last_name+ " " + addUserParams.first_name
+      addUserParams.furigana = addUserParams.last_furigana + " " + addUserParams.first_furigana
+
+      delete addUserParams.errs
+      delete addUserParams.last_furigana
+
+
       axios
         .post("/api/v1/auth/", addUserParams)
         .then(function (response) {
           console.log(response)
           Router.push("/sign_up_complete")
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          console.log(error.response.data.errors.full_messages)
+          this.$store.dispatch('registrationUserData/updateErr', error.response.data.errors.full_messages)
+          Router.push("/sign_up")
+        })
+      // this.$store.dispatch('registrationUserData/post')
+      
+      
     },
     back() {
       Router.back()
@@ -163,3 +167,18 @@ p {
   font-size: 2em;
 }
 </style>
+
+
+
+//
+// name: `${this.registrationUserData.last_name} + " " + ${this.registrationUserData.first_name}`,
+// furigana: `${this.registrationUserData.last_furigana} + " " + ${this.registrationUserData.first_furigana}`,
+//
+// email: `${this.registrationUserData.email}`,
+// tel: `${this.registrationUserData.tel}`,
+// birthday: `${this.registrationUserData.birthday}`,
+// gender: `${this.registrationUserData.gender}`,
+// address: `${this.registrationUserData.address}`,
+// password: `${this.registrationUserData.password}`,
+// password_confirmation: `${this.registrationUserData.password_confirmation}`,
+// }

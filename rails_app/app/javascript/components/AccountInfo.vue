@@ -33,7 +33,7 @@
               <td class="block md:table-cell pb-6 md:pb-0">
                 <div>
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                    タナカ　イチロウ
+                    {{ userData.furigana }}
                   </p>
                 </div>
               </td>
@@ -42,7 +42,7 @@
               <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">メール<br class="hidden md:block">アドレス</td>
               <td class="block md:table-cell pb-6 md:pb-0">
                 <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
-                  Ichiro.Tanaka@smail.comIchiro.Tanaka@smail.comIchiro.Tanaka@smail.comIchiro.Tanaka@smail.com
+                  {{ userData.email }}
                 </p>
               </td>
             </tr>
@@ -50,7 +50,7 @@
               <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">電話<br class="hidden md:block">番号</td>
               <td class="block md:table-cell pb-6 md:pb-0">
                 <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                  080-1111-2222
+                  {{ userData.tel }}
                 </p>
               </td>
             </tr>
@@ -58,7 +58,7 @@
               <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">年齢</td>
               <td class="block md:table-cell pb-6 md:pb-0">
                 <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                  31 歳
+                  {{userData.birthday}} 歳
                 </p>
               </td>
             </tr>
@@ -66,16 +66,18 @@
               <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">性別</td>
               <td class="block md:table-cell pb-6 md:pb-0">
                 <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
-                  男性
+                  {{ userData.gender }}
                 </p>
               </td>
             </tr>
-            <tr class="h-24">
-              <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">住所</td>
+
+            <tr class="h-24">',
+    ])
+              <td class="block md:tab',
+    ])le-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">住所</td>
               <td class="block md:table-cell pb-6 md:pb-0">
                 <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">
-                  千葉県千葉市<br>
-
+                  {{ userData.address }}<br>
                 </p>
               </td>
             </tr>
@@ -121,14 +123,6 @@ export default {
     },
   },
 
-// Vuexの動作確認のために追加（JSONの戻り値の取り出/雛形）
-//   computed: {
-//    name() {
-//       console.log(this.$store.getters.userData.name)
-//       return this.$store.getters.userData.name;
-//     }
-//   }
-// 下記の内容に変更。
   computed: {
     ...mapGetters([
       'userData',
@@ -146,3 +140,13 @@ p {
 }
 </style>
 
+
+// // yyyyMMdd形式限定、処理日時点の年齢
+// function calcAge() {
+//   var today = new Date();
+//   let targetdate;
+//   targetdate = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+//   return (Math.floor((targetdate - userData.birthday) / 10000));
+//   },
+// let calcedAge;
+// calcedAge = calcAge()

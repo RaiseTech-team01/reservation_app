@@ -26,13 +26,13 @@
                   <tr>
                     <th class="pr-3 pb-10 text-2xl text-blue-800 text-right border-none">ID</th>
                     <td class="border-none pb-10">
-                      <input id="user_email" v-model="email" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email" placeholder="tanaka@sample.com">
+                      <input id="user_email" v-model="typedEmail" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email" placeholder="tanaka@sample.com">
                     </td>
                   </tr>
                   <tr>
                     <th class="pr-3 text-2xl text-blue-800 text-right border-none">パスワード</th>
                     <td class="border-none">
-                      <input id="user_pass" v-model="password" name="password" type="password" class="w-80 h-10 border-blue-800 border-2" autocomplete="on">
+                      <input id="user_pass" v-model="typedPassword" name="password" type="password" class="w-80 h-10 border-blue-800 border-2" autocomplete="on">
                     </td>
                   </tr>
                 </tbody>
@@ -70,10 +70,22 @@ import Footer from "./layout/Footer.vue"
 export default {
   data: function () {
     return {
-      name:  '',
-      loading: false,
-      email: '',
-      password: '',
+      typedEmail: '',
+      typedPassword : '',
+      loginedUserData: {
+        address: "",
+        allow_password_change: "", 
+        birthday: "",
+        email: "",
+        furigana: "",
+        gender: "",
+        id: "", 
+        image: "", 
+        name: "",
+        provider: "",
+        tel: "",
+        uid: "",
+        }
     }
   },
 
@@ -86,33 +98,28 @@ export default {
   methods: {
     // ログイン情報を送信する
     async submit() {
-      this.email = document.getElementById("user_email").value
-      this.password = document.getElementById("user_pass").value
+      this.typedEmail = document.getElementById("user_email").value
+      this.typedPassword = document.getElementById("user_pass").value
       this.loading = true
       const params = {
-        email: this.email,
-        password: this.password,
+        email: `${this.typedEmail}`,
+        password: `${this.typedPassword}`,
       }
       await axios
         .post("/api/v1/auth/sign_in", params)
         .then(response => {
-
           localStorage.setItem("access-token", response.headers["access-token"])
           localStorage.setItem("uid", response.headers["uid"])
           localStorage.setItem("client", response.headers["client"])
-
-          // Router.push("/")
-
+         
+          // console.log(response.data.data) 
+          this.loginedUserData = response.data.data
+          console.log(this.loginedUserData)
+          
           // Vuex store
-          this.$store.dispatch('userData/update', response.data.data)
+          this.$store.dispatch('userData/update', this.loginedUserData)
           this.$store.dispatch('auth/updateLogin', true)
-
-          //  画面遷移先を変更
           Router.push("/account_info")
-
-          // TODO: Vuex でログイン状態を管理するようになったら消す
-            //  window.location.reload()
-
         })
         .catch(e => {
           // TODO: 適切な Error 表示
