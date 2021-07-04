@@ -74,6 +74,7 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+  # REVIEW: mailer設定を見直す必要がある。 port 番号など
   # Email Authentication
   config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = { :address => '127.0.0.1', :port => 1025 }
