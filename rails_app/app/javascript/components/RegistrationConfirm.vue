@@ -115,13 +115,27 @@ import axios from "axios"
 export default {
   data: function () {
     return {
+      loginedUserData: {
+        address: "",
+        allow_password_change: "",
+        birthday: "",
+        email: "",
+        furigana: "",
+        gender: "",
+        id: "",
+        image: "",
+        name: "",
+        provider: "",
+        tel: "",
+        uid: "",
+        }
     }
   },
 
   components: {
     Header,
     Navigation,
-    Footer
+    Footer,
   },
 
   methods: {
@@ -136,13 +150,18 @@ export default {
       addUserParams.address = addUserParams.address
       addUserParams.password = addUserParams.password
       addUserParams.password_confirmation = addUserParams.password_confirmation
+      // 以下の書式でいらないデータを削除
+      // delete addUserParams.last_furigana 
       delete addUserParams.errs
-      delete addUserParams.last_furigana
+
       
       axios
         .post("/api/v1/auth/", addUserParams)
         .then(function (response) {
           console.log(response)
+          localStorage.setItem("access-token", response.headers["access-token"])
+          localStorage.setItem("uid", response.headers["uid"])
+          localStorage.setItem("client", response.headers["client"])
           Router.push("/sign_up_complete")
         })
         .catch(error => {

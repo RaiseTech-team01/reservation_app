@@ -44,10 +44,28 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
+import axios from "axios";
+import {mapGetters} from "vuex";
 
 export default {
   data: function () {
     return {
+      registeredEmail: '',
+      registeredPassword : '',
+      loginedUserData: {
+        address: "",
+        allow_password_change: "",
+        birthday: "",
+        email: "",
+        furigana: "",
+        gender: "",
+        id: "",
+        image: "",
+        name: "",
+        provider: "",
+        tel: "",
+        uid: "",
+      }
     }
   },
 
@@ -60,14 +78,60 @@ export default {
   methods: {
     login() {
       // TODO ログイン処理
+        this.registeredEmail = this.registrationUserData.email
+        this.registeredPassword = this.registrationUserData.password
+        this.loading = true
+        const params = {
+          email: `${this.registeredEmail}`,
+          password: `${this.registeredPassword}`,
+        }
+        axios
+          .post("/api/v1/auth/sign_in", params)
+          .then(response => {
+            localStorage.setItem("access-token", response.headers["access-token"])
+            localStorage.setItem("uid", response.headers["uid"])
+            localStorage.setItem("client", response.headers["client"])
 
-      this.goToAccountInfo()
+            // console.log(response.data.data) 
+            this.loginedUserData = response.data.data
+            console.log(this.loginedUserData)
+
+            // Vuex store
+            this.$store.dispatch('userData/update', this.loginedUserData)
+            this.$store.dispatch('auth/updateLogin', true)
+            Router.push("/account_info")
+          })
+          .catch(e => {
+            // TODO: 適切な Error 表示
+            if (e.response) {
+              console.log(e.response.data)
+              console.log(e.response.status)
+              console.log(e.response.headers)
+            } else if (error.request) {
+              console.log(e.request)
+            } else {
+              console.log('Error', e.message)
+            }
+          })
+          .finally(() => {
+            this.loading = false
+          })
+        console.log("hi")
+
+        this.goToAccountInfo()
+      
     },
     goToAccountInfo() {
       Router.push("/account_info")
-    }
+    },
+  },
+  computed: {
+    ...mapGetters([
+      'registrationUserData',
+    ])
   }
 }
+
 </script>
 
 <style scoped>
