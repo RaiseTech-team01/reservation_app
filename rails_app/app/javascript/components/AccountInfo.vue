@@ -11,9 +11,9 @@
       <div class="bg-gray-300 info-container">
         <div>
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
-            <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
+            <a class="font-bold hover:text-blue-500" href="/home/top">トップ</a>
             <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="index.html">アカウント情報</a>
+            <a class="font-bold hover:text-blue-500" href="/account_info">アカウント情報</a>
           </h3>
         </div>
         <div>
