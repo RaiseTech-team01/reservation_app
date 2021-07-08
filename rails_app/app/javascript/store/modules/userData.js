@@ -1,16 +1,17 @@
-const state =  {
-    email:"",
-    uid:"",
-    id:"",
-    provider:"",
-    allow_password_change:false,
-    name:"",
-    furigana:"",
-    image:null,
-    tel:"",
-    birthday:"",
-    gender:"",
-    address:"",
+const state = {
+  email: "",
+  uid: "",
+  id: "",
+  provider: "",
+  allow_password_change: false,
+  name: "",
+  furigana: "",
+  image: null,
+  tel: "",
+  birthday: "",
+  gender: "",
+  address: "",
+  errs: [],
 }
 
 const mutations = {
@@ -27,20 +28,26 @@ const mutations = {
     state.birthday = data.birthday
     state.gender = data.gender
     state.address = data.address
-    }
+  },
+  setErr(state, data){
+    state.errs = data
+  }
 }
 
 const actions = {
-    update({ commit }, data) {
-        console.log(data)
-        commit('setname', data)
-    }
+  updateErr({ commit }, data) {
+    commit('setErr', data)
+  },
+  update({commit}, data) {
+    console.log(data)
+    commit('setname', data)
+  }
 }
 
 
 export default {
-    namespaced: true,
-    state,
-    mutations,
-    actions
+  namespaced: true,
+  state,
+  mutations,
+  actions
 }

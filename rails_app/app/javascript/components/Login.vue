@@ -19,6 +19,9 @@
           <div>
             <h2 class="mt-10 text-3xl text-center text-blue-800 font-semibold">予約サービス ログインページ</h2>
           </div>
+          <div class="flex justify-center">
+            <p v-for="item in $store.getters.userData.errs" class="mx-30 my-4 w-3/4 text-align text-red-800 border-2">{{ item }}</p>
+          </div> 
           <div>
             <form class="mt-10 ml-10">
               <table>
@@ -121,22 +124,17 @@ export default {
           this.$store.dispatch('auth/updateLogin', true)
           Router.push("/account_info")
         })
-        .catch(e => {
+        .catch(error => {
           // TODO: 適切な Error 表示
-          if (e.response) {
-            console.log(e.response.data)
-            console.log(e.response.status)
-            console.log(e.response.headers)
-          } else if (error.request) {
-            console.log(e.request)
-          } else {
-            console.log('Error', e.message)
-          }
+          console.log(error.response),
+          console.log(error.response.data.errors), 
+          this.$store.dispatch('userData/updateErr', error.response.data.errors)
+          Router.push("/login")
         })
         .finally(() => {
           this.loading = false
         })
-        console.log("hi")
+        console.log("axios finished")
     },
     goToRegistration() {
       Router.push("/sign_up")
