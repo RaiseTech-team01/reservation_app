@@ -10,7 +10,7 @@
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
             <a class="font-bold hover:text-blue-500" href="/home/top">トップ</a>
             <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="account_info">アカウント情報</a>
+            <a class="font-bold hover:text-blue-500" href="/account_info">アカウント情報</a>
             <span> > </span>
             <a class="font-bold hover:text-blue-500" href="/account_edit">アカウント編集</a>
           </h3>

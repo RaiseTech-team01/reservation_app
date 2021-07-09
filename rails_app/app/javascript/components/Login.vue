@@ -14,7 +14,7 @@
             <h3 class="mt-4 ml-4 text-xl text-blue-800">
               <a class="font-bold" href="/home/top">トップ</a>
               <span> > </span>
-              <a class="font-bold" href="/sign_up">ログイン</a>
+              <a class="font-bold" href="/login">ログイン</a>
             </h3>
           </div>
           <div>
