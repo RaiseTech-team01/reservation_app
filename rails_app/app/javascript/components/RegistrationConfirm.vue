@@ -143,18 +143,13 @@ export default {
       const addUserParams = this.$store.getters.registrationUserData
       addUserParams.name = addUserParams.last_name+ " " + addUserParams.first_name
       addUserParams.furigana = addUserParams.last_furigana + " " + addUserParams.first_furigana
-      addUserParams.email = addUserParams.email
-      addUserParams.tel = addUserParams.tel
-      addUserParams.birthday = addUserParams.birthday
-      addUserParams.gender = addUserParams.gender
-      addUserParams.address = addUserParams.address
-      addUserParams.password = addUserParams.password
-      addUserParams.password_confirmation = addUserParams.password_confirmation
       // 以下の書式でいらないデータを削除
-      // delete addUserParams.last_furigana 
+      delete addUserParams.last_name
+      delete addUserParams.first_name 
+      delete addUserParams.last_furigana
+      delete addUserParams.first_furigana
       delete addUserParams.errs
 
-      
       axios
         .post("/api/v1/auth/", addUserParams)
         .then(function (response) {
