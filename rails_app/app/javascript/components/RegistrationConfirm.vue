@@ -201,3 +201,4 @@ p {
 // password: `${this.registrationUserData.password}`,
 // password_confirmation: `${this.registrationUserData.password_confirmation}`,
 // }
+

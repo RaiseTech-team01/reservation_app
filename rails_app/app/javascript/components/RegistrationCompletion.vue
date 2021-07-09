@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
 <div class="main m-0 h-screen flex flex-col justify-between">
   <dir class="header m-0 text-center pl-0">
@@ -140,3 +141,4 @@ p {
   text-align: center;
 }
 </style>
+

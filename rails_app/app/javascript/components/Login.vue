@@ -1,13 +1,14 @@
 <template>
   <div class="main m-0">
-    <dir class="header m-0 text-center">
+    <dir class="header m-0 pl-0 text-center">
       <Header/>
     </dir>
-    <main class="mt-28"><!-- min-widthを設定する -->
-      <dir class="navigation m-0">
+    <main>
+      <!-- min-widthを設定する -->
+      <dir class="navigation m-0 pl-0 hidden md:block">
         <Navigation/>
       </dir>
-      <div class="flex justify-center h-screen">
+      <div class="flex justify-center">
         <div class="bg-gray-300 info-container">
           <div>
             <h3 class="mt-4 ml-4 text-xl text-blue-800">
@@ -17,7 +18,11 @@
             </h3>
           </div>
           <div>
-            <h2 class="mt-10 text-3xl text-center text-blue-800 font-semibold">予約サービス ログインページ</h2>
+            <h2
+              class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800"
+            >
+              予約サービス ログインページ
+            </h2>
           </div>
           <div class="flex justify-center">
             <p v-for="item in $store.getters.userData.errs" class="mx-30 my-4 w-3/4 text-align text-red-800 border-2">{{ item }}</p>
@@ -41,23 +46,51 @@
                 </tbody>
               </table>
               <div id="login_checkbox" class="mt-10 text-center">
-                <input id="is_auto_login" class="w-20 border-blue-800 border-2" name="is_auto_login" type="checkbox">
-                <label class="text-xl text-blue-800" for="is_auto_login">次からは自動でログインする</label><br>
+                <input
+                  id="is_auto_login"
+                  class="radiox inline-block mr-4 align-middle transform scale-150"
+                  name="is_auto_login"
+                  type="checkbox"
+                />
+                <label
+                  class="my-4 text-2xl md:text-3xl font-bold align-middle text-blue-800 hover:text-blue-600"
+                  for="is_auto_login"
+                  >次からは自動でログインする</label
+                ><br />
               </div>
-              <div class="mt-10 text-center">
-                <input class="w-40 h-12 mr-8 p-1 text-2xl text-blue-800 bg-yellow-400" type="submit" :loading="loading" @click.prevent="submit" value="ログイン">
-                <input class="w-40 h-12 p-1 text-2xl text-blue-800 bg-gray-400" type="button" value="戻る">
+              <div class="text-center space-x-4 md:space-x-8 my-14">
+                <input
+                  class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200"
+                  type="submit"
+                  :loading="loading"
+                  @click.prevent="submit"
+                  value="ログイン"
+                />
+                <input
+                  class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200"
+                  type="button"
+                  value="戻る"
+                />
               </div>
             </form>
-            <div class="text-center mt-10 text-blue-800">
-              <p class="mx-auto w-96 text-xl break-words text-left">アカウント未登録の方は下記から登録してください。</p>
-              <input class="mt-4 w-80 h-12 p-1 text-2xl text-blue-800 bg-yellow-200" type="button" value="新規登録" @click.prevent="goToRegistration">
+            <div class="text-center mt-10 text-blue-800 mb-28">
+              <p
+                class="my-4 px-4 text-2xl leading-relaxed align-middle text-blue-800"
+              >
+                アカウント未登録の方は下記から登録してください。
+              </p>
+              <input
+                class="inline-block w-1/2 py-2 my-4 rounded-xl font-bold bg-yellow-200 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-100 hover:text-blue-600 active:bg-red-200"
+                type="button"
+                value="新規登録"
+                @click.prevent="goToRegistration"
+              />
             </div>
           </div>
         </div>
       </div>
     </main>
-    <dir class="footer">
+    <dir class="footer m-0 p-0">
       <Footer/>
     </dir>
   </div>
@@ -65,7 +98,7 @@
 
 <script>
 import axios from 'axios'
-import Router from "../router/router";
+import Router from "../router/router"
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
@@ -144,10 +177,6 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
 
 /* ラベルのスタイル　*/
 #login_checkbox label {
