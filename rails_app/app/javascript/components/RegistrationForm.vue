@@ -26,7 +26,7 @@
         </div>
         <div>
           <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">お客様の情報を入力してください</h2>
-          <p v-for="item in $store.getters.registrationUserData.errs" class="text-red-800">{{ item }}</p>
+          <p v-for="item in registrationUserData.errs" class="text-red-800">{{ item }}</p>
           <form>
             <table class="m-2 md:m-10 table-auto">
               <tr>
@@ -110,7 +110,7 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
-
+import { mapGetters } from 'vuex'
 
 export default {
   data: function () {
@@ -130,13 +130,30 @@ export default {
       }
     }
   },
-
   components: {
     Header,
     Navigation,
     Footer
   },
-
+  mounted: function () {
+    this.userData.first_name = this.registrationUserData.first_name
+    this.userData.last_name = this.registrationUserData.last_name
+    this.userData.email = this.registrationUserData.email
+    this.userData.first_furigana = this.registrationUserData.first_furigana
+    this.userData.last_furigana = this.registrationUserData.last_furigana
+    this.userData.tel = this.registrationUserData.tel
+    this.userData.birthday = this.registrationUserData.birthday
+    this.userData.gender = this.registrationUserData.gender
+    this.userData.address = this.registrationUserData.address
+    this.userData.password = this.registrationUserData.password
+    this.userData.password_confirmation = this.registrationUserData.password_confirmation
+  },
+  computed: {
+    ...mapGetters([
+      'registrationUserData',
+    ])
+  },  
+  
   methods: {
     confirm () {
       console.log(this.userData)
