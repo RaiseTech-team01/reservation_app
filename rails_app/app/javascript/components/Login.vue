@@ -11,14 +11,10 @@
       <div class="flex justify-center">
         <div class="bg-gray-300 info-container">
           <div>
-            <h3 class="mt-10 ml-4 text-xl text-blue-800">
-              <a class="font-bold hover:text-blue-500" href="index.html"
-                >トップ</a
-              >
+            <h3 class="mt-4 ml-4 text-xl text-blue-800">
+              <a class="font-bold" href="/home/top">トップ</a>
               <span> > </span>
-              <a class="font-bold hover:text-blue-500" href="index.html"
-                >ログイン</a
-              >
+              <a class="font-bold" href="/login">ログイン</a>
             </h3>
           </div>
           <div>
@@ -28,49 +24,27 @@
               予約サービス ログインページ
             </h2>
           </div>
+          <div class="flex justify-center">
+            <p v-for="item in $store.getters.userData.errs" class="mx-30 my-4 w-3/4 text-align text-red-800 border-2">{{ item }}</p>
+          </div> 
           <div>
-            <form class="mt-10">
-              <div class="flex justify-center">
-                <table>
-                  <tbody>
-                    <tr>
-                      <th
-                        class="block text-3xl text-blue-800 p-2"
-                      >
-                        ID
-                      </th>
-                      <td class="border-none pb-10">
-                        <input
-                          id="user_email"
-                          data-v-6fb8108a=""
-                          name="email"
-                          type="email"
-                          class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-1 md:p-2 text-blue-800"
-                          autocomplete="email"
-                          placeholder="tanaka@sample.com"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th
-                        class="pr-3 text-2xl text-blue-800 text-right border-none"
-                      >
-                        パスワード
-                      </th>
-                      <td class="border-none">
-                        <input
-                          id="user_pass"
-                          data-v-6fb8108a=""
-                          name="password"
-                          type="password"
-                          class="text-2xl md:text-3xl whitespace-nowrap form-table-padding p-1 md:p-2 text-blue-800"
-                          autocomplete="on"
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <form class="mt-10 ml-10">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="pr-3 pb-10 text-2xl text-blue-800 text-right border-none">ID</th>
+                    <td class="border-none pb-10">
+                      <input id="user_email" v-model="typedEmail" name="email" type="email" class="w-80 h-10 border-blue-800 border-2" autocomplete="email" placeholder="tanaka@sample.com">
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="pr-3 text-2xl text-blue-800 text-right border-none">パスワード</th>
+                    <td class="border-none">
+                      <input id="user_pass" v-model="typedPassword" name="password" type="password" class="w-80 h-10 border-blue-800 border-2" autocomplete="on">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               <div id="login_checkbox" class="mt-10 text-center">
                 <input
                   id="is_auto_login"
@@ -132,10 +106,22 @@ import Footer from "./layout/Footer.vue"
 export default {
   data: function () {
     return {
-      name:  '',
-      loading: false,
-      email: '',
-      password: '',
+      typedEmail: '',
+      typedPassword : '',
+      loginedUserData: {
+        address: "",
+        allow_password_change: "", 
+        birthday: "",
+        email: "",
+        furigana: "",
+        gender: "",
+        id: "", 
+        image: "", 
+        name: "",
+        provider: "",
+        tel: "",
+        uid: "",
+        }
     }
   },
 
@@ -148,51 +134,40 @@ export default {
   methods: {
     // ログイン情報を送信する
     async submit() {
-      this.email = document.getElementById("user_email").value
-      this.password = document.getElementById("user_pass").value
+      this.typedEmail = document.getElementById("user_email").value
+      this.typedPassword = document.getElementById("user_pass").value
       this.loading = true
       const params = {
-        email: this.email,
-        password: this.password,
+        email: `${this.typedEmail}`,
+        password: `${this.typedPassword}`,
       }
       await axios
         .post("/api/v1/auth/sign_in", params)
         .then(response => {
-
           localStorage.setItem("access-token", response.headers["access-token"])
           localStorage.setItem("uid", response.headers["uid"])
           localStorage.setItem("client", response.headers["client"])
-
-          // Router.push("/")
-
-        // Vuex store
-
-          this.$store.dispatch('userData/update', response.data.data)
+         
+          // console.log(response.data.data) 
+          this.loginedUserData = response.data.data
+          console.log(this.loginedUserData)
+          
+          // Vuex store
+          this.$store.dispatch('userData/update', this.loginedUserData)
           this.$store.dispatch('auth/updateLogin', true)
-
-          //  画面遷移先を変更
           Router.push("/account_info")
-
-          // TODO: Vuex でログイン状態を管理するようになったら消す
-            //  window.location.reload()
-
         })
-        .catch(e => {
+        .catch(error => {
           // TODO: 適切な Error 表示
-          if (e.response) {
-            console.log(e.response.data)
-            console.log(e.response.status)
-            console.log(e.response.headers)
-          } else if (error.request) {
-            console.log(e.request)
-          } else {
-            console.log('Error', e.message)
-          }
+          console.log(error.response),
+          console.log(error.response.data.errors), 
+          this.$store.dispatch('userData/updateErr', error.response.data.errors)
+          Router.push("/login")
         })
         .finally(() => {
           this.loading = false
         })
-        console.log("hi")
+        console.log("axios finished")
     },
     goToRegistration() {
       Router.push("/sign_up")
