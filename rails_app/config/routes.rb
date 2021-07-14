@@ -39,6 +39,10 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       resources :store do
         resources :reservations
       end
+
+      namespace :stores do
+        resources :reservations
+      end
     end
   end
 end
