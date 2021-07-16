@@ -6,7 +6,7 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
 
     def check_token
       if request.headers["access-token"].present? || request.headers["uid"].present? || request.headers["client"].present?
-        render json: { errors: { title: "不正なトークンがあります。", detail: "操作の確認をおねがいします。" } }, status: 400
+        render json: { errors: { title: "不正なトークンがあります。", detail: "操作の確認をおねがいします。" } }, status: :bad_request
       end
     end
 
