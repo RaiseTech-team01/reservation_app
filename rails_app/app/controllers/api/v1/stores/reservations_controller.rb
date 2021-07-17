@@ -7,5 +7,10 @@ module Api::V1
       reservations = current_store.reservations
       render json: reservations, each_serializer: Api::V1::ReservationSerializer
     end
+
+    def show
+      reservation = current_store.reservations.find(params[:id])
+      render json: reservation, serializer: Api::V1::ReservationSerializer
+    end
   end
 end
