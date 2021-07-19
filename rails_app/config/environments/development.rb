@@ -73,4 +73,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Response of blocked hosts
+  config.hosts << "stormy-forest-93032.herokuapp.com"
 end
