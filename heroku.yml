@@ -1,0 +1,3 @@
+build:
+  docker:
+    web: rails_app/Dockerfile
