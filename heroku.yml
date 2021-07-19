@@ -7,3 +7,5 @@ setup:
 build:
   docker:
     web: rails_app/Dockerfile
+run:
+  web: bundle exec puma -C config/puma.rb
