@@ -6,6 +6,6 @@ setup:
     S3_BUCKET: my-example-bucket
 build:
   docker:
-    db: rails_app/Dockerfile
+    web: rails_app/Dockerfile
 run:
   web: bundle exec puma -C config/puma.rb
