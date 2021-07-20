@@ -438,7 +438,6 @@ export default {
 };
 </script>
 
-<!--<style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>-->
 <style scoped src="../../../assets/stylesheets/offcanvas.css"></style>
 <style scoped>
 p {
