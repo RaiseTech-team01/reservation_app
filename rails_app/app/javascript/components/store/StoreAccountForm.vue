@@ -92,6 +92,7 @@
                                     type="password"
                                     class="form-control"
                                     id="password-confirm"
+                                    minlength="6"
                                     v-model="storeData.password_confirmation"
                                     required
                                 />
@@ -340,6 +341,7 @@ export default {
         // 店舗情報を送信する
         async submit() {
             this.loading = true;
+            // TODO オブジェクトをそのまま渡す -> 渡さなくてもそのまま this.storeData で post に渡せばいい
             const params = {
                 name: this.storeData.name,
                 email: this.storeData.email,
@@ -360,10 +362,13 @@ export default {
             await axios
                 .post("/api/v1/store_auth/", params)
                 .then(response => {
-                    Router.push("/store_account_confirm");
+                    this.saveHeaderToLocalStorage(response.headers)
 
-                    // TODO: Vuex でログイン状態を管理するようになったら消す
-                    window.location.reload();
+                    // Vuex store
+                    this.$store.dispatch('storeUserData/update', response.data.data)
+                    this.$store.dispatch('storeAuth/updateLogin', true)
+
+                    Router.push("/store_account_confirm");
                 })
                 .catch(e => {
                     // TODO: 適切な Error 表示
@@ -374,8 +379,6 @@ export default {
                         console.log(e.response.data);
                         console.log(e.response.status);
                         console.log(e.response.headers);
-                    } else if (error.request) {
-                        console.log(e.request);
                     } else {
                         console.log("Error", e.message);
                     }
@@ -383,6 +386,11 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
+        },
+        saveHeaderToLocalStorage(headers) {
+            ["access-token", "uid", "client"].forEach(l => {
+                localStorage.setItem(l, headers[l])
+            })
         },
         goToAccountConfirm() {
             Router.push("/store_account_confirm");
