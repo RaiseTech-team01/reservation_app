@@ -341,26 +341,8 @@ export default {
         // 店舗情報を送信する
         async submit() {
             this.loading = true;
-            // TODO オブジェクトをそのまま渡す -> 渡さなくてもそのまま this.storeData で post に渡せばいい
-            const params = {
-                name: this.storeData.name,
-                email: this.storeData.email,
-                furigana: this.storeData.furigana,
-                tel: this.storeData.tel,
-                fax: this.storeData.fax,
-                postal_code: this.storeData.postal_code,
-                url: this.storeData.url,
-                address: this.storeData.address,
-                seat: this.storeData.seat,
-                restaurant: this.storeData.restaurant,
-                genre: this.storeData.genre,
-                responsible_party: this.storeData.responsible_party,
-                other: this.storeData.other,
-                password: this.storeData.password,
-                password_confirmation: this.storeData.password_confirmation
-            };
             await axios
-                .post("/api/v1/store_auth/", params)
+                .post("/api/v1/store_auth/", this.storeData)
                 .then(response => {
                     this.saveHeaderToLocalStorage(response.headers)
 
@@ -371,7 +353,6 @@ export default {
                     Router.push("/store_account_confirm");
                 })
                 .catch(e => {
-                    // TODO: 適切な Error 表示
                     if (e.response) {
                         this.hasError = true;
                         this.errorMessage = e.response.data.errors[0];
