@@ -34,7 +34,8 @@
                             </div>
                             <div class="col-12">
                                 <label for="firstName" class="form-label"
-                                    >ふりがな</label
+                                    >ふりがな
+                                    <span class="text-muted">必須</span></label
                                 >
                                 <input
                                     type="text"
@@ -117,7 +118,8 @@
                             </div>
                             <div class="col-12">
                                 <label for="fax" class="form-label"
-                                    >FAX番号</label
+                                    >FAX番号
+                                    <span class="text-muted">必須</span></label
                                 >
                                 <input
                                     type="tel"
@@ -125,6 +127,7 @@
                                     id="fax"
                                     placeholder="03-4444-5555"
                                     v-model="storeData.fax"
+                                    required
                                 />
                                 <div class="invalid-feedback">
                                     FAX番号を記載してください。
@@ -166,7 +169,8 @@
                             </div>
                             <div class="col-12">
                                 <label for="store-url" class="form-label"
-                                    >店舗URL</label
+                                    >店舗URL
+                                    <span class="text-muted">必須</span></label
                                 >
                                 <input
                                     type="url"
@@ -174,6 +178,7 @@
                                     id="store-url"
                                     placeholder="http://izakaya.com/iroha"
                                     v-model="storeData.url"
+                                    required
                                 />
                                 <div class="invalid-feedback">
                                     店舗のURLを記載してください。
@@ -234,7 +239,8 @@
                                 <label
                                     for="responsible-party"
                                     class="form-label"
-                                    >責任者名</label
+                                    >責任者名
+                                    <span class="text-muted">必須</span></label
                                 >
                                 <input
                                     type="text"
@@ -242,6 +248,7 @@
                                     id="responsible-party"
                                     placeholder="担当者A"
                                     v-model="storeData.responsible_party"
+                                    required
                                 />
                                 <div class="invalid-feedback">
                                     業態を記載してください。
@@ -261,11 +268,6 @@
                                 <div class="invalid-feedback">
                                     追記する情報がありましたら記載してください。
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary" type="submit">
-                                    Submit form
-                                </button>
                             </div>
                             <div class="text-center">
                                 <!--<button type="submit" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="submit">登録確認</button>-->
