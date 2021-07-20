@@ -389,57 +389,62 @@ export default {
         },
         back() {
             Router.back();
+        },
+        appendBootstrapScriptTag() {
+            const instance0 = this;
+            let linkEl = document.createElement("link");
+            linkEl.setAttribute(
+                "href",
+                "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            );
+            linkEl.setAttribute("rel", "stylesheet");
+            linkEl.setAttribute(
+                "integrity",
+                "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            );
+            linkEl.setAttribute("crossorigin", "anonymous");
+            document.head.appendChild(linkEl);
+        },
+        initializeValidation() {
+            this.$nextTick(function() {
+                console.log(this);
+                const instance = this;
+                //("use strict");
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.querySelectorAll(".needs-validation");
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms).forEach(function(form) {
+                    form.addEventListener(
+                        "submit",
+                        function(event) {
+                            if (!form.checkValidity()) {
+                                console.log("invalid");
+                                event.preventDefault();
+                                event.stopPropagation();
+                            } else {
+                                console.log("valid");
+                                console.log("instance:");
+                                console.log(instance);
+                                console.log("instance0:");
+                                console.log(instance0);
+                                event.preventDefault();
+                                event.stopPropagation();
+                                console.log(this);
+                                instance.submit();
+                            }
+                            form.classList.add("was-validated");
+                        },
+                        false
+                    );
+                });
+            });
         }
     },
     mounted() {
-        const instance0 = this;
-        let linkEl = document.createElement("link");
-        linkEl.setAttribute(
-            "href",
-            "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-        );
-        linkEl.setAttribute("rel", "stylesheet");
-        linkEl.setAttribute(
-            "integrity",
-            "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-        );
-        linkEl.setAttribute("crossorigin", "anonymous");
-        document.head.appendChild(linkEl);
-
-        this.$nextTick(function() {
-            console.log(this);
-            const instance = this;
-            //("use strict");
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll(".needs-validation");
-
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms).forEach(function(form) {
-                form.addEventListener(
-                    "submit",
-                    function(event) {
-                        if (!form.checkValidity()) {
-                            console.log("invalid");
-                            event.preventDefault();
-                            event.stopPropagation();
-                        } else {
-                            console.log("valid");
-                            console.log("instance:");
-                            console.log(instance);
-                            console.log("instance0:");
-                            console.log(instance0);
-                            event.preventDefault();
-                            event.stopPropagation();
-                            console.log(this);
-                            instance.submit();
-                        }
-                        form.classList.add("was-validated");
-                    },
-                    false
-                );
-            });
-        });
+        this.appendBootstrapScriptTag();
+        this.initializeValidation();
     }
 };
 </script>
