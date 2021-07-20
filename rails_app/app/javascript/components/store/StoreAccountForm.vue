@@ -391,7 +391,6 @@ export default {
             Router.back();
         },
         appendBootstrapScriptTag() {
-            const instance0 = this;
             let linkEl = document.createElement("link");
             linkEl.setAttribute(
                 "href",
@@ -406,6 +405,7 @@ export default {
             document.head.appendChild(linkEl);
         },
         initializeValidation() {
+            const instance0 = this;
             this.$nextTick(function() {
                 console.log(this);
                 const instance = this;
