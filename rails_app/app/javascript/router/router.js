@@ -76,9 +76,13 @@ const router = new Router({
       component: ReservationCompletion
     },
     {
-      path: '/reservation_list',
+      path: '/store/:store_id/reservations',
       component: ReservationList
     },
+    // {
+    //   path: '/reservation_list',
+    //   component: ReservationList
+    // },
     {
       path: '/reservation_detail',
       component: ReservationDetail
