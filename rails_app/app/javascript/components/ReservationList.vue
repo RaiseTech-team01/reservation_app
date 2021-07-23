@@ -64,6 +64,16 @@
         </div>
       </div>
     </div>
+    <div>
+      <!-- 検証用に ボタンを配置 -->
+      <button class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200"
+              type="button"
+              value="get Data"
+              @click.prevent="getData(1)">get Data
+      </button>
+      <!-- 予約一覧データを呼び出せているか確認するために表示 -->
+      <p>{{ reservations }}</p>
+    </div>
   </main>
   <dir class="footer m-0 pl-0">
     <Footer />
@@ -72,14 +82,26 @@
 </template>
 
 <script>
+import axios from "axios";
 import Router from "../router/router"
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
 
+const headers = {
+  headers: {
+    Authorization: "Bearer",
+    "Access-Control-Allow-Origin": "*",
+    "access-token": localStorage.getItem("access-token"),
+    client: localStorage.getItem("client"),
+    uid: localStorage.getItem("uid")
+  }
+};
+
 export default {
   data: function () {
     return {
+      reservations: ""
     }
   },
 
@@ -87,6 +109,10 @@ export default {
     Header,
     Navigation,
     Footer
+  },
+
+  mounted() {
+    this.getData(this.$route.params.store_id)
   },
 
   methods: {
@@ -98,7 +124,12 @@ export default {
     },
     back() {
       Router.back()
-    }
+    },
+    async getData(store_id){
+      await axios.get(`/api/v1/store/${store_id}/reservations`, headers).then(response =>{
+        this.reservations = response.data
+      })
+    },
   }
 }
 </script>
