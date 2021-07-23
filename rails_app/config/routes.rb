@@ -24,6 +24,9 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   get "/store_dash_board", to: "home#top"
   get "/store_settings", to: "home#top"
 
+  # user でログインし、予約一覧表示
+  get "/store/:store_id/reservations", to: "home#top"
+
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for "User", at: "auth", controllers: {
@@ -36,12 +39,15 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         sessions: "api/v1/store_auth/sessions",
       }
 
+      # user側
       resources :store do
         resources :reservations
       end
 
+      # 店舗側
+      # ログインで扱えるように指定する
       namespace :stores do
-        resources :reservations
+        resources :reservations, only: [:index, :show]
       end
     end
   end
