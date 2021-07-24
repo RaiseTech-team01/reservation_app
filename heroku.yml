@@ -5,8 +5,7 @@ build:
     RAILS_ENV: development
 release:
   command:
-    - rails db:create
-    - rails db:migrate
+    - ./_install.sh
   image: web
 run:
   web: bundle exec puma -C config/puma.rb
