@@ -111,7 +111,7 @@ export default {
       Router.back()
     },
     goToAccountInfo() {
-      Router.push("/account_info")
+      Router.push("/api/v1/user/account_info")
     }
   }
 }

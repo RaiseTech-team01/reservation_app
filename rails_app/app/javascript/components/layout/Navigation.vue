@@ -24,19 +24,19 @@ export default {
   },
   methods: {
     goToReservationForm() {
-      Router.push("/reservation_form")
+      Router.push("/api/v1/user/reservation_form")
     },
     goToReservationList() {
-      Router.push("/reservation_list")
+      Router.push("/api/v1/user/reservation_list")
     },
     goToReservationViewHistory() {
-      Router.push("/reservation_view_history")
+      Router.push("/api/v1/user/reservation_view_history")
     },
     goToReservationHistory() {
-      Router.push("/reservation_history")
+      Router.push("/api/v1/user/reservation_history")
     },
     goToAccountSettings() {
-      Router.push("/account_info")
+      Router.push("/api/v1/user/account_info")
     },
   },
 }
