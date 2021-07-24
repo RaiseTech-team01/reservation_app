@@ -5,6 +5,7 @@ build:
     RAILS_ENV: development
 release:
   command:
+    - rails db:create
     - rails db:migrate
   image: web
 run:
