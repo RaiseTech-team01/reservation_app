@@ -2,10 +2,12 @@ build:
   docker:
     web: rails_app/Dockerfile
   config:
-    RAILS_ENV: development
+    # RAILS_ENV: development
+    RAILS_ENV: production
 release:
   command:
-    - ./_install.sh
+    - rails db:create
+    # - ./_install.sh
   image: web
 run:
   web: bundle exec puma -C config/puma.rb
