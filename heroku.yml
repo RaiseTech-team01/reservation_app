@@ -6,8 +6,8 @@ build:
   docker:
     web: rails_app/Dockerfile
   config:
-    # RAILS_ENV: development
-    RAILS_ENV: production
+    RAILS_ENV: development
+    # RAILS_ENV: production
 release:
   command:
     - rails db:create
