@@ -97,6 +97,12 @@ export default {
        return this.$store.getters.auth.isLogin;
     },
   },
+  
+  mounted() {
+    if (localStorage.getItem('access-token'))
+      this.$store.dispatch('auth/updateLogin', true)
+  },
+  
 
   methods: {
     toggle_navigation() {
@@ -116,7 +122,6 @@ export default {
     signin() {
       // TODO ログイン処理
       Router.push("/login")
-
     },
 
     async signout() {
@@ -152,10 +157,8 @@ export default {
       this.$store.dispatch('auth/updateLogin', false)
 
       Router.push("/login")
-
     },
     // isLogin() は、computedへ移動
-    
     goToReservationForm() {
       Router.push("/reservation_form")
     },

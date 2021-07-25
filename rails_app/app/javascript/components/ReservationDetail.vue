@@ -18,13 +18,13 @@
         </div>
         <div>
           <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">予約詳細内容</h2>
-          <form>
+          <form v-model="dataIndex">
             <table class="m-2 mt-10 table-auto max-w-full md:w-full md:text-center">
               <tr class="h-24">
                 <td class="block md:w-1/5 md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">店舗</td>
                 <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
                   <div>
-                    <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">イロハ駅前店</p>
+                    <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold"> {{userReservationData.reservationDataArray[userReservationDetail.rdId].store.name}}</p>
                   </div>
                 </td>
               </tr>
@@ -32,26 +32,28 @@
                 <td class="block md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">日付</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
                   <div>
-                    <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">2021年3月21日</p>
+                    <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
+                      {{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_at}}</p>
                   </div>
                 </td>
               </tr>
               <tr class="h-24">
                 <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">時間帯</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
-                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">18時00分～</p>
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold break-all">{{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_at}}～</p>
                 </td>
               </tr>
               <tr class="h-24">
                 <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800 whitespace-nowrap">ご利用人数</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
-                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">5名様</p>
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">{{ userReservationData.reservationDataArray[userReservationDetail.rdId].number_people}}名様</p>
                 </td>
               </tr>
               <tr class="h-24">
                 <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">ご予算</td>
                 <td class="block md:table-cell pb-6 md:pb-0">
-                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">3,000円</p>
+                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">
+                    {{ userReservationData.reservationDataArray[userReservationDetail.rdId].budget}}円</p>
                 </td>
               </tr>
               <tr class="h-24">
@@ -80,10 +82,16 @@ import Router from "../router/router"
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
+import {mapGetters} from "vuex";
+
+
+// var dataIndex = this.userReservationDetail.rdId;
+// console.log(dataIndex)
 
 export default {
   data: function () {
     return {
+    
     }
   },
 
@@ -96,9 +104,16 @@ export default {
   methods: {
     back() {
       Router.back()
-    }
-  }
+    },
+  },
+
+  computed: {
+    ...mapGetters(["userData"]),
+    ...mapGetters(["userReservationData"]),
+    ...mapGetters(["userReservationDetail"]),
+  },
 }
+
 </script>
 
 <style scoped>
