@@ -1,3 +1,7 @@
+setup:
+  addons:
+    - plan: jawsdb-maria
+      as: DATABASE
 build:
   docker:
     web: rails_app/Dockerfile
