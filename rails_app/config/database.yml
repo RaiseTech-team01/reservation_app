@@ -9,6 +9,7 @@
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
+binding.pry
 default: &default
   adapter: mysql2
   encoding: utf8mb4
@@ -53,8 +54,9 @@ test:
 #   database: rails_app_production
 #   username: rails_app
 #   password: <%= ENV['RAILS_APP_DATABASE_PASSWORD'] %>
-
+binding.pry
 production:
+  binding.pry
   database: <%= ENV['MYSQL_DATABASE'] %>
   url: <%= ENV['MYSQL_URL'] %>
   username: <%= ENV['MYSQL_USERNAME'] %>
