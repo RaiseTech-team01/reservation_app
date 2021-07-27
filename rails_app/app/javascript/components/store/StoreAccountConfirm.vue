@@ -113,33 +113,33 @@ export default {
   },
 
   methods: {
-        // 店舗情報を送信する
-        async goToComplete() {
-            this.loading = true;
-            const addUserParams = this.$store.getters.registrationStoreUserData
+    // 店舗情報を送信する
+    async goToComplete() {
+        this.loading = true;
+        const addUserParams = this.$store.getters.registrationStoreUserData
 
-            await axios
-                .post("/api/v1/store_auth/", addUserParams)
-                .then(response => {
-                    // Vuex store
-                  this.$store.dispatch('storeAuth/updateLogin', true)
-                  this.$store.dispatch('registrationUserData/updateErr', "")
+        await axios
+            .post("/api/v1/store_auth/", addUserParams)
+            .then(response => {
+                // Vuex store
+              this.$store.dispatch('storeAuth/updateLogin', true)
+              this.$store.dispatch('registrationUserData/updateErr', "")
 
-                  console.log(response)
-                  localStorage.setItem("store-access-token", response.headers["access-token"])
-                  localStorage.setItem("store-uid", response.headers["uid"])
-                  localStorage.setItem("store-client", response.headers["client"])
-                  Router.push("/store_dash_board");
-                })
-                .catch(e => {
-                  console.log(error.response.data.errors.full_messages)
-                  this.$store.dispatch('registrationStoreUserData/updateErr', error.response.data.errors.full_messages)
-                  Router.push("/store_account_form")
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-        },
+              console.log(response)
+              localStorage.setItem("store-access-token", response.headers["access-token"])
+              localStorage.setItem("store-uid", response.headers["uid"])
+              localStorage.setItem("store-client", response.headers["client"])
+              Router.push("/store_dash_board");
+            })
+            .catch(error => {
+              console.log(error.response.data.errors.full_messages)
+              this.$store.dispatch('registrationStoreUserData/updateErr', error.response.data.errors.full_messages)
+              Router.push("/store_account_form")
+            })
+            .finally(() => {
+                this.loading = false;
+            });
+    },
     getHiddenPasswordString() {
       const passwordLen = this.$store.getters.registrationStoreUserData.password.length
       return "*".repeat(passwordLen)
