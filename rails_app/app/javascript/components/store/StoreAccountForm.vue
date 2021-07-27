@@ -14,7 +14,7 @@
 
                 <div class="row g-5 flex justify-center">
                     <div class="col-md-7 col-lg-8">
-                        <div class="col-12 alert alert-danger">
+                        <div class="col-12 alert alert-danger" v-show="hasError">
                             <p>{{errorMessage}}</p>
                         </div>
                         <form class="row g-3 needs-validation" novalidate>
