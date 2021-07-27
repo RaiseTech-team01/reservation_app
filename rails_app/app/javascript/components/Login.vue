@@ -155,7 +155,7 @@ export default {
           // Vuex store
           this.$store.dispatch('userData/update', this.loginedUserData)
           this.$store.dispatch('auth/updateLogin', true)
-          Router.push("/account_info")
+          Router.push("/api/v1/user/account_info")
         })
         .catch(error => {
           // TODO: 適切な Error 表示

@@ -117,7 +117,7 @@ export default {
 
   methods: {
     goToComplete() {
-      Router.push("/reservation_complete")
+      Router.push("/api/v1/user/reservation_complete")
     },
     back() {
       Router.back()

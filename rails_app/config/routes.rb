@@ -6,16 +6,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   get "/sign_up_confirm", to: "home#top"
   get "/sign_up_complete", to: "home#top"
   get "/login", to: "home#top"
-  get "/account_info", to: "home#top"
-  get "/account_edit", to: "home#top"
-  get "/reservation_form", to: "home#top"
-  get "/reservation_confirm", to: "home#top"
-  get "/reservation_complete", to: "home#top"
-  get "/reservation_list", to: "home#top"
-  get "/reservation_detail", to: "home#top"
-  get "/reservation_history", to: "home#top"
-  get "/reservation_view_history", to: "home#top"
-  get "/reservation_edit", to: "home#top"
+
   get "/store_login", to: "home#top"
   get "/store_reservation_list", to: "home#top"
   get "/store_account_form", to: "home#top"
@@ -36,8 +27,20 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         sessions: "api/v1/store_auth/sessions",
       }
 
-      resources :store do
-        resources :reservations
+      namespace :user do
+        # account
+        get "/account_info", to: "account#index", at:  :account_info
+        get "/account_edit", to: "account#index", at:  :account_edit
+
+        # reservation
+        get "/reservation_form", to: "reservations#index", at:  :reservation_form
+        get "/reservation_confirm", to: "reservations#index", at: :reservation_confirm
+        get "/reservation_complete", to: "reservations#index", at: :reservation_complete
+        get "/reservation_list", to: "reservations#index", at: :reservation_list
+        get "/reservation_detail", to: "reservations#index", at: :reservation_detail
+        get "/reservation_history", to: "reservations#index", at:  :reservation_history
+        get "/reservation_view_history", to: "reservations#index", at: :reservation_view_history
+        get "/reservation_edit", to: "reservations#index", at: :reservation_edit
       end
 
       namespace :stores do

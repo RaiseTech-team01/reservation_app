@@ -149,7 +149,7 @@ export default {
       }
     },
     goToConfirm() {
-      Router.push("/reservation_confirm")
+      Router.push("/api/v1/user/reservation_confirm")
     },
   },
 }

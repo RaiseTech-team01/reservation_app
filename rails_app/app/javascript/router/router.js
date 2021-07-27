@@ -56,43 +56,43 @@ const router = new Router({
       component: Login
     },
     {
-      path: '/account_info',
+      path: '/api/v1/user/account_info',
       component: AccountInfo
     },
     {
-      path: '/account_edit',
+      path: '/api/v1/user/account_edit',
       component: AccountEdit
     },
     {
-      path: '/reservation_form',
+      path: '/api/v1/user/reservation_form',
       component: ReservationForm
     },
     {
-      path: '/reservation_confirm',
+      path: '/api/v1/user/reservation_confirm',
       component: ReservationConfirm
     },
     {
-      path: '/reservation_complete',
+      path: '/api/v1/user/reservation_complete',
       component: ReservationCompletion
     },
     {
-      path: '/reservation_list',
+      path: '/api/v1/user/reservation_list',
       component: ReservationList
     },
     {
-      path: '/reservation_detail',
+      path: '/api/v1/user/reservation_detail',
       component: ReservationDetail
     },
     {
-      path: '/reservation_edit',
+      path: '/api/v1/user/reservation_edit',
       component: ReservationEdit
     },
     {
-      path: '/reservation_history',
+      path: '/api/v1/user/reservation_history',
       component: ReservationHistory
     },
     {
-      path: '/reservation_view_history',
+      path: '/api/v1/user/reservation_view_history',
       component: ReservationViewHistory
     },
     {

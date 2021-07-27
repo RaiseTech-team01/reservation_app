@@ -66,7 +66,7 @@ export default {
 
   methods: {
     goToTop() {
-      Router.push("/account_info")
+      Router.push("/api/v1/user/account_info")
     }
   }
 }
