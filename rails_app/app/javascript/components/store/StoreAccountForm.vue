@@ -443,7 +443,7 @@ export default {
 <style scoped src="../../../assets/stylesheets/offcanvas.css"></style>
 <style scoped>
 p {
-    font-size: 2em;
+    font-size: 1.0rem;
     text-align: center;
 }
 
