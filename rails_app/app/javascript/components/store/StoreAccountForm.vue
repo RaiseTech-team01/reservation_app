@@ -274,7 +274,6 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <!--<button type="submit" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="submit">登録確認</button>-->
                                 <button
                                     type="submit"
                                     class="m-3 px-5 btn btn-primary btn-lg btn-block"
@@ -357,7 +356,7 @@ export default {
                 .catch(e => {
                     if (e.response) {
                         this.hasError = true;
-                        this.errorMessage = e.response.data.errors[0];
+                        this.errorMessage = e.response.data.errors.full_messages[0];
 
                         this.showErrorMessage(e)
 
@@ -371,9 +370,6 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
-        },
-        showErrorMessage(e) {
-            this.errorMessage = e.response.data.errors.full_messages[0]
         },
         goToAccountConfirm() {
             Router.push("/store_account_confirm");
