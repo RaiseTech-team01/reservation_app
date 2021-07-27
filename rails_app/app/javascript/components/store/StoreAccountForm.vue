@@ -11,12 +11,8 @@
                         お客様の店舗用のアカウントを作成いたします。<br />情報の登録をお願いいたします。
                     </p>
                 </div>
-
                 <div class="row g-5 flex justify-center">
                     <div class="col-md-7 col-lg-8">
-                        <div class="col-12 alert alert-danger" v-show="hasError">
-                            <p>{{errorMessage}}</p>
-                        </div>
                         <form class="row g-3 needs-validation" novalidate>
                             <div class="col-12">
                                 <label for="firstName" class="form-label"
@@ -306,15 +302,12 @@
 </template>
 
 <script>
-import axios from "axios";
 import Router from "../../router/router";
 import StoreHeader from "../layout/StoreHeader.vue";
 
 export default {
     data: function() {
         return {
-            hasError: false,
-            errorMessage: "",
             storeData: {
                 name: "",
                 email: "",
@@ -340,37 +333,6 @@ export default {
     },
 
     methods: {
-        // 店舗情報を送信する
-        async submit() {
-            this.loading = true;
-            await axios
-                .post("/api/v1/store_auth/", this.storeData)
-                .then(response => {
-
-                    // Vuex store
-                    this.$store.dispatch('registrationStoreUserData/update', response.data.data)
-                    this.$store.dispatch('storeAuth/updateLogin', true)
-
-                    Router.push("/store_account_confirm");
-                })
-                .catch(e => {
-                    if (e.response) {
-                        this.hasError = true;
-                        this.errorMessage = e.response.data.errors.full_messages[0];
-
-                        this.showErrorMessage(e)
-
-                        console.log(e.response.data);
-                        console.log(e.response.status);
-                        console.log(e.response.headers);
-                    } else {
-                        console.log("Error", e.message);
-                    }
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-        },
         goToAccountConfirm() {
             Router.push("/store_account_confirm");
         },
@@ -434,7 +396,9 @@ export default {
         this.appendBootstrapScriptTag();
         this.initializeValidation(() => {
             console.log("success validation")
-            this.submit();
+
+            this.$store.dispatch('registrationStoreUserData/update', this.storeData)
+            this.goToAccountConfirm();
         });
     }
 };
