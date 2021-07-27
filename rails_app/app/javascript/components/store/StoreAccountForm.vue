@@ -391,7 +391,7 @@ export default {
             linkEl.setAttribute("crossorigin", "anonymous");
             document.head.appendChild(linkEl);
         },
-        initializeValidation() {
+        initializeValidation(validatedCallback) {
             const instance0 = this;
             this.$nextTick(function() {
                 console.log(this);
@@ -419,7 +419,8 @@ export default {
                                 event.preventDefault();
                                 event.stopPropagation();
                                 console.log(this);
-                                instance.submit();
+
+                                validatedCallback();
                             }
                             form.classList.add("was-validated");
                         },
@@ -431,7 +432,10 @@ export default {
     },
     mounted() {
         this.appendBootstrapScriptTag();
-        this.initializeValidation();
+        this.initializeValidation(() => {
+            console.log("success validation")
+            this.submit();
+        });
     }
 };
 </script>
