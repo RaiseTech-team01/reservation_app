@@ -117,13 +117,14 @@ export default {
     async goToComplete() {
         this.loading = true;
         const addUserParams = this.$store.getters.registrationStoreUserData
-
+        delete addUserParams.errs
+        
         await axios
             .post("/api/v1/store_auth/", addUserParams)
             .then(response => {
-                // Vuex store
+              // Vuex store
               this.$store.dispatch('storeAuth/updateLogin', true)
-              this.$store.dispatch('registrationUserData/updateErr', "")
+              this.$store.dispatch('registrationStoreUserData/updateErr', "")
 
               console.log(response)
               localStorage.setItem("store-access-token", response.headers["access-token"])
