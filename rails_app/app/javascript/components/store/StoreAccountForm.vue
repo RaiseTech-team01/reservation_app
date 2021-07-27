@@ -349,7 +349,7 @@ export default {
                 .then(response => {
 
                     // Vuex store
-                    this.$store.dispatch('storeUserData/update', response.data.data)
+                    this.$store.dispatch('registrationStoreUserData/update', response.data.data)
                     this.$store.dispatch('storeAuth/updateLogin', true)
 
                     Router.push("/store_account_confirm");
