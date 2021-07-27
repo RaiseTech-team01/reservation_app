@@ -13,6 +13,9 @@
                 </div>
                 <div class="row g-5 flex justify-center">
                     <div class="col-md-7 col-lg-8">
+                        <div class="col-12 alert alert-danger" v-show="hasError()">
+                            <p>{{errorMessage}}</p>
+                        </div>
                         <form class="row g-3 needs-validation" novalidate>
                             <div class="col-12">
                                 <label for="firstName" class="form-label"
@@ -308,6 +311,7 @@ import StoreHeader from "../layout/StoreHeader.vue";
 export default {
     data: function() {
         return {
+            errorMessage: "",
             storeData: {
                 name: "",
                 email: "",
@@ -333,6 +337,9 @@ export default {
     },
 
     methods: {
+        hasError() {
+            return !!this.errorMessage
+        },
         goToAccountConfirm() {
             Router.push("/store_account_confirm");
         },
@@ -400,6 +407,7 @@ export default {
             this.$store.dispatch('registrationStoreUserData/update', this.storeData)
             this.goToAccountConfirm();
         });
+        this.errorMessage = this.$store.getters.registrationStoreUserData.errs
     }
 };
 </script>

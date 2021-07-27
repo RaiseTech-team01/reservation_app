@@ -12,9 +12,6 @@
 
       <div class="row g-5 flex justify-center">
         <div class="col-md-7 col-lg-8">
-          <div class="col-12 alert alert-danger" v-show="hasError">
-            <p>{{errorMessage}}</p>
-          </div>
           <form class="needs-validation" @submit="validate" novalidate>
             <div class="row g-3">
               <div class="col-12">
@@ -82,7 +79,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="goToDashBoard">登　録</button>
+        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="goToComplete">登　録</button>
         <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block" @click.prevent="back">戻　る</button>
       </div>
     </main>
@@ -108,10 +105,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      storeData: [],
-      hasError: false,
-      errorMessage: "",
-    }
+      storeData: [],    }
   },
 
   components: {
@@ -120,30 +114,27 @@ export default {
 
   methods: {
         // 店舗情報を送信する
-        async submit() {
+        async goToComplete() {
             this.loading = true;
+            const addUserParams = this.$store.getters.registrationStoreUserData
+
             await axios
-                .post("/api/v1/store_auth/", this.storeData)
+                .post("/api/v1/store_auth/", addUserParams)
                 .then(response => {
-
                     // Vuex store
-                    this.$store.dispatch('storeAuth/updateLogin', true)
+                  this.$store.dispatch('storeAuth/updateLogin', true)
+                  this.$store.dispatch('registrationUserData/updateErr', "")
 
-                    Router.push("/store_account_confirm");
+                  console.log(response)
+                  localStorage.setItem("store-access-token", response.headers["access-token"])
+                  localStorage.setItem("store-uid", response.headers["uid"])
+                  localStorage.setItem("store-client", response.headers["client"])
+                  Router.push("/store_dash_board");
                 })
                 .catch(e => {
-                    if (e.response) {
-                        this.hasError = true;
-                        this.errorMessage = e.response.data.errors.full_messages[0];
-
-                        this.showErrorMessage(e)
-
-                        console.log(e.response.data);
-                        console.log(e.response.status);
-                        console.log(e.response.headers);
-                    } else {
-                        console.log("Error", e.message);
-                    }
+                  console.log(error.response.data.errors.full_messages)
+                  this.$store.dispatch('registrationStoreUserData/updateErr', error.response.data.errors.full_messages)
+                  Router.push("/store_account_form")
                 })
                 .finally(() => {
                     this.loading = false;
@@ -155,9 +146,6 @@ export default {
         event.stopPropagation()
       }
       event.target.classList.add('was-validated')
-    },
-    goToDashBoard() {
-      Router.push("/store_dash_board")
     },
     back() {
       Router.back()
