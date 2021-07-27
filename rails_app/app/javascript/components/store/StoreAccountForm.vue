@@ -344,7 +344,6 @@ export default {
             await axios
                 .post("/api/v1/store_auth/", this.storeData)
                 .then(response => {
-                    this.saveHeaderToLocalStorage(response.headers)
 
                     // Vuex store
                     this.$store.dispatch('storeUserData/update', response.data.data)
@@ -367,11 +366,6 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
-        },
-        saveHeaderToLocalStorage(headers) {
-            ["access-token", "uid", "client"].forEach(l => {
-                localStorage.setItem(l, headers[l])
-            })
         },
         goToAccountConfirm() {
             Router.push("/store_account_confirm");
