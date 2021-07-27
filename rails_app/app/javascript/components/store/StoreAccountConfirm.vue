@@ -28,11 +28,11 @@
               </div>
               <div class="col-12">
                 <h4>パスワード</h4>
-                <p class="">{{getHiddenPasswordString()}}</p>
+                <p class="">{{getHiddenPasswordString(false)}}</p>
               </div>
               <div class="col-12">
                 <h4>パスワード（確認）</h4>
-                <p class="">{{getHiddenPasswordString()}}</p>
+                <p class="">{{getHiddenPasswordString(true)}}</p>
               </div>
               <div class="col-12">
                 <h4>電話番号</h4>
@@ -141,8 +141,10 @@ export default {
                 this.loading = false;
             });
     },
-    getHiddenPasswordString() {
-      const passwordLen = this.$store.getters.registrationStoreUserData.password.length
+    getHiddenPasswordString(isConfirmation) {
+      const passwordLen = isConfirmation ? 
+              this.$store.getters.registrationStoreUserData.password_confirmation.length : 
+              this.$store.getters.registrationStoreUserData.password.length
       return "*".repeat(passwordLen)
     },
     validate(event) {

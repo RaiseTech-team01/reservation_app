@@ -360,6 +360,11 @@ export default {
             linkEl.setAttribute("crossorigin", "anonymous");
             document.head.appendChild(linkEl);
         },
+        initializeStoreData() {
+            this.storeData = this.$store.getters.registrationStoreUserData;
+            this.storeData.password = "";
+            this.storeData.password_confirmation = "";
+        },
         initializeValidation(validatedCallback) {
             const instance0 = this;
             this.$nextTick(function() {
@@ -407,6 +412,7 @@ export default {
             this.$store.dispatch('registrationStoreUserData/update', this.storeData)
             this.goToAccountConfirm();
         });
+        this.initializeStoreData();
         this.errorMessage = this.$store.getters.registrationStoreUserData.errs
     }
 };
