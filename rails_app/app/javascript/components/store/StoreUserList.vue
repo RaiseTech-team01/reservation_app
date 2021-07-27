@@ -44,6 +44,14 @@
                   <td>男性</td>
                   <td>08055556666</td>
                 </tr>
+                <tr>
+                  <td>{{ userList[0].id }}</td>
+                  <td>{{ userList[0].name }}</td>
+                  <td>{{ userList[0].email }}</td>
+                  <td>{{ userList[0].age }}</td>
+                  <td>{{ userList[0].gendar }}</td>
+                  <td>{{ userList[0].tel }}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -55,10 +63,13 @@
 
 <script>
 import StoreHeader from "../layout/StoreHeader.vue";
+import axios from "axios";
 
 export default {
   data: function () {
-    return {};
+    return {
+      userList: [],
+    };
   },
 
   components: {
@@ -73,6 +84,62 @@ export default {
       }
       event.target.classList.add("was-validated");
     },
+    initialize() {
+      console.log("init");
+    },
+    addData(data) {
+      this.userList.push(data);
+    },
+    async submit(successCallback) {
+      this.typedEmail = document.getElementById("user_email").value;
+      this.typedPassword = document.getElementById("user_pass").value;
+      this.loading = true;
+      const params = {
+        email: `${this.typedEmail}`,
+        password: `${this.typedPassword}`,
+      };
+      await axios
+        .post("/api/v1/auth/sign_in", params)
+        .then((response) => {
+          successCallback();
+          // localStorage.setItem("access-token", response.headers["access-token"])
+          // localStorage.setItem("uid", response.headers["uid"])
+          // localStorage.setItem("client", response.headers["client"])
+
+          // // console.log(response.data.data)
+          // this.loginedUserData = response.data.data
+          // console.log(this.loginedUserData)
+
+          // // Vuex store
+          // this.$store.dispatch('userData/update', this.loginedUserData)
+          // this.$store.dispatch('auth/updateLogin', true)
+          // Router.push("/api/v1/user/account_info")
+        })
+        .catch((error) => {
+          // TODO: 適切な Error 表示
+          // console.log(error.response),
+          // console.log(error.response.data.errors),
+          // this.$store.dispatch('userData/updateErr', error.response.data.errors)
+          // Router.push("/login")
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+      console.log("axios finished");
+    },
+  },
+  mounted: function () {
+    // submit(() => {
+    //   this.initialize();
+    // })
+    this.addData({
+      id: "4",
+      name: "木村雄二",
+      email: "user4@sample.com",
+      age: 45,
+      gendar: "男性",
+      tel: "08034566543",
+    });
   },
 };
 </script>
