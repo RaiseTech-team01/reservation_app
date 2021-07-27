@@ -28,11 +28,11 @@
               </div>
               <div class="col-12">
                 <h4>パスワード</h4>
-                <p class="">********</p>
+                <p class="">{{getHiddenPasswordString()}}</p>
               </div>
               <div class="col-12">
                 <h4>パスワード（確認）</h4>
-                <p class="">********</p>
+                <p class="">{{getHiddenPasswordString()}}</p>
               </div>
               <div class="col-12">
                 <h4>電話番号</h4>
@@ -140,6 +140,10 @@ export default {
                     this.loading = false;
                 });
         },
+    getHiddenPasswordString() {
+      const passwordLen = this.$store.getters.registrationStoreUserData.password.length
+      return "*".repeat(passwordLen)
+    },
     validate(event) {
       if (!event.target.checkValidity()) {
         event.preventDefault()

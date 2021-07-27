@@ -8,6 +8,8 @@ const state = {
     name: "",
     furigana: "",
     email: "",
+    password: "",
+    password_confirmation: "",
     tel: "",
     fax: "",
     postal_code: "",
@@ -31,6 +33,8 @@ const state = {
         state.name = data.name
         state.furigana = data.furigana
         state.email = data.email
+        state.password = data.password
+        state.password_confirmation = data.password_confirmation
         state.tel = data.tel
         state.fax = data.fax
         state.postal_code = data.postal_code
