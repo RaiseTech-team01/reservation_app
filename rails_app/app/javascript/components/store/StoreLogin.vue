@@ -1,82 +1,107 @@
 <template>
-<div class="text-center">
-  <main class="form-signin">
-    <form>
-      <div class="flex justify-center">
-        <img class="mb-4 w-18 h-14" src="/logo.png" alt="">
-      </div>
-      <h1 class="h3 mb-3 fw-normal">管理画面ログイン</h1>
+  <div class="text-center">
+    <main class="form-signin">
+      <form>
+        <div class="flex justify-center">
+          <img class="mb-4 w-18 h-14" src="/logo.png" alt="" />
+        </div>
+        <h1 class="h3 mb-3 fw-normal">管理画面ログイン</h1>
 
-      <div v-show="hasError" class="my-4 pb-0 alert alert-danger" role="alert">
-        <p>{{ errorMessage }}</p>
-      </div>
-      <div class="form-floating">
-        <input type="email" class="form-control" id="user_email" placeholder="name@example.com">
-        <label for="floatingInput">メールアドレス</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="user_pass" placeholder="Password">
-        <label for="floatingPassword">パスワード</label>
-      </div>
+        <div
+          v-show="hasError"
+          class="my-4 pb-0 alert alert-danger"
+          role="alert"
+        >
+          <p>{{ errorMessage }}</p>
+        </div>
+        <div class="form-floating">
+          <input
+            type="email"
+            class="form-control"
+            id="user_email"
+            placeholder="name@example.com"
+          />
+          <label for="floatingInput">メールアドレス</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="user_pass"
+            placeholder="Password"
+          />
+          <label for="floatingPassword">パスワード</label>
+        </div>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> ログイン情報を保存する
-        </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" @click.prevent="submit">ログイン</button>
-      <button class="w-100 mt-4 btn btn-lg btn-info" type="submit" @click.prevent="goToRegistration">アカウントを登録</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-    </form>
-  </main>
-</div>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" /> ログイン情報を保存する
+          </label>
+        </div>
+        <button
+          class="w-100 btn btn-lg btn-primary"
+          type="submit"
+          @click.prevent="submit"
+        >
+          ログイン
+        </button>
+        <button
+          class="w-100 mt-4 btn btn-lg btn-info"
+          type="submit"
+          @click.prevent="goToRegistration"
+        >
+          アカウントを登録
+        </button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      </form>
+    </main>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Router from "../../router/router";
+import Router from '../../router/router'
 
 export default {
   data: function () {
     return {
-      name:  '',
+      name: '',
       loading: false,
       email: '',
       password: '',
       hasError: false,
-      errorMessage: "ログインに失敗しました。",
+      errorMessage: 'ログインに失敗しました。',
     }
   },
 
-  components: {
-  },
+  components: {},
 
   methods: {
     // ログイン情報を送信する
     async submit() {
-      this.email = document.getElementById("user_email").value
-      this.password = document.getElementById("user_pass").value
+      this.email = document.getElementById('user_email').value
+      this.password = document.getElementById('user_pass').value
       this.loading = true
       const params = {
         email: this.email,
         password: this.password,
       }
       await axios
-        .post("/api/v1/store_auth/sign_in", params)
-        .then(response => {
-          localStorage.setItem("access-token", response.headers["access-token"])
-          localStorage.setItem("uid", response.headers["uid"])
-          localStorage.setItem("client", response.headers["client"])
+        .post('/api/v1/store_auth/sign_in', params)
+        .then((response) => {
+          localStorage.setItem('access-token', response.headers['access-token'])
+          localStorage.setItem('uid', response.headers['uid'])
+          localStorage.setItem('client', response.headers['client'])
 
-          Router.push("/store_dash_board")
+          Router.push('/store_dash_board')
 
           // TODO: Vuex でログイン状態を管理するようになったら消す
           window.location.reload()
         })
-        .catch(e => {
+        .catch((e) => {
           // TODO: 適切な Error 表示
           if (e.response) {
-            this.hasError = true;
+            this.hasError = true
             this.errorMessage = e.response.data.errors[0]
 
             console.log(e.response.data)
@@ -93,15 +118,14 @@ export default {
         })
     },
     goToRegistration() {
-      Router.push("/store_account_form")
-    }
-  }
+      Router.push('/store_account_form')
+    },
+  },
 }
 </script>
 
 <style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
 <style scoped>
-
 /* --- start signin.css ---- */
 
 html,
@@ -132,13 +156,13 @@ body {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin input[type='email'] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form-signin input[type='password'] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
