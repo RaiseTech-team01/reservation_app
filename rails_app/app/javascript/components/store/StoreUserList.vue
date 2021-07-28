@@ -77,6 +77,8 @@ export default {
       await axios
         .post('/api/v1/auth/sign_in', params)
         .then((response) => {
+          // TODO ユーザ一覧データを取得するためのAPIを叩き、取得したデータをuserListに設定する
+
           successCallback()
           // localStorage.setItem("access-token", response.headers["access-token"])
           // localStorage.setItem("uid", response.headers["uid"])
@@ -92,6 +94,7 @@ export default {
           // Router.push("/api/v1/user/account_info")
         })
         .catch((error) => {
+          // TODO エラー情報をアラートとして画面に表示する
           // TODO: 適切な Error 表示
           // console.log(error.response),
           // console.log(error.response.data.errors),
