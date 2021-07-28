@@ -19,7 +19,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                   <td>1,001</td>
                   <td>2021/06/15</td>
                   <td>田中 一郎</td>
@@ -60,6 +60,13 @@
                   <td>川上 七郎</td>
                   <td>18:45~</td>
                   <td>8</td>
+                </tr> -->
+                <tr v-for="item in reservationList" :key="item.id">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.date }}</td>
+                  <td>{{ item.user }}</td>
+                  <td>{{ item.startTime }}</td>
+                  <td>{{ item.seatNum }}</td>
                 </tr>
               </tbody>
             </table>
@@ -75,7 +82,9 @@ import StoreHeader from '../layout/StoreHeader.vue'
 
 export default {
   data: function () {
-    return {}
+    return {
+      reservationList: [],
+    }
   },
 
   components: {
@@ -90,6 +99,35 @@ export default {
       }
       event.target.classList.add('was-validated')
     },
+    addData() {
+      this.reservationList.push({
+        id: 1100,
+        date: '2021/07/01',
+        user: '山田　太郎',
+        startTime: '19:30',
+        seatNum: 20,
+      })
+      this.reservationList.push({
+        id: 1101,
+        date: '2021/07/02',
+        user: '川田　太郎',
+        startTime: '20:00',
+        seatNum: 5,
+      })
+      this.reservationList.push({
+        id: 1103,
+        date: '2021/07/03',
+        user: '木村　太郎',
+        startTime: '19:00',
+        seatNum: 25,
+      })
+    },
+    initialize() {
+      this.addData()
+    },
+  },
+  mounted() {
+    this.initialize()
   },
 }
 </script>
