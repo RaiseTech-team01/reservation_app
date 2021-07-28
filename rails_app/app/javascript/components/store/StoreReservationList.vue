@@ -19,48 +19,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- <tr>
-                  <td>1,001</td>
-                  <td>2021/06/15</td>
-                  <td>田中 一郎</td>
-                  <td>18:00~</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>2021/06/15</td>
-                  <td>鈴木 次郎</td>
-                  <td>19:00~</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>2021/06/16</td>
-                  <td>森田 三郎</td>
-                  <td>18:00~</td>
-                  <td>30</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>2021/06/16</td>
-                  <td>久保田 史郎</td>
-                  <td>23:30~</td>
-                  <td>3</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>2021/06/18</td>
-                  <td>吉本 六郎</td>
-                  <td>19:30~</td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>2021/06/19</td>
-                  <td>川上 七郎</td>
-                  <td>18:45~</td>
-                  <td>8</td>
-                </tr> -->
                 <tr v-for="item in reservationList" :key="item.id">
                   <td>{{ item.id }}</td>
                   <td>{{ item.date }}</td>
