@@ -3,7 +3,7 @@
     <dir class="storeheader m-0 text-center">
       <StoreHeader />
     </dir>
-    <div class="container">
+    <div class="container-fruid mt-20">
       <main>
         <div class="py-5 text-center">
           <h2>DashBoard</h2>
@@ -24,23 +24,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>2021/06/26</td>
-                        <td>金</td>
-                        <td>7</td>
-                        <td>32</td>
-                      </tr>
-                      <tr>
-                        <td>2021/06/27</td>
-                        <td>土</td>
-                        <td>8</td>
-                        <td>46</td>
-                      </tr>
-                      <tr>
-                        <td>2021/06/28</td>
-                        <td>日</td>
-                        <td>1</td>
-                        <td>10</td>
+                      <tr v-for="rsrv in reservationList" :key="rsrv.id">
+                        <td>{{ rsrv.date }}</td>
+                        <td>{{ rsrv.day }}</td>
+                        <td>{{ rsrv.groupNum }}</td>
+                        <td>{{ rsrv.seatNum }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -58,27 +46,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>ユーザ1</td>
-                        <td>30</td>
-                        <td>男性</td>
-                        <td>東京都千代田区飯田橋234-5</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>ユーザ2</td>
-                        <td>38</td>
-                        <td>女性</td>
-                        <td>埼玉県秩父市炭原町鉱田135-7</td>
-                      </tr>
-
-                      <tr>
-                        <td>3</td>
-                        <td>ユーザ3</td>
-                        <td>46</td>
-                        <td>男性</td>
-                        <td>栃木県那須塩原市池口246-8</td>
+                      <tr v-for="user in userList" :key="user.id">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.age }}</td>
+                        <td>{{ user.gendar }}</td>
+                        <td>{{ user.address }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -106,7 +79,10 @@ import StoreHeader from '../layout/StoreHeader.vue'
 
 export default {
   data: function () {
-    return {}
+    return {
+      userList: [],
+      reservationList: [],
+    }
   },
 
   components: {
@@ -121,6 +97,30 @@ export default {
       }
       event.target.classList.add('was-validated')
     },
+    addUser(user) {
+      this.userList.push(user)
+    },
+    addReservation(rsrv) {
+      this.reservationList.push(rsrv)
+    },
+    initialize() {
+      this.addUser({
+        id: 0,
+        name: 'ユーザ110',
+        gendar: '男性',
+        address: '宮城県登米市海江町三社1-1-1',
+      })
+      this.addReservation({
+        id: 0,
+        date: '2021/07/31',
+        day: '木',
+        groupNum: 10,
+        seatNum: 55,
+      })
+    },
+  },
+  mounted() {
+    this.initialize()
   },
 }
 </script>
