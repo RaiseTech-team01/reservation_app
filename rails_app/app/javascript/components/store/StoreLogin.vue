@@ -89,9 +89,12 @@ export default {
       await axios
         .post('/api/v1/store_auth/sign_in', params)
         .then((response) => {
-          localStorage.setItem('access-token', response.headers['access-token'])
-          localStorage.setItem('uid', response.headers['uid'])
-          localStorage.setItem('client', response.headers['client'])
+          localStorage.setItem(
+            'store-access-token',
+            response.headers['access-token']
+          )
+          localStorage.setItem('store-uid', response.headers['uid'])
+          localStorage.setItem('store-client', response.headers['client'])
 
           Router.push('/store_dash_board')
 
