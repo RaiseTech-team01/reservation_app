@@ -20,30 +20,6 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>田中一郎</td>
-                  <td>user1@sample.com</td>
-                  <td>30</td>
-                  <td>男性</td>
-                  <td>08011112222</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>佐藤二郎</td>
-                  <td>user2@sample.com</td>
-                  <td>35</td>
-                  <td>男性</td>
-                  <td>08033334444</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>川上三郎</td>
-                  <td>user3@sample.com</td>
-                  <td>40</td>
-                  <td>男性</td>
-                  <td>08055556666</td>
-                </tr>
                 <tr v-for="user in userList" :key="user.id">
                   <td>{{ user.id }}</td>
                   <td>{{ user.name }}</td>
@@ -133,18 +109,26 @@ export default {
     //   this.initialize();
     // })
     this.addData({
-      id: '4',
+      id: '1',
       name: '木村雄二',
-      email: 'user4@sample.com',
-      age: 45,
+      email: 'user1@sample.com',
+      age: 25,
       gendar: '男性',
       tel: '08034566543',
     })
     this.addData({
-      id: '5',
-      name: '田中雅史',
-      email: 'user5@sample.com',
-      age: 50,
+      id: '2',
+      name: '田中紀子',
+      email: 'user2@sample.com',
+      age: 30,
+      gendar: '女性',
+      tel: '08098761234',
+    })
+    this.addData({
+      id: '3',
+      name: '村上庄司',
+      email: 'user3@sample.com',
+      age: 20,
       gendar: '男性',
       tel: '08098761234',
     })
