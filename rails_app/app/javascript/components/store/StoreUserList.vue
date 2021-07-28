@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import StoreHeader from "../layout/StoreHeader.vue"
-import axios from "axios"
+import StoreHeader from '../layout/StoreHeader.vue'
+import axios from 'axios'
 
 export default {
   data: function () {
@@ -82,24 +82,24 @@ export default {
         event.preventDefault()
         event.stopPropagation()
       }
-      event.target.classList.add("was-validated")
+      event.target.classList.add('was-validated')
     },
     initialize() {
-      console.log("init")
+      console.log('init')
     },
     addData(data) {
       this.userList.push(data)
     },
     async submit(successCallback) {
-      this.typedEmail = document.getElementById("user_email").value
-      this.typedPassword = document.getElementById("user_pass").value
+      this.typedEmail = document.getElementById('user_email').value
+      this.typedPassword = document.getElementById('user_pass').value
       this.loading = true
       const params = {
         email: `${this.typedEmail}`,
         password: `${this.typedPassword}`,
       }
       await axios
-        .post("/api/v1/auth/sign_in", params)
+        .post('/api/v1/auth/sign_in', params)
         .then((response) => {
           successCallback()
           // localStorage.setItem("access-token", response.headers["access-token"])
@@ -125,7 +125,7 @@ export default {
         .finally(() => {
           this.loading = false
         })
-      console.log("axios finished")
+      console.log('axios finished')
     },
   },
   mounted: function () {
