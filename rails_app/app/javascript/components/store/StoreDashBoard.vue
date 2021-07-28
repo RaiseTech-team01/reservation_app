@@ -144,7 +144,7 @@ export default {
 <style scoped src="../../../assets/stylesheets/dashboard.css"></style>
 <style scoped>
 p {
-  font-size: 2em;
+  font-size: 1em;
   text-align: center;
 }
 
