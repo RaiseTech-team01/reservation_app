@@ -67,28 +67,15 @@ export default {
       }
       event.target.classList.add('was-validated')
     },
-    addData() {
-      this.reservationList.push({
-        id: 1100,
-        date: '2021/07/01',
-        user: '山田　太郎',
-        startTime: '19:30',
-        seatNum: 20,
-      })
-      this.reservationList.push({
-        id: 1101,
-        date: '2021/07/02',
-        user: '川田　太郎',
-        startTime: '20:00',
-        seatNum: 5,
-      })
-      this.reservationList.push({
-        id: 1103,
-        date: '2021/07/03',
-        user: '木村　太郎',
-        startTime: '19:00',
-        seatNum: 25,
-      })
+    addData(item) {
+      this.reservationList.push(item)
+    },
+    makeHeaders(accessToken, client, uid) {
+      let headers = {}
+      headers['access-token'] = accessToken
+      headers['client'] = client
+      headers['uid'] = uid
+      return headers
     },
     getDateString(reserveData) {
       // date_at: "2021-01-01T00:00:00.000+09:00"
@@ -103,16 +90,17 @@ export default {
       return str[1] + ':' + str[2]
     },
     async requestRsrvData() {
-      console.log('requestRsrvData')
       this.loading = true
 
-      this.requestHeaders['access-token'] = 'fUt09hKBSccZ_Bw0dnPizQ'
-      // this.requestHeaders['access-token'] = 'fUt09hKBSccZ_Bw0dnPizQasfsdfsd'
-      this.requestHeaders['client'] = 'KyFzCkpSzX3mwsOkmVB3YA'
-      // this.requestHeaders['uid'] = 'store1@sample.com'
-      this.requestHeaders['uid'] = 'store1@sample.com'
-
-      console.log(this.requestHeaders)
+      const accessToken = localStorage.getItem('store-access-token')
+      const client = localStorage.getItem('store-client')
+      const uid = localStorage.getItem('store-uid')
+      if (!(accessToken && client && uid)) {
+        this.errorMessage =
+          '正常なログイン情報が格納されていません。再ログインしてください。'
+        return
+      }
+      this.requestHeaders = this.makeHeaders(accessToken, client, uid)
 
       await axios
         .get(
@@ -121,9 +109,7 @@ export default {
           { data: {} }
         )
         .then((response) => {
-          console.log('res', response)
           this.errorMessage = ''
-
           const reserveData = response.data.map((rsrv) => {
             return {
               id: rsrv.id,
@@ -134,47 +120,21 @@ export default {
             }
           })
           reserveData.forEach((item) => {
-            this.reservationList.push(item)
+            this.addData(item)
           })
-
-          // Vuex store
-          // this.$store.dispatch('storeAuth/updateLogin', true)
-          // this.$store.dispatch('registrationStoreUserData/updateErr', '')
-          // console.log(response)
-          // localStorage.setItem(
-          //   'store-access-token',
-          //   response.headers['access-token']
-          // )
-          // localStorage.setItem('store-uid', response.headers['uid'])
-          // localStorage.setItem('store-client', response.headers['client'])
-          // Router.push('/store_dash_board')
         })
         .catch((error) => {
-          console.log('error')
-          // console.log('err', error.response)
-          // console.log('err', error.response.data.errors[0])
           this.errorMessage = error.response.data.errors[0]
-          // console.log(error.response.status)
-          // console.log(error.response.data.errors.full_messages)
-          // this.$store.dispatch(
-          //   'registrationStoreUserData/updateErr',
-          //   error.response.data.errors.full_messages
-          // )
-          // Router.push('/store_account_form')
         })
         .finally(() => {
           this.loading = false
         })
     },
     initialize() {
-      console.log('init')
-      // this.addData()
-      this.errorMessage = 'sample'
       this.requestRsrvData()
     },
   },
   mounted() {
-    console.log('mounted')
     this.initialize()
   },
 }
