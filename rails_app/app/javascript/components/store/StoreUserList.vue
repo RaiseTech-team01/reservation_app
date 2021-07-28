@@ -44,13 +44,13 @@
                   <td>男性</td>
                   <td>08055556666</td>
                 </tr>
-                <tr>
-                  <td>{{ userList[0].id }}</td>
-                  <td>{{ userList[0].name }}</td>
-                  <td>{{ userList[0].email }}</td>
-                  <td>{{ userList[0].age }}</td>
-                  <td>{{ userList[0].gendar }}</td>
-                  <td>{{ userList[0].tel }}</td>
+                <tr v-for="user in userList" :key="user.id">
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.age }}</td>
+                  <td>{{ user.gendar }}</td>
+                  <td>{{ user.tel }}</td>
                 </tr>
               </tbody>
             </table>
@@ -133,12 +133,20 @@ export default {
     //   this.initialize();
     // })
     this.addData({
-      id: "4",
-      name: "木村雄二",
-      email: "user4@sample.com",
+      id: '4',
+      name: '木村雄二',
+      email: 'user4@sample.com',
       age: 45,
-      gendar: "男性",
-      tel: "08034566543",
+      gendar: '男性',
+      tel: '08034566543',
+    })
+    this.addData({
+      id: '5',
+      name: '田中雅史',
+      email: 'user5@sample.com',
+      age: 50,
+      gendar: '男性',
+      tel: '08098761234',
     })
   },
 }
