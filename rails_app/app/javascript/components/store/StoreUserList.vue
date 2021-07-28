@@ -62,14 +62,14 @@
 </template>
 
 <script>
-import StoreHeader from "../layout/StoreHeader.vue";
-import axios from "axios";
+import StoreHeader from "../layout/StoreHeader.vue"
+import axios from "axios"
 
 export default {
   data: function () {
     return {
       userList: [],
-    };
+    }
   },
 
   components: {
@@ -79,29 +79,29 @@ export default {
   methods: {
     validate(event) {
       if (!event.target.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
+        event.preventDefault()
+        event.stopPropagation()
       }
-      event.target.classList.add("was-validated");
+      event.target.classList.add("was-validated")
     },
     initialize() {
-      console.log("init");
+      console.log("init")
     },
     addData(data) {
-      this.userList.push(data);
+      this.userList.push(data)
     },
     async submit(successCallback) {
-      this.typedEmail = document.getElementById("user_email").value;
-      this.typedPassword = document.getElementById("user_pass").value;
-      this.loading = true;
+      this.typedEmail = document.getElementById("user_email").value
+      this.typedPassword = document.getElementById("user_pass").value
+      this.loading = true
       const params = {
         email: `${this.typedEmail}`,
         password: `${this.typedPassword}`,
-      };
+      }
       await axios
         .post("/api/v1/auth/sign_in", params)
         .then((response) => {
-          successCallback();
+          successCallback()
           // localStorage.setItem("access-token", response.headers["access-token"])
           // localStorage.setItem("uid", response.headers["uid"])
           // localStorage.setItem("client", response.headers["client"])
@@ -123,9 +123,9 @@ export default {
           // Router.push("/login")
         })
         .finally(() => {
-          this.loading = false;
-        });
-      console.log("axios finished");
+          this.loading = false
+        })
+      console.log("axios finished")
     },
   },
   mounted: function () {
@@ -139,9 +139,9 @@ export default {
       age: 45,
       gendar: "男性",
       tel: "08034566543",
-    });
+    })
   },
-};
+}
 </script>
 
 <style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
