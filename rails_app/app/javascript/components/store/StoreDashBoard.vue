@@ -107,8 +107,16 @@ export default {
       this.addUser({
         id: 0,
         name: 'ユーザ110',
+        age: 20,
         gendar: '男性',
         address: '宮城県登米市海江町三社1-1-1',
+      })
+      this.addUser({
+        id: 1,
+        name: 'ユーザ120',
+        age: 25,
+        gendar: '女性',
+        address: '山梨県甲府市上条1-2-3',
       })
       this.addReservation({
         id: 0,
@@ -116,6 +124,13 @@ export default {
         day: '木',
         groupNum: 10,
         seatNum: 55,
+      })
+      this.addReservation({
+        id: 1,
+        date: '2021/08/11',
+        day: '月',
+        groupNum: 20,
+        seatNum: 35,
       })
     },
   },
