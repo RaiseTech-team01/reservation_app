@@ -11,7 +11,7 @@ build:
 release:
   command:
     - rails db:create
-    # - ./_install.sh
+    - rails db:migrate
   image: web
 run:
   web: bundle exec puma -C config/puma.rb
