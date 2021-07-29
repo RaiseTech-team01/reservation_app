@@ -103,7 +103,15 @@ export default {
     addReservation(rsrv) {
       this.reservationList.push(rsrv)
     },
+    async requestUserList() {
+      console.log('requestUserList')
+    },
+    async requestReservationList() {
+      console.log('requestReservationList')
+    },
     initialize() {
+      const userList = this.requestUserList()
+
       this.addUser({
         id: 0,
         name: 'ユーザ110',
@@ -118,6 +126,9 @@ export default {
         gendar: '女性',
         address: '山梨県甲府市上条1-2-3',
       })
+
+      const rsrvList = this.requestReservationList()
+
       this.addReservation({
         id: 0,
         date: '2021/07/31',
