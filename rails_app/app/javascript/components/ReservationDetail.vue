@@ -64,10 +64,10 @@
             <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
               <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" @click.prevent="back" />
             </div>
-            <div class="google_map">
-            <iframe v-bind:src="destination" width="600" height="450" style="border:0;" loading="lazy"></iframe>
-            </div>
           </form>
+            <div class="google_map">
+            <iframe v-bind:src="destination_url" width="600" height="450" style="border:0;" loading="lazy"></iframe>
+            </div>
         </div>
       </div>
     </div>
@@ -79,16 +79,30 @@
 </template>
 
 <script>
+import axios from "axios"
 import Router from "../router/router"
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
 
+const headers = {
+  headers: {
+    Authorization: "Bearer",
+    "Access-Control-Allow-Origin": "*",
+    "access-token": localStorage.getItem("access-token"),
+    client: localStorage.getItem("client"),
+    uid: localStorage.getItem("uid")
+  }
+};
+
 export default {
   data: function () {
     return {
-      destination:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21822.08044887235!2d135.769411642292!3d34.99864546854794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108d385dcfb07%3A0x62af658650c434ba!2z5riF5rC05a-6!5e0!3m2!1sja!2sjp!4v1627393494750!5m2!1sja!2sjp'
+      destination_url:'',
     }
+  },
+  created() {
+      this.getStoremap()
   },
 
   components: {
@@ -98,6 +112,11 @@ export default {
   },
 
   methods: {
+    getStoremap(){
+      axios.get('/api/v1/user/storemap/1', headers).then((response) =>{
+        this.destination_url = response.data.url
+      })
+    },
     back() {
       Router.back()
     }
