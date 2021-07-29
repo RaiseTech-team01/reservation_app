@@ -13,21 +13,23 @@
             <form class="needs-validation" @submit="validate" novalidate>
               <div class="row g-3">
                 <div class="col-12 mb-3">
-                  <h2>直近の予約数</h2>
+                  <h2>直近の予約</h2>
                   <table class="table table-striped table-sm">
                     <thead>
                       <tr>
+                        <th>#</th>
                         <th>日付</th>
-                        <th>曜日</th>
-                        <th>予約組数</th>
+                        <th>予約者名</th>
+                        <th>時間帯</th>
                         <th>予約人数</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="rsrv in reservationList" :key="rsrv.id">
+                        <td>{{ rsrv.id }}</td>
                         <td>{{ rsrv.date }}</td>
-                        <td>{{ rsrv.day }}</td>
-                        <td>{{ rsrv.groupNum }}</td>
+                        <td>{{ rsrv.name }}</td>
+                        <td>{{ rsrv.startTime }}</td>
                         <td>{{ rsrv.seatNum }}</td>
                       </tr>
                     </tbody>
@@ -132,16 +134,16 @@ export default {
       this.addReservation({
         id: 0,
         date: '2021/07/31',
-        day: '木',
-        groupNum: 10,
-        seatNum: 55,
+        name: '田中 一郎',
+        startTime: '18:30',
+        seatNum: 10,
       })
       this.addReservation({
         id: 1,
-        date: '2021/08/11',
-        day: '月',
-        groupNum: 20,
-        seatNum: 35,
+        date: '2021/08/01',
+        name: '山本 次郎',
+        startTime: '19:00',
+        seatNum: 21,
       })
     },
   },
