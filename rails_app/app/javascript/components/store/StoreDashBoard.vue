@@ -78,12 +78,14 @@
 
 <script>
 import StoreHeader from '../layout/StoreHeader.vue'
+import axios from 'axios'
 
 export default {
   data: function () {
     return {
       userList: [],
       reservationList: [],
+      errorMessage: '',
     }
   },
 
@@ -92,12 +94,34 @@ export default {
   },
 
   methods: {
+    hasError() {
+      return !!this.errorMessage
+    },
     validate(event) {
       if (!event.target.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
       }
       event.target.classList.add('was-validated')
+    },
+    makeHeaders(accessToken, client, uid) {
+      let headers = {}
+      headers['access-token'] = accessToken
+      headers['client'] = client
+      headers['uid'] = uid
+      return headers
+    },
+    getDateString(reserveData) {
+      // date_at: "2021-01-01T00:00:00.000+09:00"
+      const date = reserveData.date_at
+      const str = date.match(/^(2[0-9]+)-([01][0-9])-([0-3][0-9])/)
+      return str[1] + '/' + str[2] + '/' + str[3]
+    },
+    getTimeString(reserveData) {
+      // date_at: "2021-01-01T00:00:00.000+09:00"
+      const date = reserveData.date_at
+      const str = date.match(/T([0-2][0-9]):([0-5][0-9])/)
+      return str[1] + ':' + str[2]
     },
     addUser(user) {
       this.userList.push(user)
@@ -109,7 +133,62 @@ export default {
       console.log('requestUserList')
     },
     async requestReservationList() {
-      console.log('requestReservationList')
+      this.loading = true
+
+      const accessToken = localStorage.getItem('store-access-token')
+      const client = localStorage.getItem('store-client')
+      const uid = localStorage.getItem('store-uid')
+      if (!(accessToken && client && uid)) {
+        this.errorMessage =
+          '正常なログイン情報が格納されていません。再ログインしてください。'
+        return
+      }
+      this.requestHeaders = this.makeHeaders(accessToken, client, uid)
+
+      await axios
+        .get(
+          '/api/v1/stores/reservations',
+          { headers: this.requestHeaders },
+          { data: {} }
+        )
+        .then((response) => {
+          this.errorMessage = ''
+          const reserveData = response.data.map((rsrv) => {
+            return {
+              id: rsrv.id,
+              date: this.getDateString(rsrv),
+              name: rsrv.user.name,
+              startTime: this.getTimeString(rsrv),
+              seatNum: rsrv.number_people,
+            }
+          })
+          if (reserveData) {
+            reserveData.forEach((rsrv) => {
+              this.addReservation(rsrv)
+            })
+          } else {
+            this.addReservation({
+              id: 0,
+              date: '2021/07/31',
+              name: '田中 一郎',
+              startTime: '18:30',
+              seatNum: 10,
+            })
+            this.addReservation({
+              id: 1,
+              date: '2021/08/01',
+              name: '山本 次郎',
+              startTime: '19:00',
+              seatNum: 21,
+            })
+          }
+        })
+        .catch((error) => {
+          this.errorMessage = error.response.data.errors[0]
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
     initialize() {
       const userList = this.requestUserList()
@@ -129,22 +208,7 @@ export default {
         address: '山梨県甲府市上条1-2-3',
       })
 
-      const rsrvList = this.requestReservationList()
-
-      this.addReservation({
-        id: 0,
-        date: '2021/07/31',
-        name: '田中 一郎',
-        startTime: '18:30',
-        seatNum: 10,
-      })
-      this.addReservation({
-        id: 1,
-        date: '2021/08/01',
-        name: '山本 次郎',
-        startTime: '19:00',
-        seatNum: 21,
-      })
+      this.requestReservationList()
     },
   },
   mounted() {
