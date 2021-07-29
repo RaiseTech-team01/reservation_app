@@ -53,6 +53,7 @@ class Store < ApplicationRecord
   has_many :deliveries, dependent: :destroy
   has_many :word_mouths, dependent: :destroy
   has_many :store_discount_info_notifications, dependent: :destroy
+  has_many :storemap, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :furigana, presence: true, length: { maximum: 100 }

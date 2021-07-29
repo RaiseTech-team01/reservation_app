@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_035421) do
+ActiveRecord::Schema.define(version: 2021_07_28_163935) do
 
   create_table "calendars", charset: "utf8mb4", force: :cascade do |t|
     t.string "business_hours"
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(version: 2021_05_02_035421) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["store_id"], name: "index_store_discount_info_notifications_on_store_id"
     t.index ["user_id"], name: "index_store_discount_info_notifications_on_user_id"
+  end
+
+  create_table "storemaps", charset: "utf8mb4", force: :cascade do |t|
+    t.text "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "store_id"
   end
 
   create_table "stores", charset: "utf8mb4", force: :cascade do |t|
