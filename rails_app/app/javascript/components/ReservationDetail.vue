@@ -7,8 +7,7 @@
     <dir class="navigation hidden md:block m-0 p-0">
       <Navigation />
     </dir>
-    <div class="flex justify-center">
-      <div class="bg-gray-300 info-container">
+      <div class="bg-yellow-50">
         <div>
           <h3 class="mt-10 ml-4 text-xl text-blue-800">
             <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
@@ -66,11 +65,10 @@
             </div>
           </form>
             <div class="google_map">
-            <iframe v-bind:src="destination_url" width="600" height="450" style="border:0;" loading="lazy"></iframe>
+            <iframe v-bind:src="destination_url" width="100%" height="500px" style="border:0;" loading="lazy"></iframe>
             </div>
         </div>
       </div>
-    </div>
   </main>
   <dir class="footer m-0 pl-0">
     <Footer />
@@ -131,5 +129,6 @@ p {
 
 .google_map{
   width: 100%;
+  height:500px;
 }
 </style>
