@@ -13,8 +13,8 @@
             <div class="col-span-2 row-span-6 h-auto">
                   <img
       class="storemenu_img"
-      src="/storemenu/image01.png"
-      alt="storemenu01"
+      v-bind:src="storemenu_src"
+      alt="storemenu"
     />
               </div>
             <div class="col-span-2 row-span-6 bg-blue-100 h-auto">                <form>
@@ -63,9 +63,9 @@
                 <input id="cancel" type="checkbox">
                 </div>
               <div class="flex w-56 items-center justify-center">
-                <label for="cancel">cancel料金がかかります</label>
+                <label class="text-red-400" for="cancel">cancel料金がかかります</label>
                 </div>
-                <div class="flex w-24 justify-center items-center">
+                <div class="flex w-24 justify-center items-center text-red-400">
                   2000円
                   </div>
             </div>
@@ -101,14 +101,24 @@ const headers = {
   }
 };
 
+var count = {
+  num: null,
+  getNum: function(){
+    return this.num++;
+  }
+}
+
 export default {
   data: function () {
     return {
       destination_url:'',
+      storemenu_src: '/storemenu/image01.png'
     }
   },
   created() {
+      count.num = 0;
       this.getStoremap()
+      this.storemenuSrcChange()
   },
 
   components: {
@@ -125,6 +135,21 @@ export default {
     },
     back() {
       Router.back()
+    },
+    storemenuSrcChange(){
+      setInterval(this.change,5000)
+    },
+    change(){
+      if(count.num === 0){
+        this.storemenu_src = '/storemenu/image02.png';
+        count.getNum()
+      }else if(count.num === 1){
+        this.storemenu_src = '/storemenu/image03.png';
+        count.getNum()
+      }else{
+        this.storemenu_src = '/storemenu/image01.png';
+        count.num = 0
+      }
     }
   }
 }
