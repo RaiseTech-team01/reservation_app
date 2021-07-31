@@ -75,5 +75,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Response of blocked hosts
-  config.hosts << "rt-reservation.herokuapp.com"
+  config.hosts << "rt-test-reserv.herokuapp.com"
 end
