@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_035421) do
+ActiveRecord::Schema.define(version: 2021_07_31_172652) do
 
   create_table "calendars", charset: "utf8mb4", force: :cascade do |t|
     t.string "business_hours"
@@ -112,6 +112,15 @@ ActiveRecord::Schema.define(version: 2021_05_02_035421) do
     t.index ["uid", "provider"], name: "index_stores_on_uid_and_provider", unique: true
   end
 
+  create_table "user_stores", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "store_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_user_stores_on_store_id"
+    t.index ["user_id"], name: "index_user_stores_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -168,6 +177,8 @@ ActiveRecord::Schema.define(version: 2021_05_02_035421) do
   add_foreign_key "reservations", "users"
   add_foreign_key "store_discount_info_notifications", "stores"
   add_foreign_key "store_discount_info_notifications", "users"
+  add_foreign_key "user_stores", "stores"
+  add_foreign_key "user_stores", "users"
   add_foreign_key "word_mouths", "stores"
   add_foreign_key "word_mouths", "users"
 end
