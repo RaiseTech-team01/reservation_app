@@ -6,8 +6,8 @@ module Api::V1
 
     def show
       # 目的地のmap_url
-      storemap = Storemap.find(params[:id])
-      render json: storemap
+      storemap = Storemap.find(params[:store_id])
+      render json: storemap, serializer: Api::V1::StoremapSerializer
     end
   end
 end
