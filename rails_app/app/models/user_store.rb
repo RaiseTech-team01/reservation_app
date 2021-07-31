@@ -1,4 +1,4 @@
 class UserStore < ApplicationRecord
-  belong_to :user
-  belong_to :store
+  belongs_to :user
+  belongs_to :store
 end

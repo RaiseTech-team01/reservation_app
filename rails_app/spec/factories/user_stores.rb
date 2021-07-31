@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user_store do
-    # pass
+    user { nil }
+    store { nil }
   end
 end
