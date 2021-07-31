@@ -48,7 +48,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :stores, dependent: :destroy
+  has_many :user_stores, dependent: :destroy
+  has_many :stores, through: :user_stores
   has_many :reservations, dependent: :destroy
   has_many :deliveries, dependent: :destroy
   has_many :word_mouths, dependent: :destroy
