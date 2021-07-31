@@ -7,18 +7,18 @@
     <dir class="navigation hidden md:block m-0 p-0">
       <Navigation />
     </dir>
-      <div class="bg-yellow-50">
+      <div>
         <div>
-          <h3 class="mt-10 ml-4 text-xl text-blue-800">
-            <a class="font-bold hover:text-blue-500" href="index.html">トップ</a>
-            <span> > </span>
-            <a class="font-bold hover:text-blue-500" href="index.html">予約内容詳細</a>
-          </h3>
-        </div>
-        <div>
-          <h2 class="mt-16 mb-8 font-bold text-3xl md:text-4xl text-center text-blue-800">予約詳細内容</h2>
-          <form>
-            <table class="m-2 mt-10 table-auto max-w-full md:w-full md:text-center">
+          <div class="grid grid-cols-6 grid-rows-6 gap-2">
+            <div class="col-span-2 row-span-6 h-auto">
+                  <img
+      class="storemenu_img"
+      src="/storemenu/image01.png"
+      alt="storemenu01"
+    />
+              </div>
+            <div class="col-span-2 row-span-6 bg-blue-100 h-auto">                <form>
+            <table class="m-2 table-auto max-w-full md:w-full md:text-center">
               <tr class="h-24">
                 <td class="block md:w-1/5 md:table-cell text-3xl md:text-4xl form-table-padding md:pl-6 text-blue-800">店舗</td>
                 <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
@@ -53,20 +53,28 @@
                   <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">3,000円</p>
                 </td>
               </tr>
-              <tr class="h-24">
-                <td class="block md:table-cell text-3xl form-table-padding md:pl-6 text-blue-800">個人情報<br class="hidden md:block" />保護方針</td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <p class="inline-block md:pr-16 text-3xl text-blue-800 font-bold">同意する</p>
-                </td>
-              </tr>
             </table>
-            <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-              <input class="inline-block w-2/5 py-2 rounded-xl font-bold bg-yellow-300 text-4xl text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="戻　る" @click.prevent="back" />
-            </div>
           </form>
-            <div class="google_map">
-            <iframe v-bind:src="destination_url" width="100%" height="500px" style="border:0;" loading="lazy"></iframe>
             </div>
+            <div class="col-span-2 row-span-5 bg-green-100 h-auto">detail</div>
+            <div class="col-span-2 row-span-1 bg-purple-100 w-full flex">
+              <button class="flex-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Cancel</button>
+              <div class="flex justify-center items-center w-20">
+                <input id="cancel" type="checkbox">
+                </div>
+              <div class="flex w-56 items-center justify-center">
+                <label for="cancel">cancel料金がかかります</label>
+                </div>
+                <div class="flex w-24 justify-center items-center">
+                  2000円
+                  </div>
+            </div>
+            <div class="col-span-6 row-apan-6">
+              <div class="google_map">
+                <iframe v-bind:src="destination_url" width="100%" height="500px" style="border:0;" loading="lazy"></iframe>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
   </main>
@@ -130,5 +138,9 @@ p {
 .google_map{
   width: 100%;
   height:500px;
+}
+
+.storemenu_img{
+  height: 500px;
 }
 </style>
