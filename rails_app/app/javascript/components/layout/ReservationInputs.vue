@@ -7,12 +7,14 @@
                         >トップ</a
                     >
                     <span> > </span>
-                    <a class="font-bold hover:text-blue-500" href="index.html"
-                        >予約登録入力</a
+                    <a
+                        class="font-bold hover:text-blue-500"
+                        href="index.html"
+                        >{{ subTitle }}</a
                     >
                 </h3>
             </div>
-            <div class="mt-16">
+            <div class="mt-16" v-show="isShowGuideNavi">
                 <div>
                     <p
                         class="
@@ -43,7 +45,7 @@
                         text-center text-blue-800
                     "
                 >
-                    ご希望のご予約内容
+                    {{ title }}
                 </h2>
                 <form>
                     <table class="m-2 md:m-10 table-auto">
@@ -333,7 +335,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div>
+                    <div v-show="isShowPersonalInformationProtectionForm">
                         <p
                             class="
                                 flex
@@ -375,7 +377,10 @@
                             </label>
                         </p>
                     </div>
-                    <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
+                    <div
+                        class="text-center space-x-4 md:space-x-8 mt-14 mb-28"
+                        v-show="isShowButton1"
+                    >
                         <input
                             class="
                                 inline-block
@@ -390,8 +395,8 @@
                                 active:bg-red-200
                             "
                             type="button"
-                            value="送信確認"
-                            @click.prevent="goToConfirm"
+                            v-bind:value="resultButton1Title"
+                            @click.prevent="resultButton1Callback"
                         />
                     </div>
                 </form>
@@ -400,8 +405,6 @@
     </div>
 </template>
 <script>
-import Router from "../../router/router";
-
 export default {
     data: function () {
         return {
@@ -409,7 +412,19 @@ export default {
         };
     },
 
+    props: {
+        title: String,
+        subTitle: String,
+        isShowGuideNavi: Boolean,
+        isShowPersonalInformationProtectionForm: Boolean,
+        resultButton1Title: String,
+        resultButton1Callback: Function,
+    },
+
     methods: {
+        isShowButton1() {
+            return resultButton1Title !== "";
+        },
         show_timetable(event) {
             if (!$("#timetable-dialog").is(":visible")) {
                 event.target.blur();
@@ -422,9 +437,6 @@ export default {
         getDateAfterMonths(month) {
             let date = new Date();
             return date.setMonth(date.getMonth() + month);
-        },
-        goToConfirm() {
-            Router.push("/api/v1/user/reservation_confirm");
         },
     },
 };

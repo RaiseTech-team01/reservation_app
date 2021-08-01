@@ -11,7 +11,14 @@
             <dir class="navigation hidden md:block m-0 p-0">
                 <Navigation />
             </dir>
-            <ReservationInputs />
+            <ReservationInputs
+                title="ご希望のご予約内容"
+                subTitle="予約登録入力"
+                isShowGuideNavi="true"
+                isShowPersonalInformationProtectionForm="true"
+                resultButton1Title="送信確認"
+                v-bind:resultButton1Callback="goToConfirm"
+            />
             <dir class="footer m-0 pl-0">
                 <Footer />
             </dir>
@@ -20,6 +27,7 @@
 </template>
 
 <script>
+import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
@@ -39,7 +47,11 @@ export default {
         Timetable,
     },
 
-    methods: {},
+    methods: {
+        goToConfirm() {
+            Router.push("/api/v1/user/reservation_confirm");
+        },
+    },
 };
 </script>
 
