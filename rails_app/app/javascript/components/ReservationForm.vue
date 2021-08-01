@@ -131,66 +131,47 @@
                                                 md:flex-none
                                             "
                                         >
-                                            <select
-                                                class="
-                                                    w-20
-                                                    md:w-20
-                                                    h-12
-                                                    border-2
-                                                    md:border-4
-                                                    border-blue-700
-                                                    bg-gray-100
-                                                    pl-4
-                                                    text-blue-800 text-3xl
-                                                    cursor-pointer
+                                            <v-date-picker
+                                                v-model="date"
+                                                mode="date"
+                                                :value="null"
+                                                color="orange"
+                                                :columns="
+                                                    $screens({
+                                                        default: 1,
+                                                        lg: 2,
+                                                    })
                                                 "
-                                                name="month"
-                                                type="text"
-                                                required
-                                                @click="show_calendar"
-                                            />
-                                            <span
-                                                class="
-                                                    inline-block
-                                                    px-2
-                                                    text-3xl
-                                                    md:text-4xl
-                                                    whitespace-nowrap
-                                                    form-table-padding
-                                                    text-blue-800
+                                                :step="1"
+                                                :min-date="new Date()"
+                                                :max-date="
+                                                    getDateAfterMonths(2)
                                                 "
-                                                >月</span
                                             >
-                                            <select
-                                                class="
-                                                    w-20
-                                                    md:w-20
-                                                    h-12
-                                                    border-2
-                                                    md:border-4
-                                                    border-blue-700
-                                                    bg-gray-100
-                                                    pl-4
-                                                    text-blue-800 text-3xl
-                                                    cursor-pointer
-                                                "
-                                                name="day"
-                                                type="text"
-                                                required
-                                                @click="show_calendar"
-                                            />
-                                            <span
-                                                class="
-                                                    inline-block
-                                                    px-2
-                                                    text-3xl
-                                                    md:text-4xl
-                                                    whitespace-nowrap
-                                                    form-table-padding
-                                                    text-blue-800
-                                                "
-                                                >日</span
-                                            >
+                                                <template
+                                                    v-slot="{
+                                                        inputValue,
+                                                        inputEvents,
+                                                    }"
+                                                >
+                                                    <input
+                                                        class="
+                                                            w-72
+                                                            h-12
+                                                            border-2
+                                                            md:border-4
+                                                            border-blue-700
+                                                            bg-gray-100
+                                                            pl-4
+                                                            text-blue-800
+                                                            text-3xl
+                                                            cursor-pointer
+                                                        "
+                                                        :value="inputValue"
+                                                        v-on="inputEvents"
+                                                    />
+                                                </template>
+                                            </v-date-picker>
                                         </div>
                                     </td>
                                 </tr>
@@ -467,7 +448,9 @@ import Timetable from "./dialog/Timetable.vue";
 
 export default {
     data: function () {
-        return {};
+        return {
+            date: new Date(),
+        };
     },
 
     components: {
@@ -496,6 +479,10 @@ export default {
                     $("body, html").css({ overflow: "hidden", height: "100%" });
                 });
             }
+        },
+        getDateAfterMonths(month) {
+            let date = new Date();
+            return date.setMonth(date.getMonth() + month);
         },
         goToConfirm() {
             Router.push("/api/v1/user/reservation_confirm");
