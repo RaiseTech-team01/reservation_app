@@ -55,24 +55,6 @@ export default {
     },
 
     methods: {
-        show_calendar(event) {
-            if (!$("#calendar-dialog").is(":visible")) {
-                event.target.blur();
-                $("#calendar-bg").show();
-                $("#calendar-dialog").show("normal", function () {
-                    $("body, html").css({ overflow: "hidden", height: "100%" });
-                });
-            }
-        },
-        show_timetable(event) {
-            if (!$("#timetable-dialog").is(":visible")) {
-                event.target.blur();
-                $("#timetable-bg").show();
-                $("#timetable-dialog").show("normal", function () {
-                    $("body, html").css({ overflow: "hidden", height: "100%" });
-                });
-            }
-        },
         update() {
             // TODO データの更新処理
 
