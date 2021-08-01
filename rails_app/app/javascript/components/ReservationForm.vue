@@ -16,8 +16,8 @@
                 subTitle="予約登録入力"
                 v-bind:isShowGuideNavi="true"
                 v-bind:isShowPersonalInformationProtectionForm="true"
-                resultButton1Title="送信確認"
-                v-bind:resultButton1Callback="goToConfirm"
+                confirmButtonTitle="送信確認"
+                v-bind:confirmButtonCallback="goToConfirm"
             />
             <dir class="footer m-0 pl-0">
                 <Footer />

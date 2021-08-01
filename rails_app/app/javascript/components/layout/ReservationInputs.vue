@@ -396,8 +396,8 @@
                             "
                             type="button"
                             v-show="isShowButton1"
-                            v-bind:value="resultButton1Title"
-                            @click.prevent="resultButton1Callback"
+                            v-bind:value="confirmButtonTitle"
+                            @click.prevent="confirmButtonCallback"
                         />
                         <input
                             class="
@@ -414,8 +414,8 @@
                             "
                             type="button"
                             v-show="isShowButton2"
-                            v-bind:value="resultButton2Title"
-                            @click.prevent="resultButton2Callback"
+                            v-bind:value="cancelButtonTitle"
+                            @click.prevent="cancelButtonCallback"
                         />
                     </div>
                 </form>
@@ -436,10 +436,10 @@ export default {
         subTitle: String,
         isShowGuideNavi: Boolean,
         isShowPersonalInformationProtectionForm: Boolean,
-        resultButton1Title: String,
-        resultButton1Callback: Function,
-        resultButton2Title: String,
-        resultButton2Callback: Function,
+        confirmButtonTitle: String,
+        confirmButtonCallback: Function,
+        cancelButtonTitle: String,
+        cancelButtonCallback: Function,
     },
     methods: {
         show_timetable(event) {
@@ -459,15 +459,15 @@ export default {
     computed: {
         isShowButton() {
             return (
-                this.resultButton1Title !== undefined ||
-                this.resultButton2Title !== undefined
+                this.confirmButtonTitle !== undefined ||
+                this.cancelButtonTitle !== undefined
             );
         },
         isShowButton1() {
-            return this.resultButton1Title !== undefined;
+            return this.confirmButtonTitle !== undefined;
         },
         isShowButton2() {
-            return this.resultButton2Title !== undefined;
+            return this.cancelButtonTitle !== undefined;
         },
     },
 };

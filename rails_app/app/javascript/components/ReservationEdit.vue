@@ -19,10 +19,10 @@
                 subTitle="予約内容変更"
                 v-bind:isShowGuideNavi="false"
                 v-bind:isShowPersonalInformationProtectionForm="false"
-                resultButton1Title="更新"
-                v-bind:resultButton1Callback="update"
-                resultButton2Title="キャンセル"
-                v-bind:resultButton2Callback="cancel"
+                confirmButtonTitle="更新"
+                v-bind:confirmButtonCallback="update"
+                cancelButtonTitle="キャンセル"
+                v-bind:cancelButtonCallback="cancel"
             />
             <dir class="footer m-0 pl-0">
                 <Footer />
