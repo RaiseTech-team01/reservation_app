@@ -11,9 +11,11 @@ import router from "../router/router.js";
 import App from "../app.vue";
 import Vuex from "vuex";
 import store from "../store";
+import VCalendar from "v-calendar";
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(VCalendar);
 
 // 雛形
 // const store = new Vuex.Store({
