@@ -1,8 +1,5 @@
 <template>
     <div class="main m-0">
-        <div class="calendar">
-            <Calendar />
-        </div>
         <div class="timetable">
             <Timetable />
         </div>
@@ -443,7 +440,6 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
-import Calendar from "./dialog/Calendar.vue";
 import Timetable from "./dialog/Timetable.vue";
 
 export default {
@@ -457,20 +453,10 @@ export default {
         Header,
         Navigation,
         Footer,
-        Calendar,
         Timetable,
     },
 
     methods: {
-        show_calendar(event) {
-            if (!$("#calendar-dialog").is(":visible")) {
-                event.target.blur();
-                $("#calendar-bg").show();
-                $("#calendar-dialog").show("normal", function () {
-                    $("body, html").css({ overflow: "hidden", height: "100%" });
-                });
-            }
-        },
         show_timetable(event) {
             if (!$("#timetable-dialog").is(":visible")) {
                 event.target.blur();
