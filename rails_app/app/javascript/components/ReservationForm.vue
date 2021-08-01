@@ -14,8 +14,8 @@
             <ReservationInputs
                 title="ご希望のご予約内容"
                 subTitle="予約登録入力"
-                isShowGuideNavi="true"
-                isShowPersonalInformationProtectionForm="true"
+                v-bind:isShowGuideNavi="true"
+                v-bind:isShowPersonalInformationProtectionForm="true"
                 resultButton1Title="送信確認"
                 v-bind:resultButton1Callback="goToConfirm"
             />

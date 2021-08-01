@@ -379,7 +379,7 @@
                     </div>
                     <div
                         class="text-center space-x-4 md:space-x-8 mt-14 mb-28"
-                        v-show="isShowButton1"
+                        v-show="isShowButton"
                     >
                         <input
                             class="
@@ -395,8 +395,27 @@
                                 active:bg-red-200
                             "
                             type="button"
+                            v-show="isShowButton1"
                             v-bind:value="resultButton1Title"
                             @click.prevent="resultButton1Callback"
+                        />
+                        <input
+                            class="
+                                inline-block
+                                w-2/5
+                                py-2
+                                rounded-xl
+                                font-bold
+                                bg-yellow-300
+                                text-4xl text-blue-800
+                                cursor-pointer
+                                hover:bg-yellow-200 hover:text-blue-600
+                                active:bg-red-200
+                            "
+                            type="button"
+                            v-show="isShowButton2"
+                            v-bind:value="resultButton2Title"
+                            @click.prevent="resultButton2Callback"
                         />
                     </div>
                 </form>
@@ -419,12 +438,10 @@ export default {
         isShowPersonalInformationProtectionForm: Boolean,
         resultButton1Title: String,
         resultButton1Callback: Function,
+        resultButton2Title: String,
+        resultButton2Callback: Function,
     },
-
     methods: {
-        isShowButton1() {
-            return resultButton1Title !== "";
-        },
         show_timetable(event) {
             if (!$("#timetable-dialog").is(":visible")) {
                 event.target.blur();
@@ -437,6 +454,20 @@ export default {
         getDateAfterMonths(month) {
             let date = new Date();
             return date.setMonth(date.getMonth() + month);
+        },
+    },
+    computed: {
+        isShowButton() {
+            return (
+                this.resultButton1Title !== undefined ||
+                this.resultButton2Title !== undefined
+            );
+        },
+        isShowButton1() {
+            return this.resultButton1Title !== undefined;
+        },
+        isShowButton2() {
+            return this.resultButton2Title !== undefined;
         },
     },
 };
