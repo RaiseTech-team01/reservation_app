@@ -191,7 +191,7 @@
                                         name="hour"
                                         type="text"
                                         required
-                                        @click="show_timetable"
+                                        @click="showTimetableCallback"
                                     />
                                     <span
                                         class="
@@ -221,7 +221,7 @@
                                         name="minute"
                                         type="text"
                                         required
-                                        @click="show_timetable"
+                                        @click="showTimetableCallback"
                                     />
                                     <span
                                         class="
@@ -440,17 +440,9 @@ export default {
         confirmButtonCallback: Function,
         cancelButtonTitle: String,
         cancelButtonCallback: Function,
+        showTimetableCallback: Function,
     },
     methods: {
-        show_timetable(event) {
-            if (!$("#timetable-dialog").is(":visible")) {
-                event.target.blur();
-                $("#timetable-bg").show();
-                $("#timetable-dialog").show("normal", function () {
-                    $("body, html").css({ overflow: "hidden", height: "100%" });
-                });
-            }
-        },
         getDateAfterMonths(month) {
             let date = new Date();
             return date.setMonth(date.getMonth() + month);
