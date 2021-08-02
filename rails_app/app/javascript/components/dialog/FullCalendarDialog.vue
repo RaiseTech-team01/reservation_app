@@ -75,8 +75,6 @@ export default {
     },
     methods: {
         handleDateClick: function (arg) {
-            console.log("this", this);
-            console.log(arg);
             alert("date click! " + arg.dateStr);
         },
         handleEventClick: function (arg) {
@@ -94,7 +92,7 @@ export default {
                 });
             }
         },
-        show_timetable(event) {
+        showTimetable(event) {
             if (!$("#timetable-dialog").is(":visible")) {
                 this.isShowCalendar = true;
                 event.target.blur();

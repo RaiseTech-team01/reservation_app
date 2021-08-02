@@ -91,7 +91,7 @@ export default {
             Router.push("/api/v1/user/reservation_confirm");
         },
         showTimetable(e) {
-            this.$refs.calendarDialog.show_timetable(e);
+            this.$refs.calendarDialog.showTimetable(e);
         },
     },
 };
