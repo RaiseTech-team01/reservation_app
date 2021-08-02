@@ -1,7 +1,7 @@
 <template>
     <div class="main m-0">
         <div>
-            <FullCalendarDialog />
+            <FullCalendarDialog ref="calendarDialog" />
         </div>
         <div id="fa_container" />
         <dir class="header m-0 text-center pl-0">
@@ -18,6 +18,7 @@
                 v-bind:isShowPersonalInformationProtectionForm="true"
                 confirmButtonTitle="送信確認"
                 v-bind:confirmButtonCallback="goToConfirm"
+                v-bind:showTimetableCallback="showTimetable"
             />
             <dir class="footer m-0 pl-0">
                 <Footer />
@@ -88,6 +89,9 @@ export default {
         },
         goToConfirm() {
             Router.push("/api/v1/user/reservation_confirm");
+        },
+        showTimetable(e) {
+            this.$refs.calendarDialog.show_timetable(e);
         },
     },
 };
