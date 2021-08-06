@@ -28,11 +28,18 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       }
 
       namespace :user do
-        # account
+        # account_controller
+        resources :account, only: [:index, :edit]
+
         get "/account_info", to: "account#index", at:  :account_info
         get "/account_edit", to: "account#index", at:  :account_edit
 
-        # reservation
+        # reservation_controller
+        resources :reservations, only: [:index, :show, :create, :update, :destroy] do
+          get "/list", param: :userData_id, to: "reservations#index", at:  :reservation_list
+        end
+
+        # vueRoutePath
         get "/reservation_form", to: "reservations#index", at:  :reservation_form
         get "/reservation_confirm", to: "reservations#index", at: :reservation_confirm
         get "/reservation_complete", to: "reservations#index", at: :reservation_complete

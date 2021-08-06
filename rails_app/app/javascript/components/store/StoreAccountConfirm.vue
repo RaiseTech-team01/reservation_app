@@ -5,7 +5,7 @@
   </dir>
   <div class="container">
     <main>
-      <div class="py-5 text-center">
+      <div class="mt-10 py-5 text-center">
         <h2>店舗アカウント登録確認</h2>
         <p class="lead">お客様の店舗用のアカウントを登録いたします。<br>内容の確認をお願いいたします。</p>
       </div>
@@ -16,70 +16,70 @@
             <div class="row g-3">
               <div class="col-12">
                 <h4>名前</h4>
-                <p class="">居酒屋 太平洋</p>
+                <p class="">{{registrationStoreUserData.name}}</p>
               </div>
               <div class="col-12">
                 <h4>ふりがな</h4>
-                <p class="">いざかや たいへいよう</p>
+                <p class="">{{registrationStoreUserData.furigana}}</p>
               </div>
               <div class="col-12">
                 <h4>メールアドレス</h4>
-                <p class="">you@example.com</p>
+                <p class="">{{registrationStoreUserData.email}}</p>
               </div>
               <div class="col-12">
                 <h4>パスワード</h4>
-                <p class="">********</p>
+                <p class="">{{getHiddenPasswordString(false)}}</p>
               </div>
               <div class="col-12">
                 <h4>パスワード（確認）</h4>
-                <p class="">********</p>
+                <p class="">{{getHiddenPasswordString(true)}}</p>
               </div>
               <div class="col-12">
                 <h4>電話番号</h4>
-                <p class="">080-1111-2222</p>
+                <p class="">{{registrationStoreUserData.tel}}</p>
               </div>
               <div class="col-12">
                 <h4>FAX番号</h4>
-                <p class="">03-4444-5555</p>
+                <p class="">{{registrationStoreUserData.fax}}</p>
               </div>
               <div class="col-12">
                 <h4>郵便番号</h4>
-                <p class="">111-0043</p>
+                <p class="">{{registrationStoreUserData.postal_code}}</p>
               </div>
               <div class="col-12">
                 <h4>店舗住所</h4>
-                <p class="">東京都台東区駒形1-1</p>
+                <p class="">{{registrationStoreUserData.address}}</p>
               </div>
               <div class="col-12">
                 <h4>店舗URL</h4>
-                <p class="">http://izakaya.com/iroha</p>
+                <p class="">{{registrationStoreUserData.url}}</p>
               </div>
               <div class="col-12">
                 <h4>店舗名</h4>
-                <p class="">いろは駅前店</p>
+                <p class="">{{registrationStoreUserData.restaurant}}</p>
               </div>
               <div class="col-12">
                 <h4>座席数</h4>
-                <p class="">100</p>
+                <p class="">{{registrationStoreUserData.seat}}</p>
               </div>
               <div class="col-12">
                 <h4>業態</h4>
-                <p class="">飲食業</p>
+                <p class="">{{registrationStoreUserData.genre}}</p>
               </div>
               <div class="col-12">
                 <h4>責任者名</h4>
-                <p class="">担当者A</p>
+                <p class="">{{registrationStoreUserData.responsible_party}}</p>
               </div>
               <div class="col-12">
                 <h4>その他</h4>
-                <p class="">アレルギー品目：大豆、牛乳、小麦粉</p>
+                <p class="">{{registrationStoreUserData.other}}</p>
               </div>
             </div>
           </form>
         </div>
       </div>
       <div class="text-center">
-        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="goToDashBoard">登　録</button>
+        <button type="button" class="m-3 px-5 btn btn-primary btn-lg btn-block" @click.prevent="goToComplete">登　録</button>
         <button type="button" class="m-3 px-5 btn btn-outline-primary btn-lg btn-block" @click.prevent="back">戻　る</button>
       </div>
     </main>
@@ -97,12 +97,15 @@
 </template>
 
 <script>
+import Router from "../../router/router";
 import StoreHeader from "../layout/StoreHeader.vue"
+import { mapGetters } from 'vuex'
+import axios from "axios";
 
 export default {
   data: function () {
     return {
-    }
+      storeData: [],    }
   },
 
   components: {
@@ -110,6 +113,40 @@ export default {
   },
 
   methods: {
+    // 店舗情報を送信する
+    async goToComplete() {
+        this.loading = true;
+        const addUserParams = this.$store.getters.registrationStoreUserData
+        delete addUserParams.errs
+        
+        await axios
+            .post("/api/v1/store_auth/", addUserParams)
+            .then(response => {
+              // Vuex store
+              this.$store.dispatch('storeAuth/updateLogin', true)
+              this.$store.dispatch('registrationStoreUserData/updateErr', "")
+
+              console.log(response)
+              localStorage.setItem("store-access-token", response.headers["access-token"])
+              localStorage.setItem("store-uid", response.headers["uid"])
+              localStorage.setItem("store-client", response.headers["client"])
+              Router.push("/store_dash_board");
+            })
+            .catch(error => {
+              console.log(error.response.data.errors.full_messages)
+              this.$store.dispatch('registrationStoreUserData/updateErr', error.response.data.errors.full_messages)
+              Router.push("/store_account_form")
+            })
+            .finally(() => {
+                this.loading = false;
+            });
+    },
+    getHiddenPasswordString(isConfirmation) {
+      const passwordLen = isConfirmation ? 
+              this.$store.getters.registrationStoreUserData.password_confirmation.length : 
+              this.$store.getters.registrationStoreUserData.password.length
+      return "*".repeat(passwordLen)
+    },
     validate(event) {
       if (!event.target.checkValidity()) {
         event.preventDefault()
@@ -117,12 +154,14 @@ export default {
       }
       event.target.classList.add('was-validated')
     },
-    goToDashBoard() {
-      Router.push("/store_dash_board")
-    },
     back() {
       Router.back()
     }
+  },
+  computed: {
+    ...mapGetters([
+      'registrationStoreUserData',
+    ])
   }
 }
 </script>
