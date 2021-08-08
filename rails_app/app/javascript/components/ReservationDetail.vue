@@ -258,7 +258,7 @@ export default {
 
   methods: {
     getStoremap() {
-      axios.get("/api/v1/user/storemap/1", headers).then((response) => {
+      axios.get("/api/v1/user/storemaps/1", headers).then((response) => {
         this.destination_url = response.data.url;
       });
     },

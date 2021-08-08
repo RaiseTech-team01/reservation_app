@@ -50,7 +50,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get "/reservation_edit", to: "reservations#index", at: :reservation_edit
 
         # store_map
-        resources :storemap, param: :store_id, only: [:show]
+        resources :storemaps, param: :store_id, only: [:show]
       end
 
       namespace :stores do
