@@ -13,8 +13,11 @@
                 </div>
                 <div class="row g-5 flex justify-center">
                     <div class="col-md-7 col-lg-8">
-                        <div class="col-12 alert alert-danger" v-show="hasError()">
-                            <p>{{errorMessage}}</p>
+                        <div
+                            class="col-12 alert alert-danger"
+                            v-show="hasError()"
+                        >
+                            <p>{{ errorMessage }}</p>
                         </div>
                         <form class="row g-3 needs-validation" novalidate>
                             <div class="col-12">
@@ -275,13 +278,21 @@
                             <div class="text-center">
                                 <button
                                     type="submit"
-                                    class="m-3 px-5 btn btn-primary btn-lg btn-block"
+                                    class="
+                                        m-3
+                                        px-5
+                                        btn btn-primary btn-lg btn-block
+                                    "
                                 >
                                     登録確認
                                 </button>
                                 <button
                                     type="button"
-                                    class="m-3 px-5 btn btn-outline-primary btn-lg btn-block"
+                                    class="
+                                        m-3
+                                        px-5
+                                        btn btn-outline-primary btn-lg btn-block
+                                    "
                                     @click.prevent="back"
                                 >
                                     戻　る
@@ -309,7 +320,7 @@ import Router from "../../router/router";
 import StoreHeader from "../layout/StoreHeader.vue";
 
 export default {
-    data: function() {
+    data: function () {
         return {
             errorMessage: "",
             storeData: {
@@ -327,18 +338,18 @@ export default {
                 responsible_party: "",
                 other: "",
                 password: "",
-                password_confirmation: ""
-            }
+                password_confirmation: "",
+            },
         };
     },
 
     components: {
-        StoreHeader
+        StoreHeader,
     },
 
     methods: {
         hasError() {
-            return !!this.errorMessage
+            return !!this.errorMessage;
         },
         goToAccountConfirm() {
             Router.push("/store_account_confirm");
@@ -367,7 +378,7 @@ export default {
         },
         initializeValidation(validatedCallback) {
             const instance0 = this;
-            this.$nextTick(function() {
+            this.$nextTick(function () {
                 console.log(this);
                 const instance = this;
                 //("use strict");
@@ -376,10 +387,10 @@ export default {
                 var forms = document.querySelectorAll(".needs-validation");
 
                 // Loop over them and prevent submission
-                Array.prototype.slice.call(forms).forEach(function(form) {
+                Array.prototype.slice.call(forms).forEach(function (form) {
                     form.addEventListener(
                         "submit",
-                        function(event) {
+                        function (event) {
                             if (!form.checkValidity()) {
                                 console.log("invalid");
                                 event.preventDefault();
@@ -402,26 +413,29 @@ export default {
                     );
                 });
             });
-        }
+        },
     },
     mounted() {
         this.appendBootstrapScriptTag();
         this.initializeValidation(() => {
-            console.log("success validation")
+            console.log("success validation");
 
-            this.$store.dispatch('registrationStoreUserData/update', this.storeData)
+            this.$store.dispatch(
+                "registrationStoreUserData/update",
+                this.storeData
+            );
             this.goToAccountConfirm();
         });
         this.initializeStoreData();
-        this.errorMessage = this.$store.getters.registrationStoreUserData.errs
-    }
+        this.errorMessage = this.$store.getters.registrationStoreUserData.errs;
+    },
 };
 </script>
 
 <style scoped src="../../../assets/stylesheets/offcanvas.css"></style>
 <style scoped>
 p {
-    font-size: 1.0rem;
+    font-size: 1rem;
     text-align: center;
 }
 
