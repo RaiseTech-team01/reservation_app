@@ -24,6 +24,8 @@ services:
       - ./rails_app/:/rails_app
       - rails-bundle:/user/local/bundle
       - ./_roothome/:/root
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
     depends_on:
       - db
     env_file: .env
