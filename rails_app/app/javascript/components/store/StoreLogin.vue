@@ -110,11 +110,14 @@ export default {
                 .post("/api/v1/store_auth/sign_in", params)
                 .then((response) => {
                     localStorage.setItem(
-                        "access-token",
+                        "store-access-token",
                         response.headers["access-token"]
                     );
-                    localStorage.setItem("uid", response.headers["uid"]);
-                    localStorage.setItem("client", response.headers["client"]);
+                    localStorage.setItem("store-uid", response.headers["uid"]);
+                    localStorage.setItem(
+                        "store-client",
+                        response.headers["client"]
+                    );
                     // Make pre-Data to set Vuex
                     this.loginedStoreUserData = response.data.data;
                     // console.log(response.data.data)
