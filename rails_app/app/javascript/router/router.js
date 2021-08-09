@@ -15,13 +15,13 @@ import ReservationEdit from "../components/ReservationEdit.vue";
 import ReservationHistory from "../components/ReservationHistory.vue";
 import ReservationViewHistory from "../components/ReservationViewHistory.vue";
 
-import StoreLogin from "../components/store/StoreLogin.vue";
-import StoreReservationList from "../components/store/StoreReservationList.vue";
-import StoreAccountForm from "../components/store/StoreAccountForm.vue";
-import StoreAccountConfirm from "../components/store/StoreAccountConfirm.vue";
-import StoreUserList from "../components/store/StoreUserList.vue";
-import StoreDashBoard from "../components/store/StoreDashBoard.vue";
-import StoreSettings from "../components/store/StoreSettings.vue";
+import StoreLogin from "@pages/store/StoreLogin.vue";
+import StoreReservationList from "@pages/store/StoreReservationList.vue";
+import StoreAccountForm from "@pages/store/StoreAccountForm.vue";
+import StoreAccountConfirm from "@pages/store/StoreAccountConfirm.vue";
+import StoreUserList from "@pages/store/StoreUserList.vue";
+import StoreDashBoard from "@pages/store/StoreDashBoard.vue";
+import StoreSettings from "@pages/store/StoreSettings.vue";
 
 Vue.use(Router);
 
