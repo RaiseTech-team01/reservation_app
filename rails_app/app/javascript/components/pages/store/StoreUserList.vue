@@ -50,11 +50,15 @@
                 </main>
             </div>
         </div>
+        <div>
+            <StoreFooter />
+        </div>
     </div>
 </template>
 
 <script>
 import StoreHeader from "@components/layout/StoreHeader.vue";
+import StoreFooter from "@components/layout/StoreFooter.vue";
 
 export default {
     data: function () {
@@ -63,6 +67,7 @@ export default {
 
     components: {
         StoreHeader,
+        StoreFooter,
     },
 
     methods: {
