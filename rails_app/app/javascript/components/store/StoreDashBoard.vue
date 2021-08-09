@@ -40,7 +40,9 @@
                                                 <th>予約人数</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody
+                                            v-if="reservationList.length != 0"
+                                        >
                                             <tr
                                                 v-for="rsrv in reservationList"
                                                 :key="rsrv.id"
@@ -50,6 +52,11 @@
                                                 <td>{{ rsrv.name }}</td>
                                                 <td>{{ rsrv.startTime }}</td>
                                                 <td>{{ rsrv.seatNum }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody v-else>
+                                            <tr>
+                                                データが存在しません
                                             </tr>
                                         </tbody>
                                     </table>
@@ -66,7 +73,7 @@
                                                 <th>住所</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody v-if="userList.length != 0">
                                             <tr
                                                 v-for="user in userList"
                                                 :key="user.id"
@@ -76,6 +83,11 @@
                                                 <td>{{ user.age }}</td>
                                                 <td>{{ user.gendar }}</td>
                                                 <td>{{ user.address }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody v-else>
+                                            <tr>
+                                                データが存在しません
                                             </tr>
                                         </tbody>
                                     </table>
@@ -186,9 +198,13 @@ export default {
                         };
                     });
                     if (reserveData) {
-                        reserveData.forEach((rsrv) => {
-                            this.addReservation(rsrv);
-                        });
+                        if (reserveData.length !== 0) {
+                            reserveData.forEach((rsrv) => {
+                                this.addReservation(rsrv);
+                            });
+                        } else {
+                            console.log("サーバにデータがありません");
+                        }
                     } else {
                         this.addReservation({
                             id: 0,
