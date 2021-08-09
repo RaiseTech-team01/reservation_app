@@ -316,8 +316,8 @@
 </template>
 
 <script>
-import Router from "../../router/router";
-import StoreHeader from "../layout/StoreHeader.vue";
+import Router from "@/router/router";
+import StoreHeader from "@components/layout/StoreHeader.vue";
 
 export default {
     data: function () {
@@ -432,7 +432,7 @@ export default {
 };
 </script>
 
-<style scoped src="../../../assets/stylesheets/offcanvas.css"></style>
+<style scoped src="@assets/stylesheets/offcanvas.css"></style>
 <style scoped>
 p {
     font-size: 1rem;

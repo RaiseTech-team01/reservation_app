@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import StoreHeader from "../layout/StoreHeader.vue";
+import StoreHeader from "@components/layout/StoreHeader.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -152,8 +152,8 @@ export default {
 };
 </script>
 
-<style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
-<style scoped src="../../../assets/stylesheets/dashboard.css"></style>
+<style scoped src="@assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="@assets/stylesheets/dashboard.css"></style>
 <style scoped>
 p {
     font-size: 2em;

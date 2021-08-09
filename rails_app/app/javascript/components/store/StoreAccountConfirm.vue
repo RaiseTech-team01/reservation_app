@@ -156,7 +156,7 @@
 
 <script>
 import Router from "@/router/router";
-import StoreHeader from "../layout/StoreHeader.vue";
+import StoreHeader from "@components/layout/StoreHeader.vue";
 import { mapGetters } from "vuex";
 import axios from "axios";
 
@@ -236,8 +236,8 @@ export default {
 };
 </script>
 
-<style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
-<style scoped src="../../../assets/stylesheets/offcanvas.css"></style>
+<style scoped src="@assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="@assets/stylesheets/offcanvas.css"></style>
 <style scoped>
 p {
     font-size: 1.5em;
