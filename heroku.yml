@@ -8,6 +8,8 @@ build:
   config:
     # RAILS_ENV: development
     RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
+
 release:
   command:
     - rails db:create
