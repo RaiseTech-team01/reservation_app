@@ -8,6 +8,18 @@
                 <div class="py-5 text-center">
                     <h2>DashBoard</h2>
                 </div>
+                <div>
+                    <p
+                        class="
+                            inline-block
+                            md:pr-16
+                            text-3xl text-blue-800
+                            font-bold
+                        "
+                    >
+                        {{ storeUserData.name }}
+                    </p>
+                </div>
                 <div class="row g-5 flex justify-center">
                     <div class="col-md-7 col-lg-8">
                         <form
@@ -88,6 +100,7 @@
 
 <script>
 import StoreHeader from "../layout/StoreHeader.vue";
+import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
@@ -223,6 +236,9 @@ export default {
     },
     mounted() {
         this.initialize();
+    },
+    computed: {
+        ...mapGetters(["storeUserData"]),
     },
 };
 </script>
