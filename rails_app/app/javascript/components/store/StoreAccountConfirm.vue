@@ -155,7 +155,7 @@
 </template>
 
 <script>
-import Router from "../../router/router";
+import Router from "@/router/router";
 import StoreHeader from "../layout/StoreHeader.vue";
 import { mapGetters } from "vuex";
 import axios from "axios";
