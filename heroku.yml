@@ -14,6 +14,7 @@ release:
   command:
     - rails db:create
     - rails db:migrate
+    - assets:precompile
   image: web
 run:
   web: bundle exec puma -C config/puma.rb
