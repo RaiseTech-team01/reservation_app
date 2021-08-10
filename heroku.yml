@@ -11,10 +11,11 @@ build:
     RAILS_SERVE_STATIC_FILES: true
 
 release:
+  assets: precompile
   command:
     - rails db:create
     - rails db:migrate
-    - assets:precompile
+
   image: web
 run:
   web: bundle exec puma -C config/puma.rb
