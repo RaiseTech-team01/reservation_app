@@ -97,12 +97,12 @@ export default {
        return this.$store.getters.auth.isLogin;
     },
   },
-  
+
   mounted() {
     if (localStorage.getItem('access-token'))
       this.$store.dispatch('auth/updateLogin', true)
   },
-  
+
 
   methods: {
     toggle_navigation() {
@@ -160,19 +160,19 @@ export default {
     },
     // isLogin() は、computedへ移動
     goToReservationForm() {
-      Router.push("/reservation_form")
+      Router.push("/api/v1/user/reservation_form")
     },
     goToReservationList() {
-      Router.push("/reservation_list")
+      Router.push("/api/v1/user/reservation_list")
     },
     goToReservationViewHistory() {
-      Router.push("/reservation_view_history")
+      Router.push("/api/v1/user/reservation_view_history")
     },
     goToReservationHistory() {
-      Router.push("/reservation_history")
+      Router.push("/api/v1/user/reservation_history")
     },
     goToAccountSettings() {
-      Router.push("/account_info")
+      Router.push("/api/v1/user/account_info")
     },
   },
 }

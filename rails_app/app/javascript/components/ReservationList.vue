@@ -130,7 +130,7 @@ export default {
     ...mapGetters(["userData"]),
     ...mapGetters(["userReservationData"]),
   },
-  
+
   mounted() {
       var key_headers = {
           headers : {
@@ -157,7 +157,7 @@ export default {
               );
               },
             )
-        
+
             .catch((error) => {
               // TODO: 適切な Error 表示
               console.log(error.response),
@@ -175,17 +175,17 @@ export default {
   methods: {
     goToDetail(arryIndex) {
       console.log(`${arryIndex}`)
-      // this.selected_rdId = counter 
+      // this.selected_rdId = counter
       console.log("indexNo:" + arryIndex)
       // Vuex store
       this.$store.dispatch(
         "userReservationDetail/update",
         arryIndex
       );
-      Router.push("/reservation_detail");
+      Router.push("/api/v1/user/reservation_detail");
     },
     goToEdit() {
-      Router.push("/reservation_edit");
+      Router.push("/api/v1/user/reservation_edit");
     },
     back() {
       Router.back();

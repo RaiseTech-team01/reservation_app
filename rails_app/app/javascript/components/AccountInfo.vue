@@ -114,7 +114,7 @@ export default {
 
   methods: {
     goToAccountEdit() {
-      Router.push("/account_edit")
+      Router.push("/api/v1/user/account_edit")
     },
     back() {
       Router.back()

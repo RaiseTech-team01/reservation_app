@@ -10,9 +10,11 @@
     "autoprefixer": "^9",
     "axios": "^0.21.1",
     "glob-parent": "^5.1.2",
+    "global": "^4.4.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "turbolinks": "^5.2.0",
+    "v-calendar": "^2.3.2",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
     "vue-router": "^3.5.1",
@@ -23,6 +25,17 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.13.0",
+    "prettier": "^2.3.2",
     "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
   }
 }

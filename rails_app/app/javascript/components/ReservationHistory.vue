@@ -91,10 +91,10 @@ export default {
 
   methods: {
     goToDetail() {
-      Router.push("/reservation_detail")
+      Router.push("/api/v1/user/reservation_detail")
     },
     goToEdit() {
-      Router.push("/reservation_edit")
+      Router.push("/api/v1/user/reservation_edit")
     },
   }
 }
