@@ -141,7 +141,7 @@ export default {
           }
         }
       axios.get(
-        `http://localhost:3000/api/v1/store/${this.userData.id}/reservations/`,key_headers)
+        `http://localhost:3000/api/v1/user/reservations/${this.userData.id}/list/`,key_headers)
             .then(response => {
               console.log(response.data);
               console.log(response.data[0]);
