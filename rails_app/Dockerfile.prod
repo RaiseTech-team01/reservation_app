@@ -12,7 +12,7 @@ FROM ruby:3.0.0
 # ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers vim git bash zsh curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
 
 # for win
-ENV RUNTIME_PACKAGES "vim git bash zsh curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
+ENV RUNTIME_PACKAGES "vim git bash zsh curl make yarn mariadb-client tzdata nodejs"
 # --------------------------------
 
 ENV DEV_PACKAGES "build-base curl-dev"
