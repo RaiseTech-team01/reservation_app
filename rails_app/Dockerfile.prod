@@ -9,10 +9,10 @@ FROM ruby:3.0.0
 
 # ---------環境で、書き換えを--------
 # for MAC
-ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers vim git bash zsh curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
+# ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers vim git bash zsh curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
 
 # for win
-# ENV RUNTIME_PACKAGES "gcc g++ libc-dev libxml2-dev linux-headers exa fd ripgrep vim git tmux bash zsh fish fzf curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
+ENV RUNTIME_PACKAGES "vim git bash zsh curl openssh openssl openssl-dev make yarn mysql-dev mariadb-client tzdata nodejs"
 # --------------------------------
 
 ENV DEV_PACKAGES "build-base curl-dev"
@@ -32,16 +32,25 @@ ADD Gemfile.lock ${APP_HOME}/Gemfile.lock
 # ADD webpacker.yml ${APP_HOME}/config/
 
 #/rails_appディレクトリ上でbundle install
-RUN apt update \
-    && apt upgrade \
-    # && apt install --update --no-cache less \
-    # && apt install --update --no-cache ${RUNTIME_PACKAGES} \
-    && apt install ${RUNTIME_PACKAGES} \
-    # && apt install --update --no-cache --virtual=.build-dependencies ${DEV_PACKAGES} \
-    && apt install ${DEV_PACKAGES} \
-    && bundle install --jobs=4 \
-    # && yarn install \
-    && yarn install
+############
+# RUN apt update \
+#     && apt upgrade \
+#     # && apt install --update --no-cache less \
+#     # && apt install --update --no-cache ${RUNTIME_PACKAGES} \
+#     && apt install ${RUNTIME_PACKAGES} \
+#     # && apt install --update --no-cache --virtual=.build-dependencies ${DEV_PACKAGES} \
+#     && apt install ${DEV_PACKAGES} \
+#     && bundle install --jobs=4 \
+#     # && yarn install \
+#     && yarn install \
+###############
+RUN apt update
+RUN apt upgrade
+RUN apt install ${RUNTIME_PACKAGES}
+# RUN apt install ${DEV_PACKAGES}
+RUN bundle install --jobs=4
+RUN yarn install
+
     # && rm -rf /usr/local/bundle/cache/*.gem \
         # && find /usr/local/bundle/gems/ -name "*.c" -delete \
         # && find /usr/local/bundle/gems/ -name "*.o" -delete \
