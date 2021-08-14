@@ -48,9 +48,11 @@ export default {
     },
 
     methods: {
-        goToConfirm() {
+        goToConfirm(reservationInputData) {
+            this.$store.dispatch('userReservationFormData/update', reservationInputData)
             Router.push("/api/v1/user/reservation_confirm");
         },
+
     },
 };
 </script>

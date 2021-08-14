@@ -160,8 +160,8 @@ export default {
 
             .catch((error) => {
               // TODO: 適切な Error 表示
-              console.log(error.response),
-              console.log(error.response.data.error),
+              console.log(error.response);
+              console.log(error.response.data.error);
               this.$store.dispatch(
                 "userReservationData/updateErr",
                 error.response.data.error

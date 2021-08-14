@@ -115,7 +115,7 @@
                                     "
                                 >
                                     <v-date-picker
-                                        v-model="date"
+                                        v-model="reservationInputData.date"
                                         mode="date"
                                         :value="null"
                                         color="orange"
@@ -271,6 +271,7 @@
                                     step="1"
                                     required
                                     placeholder="2"
+                                    v-model="reservationInputData.number_people"
                                 />
                                 <span
                                     class="
@@ -319,6 +320,7 @@
                                     step="500"
                                     required
                                     placeholder="3000"
+                                    v-model="reservationInputData.budget"
                                 />
                                 <span
                                     class="
@@ -397,7 +399,7 @@
                             type="button"
                             v-show="isShowButton1"
                             v-bind:value="confirmButtonTitle"
-                            @click.prevent="confirmButtonCallback"
+                            @click.prevent="confirmButtonCallback(reservationInputData)"
                         />
                         <input
                             class="
@@ -427,7 +429,15 @@
 export default {
     data: function () {
         return {
-            date: new Date(),
+            reservationInputData:{
+                date: new Date(),
+                // date_at:"",
+                // date_on:"",
+                number_people: "",
+                // menu:"",
+                budget: "",
+                // inquiry:"",
+            }
         };
     },
 
