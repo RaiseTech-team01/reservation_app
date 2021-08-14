@@ -34,16 +34,19 @@ ADD Gemfile.lock ${APP_HOME}/Gemfile.lock
 #/rails_appディレクトリ上でbundle install
 RUN apt update \
     && apt upgrade \
-    && apt install --update --no-cache less \
-    && apt install --update --no-cache ${RUNTIME_PACKAGES} \
-    && apt install --update --no-cache --virtual=.build-dependencies ${DEV_PACKAGES} \
+    # && apt install --update --no-cache less \
+    # && apt install --update --no-cache ${RUNTIME_PACKAGES} \
+    && apt install ${RUNTIME_PACKAGES} \
+    # && apt install --update --no-cache --virtual=.build-dependencies ${DEV_PACKAGES} \
+    && apt install ${DEV_PACKAGES} \
     && bundle install --jobs=4 \
-    && yarn install \
-    && rm -rf /usr/local/bundle/cache/*.gem \
-        && find /usr/local/bundle/gems/ -name "*.c" -delete \
-        && find /usr/local/bundle/gems/ -name "*.o" -delete \
-    && apt del --purge .build-dependencies \
-    && rm -rf /var/cache/apt/ && mkdir /var/cache/apt/
+    # && yarn install \
+    && yarn install
+    # && rm -rf /usr/local/bundle/cache/*.gem \
+        # && find /usr/local/bundle/gems/ -name "*.c" -delete \
+        # && find /usr/local/bundle/gems/ -name "*.o" -delete \
+    # && apt del --purge .build-dependencies \
+    # && rm -rf /var/cache/apt/ && mkdir /var/cache/apt/
 #    && curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 #    && rails webpacker:install
 
