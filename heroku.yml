@@ -4,7 +4,7 @@ setup:
       as: DATABASE
 build:
   docker:
-    web: rails_app/Dockerfile
+    web: rails_app/Dockerfile.prod
   config:
     # RAILS_ENV: development
     RAILS_ENV: production
