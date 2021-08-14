@@ -21,7 +21,7 @@ $ yarn add @vue/compiler-sfc
 $ yarn install --check-files
 ```
 
-## flont 立ち上げ
+## フロント 開発環境立ち上げ
 
 ```bash
 # rails コンテナ内で実行
