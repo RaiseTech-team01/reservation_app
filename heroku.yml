@@ -11,8 +11,8 @@ build:
     RAILS_SERVE_STATIC_FILES: true
 
 release:
-  assets: precompile
   command:
+    - assets:precompile
     - rails db:create
     - rails db:migrate
   image: web
