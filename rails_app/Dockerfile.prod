@@ -60,7 +60,7 @@ RUN bundle install --jobs=4
 
 COPY . ${APP_HOME}
 
-RUN yarn install
+# RUN yarn install
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
