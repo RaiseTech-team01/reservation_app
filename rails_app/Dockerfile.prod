@@ -46,7 +46,7 @@ ADD Gemfile.lock ${APP_HOME}/Gemfile.lock
 ###############
 RUN apt update
 # RUN apt upgrade
-RUN apt install ${RUNTIME_PACKAGES}
+RUN apt install -y ${RUNTIME_PACKAGES}
 # RUN apt install ${DEV_PACKAGES}
 RUN bundle install --jobs=4
 RUN yarn install
