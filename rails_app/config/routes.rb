@@ -46,7 +46,6 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get "/reservation_list", to: "reservations#index", at: :reservation_list
         get "/reservation_detail", to: "reservations#index", at: :reservation_detail
         get "/reservation_history", to: "reservations#index", at:  :reservation_history
-        get "/reservation_view_history", to: "reservations#index", at: :reservation_view_history
         get "/reservation_edit", to: "reservations#index", at: :reservation_edit
       end
 

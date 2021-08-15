@@ -51,23 +51,6 @@
                 text-white
                 cursor-pointer
             "
-            @click="goToReservationViewHistory"
-            >閲覧履歴</span
-        >
-        <span
-            class="
-                flex flex-col
-                justify-center
-                w-1/6
-                mr-1
-                h-16
-                text-2xl
-                bg-red-500
-                hover:bg-red-700
-                active:bg-yellow-700
-                text-white
-                cursor-pointer
-            "
             @click="goToReservationHistory"
             >予約履歴</span
         >
@@ -111,9 +94,6 @@ export default {
         },
         goToReservationList() {
             Router.push("/api/v1/user/reservation_list");
-        },
-        goToReservationViewHistory() {
-            Router.push("/api/v1/user/reservation_view_history");
         },
         goToReservationHistory() {
             Router.push("/api/v1/user/reservation_history");

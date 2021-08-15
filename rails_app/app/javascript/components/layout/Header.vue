@@ -177,18 +177,6 @@
                     border-b-2
                 "
             >
-                <a href="/reservation_view_history">閲覧履歴</a>
-            </li>
-            <li
-                class="
-                    text-2xl text-blue-800
-                    font-bold
-                    p-6
-                    border-blue-800
-                    active:bg-gray-200 active:text-blue-600
-                    border-b-2
-                "
-            >
                 <a href="/reservation_history">予約履歴</a>
             </li>
             <li
@@ -295,9 +283,6 @@ export default {
         },
         goToReservationList() {
             Router.push("/api/v1/user/reservation_list");
-        },
-        goToReservationViewHistory() {
-            Router.push("/api/v1/user/reservation_view_history");
         },
         goToReservationHistory() {
             Router.push("/api/v1/user/reservation_history");
