@@ -15,7 +15,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: password
-  host: db 
+  host: db
 
 development:
   <<: *default
@@ -50,6 +50,8 @@ test:
 #
 production:
   <<: *default
-  database: rails_app_production
-  username: rails_app
-  password: <%= ENV['RAILS_APP_DATABASE_PASSWORD'] %>
+  database: <%= ENV['MYSQL_DATABASE'] %>
+  url: <%= ENV['MYSQL_URL'] %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
