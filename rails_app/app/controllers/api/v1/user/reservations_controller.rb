@@ -13,9 +13,7 @@ module Api::V1
     def show
       # ログインユーザーの指定店舗の予約一覧を表示
       reservations = current_user.reservations.where(store_id: params[:store_id])
-      binding.pry
       reservation = reservations.find(params[:id])
-      binding.pry
       render json: reservation, serializer: Api::V1::ReservationSerializer
     end
 
