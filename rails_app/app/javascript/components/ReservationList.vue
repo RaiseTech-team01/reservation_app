@@ -317,9 +317,6 @@ export default {
         goToEdit() {
             Router.push("/api/v1/user/reservation_edit");
         },
-        back() {
-            Router.back();
-        },
     },
 };
 </script>
