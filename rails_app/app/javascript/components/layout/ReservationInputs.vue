@@ -445,6 +445,9 @@ export default {
         showTimetableCallback: Function,
     },
     methods: {
+        convertTwoDigit(value) {
+            return ("0" + value).slice(-2);
+        },
         addOption(select, value) {
             if (select.childNodes.length > 0) {
                 select.removeChild(select.firstChild);
@@ -456,10 +459,10 @@ export default {
         },
         setTime(hours, minutes) {
             const hoursSel = document.getElementById("hours_selector");
-            this.addOption(hoursSel, hours);
+            this.addOption(hoursSel, this.convertTwoDigit(hours));
 
             const minutesSel = document.getElementById("minutes_selector");
-            this.addOption(minutesSel, minutes);
+            this.addOption(minutesSel, this.convertTwoDigit(minutes));
         },
         getDateAfterMonths(month) {
             let date = new Date();
