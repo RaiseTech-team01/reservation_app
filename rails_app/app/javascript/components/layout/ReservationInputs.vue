@@ -1,19 +1,7 @@
 <template>
     <div class="flex justify-center">
         <div class="bg-gray-300 info-container">
-            <div>
-                <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                    <a class="font-bold hover:text-blue-500" href="index.html"
-                        >トップ</a
-                    >
-                    <span> > </span>
-                    <a
-                        class="font-bold hover:text-blue-500"
-                        href="index.html"
-                        >{{ subTitle }}</a
-                    >
-                </h3>
-            </div>
+            <BreadClumbList :bcList="breadClumbList" />
             <div class="mt-16" v-show="isShowGuideNavi">
                 <div>
                     <p
@@ -426,11 +414,26 @@
     </div>
 </template>
 <script>
+import BreadClumbList from "../commons/layouts/BreadClumbList.vue";
+
 export default {
     data: function () {
         return {
             date: new Date(),
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: this.subTitle,
+                },
+            ],
         };
+    },
+
+    components: {
+        BreadClumbList,
     },
 
     props: {

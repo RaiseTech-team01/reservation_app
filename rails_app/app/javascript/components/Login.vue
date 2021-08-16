@@ -10,13 +10,7 @@
             </dir>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <div>
-                        <h3 class="mt-4 ml-4 text-xl text-blue-800">
-                            <a class="font-bold" href="/home/top">トップ</a>
-                            <span> > </span>
-                            <a class="font-bold" href="/login">ログイン</a>
-                        </h3>
-                    </div>
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div>
                         <h2
                             class="
@@ -223,6 +217,7 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 
 export default {
     data: function () {
@@ -243,6 +238,15 @@ export default {
                 tel: "",
                 uid: "",
             },
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "ログイン",
+                },
+            ],
         };
     },
 
@@ -250,6 +254,7 @@ export default {
         Header,
         Navigation,
         Footer,
+        BreadClumbList,
     },
 
     methods: {
