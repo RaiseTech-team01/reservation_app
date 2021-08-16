@@ -73,9 +73,16 @@ export default {
     components: {
         FullCalendar,
     },
+    props: {
+        handleUpdateDate: Function,
+    },
     methods: {
         handleDateClick: function (arg) {
-            alert("date click! " + arg.dateStr);
+            const date = new Date(arg.dateStr);
+            if (date !== null) {
+                this.handleUpdateDate(date);
+            }
+            this.dismiss_timetable();
         },
         handleEventClick: function (arg) {
             alert("event click! " + arg.dateStr);
