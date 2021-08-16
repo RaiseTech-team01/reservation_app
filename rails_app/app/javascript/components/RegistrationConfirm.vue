@@ -424,9 +424,6 @@ export default {
                 });
             // this.$store.dispatch('registrationUserData/post')
         },
-        back() {
-            Router.back();
-        },
         toForm() {
             Router.push("/sign_up");
         },

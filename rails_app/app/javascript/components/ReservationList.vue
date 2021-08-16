@@ -325,9 +325,6 @@ export default {
                 params: { isFromHistory: false },
             });
         },
-        back() {
-            Router.back();
-        },
     },
 };
 </script>
