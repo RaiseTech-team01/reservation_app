@@ -170,6 +170,7 @@
                                         active:bg-red-200
                                     "
                                     type="button"
+                                    @click.prevent="back"
                                     value="戻る"
                                 />
                             </div>
@@ -300,6 +301,9 @@ export default {
         },
         goToRegistration() {
             Router.push("/sign_up");
+        },
+        back() {
+            history.back();
         },
     },
 };
