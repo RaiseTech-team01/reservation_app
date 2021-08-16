@@ -1,7 +1,10 @@
 <template>
     <div class="main m-0">
         <div>
-            <FullCalendarDialog ref="calendarDialog" />
+            <FullCalendarDialog
+                ref="calendarDialog"
+                v-bind:handleUpdateDate="updateDate"
+            />
         </div>
         <div id="fa_container" />
         <dir class="header m-0 text-center pl-0">
@@ -12,6 +15,7 @@
                 <Navigation />
             </dir>
             <ReservationInputs
+                ref="reservationInputs"
                 title="ご希望のご予約内容"
                 subTitle="予約登録入力"
                 v-bind:isShowGuideNavi="true"
@@ -83,6 +87,14 @@ export default {
     },
 
     methods: {
+        updateDate(date) {
+            if (date !== null) {
+                this.$refs.reservationInputs.setTime(
+                    date.getHours(),
+                    date.getMinutes()
+                );
+            }
+        },
         goToConfirm() {
             Router.push("/api/v1/user/reservation_confirm");
         },

@@ -176,9 +176,10 @@
                                     "
                                 >
                                     <select
+                                        id="hours_selector"
                                         class="
-                                            w-20
-                                            md:w-20
+                                            w-24
+                                            md:w-24
                                             h-12
                                             border-2
                                             md:border-4
@@ -206,9 +207,10 @@
                                         >時</span
                                     >
                                     <select
+                                        id="minutes_selector"
                                         class="
-                                            w-20
-                                            md:w-20
+                                            w-24
+                                            md:w-24
                                             h-12
                                             border-2
                                             md:border-4
@@ -443,6 +445,22 @@ export default {
         showTimetableCallback: Function,
     },
     methods: {
+        addOption(select, value) {
+            if (select.childNodes.length > 0) {
+                select.removeChild(select.firstChild);
+            }
+            let option = document.createElement("option");
+            option.setAttribute("value", value);
+            option.innerHTML = value;
+            select.appendChild(option);
+        },
+        setTime(hours, minutes) {
+            const hoursSel = document.getElementById("hours_selector");
+            this.addOption(hoursSel, hours);
+
+            const minutesSel = document.getElementById("minutes_selector");
+            this.addOption(minutesSel, minutes);
+        },
         getDateAfterMonths(month) {
             let date = new Date();
             return date.setMonth(date.getMonth() + month);
