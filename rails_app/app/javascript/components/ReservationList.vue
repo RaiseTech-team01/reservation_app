@@ -9,21 +9,7 @@
             </dir>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <div>
-                        <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="index.html"
-                                >トップ</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="index.html"
-                                >予約一覧</a
-                            >
-                        </h3>
-                    </div>
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div class="mt-16 flex flex-col mx-16 mb-16">
                         <div>
                             <table
@@ -300,16 +286,28 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 
 export default {
     data: function () {
-        return {};
+        return {
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "予約一覧",
+                },
+            ],
+        };
     },
 
     components: {
         Header,
         Navigation,
         Footer,
+        BreadClumbList,
     },
 
     methods: {

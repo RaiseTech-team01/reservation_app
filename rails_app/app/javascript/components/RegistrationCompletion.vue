@@ -5,23 +5,7 @@
         </dir>
         <main class="flex justify-center h-full">
             <div class="bg-gray-300 info-container">
-                <div>
-                    <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                        <a
-                            class="font-bold hover:text-blue-500"
-                            href="/home/top"
-                            >トップ</a
-                        >
-                        <span> > </span>
-                        <a class="font-bold hover:text-blue-500" href="/login"
-                            >ログイン</a
-                        >
-                        <span> > </span>
-                        <a class="font-bold hover:text-blue-500" href="/sign_up"
-                            >新規登録完了</a
-                        >
-                    </h3>
-                </div>
+                <BreadClumbList :bcList="breadClumbList" />
                 <div class="mt-16">
                     <div>
                         <p
@@ -98,6 +82,7 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 import axios from "axios";
 import { mapGetters } from "vuex";
 
@@ -120,6 +105,19 @@ export default {
                 tel: "",
                 uid: "",
             },
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "ログイン",
+                    href: "/login",
+                },
+                {
+                    title: "新規登録完了",
+                },
+            ],
         };
     },
 
@@ -127,6 +125,7 @@ export default {
         Header,
         Navigation,
         Footer,
+        BreadClumbList,
     },
 
     methods: {

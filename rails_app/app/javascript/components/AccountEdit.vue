@@ -6,27 +6,7 @@
         <main>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <div>
-                        <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/home/top"
-                                >トップ</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/account_info"
-                                >アカウント情報</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/account_edit"
-                                >アカウント編集</a
-                            >
-                        </h3>
-                    </div>
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div>
                         <h2
                             class="
@@ -348,16 +328,32 @@ import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
 import { mapGetters } from "vuex";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 
 export default {
     data: function () {
-        return {};
+        return {
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "アカウント設定",
+                    href: "/api/v1/user/account_info",
+                },
+                {
+                    title: "アカウント編集",
+                },
+            ],
+        };
     },
 
     components: {
         Header,
         Navigation,
         Footer,
+        BreadClumbList,
     },
 
     methods: {
