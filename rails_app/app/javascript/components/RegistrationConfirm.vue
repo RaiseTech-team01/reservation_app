@@ -6,7 +6,7 @@
         <main>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <BreadClumbList />
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div class="mt-16">
                         <div>
                             <p
@@ -358,6 +358,19 @@ export default {
                 tel: "",
                 uid: "",
             },
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "ログイン",
+                    href: "/login",
+                },
+                {
+                    title: "新規登録確認",
+                },
+            ],
         };
     },
 
