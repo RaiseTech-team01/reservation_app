@@ -1,5 +1,5 @@
 <template>
-    <div @click.prevent="dismiss_timetable">
+    <div @click.prevent="dismissTimetable">
         <div
             id="timetable-bg"
             class="hidden absolute w-full h-full z-10 bg-black opacity-50"
@@ -82,12 +82,12 @@ export default {
             if (date !== null) {
                 this.handleUpdateDate(date);
             }
-            this.dismiss_timetable();
+            this.dismissTimetable();
         },
         handleEventClick: function (arg) {
             alert("event click! " + arg.dateStr);
         },
-        dismiss_timetable() {
+        dismissTimetable() {
             if ($("#timetable-dialog").is(":visible")) {
                 this.isShowCalendar = false;
                 $("#timetable-bg").hide();
