@@ -1,11 +1,9 @@
 <template>
     <div class="main m-0">
-        <div class="calendar">
-            <Calendar />
-        </div>
-        <div class="timetable">
-            <Timetable />
-        </div>
+        <FullCalendarDialog
+            ref="calendarDialog"
+            v-bind:handleUpdateDate="updateDate"
+        />
         <div id="fa_container" />
         <dir class="header m-0 text-center pl-0">
             <Header />
@@ -15,6 +13,7 @@
                 <Navigation />
             </dir>
             <ReservationInputs
+                ref="reservationInputs"
                 title="ご予約内容の変更"
                 subTitle="予約内容変更"
                 v-bind:isShowGuideNavi="false"
@@ -23,6 +22,7 @@
                 v-bind:confirmButtonCallback="update"
                 cancelButtonTitle="キャンセル"
                 v-bind:cancelButtonCallback="cancel"
+                v-bind:showTimetableCallback="showTimetable"
             />
             <dir class="footer m-0 pl-0">
                 <Footer />
@@ -36,13 +36,46 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
-import Calendar from "./dialog/Calendar.vue";
-import Timetable from "./dialog/Timetable.vue";
 import ReservationInputs from "./layout/ReservationInputs.vue";
+
+import "@fullcalendar/core/vdom"; // solves problem with Vite
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+
+import FullCalendarDialog from "./dialog/FullCalendarDialog.vue";
 
 export default {
     data: function () {
-        return {};
+        return {
+            calendarOptions: {
+                plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
+                initialView: "timeGridDay",
+                events: [
+                    {
+                        title: "event 1",
+                        date: "2021-08-02",
+                        start: "2021-08-02 16:30",
+                        end: "2021-08-02 18:30",
+                    },
+                    {
+                        title: "event 2",
+                        date: "2021-08-02",
+                        start: "2021-08-02 20:00",
+                        end: "2021-08-02 22:00",
+                    },
+                    {
+                        title: "event 3",
+                        date: "2021-08-02",
+                        start: "2021-08-02 20:00",
+                        end: "2021-08-02 22:00",
+                    },
+                ],
+                slotDuration: "00:15",
+                slotMinTime: "16:00",
+                slotMaxTime: "24:00",
+            },
+        };
     },
 
     components: {
@@ -50,11 +83,21 @@ export default {
         Navigation,
         ReservationInputs,
         Footer,
-        Calendar,
-        Timetable,
+        FullCalendarDialog,
     },
 
     methods: {
+        updateDate(date) {
+            if (date !== null) {
+                this.$refs.reservationInputs.setTime(
+                    date.getHours(),
+                    date.getMinutes()
+                );
+            }
+        },
+        showTimetable(e) {
+            this.$refs.calendarDialog.showTimetable(e);
+        },
         update() {
             // TODO データの更新処理
 
