@@ -51,26 +51,6 @@ export default {
             calendarOptions: {
                 plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
                 initialView: "timeGridDay",
-                events: [
-                    {
-                        title: "event 1",
-                        date: "2021-08-02",
-                        start: "2021-08-02 16:30",
-                        end: "2021-08-02 18:30",
-                    },
-                    {
-                        title: "event 2",
-                        date: "2021-08-02",
-                        start: "2021-08-02 20:00",
-                        end: "2021-08-02 22:00",
-                    },
-                    {
-                        title: "event 3",
-                        date: "2021-08-02",
-                        start: "2021-08-02 20:00",
-                        end: "2021-08-02 22:00",
-                    },
-                ],
                 slotDuration: "00:15",
                 slotMinTime: "16:00",
                 slotMaxTime: "24:00",

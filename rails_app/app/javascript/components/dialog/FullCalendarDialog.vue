@@ -51,14 +51,6 @@ export default {
                 eventClick: this.handleEventClick,
                 loading: this.loadingX,
                 ref: "fullCalendar",
-                // events: [
-                //     {
-                //         title: "event 1",
-                //         date: "2021-08-02",
-                //         start: "2021-08-02 16:30",
-                //         end: "2021-08-02 18:30",
-                //     },
-                // ],
                 slotDuration: "00:15",
                 slotMinTime: "16:00",
                 slotMaxTime: "24:00",
