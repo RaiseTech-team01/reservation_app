@@ -6,27 +6,7 @@
         <main>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <div>
-                        <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/home/top"
-                                >トップ</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/login"
-                                >ログイン</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/sign_up"
-                                >新規登録確認</a
-                            >
-                        </h3>
-                    </div>
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div class="mt-16">
                         <div>
                             <p
@@ -377,6 +357,19 @@ export default {
                 tel: "",
                 uid: "",
             },
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "ログイン",
+                    href: "/login",
+                },
+                {
+                    title: "新規登録確認",
+                },
+            ],
         };
     },
 
