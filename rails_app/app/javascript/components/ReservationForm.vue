@@ -47,7 +47,6 @@ export default {
             calendarOptions: {
                 plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
                 initialView: "timeGridDay",
-                dateClick: this.handleDateClick,
                 events: [
                     {
                         title: "event 1",
@@ -84,9 +83,6 @@ export default {
     },
 
     methods: {
-        handleDateClick: function (arg) {
-            alert("date click! " + arg.dateStr);
-        },
         goToConfirm() {
             Router.push("/api/v1/user/reservation_confirm");
         },
