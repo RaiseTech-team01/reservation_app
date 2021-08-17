@@ -5,7 +5,7 @@
         </dir>
         <main>
             <dir class="navigation hidden md:block m-0 p-0">
-                <Navigation />
+                <Navigation :currentIndex="0" />
             </dir>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">

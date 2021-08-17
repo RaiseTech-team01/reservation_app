@@ -15,7 +15,6 @@
                     text-2xl
                     bg-red-400
                     text-white
-                    cursor-pointer
                 "
                 :key="index"
             >
@@ -37,6 +36,7 @@
                     text-white
                     cursor-pointer
                 "
+                @click="nav.callback"
             >
                 {{ nav.title }}
             </span>
@@ -132,14 +132,14 @@ export default {
                     callback: this.goToReservationHistory,
                 },
                 {
-                    title: "アカウント設定2",
+                    title: "アカウント設定",
                     callback: this.goToAccountSettings,
                 },
             ],
         };
     },
     props: {
-        currentIndex: number,
+        currentIndex: Number,
     },
     computed: {
         isLogin() {
