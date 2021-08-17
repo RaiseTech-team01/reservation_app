@@ -5,7 +5,7 @@
         </dir>
         <main>
             <dir class="navigation hidden md:block m-0 p-0">
-                <Navigation />
+                <Navigation :currentIndex="navIndex" />
             </dir>
             <div>
                 <div>
@@ -300,12 +300,17 @@ export default {
         return {
             destination_url: "",
             storemenu_src: "/storemenu/image01.png",
+            navIndex: -1,
         };
+    },
+    props: {
+        isFromHistory: Boolean,
     },
     created() {
         count.num = 0;
         this.getStoremap();
         this.storemenuSrcChange();
+        this.navIndex = this.$route.params.isFromHistory ? 2 : 1;
     },
 
     components: {

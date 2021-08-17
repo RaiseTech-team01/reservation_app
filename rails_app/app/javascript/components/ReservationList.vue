@@ -5,7 +5,7 @@
         </dir>
         <main>
             <dir class="navigation hidden md:block m-0 p-0">
-                <Navigation />
+                <Navigation :currentIndex="1" />
             </dir>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
@@ -314,10 +314,16 @@ export default {
 
     methods: {
         goToDetail() {
-            Router.push("/api/v1/user/reservation_detail");
+            Router.push({
+                name: "ReservationDetail",
+                params: { isFromHistory: true },
+            });
         },
         goToEdit() {
-            Router.push("/api/v1/user/reservation_edit");
+            Router.push({
+                name: "ReservationEdit",
+                params: { isFromHistory: true },
+            });
         },
         back() {
             Router.back();

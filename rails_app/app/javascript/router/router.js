@@ -80,11 +80,15 @@ const router = new Router({
         },
         {
             path: "/api/v1/user/reservation_detail",
+            name: "ReservationDetail",
             component: ReservationDetail,
+            props: true,
         },
         {
             path: "/api/v1/user/reservation_edit",
+            name: "ReservationEdit",
             component: ReservationEdit,
+            props: true,
         },
         {
             path: "/api/v1/user/reservation_history",
