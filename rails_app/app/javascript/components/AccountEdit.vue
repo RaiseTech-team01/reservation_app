@@ -67,8 +67,8 @@
                                         >
                                             <input
                                                 class="
-                                                    w-1/2
-                                                    md:w-44
+                                                    w-3/4
+                                                    md:w-80
                                                     h-12
                                                     md:mr-4
                                                     border-2
@@ -79,21 +79,7 @@
                                                     text-3xl
                                                 "
                                                 type="text"
-                                            />
-                                            <input
-                                                class="
-                                                    w-1/2
-                                                    md:w-44
-                                                    h-12
-                                                    md:ml-4
-                                                    border-2
-                                                    md:border-4
-                                                    border-blue-700
-                                                    bg-gray-100
-                                                    pl-4
-                                                    text-3xl
-                                                "
-                                                type="text"
+                                                :value="userData.name"
                                             />
                                         </div>
                                     </td>
@@ -123,8 +109,8 @@
                                         >
                                             <input
                                                 class="
-                                                    w-1/2
-                                                    md:w-44
+                                                    w-3/4
+                                                    md:w-80
                                                     h-12
                                                     md:mr-4
                                                     border-2
@@ -134,21 +120,7 @@
                                                     pl-4
                                                     text-3xl
                                                 "
-                                                type="text"
-                                            />
-                                            <input
-                                                class="
-                                                    w-1/2
-                                                    md:w-44
-                                                    h-12
-                                                    md:ml-4
-                                                    border-2
-                                                    md:border-4
-                                                    border-blue-700
-                                                    bg-gray-100
-                                                    pl-4
-                                                    text-3xl
-                                                "
+                                                :value="userData.furigana"
                                                 type="text"
                                             />
                                         </div>
@@ -181,6 +153,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
+                                            :value="userData.email"
                                             type="email"
                                         />
                                     </td>
@@ -212,6 +185,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
+                                            :value="userData.tel"
                                             type="tel"
                                         />
                                     </td>
@@ -243,6 +217,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
+                                            :value="userData.birthday"
                                             type="text"
                                         />
                                     </td>
@@ -274,6 +249,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
+                                            :value="userData.gender"
                                             type="text"
                                         />
                                     </td>
@@ -305,6 +281,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
+                                            :value="userData.address"
                                             type="text"
                                         />
                                     </td>
@@ -370,6 +347,7 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
+import { mapGetters } from "vuex";
 
 export default {
     data: function () {
@@ -394,6 +372,9 @@ export default {
         goToAccountInfo() {
             Router.push("/api/v1/user/account_info");
         },
+    },
+    computed: {
+        ...mapGetters(["userData"]),
     },
 };
 </script>
