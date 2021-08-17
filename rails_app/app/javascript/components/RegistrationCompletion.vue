@@ -131,7 +131,6 @@ export default {
 
     methods: {
         login() {
-            // TODO ログイン処理
             this.registeredEmail = this.registrationUserData.email;
             this.registeredPassword = this.registrationUserData.password;
             this.loading = true;
