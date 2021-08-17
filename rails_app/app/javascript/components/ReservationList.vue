@@ -316,13 +316,13 @@ export default {
         goToDetail() {
             Router.push({
                 name: "ReservationDetail",
-                params: { isFromHistory: true },
+                params: { isFromHistory: false },
             });
         },
         goToEdit() {
             Router.push({
                 name: "ReservationEdit",
-                params: { isFromHistory: true },
+                params: { isFromHistory: false },
             });
         },
         back() {
