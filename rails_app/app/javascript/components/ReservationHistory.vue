@@ -22,21 +22,21 @@
               <tr class="md:table-row block">
                 <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">居酒屋A イロハ駅前店</td>
-                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail"></td>
+                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail"/></td>
               </tr>
               <tr class="md:table-row block mt-4">
                 <td class="pl-2 md:p-2 md:table-cell block">予約日時：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">2021年3月20日 18:00～</td>
-                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit"></td>
+                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit"/></td>
               </tr>
               <tr class="md:table-row block mt-4">
-                <td class="pl-2 md:p-2 md:table-cell block"></td>
+                <td class="pl-2 md:p-2 md:table-cell block"/>
                 <td class="pl-2 md:p-2 md:table-cell block">人数：3名　<br class="md:hidden" />コース予約：なし</td>
               </tr>
             </table>
             <div class="my-4 md:my-0 text-center space-x-6 md:hidden">
-              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail">
-              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit">
+              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail"/>
+              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit"/>
             </div>
           </div>
           <div>
@@ -44,21 +44,21 @@
               <tr class="md:table-row block">
                 <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">居酒屋B ホヘト駅前店</td>
-                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail"></td>
+                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail"/></td>
               </tr>
               <tr class="md:table-row block mt-4">
                 <td class="pl-2 md:p-2 md:table-cell block">予約日時：</td>
                 <td class="pl-2 md:p-2 md:table-cell block">2021年3月19日 17:00～</td>
-                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit"></td>
+                <td class="p-2 md:table-cell hidden"><input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit"/></td>
               </tr>
               <tr class="md:table-row block mt-4">
-                <td class="pl-2 md:p-2 md:table-cell block"></td>
+                <td class="pl-2 md:p-2 md:table-cell block"/>
                 <td class="pl-2 md:p-2 md:table-cell block">人数：2名　<br class="md:hidden" />コース予約：あり</td>
               </tr>
             </table>
             <div class="my-4 pb-4 md:my-0 text-center space-x-6 md:hidden border-b-2 border-blue-800">
-              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail">
-              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit">
+              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="詳細" @click.prevent="goToDetail"/>
+              <input class="inline-block w-20 py-1 rounded-xl font-bold bg-yellow-300 md:text-xl text-lg text-blue-800 cursor-pointer hover:bg-yellow-200 hover:text-blue-600 active:bg-red-200" type="button" value="変更" @click.prevent="goToEdit"/>
             </div>
           </div>
         </div>
@@ -72,15 +72,15 @@
 </template>
 
 <script>
-import Router from "../router/router"
-import Header from "./layout/Header.vue"
-import Navigation from "./layout/Navigation.vue"
-import Footer from "./layout/Footer.vue"
+import Router from "../router/router";
+import Header from "./layout/Header.vue";
+import Navigation from "./layout/Navigation.vue";
+import Footer from "./layout/Footer.vue";
 
 export default {
   data: function () {
     return {
-    }
+    };
   },
 
   components: {
@@ -91,13 +91,13 @@ export default {
 
   methods: {
     goToDetail() {
-      Router.push("/api/v1/user/reservation_detail")
+      Router.push("/api/v1/user/reservation_detail");
     },
     goToEdit() {
-      Router.push("/api/v1/user/reservation_edit")
+      Router.push("/api/v1/user/reservation_edit");
     },
   }
-}
+};
 </script>
 
 <style scoped>
