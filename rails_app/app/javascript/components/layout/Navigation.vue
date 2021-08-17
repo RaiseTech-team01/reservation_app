@@ -15,6 +15,7 @@
                     text-2xl
                     bg-red-400
                     text-white
+                    cursor-pointer
                 "
                 :key="index"
             >
