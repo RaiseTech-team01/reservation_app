@@ -303,7 +303,7 @@ export default {
             Router.push("/sign_up");
         },
         back() {
-            history.back();
+            Router.back();
         },
     },
 };
