@@ -159,7 +159,7 @@ export default {
                         this.loginedUserData
                     );
                     this.$store.dispatch("auth/updateLogin", true);
-                    Router.push("/account_info");
+                    this.goToAccountInfo();
                 })
                 .catch((e) => {
                     // TODO: 適切な Error 表示
@@ -181,7 +181,7 @@ export default {
             this.goToAccountInfo();
         },
         goToAccountInfo() {
-            Router.push("/account_info");
+            Router.push("/api/v1/user/account_info");
         },
     },
     computed: {
