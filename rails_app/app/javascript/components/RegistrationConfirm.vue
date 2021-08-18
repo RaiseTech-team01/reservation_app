@@ -416,12 +416,18 @@ export default {
                         "registrationUserData/updateErr",
                         error.response.data.errors.full_messages
                     );
-                    Router.push("/sign_up");
+                    Router.push({
+                        name: "RegistrationForm",
+                        params: { isFirstDraw: false },
+                    });
                 });
             // this.$store.dispatch('registrationUserData/post')
         },
         toForm() {
-            Router.push("/sign_up");
+            Router.push({
+                name: "RegistrationForm",
+                params: { isFirstDraw: false },
+            });
         },
     },
     computed: {

@@ -501,28 +501,13 @@ export default {
             },
         };
     },
+    props: {
+        isFirstDraw: Boolean,
+    },
     components: {
         Header,
         Footer,
     },
-    mounted: function () {
-        this.userData.first_name = this.registrationUserData.first_name;
-        this.userData.last_name = this.registrationUserData.last_name;
-        this.userData.email = this.registrationUserData.email;
-        this.userData.first_furigana = this.registrationUserData.first_furigana;
-        this.userData.last_furigana = this.registrationUserData.last_furigana;
-        this.userData.tel = this.registrationUserData.tel;
-        this.userData.birthday = this.registrationUserData.birthday;
-        this.userData.gender = this.registrationUserData.gender;
-        this.userData.address = this.registrationUserData.address;
-        this.userData.password = this.registrationUserData.password;
-        this.userData.password_confirmation =
-            this.registrationUserData.password_confirmation;
-    },
-    computed: {
-        ...mapGetters(["registrationUserData"]),
-    },
-
     methods: {
         confirm() {
             console.log(this.userData);
@@ -533,7 +518,43 @@ export default {
         back() {
             Router.push("/login");
         },
+        // Vuexに保管したデータをローカル変数に反映
+        reflectUserDataByVuex() {
+            this.userData.first_name = this.registrationUserData.first_name;
+            this.userData.last_name = this.registrationUserData.last_name;
+            this.userData.email = this.registrationUserData.email;
+            this.userData.first_furigana =
+                this.registrationUserData.first_furigana;
+            this.userData.last_furigana =
+                this.registrationUserData.last_furigana;
+            this.userData.tel = this.registrationUserData.tel;
+            this.userData.birthday = this.registrationUserData.birthday;
+            this.userData.gender = this.registrationUserData.gender;
+            this.userData.address = this.registrationUserData.address;
+            this.userData.password = this.registrationUserData.password;
+            this.userData.password_confirmation =
+                this.registrationUserData.password_confirmation;
+        },
+        // エラーメッセージを初期化
+        initializeErrMessage() {
+            this.$store.dispatch("registrationUserData/updateErr", "");
+        },
     },
+    computed: {
+        ...mapGetters(["registrationUserData"]),
+    },
+    created: function () {
+        console.log("this.userData", this.userData);
+        console.log("this.registrationUserData", this.registrationUserData);
+        console.log("fd", this.$route.params.isFirstDraw);
+        if (this.$route.params.isFirstDraw) {
+            this.initializeErrMessage();
+        } else {
+            this.reflectUserDataByVuex();
+        }
+        console.log("this.userData", this.userData);
+    },
+    mounted: function () {},
 };
 </script>
 
