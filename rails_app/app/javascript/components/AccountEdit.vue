@@ -79,7 +79,7 @@
                                                     text-3xl
                                                 "
                                                 type="text"
-                                                :value="userData.name"
+                                                v-model="userData.name"
                                             />
                                         </div>
                                     </td>
@@ -120,7 +120,7 @@
                                                     pl-4
                                                     text-3xl
                                                 "
-                                                :value="userData.furigana"
+                                                v-model="userData.furigana"
                                                 type="text"
                                             />
                                         </div>
@@ -153,7 +153,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.email"
+                                            v-model="userData.email"
                                             type="email"
                                         />
                                     </td>
@@ -185,7 +185,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.tel"
+                                            v-model="userData.tel"
                                             type="tel"
                                         />
                                     </td>
@@ -217,7 +217,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.birthday"
+                                            v-model="userData.birthday"
                                             type="text"
                                         />
                                     </td>
@@ -249,7 +249,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.gender"
+                                            v-model="userData.gender"
                                             type="text"
                                         />
                                     </td>
@@ -281,7 +281,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.address"
+                                            v-model="userData.address"
                                             type="text"
                                         />
                                     </td>
