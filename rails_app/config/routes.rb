@@ -35,9 +35,9 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get "/account_edit", to: "account#index", at:  :account_edit
 
         # reservation_controller
-        resources :reservations, only: [:index, :show, :create, :update, :destroy] do
-          get "/list", param: :userData_id, to: "reservations#index", at: :reservation_list
-        end
+        resources :reservations, param: :store_id, only: [:index, :show, :create, :update, :destroy]
+          get "/reservations/:store_id/:id", to: "reservations#show", at: :reservation_detail
+        
 
         # vueRoutePath
         get "/reservation_form", to: "reservations#index", at:  :reservation_form
