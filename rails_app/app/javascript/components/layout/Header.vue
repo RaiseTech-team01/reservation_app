@@ -211,35 +211,6 @@ export default {
             isOpenMenu2: false,
         };
     },
-<<<<<<< HEAD
-  },
-  
-  mounted() {
-    if (localStorage.getItem('access-token'))
-      this.$store.dispatch('auth/updateLogin', true)
-  },
-  
-
-  methods: {
-    toggle_navigation() {
-      $(".sp_menu_toggle").slideToggle("normal", function() {
-        if ($(".sp_menu_toggle").is(':visible')) {
-          $('#hamburger-btn').hide()
-          $('#cross-btn').show()
-          $('body, html').css({"overflow": "hidden", "height": "100%"});
-        } else {
-          $('#hamburger-btn').show()
-          $('#cross-btn').hide()
-          $('body, html').css({"overflow": "visible", "height": "auto"});
-        }
-      })
-    },
-
-    signin() {
-      // TODO ログイン処理
-      Router.push("/login")
-    },
-=======
     // storeの価が変わると、computedが実行される
     computed: {
         isLogin() {
@@ -270,7 +241,6 @@ export default {
             // TODO ログイン処理
             Router.push("/login");
         },
->>>>>>> develop
 
         async signout() {
             // TODO ログアウト処理
@@ -303,31 +273,9 @@ export default {
             localStorage.removeItem("uid");
             localStorage.removeItem("client");
             this.$store.dispatch("auth/updateLogin", false);
-
-<<<<<<< HEAD
-      Router.push("/login")
-    },
-    // isLogin() は、computedへ移動
-    goToReservationForm() {
-      Router.push("/reservation_form")
-    },
-    goToReservationList() {
-      Router.push("/reservation_list")
-    },
-    goToReservationViewHistory() {
-      Router.push("/reservation_view_history")
-    },
-    goToReservationHistory() {
-      Router.push("/reservation_history")
-    },
-    goToAccountSettings() {
-      Router.push("/account_info")
-    },
-  },
-}
-=======
             Router.push("/login");
         },
+
         // isLogin() は、computedへ移動
 
         goToReservationForm() {
@@ -344,7 +292,6 @@ export default {
         },
     },
 };
->>>>>>> develop
 </script>
 
 <style scoped>
