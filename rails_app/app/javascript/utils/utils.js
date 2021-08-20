@@ -6,9 +6,9 @@ export function getAge(birthday) {
     if (!birthday.match(/^[12][0-9]{7}$/)) {
         console.log("getAge", "不正な入力文字列です");
     }
-    const year = birthday.substr(0, 4);
-    const month = birthday.substr(4, 2);
-    const date = birthday.substr(6, 2);
+    let year = birthday.substr(0, 4);
+    let month = birthday.substr(4, 2);
+    let date = birthday.substr(6, 2);
     [year, month, date] = [year, month, date].map((b) => parseInt(b));
     return getAgeImpr({
         year,
