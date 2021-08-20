@@ -5,13 +5,13 @@ module Api::V1
     before_action :authenticate_user, { only: [:index, :show, :create, :update, :destory] }
 
     def index
-      # 指定店舗の一覧を表示
-      reservations = current_user.reservations.where(store_id: params[:store_id])
+      # ログインユーザーの予約一覧を表示
+      reservations = current_user.reservations
       render json: reservations, each_serializer: Api::V1::ReservationSerializer
     end
 
     def show
-      # 指定店舗の選択した予約詳細を表示
+      # ログインユーザーの指定店舗の予約一覧を表示
       reservations = current_user.reservations.where(store_id: params[:store_id])
       reservation = reservations.find(params[:id])
       render json: reservation, serializer: Api::V1::ReservationSerializer

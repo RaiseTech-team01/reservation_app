@@ -5,9 +5,6 @@
         </dir>
         <main>
             <!-- min-widthを設定する -->
-            <dir class="navigation m-0 pl-0 hidden md:block">
-                <Navigation />
-            </dir>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
                     <div>

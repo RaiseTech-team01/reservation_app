@@ -12,7 +12,7 @@
         </dir>
         <main>
             <dir class="navigation hidden md:block m-0 p-0">
-                <Navigation />
+                <Navigation :currentIndex="navIndex" />
             </dir>
             <ReservationInputs
                 title="ご予約内容の変更"
@@ -42,9 +42,13 @@ import ReservationInputs from "./layout/ReservationInputs.vue";
 
 export default {
     data: function () {
-        return {};
+        return {
+            navIndex: -1,
+        };
     },
-
+    props: {
+        isFromHistory: Boolean,
+    },
     components: {
         Header,
         Navigation,
@@ -63,6 +67,9 @@ export default {
         cancel() {
             Router.back();
         },
+    },
+    created() {
+        this.navIndex = this.$route.params.isFromHistory ? 2 : 1;
     },
 };
 </script>
