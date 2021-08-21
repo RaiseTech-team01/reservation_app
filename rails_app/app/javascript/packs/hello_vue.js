@@ -16,6 +16,7 @@ import VCalendar from "v-calendar";
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VCalendar);
+<<<<<<< HEAD
 
 // 雛形
 // const store = new Vuex.Store({
@@ -41,6 +42,8 @@ Vue.use(VCalendar);
 
 // 参考データ
 // {"data":{"email":"user1@sample.com","uid":"user1@sample.com","id":1,"provider":"email","allow_password_change":false,"name":"ユーザー1","furigana":"ユーザー1","image":null,"tel":"123456781","birthday":"20210411","gender":"男","address":"大阪"}}⏎
+=======
+>>>>>>> develop
 
 document.addEventListener("DOMContentLoaded", () => {
     const app = new Vue({

@@ -1,106 +1,106 @@
 <template>
-  <div class="main m-0">
-    <dir class="header m-0 text-center pl-0">
-      <Header />
-    </dir>
-    <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation />
-      </dir>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <div>
-            <h3 class="mt-10 ml-4 text-xl text-blue-800">
-              <a class="font-bold hover:text-blue-500" href="index.html"
-                >トップ</a
-              >
-              <span> > </span>
-              <a class="font-bold hover:text-blue-500" href="index.html"
-                >予約一覧</a
-              >
-            </h3>
-          </div>
-          <div class="mt-16 flex flex-col mx-16 mb-16">
-            <div v-for="(item, arryIndex) in userReservationData.reservationDataArray" >
-              <table
-                class="
-                  text-2xl
-                  font-bold
-                  text-blue-800
-                  border-t-2 border-blue-800
-                  mx-4
-                  md:table
-                  block
-                "
-              >
-                <tr class="md:table-row block">
-                  <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
-                  <td class="pl-2 md:p-2 md:table-cell block">
-                    {{item.store.name}}
-                  </td>
-                  <td class="p-2 md:table-cell hidden">
-                    <input
-                      class="
-                        inline-block
-                        w-20
-                        py-1
-                        rounded-xl
-                        font-bold
-                        bg-yellow-300
-                        md:text-xl
-                        text-lg text-blue-800
-                        cursor-pointer
-                        hover:bg-yellow-200 hover:text-blue-600
-                        active:bg-red-200
-                      "
-                      type="button"
-                      value="詳細"
-                      @click.prevent="goToDetail(arryIndex)"
-                    />
-                  </td>
-                </tr>
-                <tr class="md:table-row block mt-4">
-                  <td class="pl-2 md:p-2 md:table-cell block">予約日時：</td>
-                  <td class="pl-2 md:p-2 md:table-cell block">
-                    {{item.date_at}}
-                  </td>
-                  <td class="p-2 md:table-cell hidden">
-                    <input
-                      class="
-                        inline-block
-                        w-20
-                        py-1
-                        rounded-xl
-                        font-bold
-                        bg-yellow-300
-                        md:text-xl
-                        text-lg text-blue-800
-                        cursor-pointer
-                        hover:bg-yellow-200 hover:text-blue-600
-                        active:bg-red-200
-                      "
-                      type="button"
-                      value="変更"
-                      @click.prevent="goToEdit"
-                    />
-                  </td>
-                </tr>
-                <tr class="md:table-row block mt-4">
-                  <td class="pl-2 md:p-2 md:table-cell block"></td>
-                  <td class="pl-2 md:p-2 md:table-cell block">
-                    人数：{{item.number_people}}<br class="md:hidden" />コース予約：{{item.menu}}
-                  </td>
-                </tr>
-              </table>
+    <div class="main m-0">
+        <dir class="header m-0 text-center pl-0">
+            <Header />
+        </dir>
+        <main>
+            <dir class="navigation hidden md:block m-0 p-0">
+                <Navigation :currentIndex="1" />
+            </dir>
+            <div class="flex justify-center">
+                <div class="bg-gray-300 info-container">
+                    <BreadClumbList :bcList="breadClumbList" />
+                    <div class="mt-16 flex flex-col mx-16 mb-16">
+                        <div v-for="(item, arryIndex) in userReservationData.reservationDataArray" >
+                            <table
+                                class="
+                                    text-2xl
+                                    font-bold
+                                    text-blue-800
+                                    border-t-2 border-blue-800
+                                    mx-4
+                                    md:table
+                                    block
+                                "
+                            >
+                                <tr class="md:table-row block">
+                                    <td class="pl-2 md:p-2 md:table-cell block">
+                                        店舗：
+                                    </td>
+                                    <td class="pl-2 md:p-2 md:table-cell block">
+                                      {{item.store.name}}
+                                    </td>
+                                    <td class="p-2 md:table-cell hidden">
+                                        <input
+                                            class="
+                                                inline-block
+                                                w-20
+                                                py-1
+                                                rounded-xl
+                                                font-bold
+                                                bg-yellow-300
+                                                md:text-xl
+                                                text-lg text-blue-800
+                                                cursor-pointer
+                                                hover:bg-yellow-200
+                                                hover:text-blue-600
+                                                active:bg-red-200
+                                            "
+                                            type="button"
+                                            value="詳細"
+                                            @click.prevent="goToDetail(arryIndex)"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr class="md:table-row block mt-4">
+                                    <td class="pl-2 md:p-2 md:table-cell block">
+                                        予約日時：
+                                    </td>
+                                    <td class="pl-2 md:p-2 md:table-cell block">
+                                      {{item.date_at}}～
+                                    </td>
+                                    <td class="p-2 md:table-cell hidden">
+                                        <input
+                                            class="
+                                                inline-block
+                                                w-20
+                                                py-1
+                                                rounded-xl
+                                                font-bold
+                                                bg-yellow-300
+                                                md:text-xl
+                                                text-lg text-blue-800
+                                                cursor-pointer
+                                                hover:bg-yellow-200
+                                                hover:text-blue-600
+                                                active:bg-red-200
+                                            "
+                                            type="button"
+                                            value="変更"
+                                            @click.prevent="goToEdit"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr class="md:table-row block mt-4">
+                                    <td
+                                        class="pl-2 md:p-2 md:table-cell block"
+                                    />
+                                    <td class="pl-2 md:p-2 md:table-cell block">
+                                      人数：{{item.number_people}}名<br
+                                            class="md:hidden"
+                                        />コース予約：{{item.menu}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
-  </div>
+        </main>
+        <dir class="footer m-0 pl-0">
+            <Footer />
+        </dir>
+    </div>
 </template>
 
 <script>
@@ -108,15 +108,23 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 import { mapGetters } from "vuex";
 import axios from 'axios';
-
-
 
 export default {
   data: function () {
     return {
       arryIndex: "",
+      breadClumbList: [
+        {
+          title: "トップ",
+          href: "/home/top",
+        },
+        {
+          title: "予約一覧",
+        },
+      ],
     }
   },
 
@@ -124,6 +132,7 @@ export default {
     Header,
     Navigation,
     Footer,
+    BreadClumbList,
   },
 
   computed: {
@@ -133,15 +142,17 @@ export default {
 
   mounted() {
       var key_headers = {
-          headers : {
-            "Accept":"application/json",
-            "access-token":localStorage.getItem('access-token'),
-            "uid":localStorage.getItem('uid'),
-            "client":localStorage.getItem('client')
-          }
+        headers : {
+          "Accept":"application/json",
+          "access-token":localStorage.getItem('access-token'),
+          "uid":localStorage.getItem('uid'),
+          "client":localStorage.getItem('client')
         }
+      }
       axios.get(
-        `http://localhost:3000/api/v1/user/reservations/${this.userData.id}/list/`,key_headers)
+          //  API変更にてコメントアウト
+          // `http://localhost:3000/api/v1/user/${this.userData.id}/reservations/`,key_headers)
+          `http://localhost:3000/api/v1/user/reservations/`,key_headers)
             .then(response => {
               console.log(response.data);
               console.log(response.data[0]);
@@ -171,7 +182,6 @@ export default {
               console.log("axios finished");
             })
   },
-
   methods: {
     goToDetail(arryIndex) {
       console.log(`${arryIndex}`)
@@ -182,13 +192,16 @@ export default {
         "userReservationDetail/update",
         arryIndex
       );
-      Router.push("/api/v1/user/reservation_detail");
+      Router.push({
+        name: "ReservationDetail",
+        params: {isFromHistory: false},
+      });
     },
     goToEdit() {
-      Router.push("/api/v1/user/reservation_edit");
-    },
-    back() {
-      Router.back();
+      Router.push({
+        name: "ReservationEdit",
+        params: {isFromHistory: false},
+      });
     },
   },
 };
@@ -196,7 +209,7 @@ export default {
 
 <style scoped>
 p {
-  font-size: 2em;
-  text-align: center;
+    font-size: 2em;
+    text-align: center;
 }
 </style>

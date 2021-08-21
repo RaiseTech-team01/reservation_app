@@ -6,8 +6,8 @@ const getters = {
     storeUserData: (state) => state.storeUserData,
     registrationStoreUserData: (state) => state.registrationStoreUserData,
     storeAuth: (state) => state.storeAuth,
-    userReservationData: state => state.userReservationData,
-    userReservationDetail: state => state.userReservationDetail,
-    userReservationFormData: state => state.userReservationFormData,
+    userReservationData: (state) => state.userReservationData,
+    userReservationDetail: (state) => state.userReservationDetail,
+    userReservationFormData: (state) => state.userReservationFormData,
 };
 export default getters;

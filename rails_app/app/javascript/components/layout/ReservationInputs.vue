@@ -1,19 +1,7 @@
 <template>
     <div class="flex justify-center">
         <div class="bg-gray-300 info-container">
-            <div>
-                <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                    <a class="font-bold hover:text-blue-500" href="index.html"
-                        >トップ</a
-                    >
-                    <span> > </span>
-                    <a
-                        class="font-bold hover:text-blue-500"
-                        href="index.html"
-                        >{{ subTitle }}</a
-                    >
-                </h3>
-            </div>
+            <BreadClumbList :bcList="breadClumbList" />
             <div class="mt-16" v-show="isShowGuideNavi">
                 <div>
                     <p
@@ -176,9 +164,10 @@
                                     "
                                 >
                                     <select
+                                        id="hours_selector"
                                         class="
-                                            w-20
-                                            md:w-20
+                                            w-24
+                                            md:w-24
                                             h-12
                                             border-2
                                             md:border-4
@@ -191,7 +180,7 @@
                                         name="hour"
                                         type="text"
                                         required
-                                        @click="show_timetable"
+                                        @click="showTimetableCallback"
                                     />
                                     <span
                                         class="
@@ -206,9 +195,10 @@
                                         >時</span
                                     >
                                     <select
+                                        id="minutes_selector"
                                         class="
-                                            w-20
-                                            md:w-20
+                                            w-24
+                                            md:w-24
                                             h-12
                                             border-2
                                             md:border-4
@@ -221,7 +211,7 @@
                                         name="minute"
                                         type="text"
                                         required
-                                        @click="show_timetable"
+                                        @click="showTimetableCallback"
                                     />
                                     <span
                                         class="
@@ -426,6 +416,8 @@
     </div>
 </template>
 <script>
+import BreadClumbList from "../commons/layouts/BreadClumbList.vue";
+
 export default {
     data: function () {
         return {
@@ -437,8 +429,22 @@ export default {
                 // menu:"",
                 budget: "",
                 // inquiry:"",
-            }
+            },
+            date: new Date(),
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: this.subTitle,
+                },
+            ],
         };
+    },
+
+    components: {
+        BreadClumbList,
     },
 
     props: {
@@ -450,16 +456,27 @@ export default {
         confirmButtonCallback: Function,
         cancelButtonTitle: String,
         cancelButtonCallback: Function,
+        showTimetableCallback: Function,
     },
     methods: {
-        show_timetable(event) {
-            if (!$("#timetable-dialog").is(":visible")) {
-                event.target.blur();
-                $("#timetable-bg").show();
-                $("#timetable-dialog").show("normal", function () {
-                    $("body, html").css({ overflow: "hidden", height: "100%" });
-                });
+        convertTwoDigit(value) {
+            return ("0" + value).slice(-2);
+        },
+        addOption(select, value) {
+            if (select.childNodes.length > 0) {
+                select.removeChild(select.firstChild);
             }
+            let option = document.createElement("option");
+            option.setAttribute("value", value);
+            option.innerHTML = value;
+            select.appendChild(option);
+        },
+        setTime(hours, minutes) {
+            const hoursSel = document.getElementById("hours_selector");
+            this.addOption(hoursSel, this.convertTwoDigit(hours));
+
+            const minutesSel = document.getElementById("minutes_selector");
+            this.addOption(minutesSel, this.convertTwoDigit(minutes));
         },
         getDateAfterMonths(month) {
             let date = new Date();
