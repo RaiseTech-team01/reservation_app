@@ -42,13 +42,12 @@ import "@fullcalendar/core/vdom"; // solves problem with Vite
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-
 import FullCalendarDialog from "./dialog/FullCalendarDialog.vue";
 
 export default {
     data: function () {
         return {
-          alendarOptions: {
+          calendarOptions: {
             plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
             initialView: "timeGridDay",
             slotDuration: "00:15",

@@ -423,8 +423,8 @@ export default {
         return {
             reservationInputData:{
                 date: new Date(),
-                // date_at:"",
-                // date_on:"",
+                date_at:"",
+                date_on:"",
                 number_people: "",
                 // menu:"",
                 budget: "",
