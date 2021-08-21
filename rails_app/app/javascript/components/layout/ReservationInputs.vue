@@ -425,8 +425,8 @@ export default {
         return {
             reservationInputData:{
                 date: new Date(),
-                hour:"22",
-                minute:"33",
+                hour:"",
+                minute:"",
                 number_people: "",
                 // menu:"",
                 budget: "",

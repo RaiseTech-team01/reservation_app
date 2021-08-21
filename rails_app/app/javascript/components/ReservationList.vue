@@ -150,6 +150,7 @@ export default {
         }
       }
       axios.get(
+          //  atode
           //  API変更にてコメントアウト
           // `http://localhost:3000/api/v1/user/${this.userData.id}/reservations/`,key_headers)
           `http://localhost:3000/api/v1/user/reservations/`,key_headers)

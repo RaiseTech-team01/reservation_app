@@ -1,6 +1,7 @@
 import axios from "axios";
 import Router from "../../router/router";
 
+// atode 後から編集
 const state =  {
   date:"",
   hour:"",

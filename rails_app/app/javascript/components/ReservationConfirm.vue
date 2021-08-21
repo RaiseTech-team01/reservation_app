@@ -86,6 +86,7 @@
                                                     font-bold
                                                 "
                                             >
+<!--                                                atode 後で編集-->
                                                 どうやってもってこうよう。
                                             </p>
                                         </div>
@@ -352,6 +353,7 @@ export default {
 
           addReservationParams.user_id = this.userData.id;
           // store_idがわからないので、１を指定しておく
+          // atokara 後から編集
           addReservationParams.store_id=1;
           // 以下の書式でいらないデータを削除
           delete addReservationParams.errs;
