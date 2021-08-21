@@ -3,20 +3,20 @@ import Router from "../../router/router";
 
 const state =  {
   date:"",
-  // date_at:"",
-  // date_on:"",
+  hour:"",
+  minute:"",
   number_people:"",
-  // menu:"",
+  menu:"apple",
   budget:"",
-  // inquiry:"",
+  inquiry:"20",
   errs:[],
 }
 
 const mutations = {
   setdata(state, data) {
     state.date=data.date;
-    // date_at:"";
-    // date_on:"";
+    state.hour=data.hour;
+    state.minute=data.minute;
     state.number_people=data.number_people;
     // menu:"";
     state.budget=data.budget;

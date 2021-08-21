@@ -82,10 +82,10 @@ export default {
     },
     methods: {
         goToReservationForm() {
-            Router.push("/api/v1/user/reservation_form");
+            Router.push("/reservation_form");
         },
         goToReservationList() {
-            Router.push("/api/v1/user/reservation_list");
+            Router.push("/reservation_list");
         },
         goToReservationHistory() {
             Router.push("/api/v1/user/reservation_history");

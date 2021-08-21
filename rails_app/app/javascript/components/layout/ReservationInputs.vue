@@ -164,6 +164,7 @@
                                     "
                                 >
                                     <select
+                                        v-model="reservationInputData.hour"
                                         id="hours_selector"
                                         class="
                                             w-24
@@ -195,6 +196,7 @@
                                         >時</span
                                     >
                                     <select
+                                        v-model="reservationInputData.minute"
                                         id="minutes_selector"
                                         class="
                                             w-24
@@ -423,8 +425,8 @@ export default {
         return {
             reservationInputData:{
                 date: new Date(),
-                date_at:"",
-                date_on:"",
+                hour:"22",
+                minute:"33",
                 number_people: "",
                 // menu:"",
                 budget: "",
@@ -477,6 +479,9 @@ export default {
 
             const minutesSel = document.getElementById("minutes_selector");
             this.addOption(minutesSel, this.convertTwoDigit(minutes));
+
+            this.reservationInputData.hour=this.convertTwoDigit(hours)
+            this.reservationInputData.minute=this.convertTwoDigit(minutes)
         },
         getDateAfterMonths(month) {
             let date = new Date();

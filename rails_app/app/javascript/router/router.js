@@ -65,23 +65,23 @@ const router = new Router({
             component: AccountEdit,
         },
         {
-            path: "/api/v1/user/reservation_form",
+            path: "/reservation_form",
             component: ReservationForm,
         },
         {
-            path: "/api/v1/user/reservation_confirm",
+            path: "/reservation_confirm",
             component: ReservationConfirm,
         },
         {
-            path: "/api/v1/user/reservation_complete",
+            path: "/reservation_complete",
             component: ReservationCompletion,
         },
         {
-            path: "/api/v1/user/reservation_list",
+            path: "/reservation_list",
             component: ReservationList,
         },
         {
-            path: "/api/v1/user/reservation_detail",
+            path: "/reservation_detail",
             name: "ReservationDetail",
             component: ReservationDetail,
             props: true,

@@ -15,6 +15,7 @@
               <Navigation :currentIndex="0" />
             </dir>
             <ReservationInputs
+                ref="reservationInputs"
                 title="ご希望のご予約内容"
                 subTitle="予約登録入力"
                 v-bind:isShowGuideNavi="true"
@@ -76,7 +77,7 @@ export default {
       },
       goToConfirm(reservationInputData) {
           this.$store.dispatch('userReservationFormData/update', reservationInputData)
-          Router.push("/api/v1/user/reservation_confirm");
+          Router.push("/reservation_confirm");
       },
       showTimetable(e) {
         this.$refs.calendarDialog.showTimetable(e);
