@@ -176,9 +176,10 @@
                                     "
                                 >
                                     <select
+                                        id="hours_selector"
                                         class="
-                                            w-20
-                                            md:w-20
+                                            w-24
+                                            md:w-24
                                             h-12
                                             border-2
                                             md:border-4
@@ -191,7 +192,7 @@
                                         name="hour"
                                         type="text"
                                         required
-                                        @click="show_timetable"
+                                        @click="showTimetableCallback"
                                     />
                                     <span
                                         class="
@@ -206,9 +207,10 @@
                                         >時</span
                                     >
                                     <select
+                                        id="minutes_selector"
                                         class="
-                                            w-20
-                                            md:w-20
+                                            w-24
+                                            md:w-24
                                             h-12
                                             border-2
                                             md:border-4
@@ -221,7 +223,7 @@
                                         name="minute"
                                         type="text"
                                         required
-                                        @click="show_timetable"
+                                        @click="showTimetableCallback"
                                     />
                                     <span
                                         class="
@@ -440,16 +442,27 @@ export default {
         confirmButtonCallback: Function,
         cancelButtonTitle: String,
         cancelButtonCallback: Function,
+        showTimetableCallback: Function,
     },
     methods: {
-        show_timetable(event) {
-            if (!$("#timetable-dialog").is(":visible")) {
-                event.target.blur();
-                $("#timetable-bg").show();
-                $("#timetable-dialog").show("normal", function () {
-                    $("body, html").css({ overflow: "hidden", height: "100%" });
-                });
+        convertTwoDigit(value) {
+            return ("0" + value).slice(-2);
+        },
+        addOption(select, value) {
+            if (select.childNodes.length > 0) {
+                select.removeChild(select.firstChild);
             }
+            let option = document.createElement("option");
+            option.setAttribute("value", value);
+            option.innerHTML = value;
+            select.appendChild(option);
+        },
+        setTime(hours, minutes) {
+            const hoursSel = document.getElementById("hours_selector");
+            this.addOption(hoursSel, this.convertTwoDigit(hours));
+
+            const minutesSel = document.getElementById("minutes_selector");
+            this.addOption(minutesSel, this.convertTwoDigit(minutes));
         },
         getDateAfterMonths(month) {
             let date = new Date();
