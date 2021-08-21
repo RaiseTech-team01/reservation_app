@@ -3,18 +3,18 @@
  * birthday: "YYYYMMDD"
  */
 export function getAge(birthday) {
-    if (!birthday.match(/^[12][0-9]{7}$/)) {
-        console.log("getAge", "不正な入力文字列です");
-    }
-    let year = birthday.substr(0, 4);
-    let month = birthday.substr(4, 2);
-    let date = birthday.substr(6, 2);
-    [year, month, date] = [year, month, date].map((b) => parseInt(b));
-    return getAgeImpr({
-        year,
-        month,
-        date,
-    });
+  if (!birthday.match(/^[12][0-9]{7}$/)) {
+    console.log("getAge", "不正な入力文字列です")
+  }
+  let year = birthday.substr(0, 4)
+  let month = birthday.substr(4, 2)
+  let date = birthday.substr(6, 2)
+  ;[year, month, date] = [year, month, date].map((b) => parseInt(b))
+  return getAgeImpr({
+    year,
+    month,
+    date,
+  })
 }
 
 /*
@@ -23,20 +23,20 @@ export function getAge(birthday) {
  *   YYYY, MM, DD は整数値
  */
 function getAgeImpr(birthday) {
-    console.log(birthday);
-    var today = new Date();
+  console.log(birthday)
+  var today = new Date()
 
-    var thisYearsBirthday = new Date(
-        today.getFullYear(),
-        birthday.month - 1,
-        birthday.date
-    );
+  var thisYearsBirthday = new Date(
+    today.getFullYear(),
+    birthday.month - 1,
+    birthday.date
+  )
 
-    var age = today.getFullYear() - birthday.year;
+  var age = today.getFullYear() - birthday.year
 
-    if (today < thisYearsBirthday) {
-        age--;
-    }
-    console.log(age);
-    return age;
+  if (today < thisYearsBirthday) {
+    age--
+  }
+  console.log(age)
+  return age
 }

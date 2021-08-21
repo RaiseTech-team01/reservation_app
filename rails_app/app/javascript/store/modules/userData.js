@@ -29,25 +29,24 @@ const mutations = {
     state.gender = data.gender
     state.address = data.address
   },
-  setErr(state, data){
+  setErr(state, data) {
     state.errs = data
-  }
+  },
 }
 
 const actions = {
   updateErr({ commit }, data) {
-    commit('setErr', data)
+    commit("setErr", data)
   },
-  update({commit}, data) {
+  update({ commit }, data) {
     console.log(data)
-    commit('setname', data)
-  }
+    commit("setname", data)
+  },
 }
-
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 }
