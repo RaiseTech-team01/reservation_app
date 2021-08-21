@@ -17,31 +17,6 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VCalendar);
 
-// 雛形
-// const store = new Vuex.Store({
-//   state: {
-//     text: ''
-//   },
-//   getters: {
-//     todos(state) {
-//       return state.text
-//     }
-//   },
-//   mutations: {
-//     setTodo(state, data) {
-//       state.text = data
-//     }
-//   },
-//   actions: {
-//     updateTodos({ commit }, data) {
-//       commit('setTodo', data)
-//     }
-//   }
-// })
-
-// 参考データ
-// {"data":{"email":"user1@sample.com","uid":"user1@sample.com","id":1,"provider":"email","allow_password_change":false,"name":"ユーザー1","furigana":"ユーザー1","image":null,"tel":"123456781","birthday":"20210411","gender":"男","address":"大阪"}}⏎
-
 document.addEventListener("DOMContentLoaded", () => {
     const app = new Vue({
         router,

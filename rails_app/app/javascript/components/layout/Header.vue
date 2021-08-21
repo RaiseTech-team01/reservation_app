@@ -273,9 +273,9 @@ export default {
             localStorage.removeItem("uid");
             localStorage.removeItem("client");
             this.$store.dispatch("auth/updateLogin", false);
-
             Router.push("/login");
         },
+
         // isLogin() は、computedへ移動
 
         goToReservationForm() {

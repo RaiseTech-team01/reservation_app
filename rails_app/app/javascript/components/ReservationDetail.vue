@@ -18,7 +18,7 @@
                             />
                         </div>
                         <div class="col-span-2 row-span-6 bg-blue-100 h-auto">
-                            <form>
+                            <form v-model="dataIndex">
                                 <table
                                     class="
                                         m-2
@@ -59,7 +59,7 @@
                                                         font-bold
                                                     "
                                                 >
-                                                    イロハ駅前店
+                                                  {{userReservationData.reservationDataArray[userReservationDetail.rdId].store.name}}
                                                 </p>
                                             </div>
                                         </td>
@@ -95,7 +95,7 @@
                                                         font-bold
                                                     "
                                                 >
-                                                    2021年3月21日
+                                                  {{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_on}}
                                                 </p>
                                             </div>
                                         </td>
@@ -130,7 +130,7 @@
                                                     break-all
                                                 "
                                             >
-                                                18時00分～
+                                              {{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_at}}～
                                             </p>
                                         </td>
                                     </tr>
@@ -164,7 +164,7 @@
                                                     font-bold
                                                 "
                                             >
-                                                5名様
+                                              {{ userReservationData.reservationDataArray[userReservationDetail.rdId].number_people}}名様
                                             </p>
                                         </td>
                                     </tr>
@@ -197,7 +197,7 @@
                                                     font-bold
                                                 "
                                             >
-                                                3,000円
+                                              {{ userReservationData.reservationDataArray[userReservationDetail.rdId].budget}}円
                                             </p>
                                         </td>
                                     </tr>
@@ -277,6 +277,7 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
+import {mapGetters} from "vuex";
 
 const headers = {
     headers: {
@@ -301,6 +302,7 @@ export default {
             destination_url: "",
             storemenu_src: "/storemenu/image01.png",
             navIndex: -1,
+            dataIndex: "",
         };
     },
     props: {
@@ -311,6 +313,7 @@ export default {
         this.getStoremap();
         this.storemenuSrcChange();
         this.navIndex = this.$route.params.isFromHistory ? 2 : 1;
+        this.dataIndex = this.userReservationDetail.rdId;
     },
 
     components: {
@@ -324,6 +327,9 @@ export default {
             axios.get("/api/v1/user/storemaps/1", headers).then((response) => {
                 this.destination_url = response.data.url;
             });
+        },
+        back() {
+            Router.back();
         },
         storemenuSrcChange() {
             setInterval(this.change, 5000);
@@ -341,6 +347,11 @@ export default {
             }
         },
     },
+  computed: {
+    ...mapGetters(["userData"]),
+    ...mapGetters(["userReservationData"]),
+    ...mapGetters(["userReservationDetail"]),
+  },
 };
 </script>
 
