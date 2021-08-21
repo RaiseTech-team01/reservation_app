@@ -6,9 +6,9 @@ const state =  {
   hour:"",
   minute:"",
   number_people:"",
-  menu:"apple",
+  menu:"みかん",
   budget:"",
-  inquiry:"20",
+  inquiry:"テキスト",
   errs:[],
 }
 

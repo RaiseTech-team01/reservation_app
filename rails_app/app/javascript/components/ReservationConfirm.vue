@@ -86,7 +86,7 @@
                                                     font-bold
                                                 "
                                             >
-                                                イロハ駅前店
+                                                どうやってもってこうよう。
                                             </p>
                                         </div>
                                     </td>
@@ -117,7 +117,7 @@
                                                     font-bold
                                                 "
                                             >
-                                                2021年3月21日
+                                              {{userReservationFormData.date}}
                                             </p>
                                         </div>
                                     </td>
@@ -147,7 +147,7 @@
                                                 break-all
                                             "
                                         >
-                                            18時00分～
+                                          {{userReservationFormData.hour}}:{{userReservationFormData.minute}}～
                                         </p>
                                     </td>
                                 </tr>
@@ -176,7 +176,7 @@
                                                 font-bold
                                             "
                                         >
-                                            5名様
+                                          {{userReservationFormData.number_people}}名様
                                         </p>
                                     </td>
                                 </tr>
@@ -204,7 +204,7 @@
                                                 font-bold
                                             "
                                         >
-                                            3,000円
+                                            {{userReservationFormData.budget}}円
                                         </p>
                                     </td>
                                 </tr>
@@ -335,30 +335,33 @@ export default {
         },
         goToComplete() {
           Router.push("/reservation_complete");
-
-          // const addReservationParams = []; // 配列を新しく定義する
-          //
-          // addReservationParams.number_people = this.userReservationFormData.number_people
- 
-          const addReservationParams = this.$store.getters.userReservationFormData;
-
-          addReservationParams.user_id=this.userData.id;
-          // store_idがわからないので、１を指定しておく
-          addReservationParams.store_id=1;
-          // 日にち
+          var addReservationParams = []; // 配列を新しく定義する
           addReservationParams.date_on=
+              // 日にち
               this.userReservationFormData.date.getFullYear() + "-" +
               this.convertTwoDigit(this.userReservationFormData.date.getMonth()+1) + "-" +
               this.convertTwoDigit(this.userReservationFormData.date.getDate()) + " " +
-          // 時間
+              // 時間
               this.userReservationFormData.hour + ":" +
               this.userReservationFormData.minute
-          addReservationParams.date_at = addReservationParams.date_on
+          addReservationParams.date_at = addReservationParams.date_on;
+          addReservationParams.number_people = this.userReservationFormData.number_people;
+          addReservationParams.menu = this.userReservationFormData.menu;
+          addReservationParams.budget = this.userReservationFormData.budget;
+          addReservationParams.inquiry = this.userReservationFormData.inquiry;
+
+          addReservationParams.user_id = this.userData.id;
+          // store_idがわからないので、１を指定しておく
+          addReservationParams.store_id=1;
           // 以下の書式でいらないデータを削除
           delete addReservationParams.errs;
-          delete addReservationParams.date;
-          delete addReservationParams.hour;
-          delete addReservationParams.minute;
+          // delete addReservationParams.date;
+          // delete addReservationParams.hour;
+          // delete addReservationParams.minute;
+          console.log(addReservationParams)
+          // 配列をaxiosで送れるオブジェクトへ変換
+          var convertAddReservationParams = Object.assign({},addReservationParams)
+          console.log(convertAddReservationParams)
 
           var key_headers = {
             headers : {
@@ -369,16 +372,16 @@ export default {
             }
           }
           axios
-              .post("/api/v1/user/reservations", addReservationParams,key_headers)
+              .post("/api/v1/user/reservations", convertAddReservationParams,key_headers)
               .then(function (response) {
                 console.log(response);
                 Router.push("/reservation_complete");
               })
               .catch((error) => {
-                console.log(error.response.data.errors.full_messages);
+                console.log(error.response.data.error);
                 this.$store.dispatch(
                     "userReservationFormData/updateErr",
-                    error.response.data.errors.full_messages
+                    error.response.data.error
                 );
                 Router.push({
                   name: "ReservationForm",
