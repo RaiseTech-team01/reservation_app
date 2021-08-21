@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <div class="main m-0">
     <dir class="header m-0 text-center pl-0">
