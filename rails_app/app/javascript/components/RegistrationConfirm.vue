@@ -396,10 +396,6 @@ export default {
                 " " +
                 addUserParams.first_furigana;
             // 以下の書式でいらないデータを削除
-            delete addUserParams.last_name;
-            delete addUserParams.first_name;
-            delete addUserParams.last_furigana;
-            delete addUserParams.first_furigana;
             delete addUserParams.errs;
 
             axios
@@ -420,12 +416,18 @@ export default {
                         "registrationUserData/updateErr",
                         error.response.data.errors.full_messages
                     );
-                    Router.push("/sign_up");
+                    Router.push({
+                        name: "RegistrationForm",
+                        params: { isFirstDraw: false },
+                    });
                 });
             // this.$store.dispatch('registrationUserData/post')
         },
         toForm() {
-            Router.push("/sign_up");
+            Router.push({
+                name: "RegistrationForm",
+                params: { isFirstDraw: false },
+            });
         },
     },
     computed: {
