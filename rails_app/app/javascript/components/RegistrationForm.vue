@@ -531,7 +531,7 @@ export default {
             Router.push("/sign_up_confirm");
         },
         back() {
-            Router.back();
+            Router.push("/login");
         },
     },
 };

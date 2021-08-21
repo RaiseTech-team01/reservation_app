@@ -296,9 +296,6 @@ export default {
         goToAccountEdit() {
             Router.push("/api/v1/user/account_edit");
         },
-        back() {
-            Router.back();
-        },
     },
 
     computed: {

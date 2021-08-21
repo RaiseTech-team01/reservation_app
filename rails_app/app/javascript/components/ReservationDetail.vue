@@ -325,9 +325,6 @@ export default {
                 this.destination_url = response.data.url;
             });
         },
-        back() {
-            Router.back();
-        },
         storemenuSrcChange() {
             setInterval(this.change, 5000);
         },
