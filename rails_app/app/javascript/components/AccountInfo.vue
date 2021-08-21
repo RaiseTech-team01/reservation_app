@@ -176,7 +176,7 @@
                                             font-bold
                                         "
                                     >
-                                        {{ userData.birthday }} 歳
+                                        {{ getAgeStr(userData.birthday) }} 歳
                                     </p>
                                 </td>
                             </tr>
@@ -280,6 +280,7 @@ import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
 import { mapGetters } from "vuex";
+import { getAge } from "../utils/utils";
 
 export default {
     data: function () {
@@ -293,6 +294,9 @@ export default {
     },
 
     methods: {
+        getAgeStr(birthday) {
+            return getAge(birthday);
+        },
         goToAccountEdit() {
             Router.push("/api/v1/user/account_edit");
         },
@@ -309,9 +313,3 @@ p {
     font-size: 2em;
 }
 </style>
-
-// // yyyyMMdd形式限定、処理日時点の年齢 // function calcAge() { // var today =
-new Date(); // let targetdate; // targetdate = today.getFullYear() * 10000 +
-(today.getMonth() + 1) * 100 + today.getDate(); // return
-(Math.floor((targetdate - userData.birthday) / 10000)); // }, // let calcedAge;
-// calcedAge = calcAge()
