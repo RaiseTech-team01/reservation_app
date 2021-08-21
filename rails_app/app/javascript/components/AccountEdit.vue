@@ -6,27 +6,7 @@
         <main>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <div>
-                        <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/home/top"
-                                >トップ</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/account_info"
-                                >アカウント情報</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/account_edit"
-                                >アカウント編集</a
-                            >
-                        </h3>
-                    </div>
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div>
                         <h2
                             class="
@@ -79,7 +59,7 @@
                                                     text-3xl
                                                 "
                                                 type="text"
-                                                :value="userData.name"
+                                                v-model="userData.name"
                                             />
                                         </div>
                                     </td>
@@ -120,7 +100,7 @@
                                                     pl-4
                                                     text-3xl
                                                 "
-                                                :value="userData.furigana"
+                                                v-model="userData.furigana"
                                                 type="text"
                                             />
                                         </div>
@@ -153,7 +133,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.email"
+                                            v-model="userData.email"
                                             type="email"
                                         />
                                     </td>
@@ -185,7 +165,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.tel"
+                                            v-model="userData.tel"
                                             type="tel"
                                         />
                                     </td>
@@ -217,7 +197,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.birthday"
+                                            v-model="userData.birthday"
                                             type="text"
                                         />
                                     </td>
@@ -249,7 +229,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.gender"
+                                            v-model="userData.gender"
                                             type="text"
                                         />
                                     </td>
@@ -281,7 +261,7 @@
                                                 pl-4
                                                 text-3xl
                                             "
-                                            :value="userData.address"
+                                            v-model="userData.address"
                                             type="text"
                                         />
                                     </td>
@@ -348,16 +328,32 @@ import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
 import { mapGetters } from "vuex";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 
 export default {
     data: function () {
-        return {};
+        return {
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "アカウント設定",
+                    href: "/api/v1/user/account_info",
+                },
+                {
+                    title: "アカウント編集",
+                },
+            ],
+        };
     },
 
     components: {
         Header,
         Navigation,
         Footer,
+        BreadClumbList,
     },
 
     methods: {

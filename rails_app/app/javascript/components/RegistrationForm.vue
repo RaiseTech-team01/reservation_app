@@ -6,27 +6,7 @@
         <main>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <div>
-                        <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/home/top"
-                                >トップ</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="sign_up"
-                                >ログイン</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/sign_up"
-                                >新規登録入力</a
-                            >
-                        </h3>
-                    </div>
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div class="mt-16">
                         <div>
                             <p
@@ -481,6 +461,7 @@
 import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Footer from "./layout/Footer.vue";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -499,30 +480,29 @@ export default {
                 password: "",
                 password_confirmation: "",
             },
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "ログイン",
+                    href: "/login",
+                },
+                {
+                    title: "新規登録入力",
+                },
+            ],
         };
+    },
+    props: {
+        isFirstDraw: Boolean,
     },
     components: {
         Header,
         Footer,
+        BreadClumbList,
     },
-    mounted: function () {
-        this.userData.first_name = this.registrationUserData.first_name;
-        this.userData.last_name = this.registrationUserData.last_name;
-        this.userData.email = this.registrationUserData.email;
-        this.userData.first_furigana = this.registrationUserData.first_furigana;
-        this.userData.last_furigana = this.registrationUserData.last_furigana;
-        this.userData.tel = this.registrationUserData.tel;
-        this.userData.birthday = this.registrationUserData.birthday;
-        this.userData.gender = this.registrationUserData.gender;
-        this.userData.address = this.registrationUserData.address;
-        this.userData.password = this.registrationUserData.password;
-        this.userData.password_confirmation =
-            this.registrationUserData.password_confirmation;
-    },
-    computed: {
-        ...mapGetters(["registrationUserData"]),
-    },
-
     methods: {
         confirm() {
             console.log(this.userData);
@@ -533,7 +513,43 @@ export default {
         back() {
             Router.push("/login");
         },
+        // Vuexに保管したデータをローカル変数に反映
+        reflectUserDataByVuex() {
+            this.userData.first_name = this.registrationUserData.first_name;
+            this.userData.last_name = this.registrationUserData.last_name;
+            this.userData.email = this.registrationUserData.email;
+            this.userData.first_furigana =
+                this.registrationUserData.first_furigana;
+            this.userData.last_furigana =
+                this.registrationUserData.last_furigana;
+            this.userData.tel = this.registrationUserData.tel;
+            this.userData.birthday = this.registrationUserData.birthday;
+            this.userData.gender = this.registrationUserData.gender;
+            this.userData.address = this.registrationUserData.address;
+            this.userData.password = this.registrationUserData.password;
+            this.userData.password_confirmation =
+                this.registrationUserData.password_confirmation;
+        },
+        // エラーメッセージを初期化
+        initializeErrMessage() {
+            this.$store.dispatch("registrationUserData/updateErr", "");
+        },
     },
+    computed: {
+        ...mapGetters(["registrationUserData"]),
+    },
+    created: function () {
+        console.log("this.userData", this.userData);
+        console.log("this.registrationUserData", this.registrationUserData);
+        console.log("fd", this.$route.params.isFirstDraw);
+        if (this.$route.params.isFirstDraw) {
+            this.initializeErrMessage();
+        } else {
+            this.reflectUserDataByVuex();
+        }
+        console.log("this.userData", this.userData);
+    },
+    mounted: function () {},
 };
 </script>
 

@@ -9,21 +9,7 @@
             </dir>
             <div class="flex justify-center">
                 <div class="bg-gray-300 info-container">
-                    <div>
-                        <h3 class="mt-10 ml-4 text-xl text-blue-800">
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/home/top"
-                                >トップ</a
-                            >
-                            <span> > </span>
-                            <a
-                                class="font-bold hover:text-blue-500"
-                                href="/account_info"
-                                >アカウント情報</a
-                            >
-                        </h3>
-                    </div>
+                    <BreadClumbList :bcList="breadClumbList" />
                     <div>
                         <table
                             class="
@@ -176,7 +162,7 @@
                                             font-bold
                                         "
                                     >
-                                        {{ userData.birthday }} 歳
+                                        {{ getAgeStr(userData.birthday) }} 歳
                                     </p>
                                 </td>
                             </tr>
@@ -279,20 +265,36 @@ import Router from "../router/router";
 import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
+import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
 import { mapGetters } from "vuex";
+import { getAge } from "../utils/utils";
 
 export default {
     data: function () {
-        return {};
+        return {
+            breadClumbList: [
+                {
+                    title: "トップ",
+                    href: "/home/top",
+                },
+                {
+                    title: "アカウント設定",
+                },
+            ],
+        };
     },
 
     components: {
         Header,
         Navigation,
         Footer,
+        BreadClumbList,
     },
 
     methods: {
+        getAgeStr(birthday) {
+            return getAge(birthday);
+        },
         goToAccountEdit() {
             Router.push("/api/v1/user/account_edit");
         },
@@ -309,9 +311,3 @@ p {
     font-size: 2em;
 }
 </style>
-
-// // yyyyMMdd形式限定、処理日時点の年齢 // function calcAge() { // var today =
-new Date(); // let targetdate; // targetdate = today.getFullYear() * 10000 +
-(today.getMonth() + 1) * 100 + today.getDate(); // return
-(Math.floor((targetdate - userData.birthday) / 10000)); // }, // let calcedAge;
-// calcedAge = calcAge()

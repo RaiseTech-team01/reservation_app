@@ -40,7 +40,9 @@ const router = new Router({
         },
         {
             path: "/sign_up",
+            name: "RegistrationForm",
             component: RegistrationForm,
+            props: true,
         },
         {
             path: "/sign_up_confirm",
