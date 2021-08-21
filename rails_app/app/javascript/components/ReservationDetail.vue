@@ -95,7 +95,7 @@
                                                         font-bold
                                                     "
                                                 >
-                                                  {{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_at}}
+                                                  {{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_on}}
                                                 </p>
                                             </div>
                                         </td>
@@ -130,7 +130,7 @@
                                                     break-all
                                                 "
                                             >
-                                              {{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_on}}～
+                                              {{ userReservationData.reservationDataArray[userReservationDetail.rdId].date_at}}～
                                             </p>
                                         </td>
                                     </tr>
