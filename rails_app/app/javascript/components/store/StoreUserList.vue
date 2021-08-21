@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import StoreHeader from '../layout/StoreHeader.vue'
-import axios from 'axios'
+import StoreHeader from "../layout/StoreHeader.vue"
+import axios from "axios"
 
 export default {
   data: function () {
@@ -58,24 +58,24 @@ export default {
         event.preventDefault()
         event.stopPropagation()
       }
-      event.target.classList.add('was-validated')
+      event.target.classList.add("was-validated")
     },
     initialize() {
-      console.log('init')
+      console.log("init")
     },
     addData(data) {
       this.userList.push(data)
     },
     async submit(successCallback) {
-      this.typedEmail = document.getElementById('user_email').value
-      this.typedPassword = document.getElementById('user_pass').value
+      this.typedEmail = document.getElementById("user_email").value
+      this.typedPassword = document.getElementById("user_pass").value
       this.loading = true
       const params = {
         email: `${this.typedEmail}`,
         password: `${this.typedPassword}`,
       }
       await axios
-        .post('/api/v1/auth/sign_in', params)
+        .post("/api/v1/auth/sign_in", params)
         .then((response) => {
           // TODO ユーザ一覧データを取得するためのAPIを叩き、取得したデータをuserListに設定する
 
@@ -104,7 +104,7 @@ export default {
         .finally(() => {
           this.loading = false
         })
-      console.log('axios finished')
+      console.log("axios finished")
     },
   },
   mounted: function () {
@@ -112,28 +112,28 @@ export default {
     //   this.initialize();
     // })
     this.addData({
-      id: '1',
-      name: '木村雄二',
-      email: 'user1@sample.com',
+      id: "1",
+      name: "木村雄二",
+      email: "user1@sample.com",
       age: 25,
-      gendar: '男性',
-      tel: '08034566543',
+      gendar: "男性",
+      tel: "08034566543",
     })
     this.addData({
-      id: '2',
-      name: '田中紀子',
-      email: 'user2@sample.com',
+      id: "2",
+      name: "田中紀子",
+      email: "user2@sample.com",
       age: 30,
-      gendar: '女性',
-      tel: '08098761234',
+      gendar: "女性",
+      tel: "08098761234",
     })
     this.addData({
-      id: '3',
-      name: '村上庄司',
-      email: 'user3@sample.com',
+      id: "3",
+      name: "村上庄司",
+      email: "user3@sample.com",
       age: 20,
-      gendar: '男性',
-      tel: '08098761234',
+      gendar: "男性",
+      tel: "08098761234",
     })
   },
 }

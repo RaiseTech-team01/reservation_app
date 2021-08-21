@@ -39,14 +39,14 @@
 </template>
 
 <script>
-import StoreHeader from '../layout/StoreHeader.vue'
-import axios from 'axios'
+import StoreHeader from "../layout/StoreHeader.vue"
+import axios from "axios"
 
 export default {
   data: function () {
     return {
       loading: false,
-      errorMessage: '',
+      errorMessage: "",
       reservationList: [],
       requestHeaders: {},
     }
@@ -65,51 +65,51 @@ export default {
         event.preventDefault()
         event.stopPropagation()
       }
-      event.target.classList.add('was-validated')
+      event.target.classList.add("was-validated")
     },
     addData(item) {
       this.reservationList.push(item)
     },
     makeHeaders(accessToken, client, uid) {
       let headers = {}
-      headers['access-token'] = accessToken
-      headers['client'] = client
-      headers['uid'] = uid
+      headers["access-token"] = accessToken
+      headers["client"] = client
+      headers["uid"] = uid
       return headers
     },
     getDateString(reserveData) {
       // date_at: "2021-01-01T00:00:00.000+09:00"
       const date = reserveData.date_at
       const str = date.match(/^(2[0-9]+)-([01][0-9])-([0-3][0-9])/)
-      return str[1] + '/' + str[2] + '/' + str[3]
+      return str[1] + "/" + str[2] + "/" + str[3]
     },
     getTimeString(reserveData) {
       // date_at: "2021-01-01T00:00:00.000+09:00"
       const date = reserveData.date_at
       const str = date.match(/T([0-2][0-9]):([0-5][0-9])/)
-      return str[1] + ':' + str[2]
+      return str[1] + ":" + str[2]
     },
     async requestRsrvData() {
       this.loading = true
 
-      const accessToken = localStorage.getItem('store-access-token')
-      const client = localStorage.getItem('store-client')
-      const uid = localStorage.getItem('store-uid')
+      const accessToken = localStorage.getItem("store-access-token")
+      const client = localStorage.getItem("store-client")
+      const uid = localStorage.getItem("store-uid")
       if (!(accessToken && client && uid)) {
         this.errorMessage =
-          '正常なログイン情報が格納されていません。再ログインしてください。'
+          "正常なログイン情報が格納されていません。再ログインしてください。"
         return
       }
       this.requestHeaders = this.makeHeaders(accessToken, client, uid)
 
       await axios
         .get(
-          '/api/v1/stores/reservations',
+          "/api/v1/stores/reservations",
           { headers: this.requestHeaders },
           { data: {} }
         )
         .then((response) => {
-          this.errorMessage = ''
+          this.errorMessage = ""
           const reserveData = response.data.map((rsrv) => {
             return {
               id: rsrv.id,
