@@ -1,29 +1,48 @@
 <template>
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">店舗管理</a>
-    <button @click="toggleHamburger" class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav
+    class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark"
+    aria-label="Main navigation"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">店舗管理</a>
+      <button
+        @click="toggleHamburger"
+        class="navbar-toggler p-0 border-0"
+        type="button"
+        id="navbarSideCollapse"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon" />
+      </button>
 
-    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <span class="nav-link active" aria-current="page" @click="goToDashBoard">ダッシュボード</span>
-        </li>
-        <li class="nav-item">
-          <span class="nav-link" @click="goToReservationList">予約一覧画面</span>
-        </li>
-        <li class="nav-item">
-          <span class="nav-link" @click="goToUserList">ユーザ一覧画面</span>
-        </li>
-        <li class="nav-item">
-          <span class="nav-link" @click="goToSettings">設定</span>
-        </li>
-      </ul>
+      <div
+        class="navbar-collapse offcanvas-collapse"
+        id="navbarsExampleDefault"
+      >
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <span
+              class="nav-link active"
+              aria-current="page"
+              @click="goToDashBoard"
+              >ダッシュボード</span
+            >
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" @click="goToReservationList"
+              >予約一覧画面</span
+            >
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" @click="goToUserList">ユーザ一覧画面</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" @click="goToSettings">設定</span>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 </template>
 
 <script>
@@ -31,13 +50,11 @@ import Router from "../../router/router"
 
 export default {
   data: function () {
-    return {
-
-    }
+    return {}
   },
   methods: {
     toggleHamburger() {
-      document.querySelector('.offcanvas-collapse').classList.toggle('open')
+      document.querySelector(".offcanvas-collapse").classList.toggle("open")
     },
     goToDashBoard() {
       Router.push("/store_dash_board")
@@ -53,7 +70,6 @@ export default {
     },
   },
 }
-
 </script>
 
 <style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>

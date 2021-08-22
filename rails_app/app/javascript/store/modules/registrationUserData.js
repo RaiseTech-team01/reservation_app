@@ -1,19 +1,19 @@
-import axios from "axios";
-import Router from "../../router/router";
+import axios from "axios"
+import Router from "../../router/router"
 
-const state =  {
-  first_name:"",
-  last_name:"",
-  email:"",
-  first_furigana:"",
-  last_furigana:"",
-  tel:"",
-  birthday:"",
-  gender:"",
-  address:"",
-  password:"",
-  password_confirmation:"",
-  errs:[],
+const state = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  first_furigana: "",
+  last_furigana: "",
+  tel: "",
+  birthday: "",
+  gender: "",
+  address: "",
+  password: "",
+  password_confirmation: "",
+  errs: [],
 }
 
 const mutations = {
@@ -28,11 +28,11 @@ const mutations = {
     state.gender = data.gender
     state.address = data.address
     state.password = data.password
-    state.password_confirmation= data.password_confirmation
+    state.password_confirmation = data.password_confirmation
   },
-  setErr(state, data){
+  setErr(state, data) {
     state.errs = data
-  }
+  },
 }
 
 const actions = {
@@ -61,23 +61,17 @@ const actions = {
   // },
 
   updateErr({ commit }, data) {
-    commit('setErr', data)
+    commit("setErr", data)
   },
   update({ commit }, data) {
     console.log(data)
-    commit('setdata', data)
-  }
+    commit("setdata", data)
+  },
 }
-
-
-
-
-
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 }
-
