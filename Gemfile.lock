@@ -313,6 +313,7 @@ GEM
 
 PLATFORMS
   aarch64-linux-musl
+  x86_64-linux-musl
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
