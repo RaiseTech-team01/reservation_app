@@ -113,31 +113,34 @@ import { mapGetters } from "vuex";
 import axios from 'axios';
 
 export default {
-    data: function () {
-        return {
-            arryIndex: "",
-            breadClumbList: [
-                {
-                    title: "トップ",
-                    href: "/home/top",
-                },
-                {
-                    title: "予約一覧",
-                },
-            ],
-        };
-    },
-    components: {
-        Header,
-        Navigation,
-        Footer,
-        BreadClumbList,
-    },
-    computed: {
-      ...mapGetters(["userData"]),
-      ...mapGetters(["userReservationData"]),
-    },
-    mounted() {
+  data: function () {
+    return {
+      arryIndex: "",
+      breadClumbList: [
+        {
+          title: "トップ",
+          href: "/home/top",
+        },
+        {
+          title: "予約一覧",
+        },
+      ],
+    }
+  },
+
+  components: {
+    Header,
+    Navigation,
+    Footer,
+    BreadClumbList,
+  },
+
+  computed: {
+    ...mapGetters(["userData"]),
+    ...mapGetters(["userReservationData"]),
+  },
+
+  mounted() {
       var key_headers = {
         headers : {
           "Accept":"application/json",
@@ -147,59 +150,61 @@ export default {
         }
       }
       axios.get(
-        //  API変更にてコメントアウト
-        // `http://localhost:3000/api/v1/user/${this.userData.id}/reservations/`,key_headers)
-        `http://localhost:3000/api/v1/user/reservations/`,key_headers)
-        .then(response => {
-            console.log(response.data);
-            console.log(response.data[0]);
-            console.log(response.data[0].user);
-            // Vuex store
-            this.$store.dispatch(
-              "userReservationData/update",
-              response.data,
-            );
-            this.$store.dispatch(
-              "userReservationData/updateErr",
-              "",
-            );
-          },
-        )
-        .catch((error) => {
-          // TODO: 適切な Error 表示
-          console.log(error.response),
-            console.log(error.response.data.error),
-            this.$store.dispatch(
-              "userReservationData/updateErr",
-              error.response.data.error
-            );
-        })
-        .finally(() => {
-          console.log("axios finished");
-        })
+          //  atode
+          //  API変更にてコメントアウト
+          // `http://localhost:3000/api/v1/user/${this.userData.id}/reservations/`,key_headers)
+          `http://localhost:3000/api/v1/user/reservations/`,key_headers)
+            .then(response => {
+              console.log(response.data);
+              console.log(response.data[0]);
+              console.log(response.data[0].user);
+              // Vuex store
+              this.$store.dispatch(
+                "userReservationData/update",
+                response.data,
+              );
+              this.$store.dispatch(
+                "userReservationData/updateErr",
+                "",
+              );
+              },
+            )
+
+            .catch((error) => {
+              // TODO: 適切な Error 表示
+              console.log(error.response);
+              console.log(error.response.data.error);
+              this.$store.dispatch(
+                "userReservationData/updateErr",
+                error.response.data.error
+              );
+            })
+            .finally(() => {
+              console.log("axios finished");
+            })
+  },
+  methods: {
+    goToDetail(arryIndex) {
+      console.log(`${arryIndex}`)
+      // this.selected_rdId = counter
+      console.log("indexNo:" + arryIndex)
+      // Vuex store
+      this.$store.dispatch(
+        "userReservationDetail/update",
+        arryIndex
+      );
+      Router.push({
+        name: "ReservationDetail",
+        params: {isFromHistory: false},
+      });
     },
-    methods: {
-      goToDetail(arryIndex) {
-        console.log(`${arryIndex}`)
-        // this.selected_rdId = counter
-        console.log("indexNo:" + arryIndex)
-        // Vuex store
-        this.$store.dispatch(
-          "userReservationDetail/update",
-          arryIndex
-        );
-        Router.push({
-          name: "ReservationDetail",
-          params: {isFromHistory: false},
-        });
-      },
-      goToEdit() {
-        Router.push({
-          name: "ReservationEdit",
-          params: {isFromHistory: false},
-        });
-      },
-    }
+    goToEdit() {
+      Router.push({
+        name: "ReservationEdit",
+        params: {isFromHistory: false},
+      });
+    },
+  },
 };
 </script>
 

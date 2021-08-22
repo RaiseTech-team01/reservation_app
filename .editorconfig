@@ -11,5 +11,9 @@ indent_size = 4
 [*.md]
 trim_trailing_whitespace = false
 
+<<<<<<< HEAD
+[{package.json,*.less,*.coffee,*.js}]
+=======
 [{package.json,*.less,*.coffee,*.js,*.vue}]
+>>>>>>> develop
 indent_size = 2

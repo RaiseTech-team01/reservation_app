@@ -86,7 +86,8 @@
                                                     font-bold
                                                 "
                                             >
-                                                イロハ駅前店
+<!--                                                atode 後で編集-->
+                                                どうやってもってこうよう。
                                             </p>
                                         </div>
                                     </td>
@@ -117,7 +118,7 @@
                                                     font-bold
                                                 "
                                             >
-                                                2021年3月21日
+                                              {{userReservationFormData.date}}
                                             </p>
                                         </div>
                                     </td>
@@ -147,7 +148,7 @@
                                                 break-all
                                             "
                                         >
-                                            18時00分～
+                                          {{userReservationFormData.hour}}:{{userReservationFormData.minute}}～
                                         </p>
                                     </td>
                                 </tr>
@@ -176,7 +177,7 @@
                                                 font-bold
                                             "
                                         >
-                                            5名様
+                                          {{userReservationFormData.number_people}}名様
                                         </p>
                                     </td>
                                 </tr>
@@ -204,7 +205,7 @@
                                                 font-bold
                                             "
                                         >
-                                            3,000円
+                                            {{userReservationFormData.budget}}円
                                         </p>
                                     </td>
                                 </tr>
@@ -300,6 +301,8 @@ import Header from "./layout/Header.vue";
 import Navigation from "./layout/Navigation.vue";
 import Footer from "./layout/Footer.vue";
 import BreadClumbList from "./commons/layouts/BreadClumbList.vue";
+import axios from "axios";
+import {mapGetters} from "vuex";
 
 export default {
     data: function () {
@@ -323,10 +326,74 @@ export default {
         BreadClumbList,
     },
 
+    computed: {
+      ...mapGetters(["userReservationFormData","userData"]),
+    },
+
     methods: {
-        goToComplete() {
-            Router.push("/api/v1/user/reservation_complete");
+        convertTwoDigit(value) {
+          return ("0" + value).slice(-2);
         },
+        goToComplete() {
+          Router.push("/reservation_complete");
+          var addReservationParams = []; // 配列を新しく定義する
+          addReservationParams.date_on=
+              // 日にち
+              this.userReservationFormData.date.getFullYear() + "-" +
+              this.convertTwoDigit(this.userReservationFormData.date.getMonth()+1) + "-" +
+              this.convertTwoDigit(this.userReservationFormData.date.getDate()) + " " +
+              // 時間
+              this.userReservationFormData.hour + ":" +
+              this.userReservationFormData.minute
+          addReservationParams.date_at = addReservationParams.date_on;
+          addReservationParams.number_people = this.userReservationFormData.number_people;
+          addReservationParams.menu = this.userReservationFormData.menu;
+          addReservationParams.budget = this.userReservationFormData.budget;
+          addReservationParams.inquiry = this.userReservationFormData.inquiry;
+
+          addReservationParams.user_id = this.userData.id;
+          // store_idがわからないので、１を指定しておく
+          // atokara 後から編集
+          addReservationParams.store_id=1;
+          // 以下の書式でいらないデータを削除
+          delete addReservationParams.errs;
+          // delete addReservationParams.date;
+          // delete addReservationParams.hour;
+          // delete addReservationParams.minute;
+          console.log(addReservationParams)
+          // 配列をaxiosで送れるオブジェクトへ変換
+          var convertAddReservationParams = Object.assign({},addReservationParams)
+          console.log(convertAddReservationParams)
+
+          var key_headers = {
+            headers : {
+              "Accept":"application/json",
+              "access-token":localStorage.getItem('access-token'),
+              "uid":localStorage.getItem('uid'),
+              "client":localStorage.getItem('client')
+            }
+          }
+          axios
+              .post("/api/v1/user/reservations", convertAddReservationParams,key_headers)
+              .then(function (response) {
+                console.log(response);
+                Router.push("/reservation_complete");
+              })
+              .catch((error) => {
+                console.log(error.response.data.error);
+                this.$store.dispatch(
+                    "userReservationFormData/updateErr",
+                    error.response.data.error
+                );
+                Router.push({
+                  name: "ReservationForm",
+                  params: { isFirstDraw: false },
+                });
+              });
+
+
+        },
+
         back() {
             Router.back();
         },

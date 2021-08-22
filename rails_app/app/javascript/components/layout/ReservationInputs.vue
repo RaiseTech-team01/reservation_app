@@ -103,7 +103,7 @@
                                     "
                                 >
                                     <v-date-picker
-                                        v-model="date"
+                                        v-model="reservationInputData.date"
                                         mode="date"
                                         :value="null"
                                         color="orange"
@@ -164,6 +164,7 @@
                                     "
                                 >
                                     <select
+                                        v-model="reservationInputData.hour"
                                         id="hours_selector"
                                         class="
                                             w-24
@@ -195,6 +196,7 @@
                                         >時</span
                                     >
                                     <select
+                                        v-model="reservationInputData.minute"
                                         id="minutes_selector"
                                         class="
                                             w-24
@@ -261,6 +263,7 @@
                                     step="1"
                                     required
                                     placeholder="2"
+                                    v-model="reservationInputData.number_people"
                                 />
                                 <span
                                     class="
@@ -309,6 +312,7 @@
                                     step="500"
                                     required
                                     placeholder="3000"
+                                    v-model="reservationInputData.budget"
                                 />
                                 <span
                                     class="
@@ -387,7 +391,7 @@
                             type="button"
                             v-show="isShowButton1"
                             v-bind:value="confirmButtonTitle"
-                            @click.prevent="confirmButtonCallback"
+                            @click.prevent="confirmButtonCallback(reservationInputData)"
                         />
                         <input
                             class="
@@ -419,6 +423,15 @@ import BreadClumbList from "../commons/layouts/BreadClumbList.vue";
 export default {
     data: function () {
         return {
+            reservationInputData:{
+                date: new Date(),
+                hour:"",
+                minute:"",
+                number_people: "",
+                // menu:"",
+                budget: "",
+                // inquiry:"",
+            },
             date: new Date(),
             breadClumbList: [
                 {
@@ -466,6 +479,9 @@ export default {
 
             const minutesSel = document.getElementById("minutes_selector");
             this.addOption(minutesSel, this.convertTwoDigit(minutes));
+
+            this.reservationInputData.hour=this.convertTwoDigit(hours)
+            this.reservationInputData.minute=this.convertTwoDigit(minutes)
         },
         getDateAfterMonths(month) {
             let date = new Date();

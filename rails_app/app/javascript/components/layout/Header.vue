@@ -205,91 +205,94 @@ import Router from "../../router/router";
 import axios from "axios";
 
 export default {
-    data: function () {
+  data: function () {
         return {
             isOpenMenu1: false,
             isOpenMenu2: false,
         };
     },
-    // storeの価が変わると、computedが実行される
-    computed: {
+  mounted() {
+    if (localStorage.getItem('access-token'))
+      this.$store.dispatch('auth/updateLogin', true)
+  },
+  // storeの価が変わると、computedが実行される
+  computed: {
         isLogin() {
             // TODO ログイン状態を真偽値で返す
             return this.$store.getters.auth.isLogin;
         },
     },
+  methods: {
+      toggle_navigation(){
+          $(".sp_menu_toggle").slideToggle("normal", function () {
+              if ($(".sp_menu_toggle").is(":visible")) {
+                  $("#hamburger-btn").hide();
+                  $("#cross-btn").show();
+                  $("body, html").css({ overflow: "hidden", height: "100%" });
+              } else {
+                  $("#hamburger-btn").show();
+                  $("#cross-btn").hide();
+                  $("body, html").css({
+                      overflow: "visible",
+                      height: "auto",
+                  });
+              }
+          });
+      },
 
-    methods: {
-        toggle_navigation() {
-            $(".sp_menu_toggle").slideToggle("normal", function () {
-                if ($(".sp_menu_toggle").is(":visible")) {
-                    $("#hamburger-btn").hide();
-                    $("#cross-btn").show();
-                    $("body, html").css({ overflow: "hidden", height: "100%" });
-                } else {
-                    $("#hamburger-btn").show();
-                    $("#cross-btn").hide();
-                    $("body, html").css({
-                        overflow: "visible",
-                        height: "auto",
-                    });
-                }
-            });
-        },
+      signin() {
+          // TODO ログイン処理
+          Router.push("/login");
+      },
 
-        signin() {
-            // TODO ログイン処理
-            Router.push("/login");
-        },
+      async signout() {
+          // TODO ログアウト処理
+          // DELETE http://localhost:3000/api/v1/auth/sign_out
 
-        async signout() {
-            // TODO ログアウト処理
-            // DELETE http://localhost:3000/api/v1/auth/sign_out
+          var key_headers = {
+              headers: {
+                  Accept: "application/json",
+                  "access-token": localStorage.getItem("access-token"),
+                  uid: localStorage.getItem("uid"),
+                  client: localStorage.getItem("client"),
+              },
+          };
 
-            var key_headers = {
-                headers: {
-                    Accept: "application/json",
-                    "access-token": localStorage.getItem("access-token"),
-                    uid: localStorage.getItem("uid"),
-                    client: localStorage.getItem("client"),
-                },
-            };
+          // rail logout api
+          await axios
+              .delete("/api/v1/auth/sign_out", key_headers)
+              .then(function (response) {
+                  console.log(response);
+              })
+              .catch(function (error) {
+                  // console.log(error);
+                  return false;
+              })
+              .finally(function () {
+                  // always executed
+              });
 
-            // rail logout api
-            await axios
-                .delete("/api/v1/auth/sign_out", key_headers)
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    // console.log(error);
-                    return false;
-                })
-                .finally(function () {
-                    // always executed
-                });
-
-            localStorage.removeItem("access-token");
-            localStorage.removeItem("uid");
-            localStorage.removeItem("client");
-            this.$store.dispatch("auth/updateLogin", false);
-            Router.push("/login");
-        },
+          localStorage.removeItem("access-token");
+          localStorage.removeItem("uid");
+          localStorage.removeItem("client");
+          this.$store.dispatch("auth/updateLogin", false);
+          Router.push("/login");
+      },
 
         // isLogin() は、computedへ移動
 
-        goToReservationForm() {
-            Router.push("/api/v1/user/reservation_form");
-        },
-        goToReservationList() {
-            Router.push("/api/v1/user/reservation_list");
-        },
-        goToReservationHistory() {
-            Router.push("/api/v1/user/reservation_history");
-        },
-        goToAccountSettings() {
-            Router.push("/api/v1/user/account_info");
-        },
+      goToReservationForm() {
+          Router.push("/reservation_form");
+      },
+      goToReservationList() {
+          Router.push("/reservation_list");
+      },
+      goToReservationHistory() {
+          Router.push("/api/v1/user/reservation_history");
+      },
+      goToAccountSettings() {
+          Router.push("/api/v1/user/account_info");
+      },
     },
 };
 </script>
