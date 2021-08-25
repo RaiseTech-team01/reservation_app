@@ -83,11 +83,19 @@ import Router from "../../router/router"
 import { mapGetters } from "vuex"
 import axios from "axios"
 
+export const reservListType = {
+  reservList: "reservList",
+  historyList: "historyList",
+}
+
 export default {
   data: function () {
     return {
       arryIndex: "",
     }
+  },
+  props: {
+    type: String,
   },
 
   computed: {

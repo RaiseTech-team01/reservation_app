@@ -11,7 +11,7 @@
         <div class="bg-gray-300 info-container">
           <BreadClumbList :bcList="breadClumbList" />
           <div class="mt-16 flex flex-col mx-16 mb-16">
-            <ReservationListData />
+            <ReservationListData :type="reservListType.reservList" />
           </div>
         </div>
       </div>
@@ -28,6 +28,7 @@ import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
 import ReservationListData from "./layout/ReservationListData.vue"
+import { reservListType } from "./layout/ReservationListData.vue"
 import BreadClumbList from "./commons/layouts/BreadClumbList.vue"
 import { mapGetters } from "vuex"
 import axios from "axios"
@@ -45,6 +46,7 @@ export default {
           title: "予約一覧",
         },
       ],
+      reservListType,
     }
   },
 
