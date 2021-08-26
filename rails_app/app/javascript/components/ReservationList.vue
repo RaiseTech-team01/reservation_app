@@ -11,84 +11,7 @@
         <div class="bg-gray-300 info-container">
           <BreadClumbList :bcList="breadClumbList" />
           <div class="mt-16 flex flex-col mx-16 mb-16">
-            <div
-              v-for="(
-                item, arryIndex
-              ) in userReservationData.reservationDataArray"
-            >
-              <table
-                class="
-                  text-2xl
-                  font-bold
-                  text-blue-800
-                  border-t-2 border-blue-800
-                  mx-4
-                  md:table
-                  block
-                "
-              >
-                <tr class="md:table-row block">
-                  <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
-                  <td class="pl-2 md:p-2 md:table-cell block">
-                    {{ item.store.name }}
-                  </td>
-                  <td class="p-2 md:table-cell hidden">
-                    <input
-                      class="
-                        inline-block
-                        w-20
-                        py-1
-                        rounded-xl
-                        font-bold
-                        bg-yellow-300
-                        md:text-xl
-                        text-lg text-blue-800
-                        cursor-pointer
-                        hover:bg-yellow-200 hover:text-blue-600
-                        active:bg-red-200
-                      "
-                      type="button"
-                      value="詳細"
-                      @click.prevent="goToDetail(arryIndex)"
-                    />
-                  </td>
-                </tr>
-                <tr class="md:table-row block mt-4">
-                  <td class="pl-2 md:p-2 md:table-cell block">予約日時：</td>
-                  <td class="pl-2 md:p-2 md:table-cell block">
-                    {{ item.date_at }}～
-                  </td>
-                  <td class="p-2 md:table-cell hidden">
-                    <input
-                      class="
-                        inline-block
-                        w-20
-                        py-1
-                        rounded-xl
-                        font-bold
-                        bg-yellow-300
-                        md:text-xl
-                        text-lg text-blue-800
-                        cursor-pointer
-                        hover:bg-yellow-200 hover:text-blue-600
-                        active:bg-red-200
-                      "
-                      type="button"
-                      value="変更"
-                      @click.prevent="goToEdit"
-                    />
-                  </td>
-                </tr>
-                <tr class="md:table-row block mt-4">
-                  <td class="pl-2 md:p-2 md:table-cell block" />
-                  <td class="pl-2 md:p-2 md:table-cell block">
-                    人数：{{ item.number_people }}名<br
-                      class="md:hidden"
-                    />コース予約：{{ item.menu }}
-                  </td>
-                </tr>
-              </table>
-            </div>
+            <ReservationListData :type="reservListType.reservList" />
           </div>
         </div>
       </div>
@@ -104,6 +27,8 @@ import Router from "../router/router"
 import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
+import ReservationListData from "./layout/ReservationListData.vue"
+import { reservListType } from "./layout/ReservationListData.vue"
 import BreadClumbList from "./commons/layouts/BreadClumbList.vue"
 import { mapGetters } from "vuex"
 import axios from "axios"
@@ -121,6 +46,7 @@ export default {
           title: "予約一覧",
         },
       ],
+      reservListType,
     }
   },
 
@@ -128,6 +54,7 @@ export default {
     Header,
     Navigation,
     Footer,
+    ReservationListData,
     BreadClumbList,
   },
 
