@@ -33,11 +33,10 @@ module Api::V1
     def update
       # 対象の予約を検索する
       reservations = current_user.reservations.where(store_id: params[:store_id])
-      reservation = reservations.find_by!(params[:id])
+      reservation = reservations.find(params[:reservation][:id].to_s)
 
       # リクエストで変更のある値を更新
       reservation.update!(reservation_params)
-
       render json: reservation, serializer: Api::V1::ReservationSerializer
     end
 
