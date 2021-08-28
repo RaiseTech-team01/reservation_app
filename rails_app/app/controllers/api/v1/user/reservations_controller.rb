@@ -2,7 +2,7 @@ module Api::V1
   class User::ReservationsController < BaseApiController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     skip_before_action :verify_authenticity_token
-    before_action :authenticate_user, { only: [:index, :show, :create, :update, :destory] }
+    before_action :authenticate_user, { only: [:index, :show, :create, :update, :destroy] }
 
     def index
       # ログインユーザーの予約一覧を表示
@@ -33,22 +33,26 @@ module Api::V1
     def update
       # 対象の予約を検索する
       reservations = current_user.reservations.where(store_id: params[:store_id])
-      reservation = reservations.find(params[:reservation][:id].to_s)
 
-      # リクエストで変更のある値を更新
-      reservation.update!(reservation_params)
-      render json: reservation, serializer: Api::V1::ReservationSerializer
+      if reservations.exists?(params[:reservation][:id])
+        reservation = reservations.find(params[:reservation][:id])
+        reservation.update!(reservation_params)
+        render json: reservation, serializer: Api::V1::ReservationSerializer
+      else
+        self.record_not_found
+      end
     end
 
     def destroy
+      # 予約削除
       reservations = current_user.reservations.where(store_id: params[:store_id])
-      reservation = reservations.find(params[:id])
 
-      # 予約席をキャンセル分増やす
-      search_store = Store.find(params[:store_id])
-      search_store.update!(seat: residual_seat)
-
-      reservation.destroy!
+      if reservations.exists?(params[:reservation][:id])
+        reservation = reservations.find(params[:reservation][:id])
+        reservation.destroy!
+      else
+        self.record_not_found
+      end
     end
 
     private
