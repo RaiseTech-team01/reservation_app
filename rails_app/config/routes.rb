@@ -15,8 +15,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   get "/store_dash_board", to: "home#top"
   get "/store_settings", to: "home#top"
 
-  namespace :api do
-    namespace :v1 do
+  namespace :api do # rubocop:disable Metrics/BlockLength
+    namespace :v1 do # rubocop:disable Metrics/BlockLength
       mount_devise_token_auth_for "User", at: "auth", controllers: {
         registrations: "api/v1/auth/registrations",
         sessions: "api/v1/auth/sessions",
@@ -31,13 +31,12 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         # account_controller
         resources :account, only: [:index, :edit]
 
-        get "/account_info", to: "account#index", at:  :account_info
-        get "/account_edit", to: "account#index", at:  :account_edit
+        get "/account_info", to: "account#index", at: :account_info
+        get "/account_edit", to: "account#index", at: :account_edit
 
         # reservation_controller
         resources :reservations, param: :store_id, only: [:index, :show, :create, :update, :destroy]
-          get "/reservations/:store_id/:id", to: "reservations#show", at: :reservation_detail
-        
+        get "/reservations/:store_id/:id", to: "reservations#show", at: :reservation_detail
 
         # vueRoutePath
         get "/reservation_form", to: "reservations#index", at:  :reservation_form
@@ -45,7 +44,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get "/reservation_complete", to: "reservations#index", at: :reservation_complete
         get "/reservation_list", to: "reservations#index", at: :reservation_list
         get "/reservation_detail", to: "reservations#index", at: :reservation_detail
-        get "/reservation_history", to: "reservations#index", at:  :reservation_history
+        get "/reservation_history", to: "reservations#index", at: :reservation_history
         get "/reservation_edit", to: "reservations#index", at: :reservation_edit
 
         # store_map
