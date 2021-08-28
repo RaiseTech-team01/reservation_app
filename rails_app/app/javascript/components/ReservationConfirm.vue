@@ -309,6 +309,9 @@ export default {
         // 日にち
         this.userReservationFormData.date.getFullYear() +
         "-" +
+          // JavaScriptの日にちオブジェクトをつくる。月が０から始まる
+          //例２）年月日を指定して生成する(2016/3/29)
+          // var dt = new Date(2016, 2, 29);
         this.convertTwoDigit(this.userReservationFormData.date.getMonth() + 1) +
         "-" +
         this.convertTwoDigit(this.userReservationFormData.date.getDate()) +
@@ -329,7 +332,7 @@ export default {
       // atokara 後から編集
       addReservationParams.store_id = 1
       // 以下の書式でいらないデータを削除
-      delete addReservationParams.errs
+      // delete addReservationParams.errs
       // delete addReservationParams.date;
       // delete addReservationParams.hour;
       // delete addReservationParams.minute;

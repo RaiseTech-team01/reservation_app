@@ -13,7 +13,7 @@
         <Navigation :currentIndex="navIndex" />
       </dir>
       <ReservationInputs
-        ref="reservationInputs"
+        ref="reservationInputsEdit"
         title="ご予約内容の変更"
         subTitle="予約内容変更"
         v-bind:isShowGuideNavi="false"
@@ -37,6 +37,7 @@ import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
 import ReservationInputs from "./layout/ReservationInputs.vue"
+import { mapGetters } from "vuex"
 
 import "@fullcalendar/core/vdom" // solves problem with Vite
 import dayGridPlugin from "@fullcalendar/daygrid"
@@ -68,11 +69,46 @@ export default {
     Footer,
     FullCalendarDialog,
   },
+  computed: {
+    ...mapGetters(["userReservationData"]),
+    ...mapGetters(["userReservationDetail"]),
+  },
+  mounted() {
+    const initalValue =  this.userReservationData.reservationDataArray[
+        this.userReservationDetail.rdId
+        ]
+
+    // JavaScriptの日にちオブジェクトをつくる。月が０から始まる
+    //例２）年月日を指定して生成する(2016/3/29)
+    // var dt = new Date(2016, 2, 29);
+    // "2020-12-31T15:00:00.000+09:00"
+    // initalValue.date_at.slice(0,4)
+    // initalValue.slice(5,7)
+    // initalValue.slice(8,10)
+
+    // reservationInputData.= initalValue.store.name
+
+    var dt = new Date(
+        initalValue.date_at.slice(0,4), // yy
+        Number(initalValue.date_at.slice(5,7))+1,  // mm
+        initalValue.date_at.slice(8,10), // dd
+        initalValue.date_at.slice(11,12), // hh
+        initalValue.date_at.slice(14,16), // mm
+    );
+
+    this.$refs.reservationInputsEdit.reservationInputData.date = dt
+    this.$refs.reservationInputsEdit.setTime(dt.getHours(), dt.getMinutes());
+    this.$refs.reservationInputsEdit.reservationInputData.number_people = initalValue.number_people
+    this.$refs.reservationInputsEdit.reservationInputData.budget = initalValue.budget
+    console.log(dt)
+    console.log(initalValue.budget)
+
+  },
 
   methods: {
     updateDate(date) {
       if (date !== null) {
-        this.$refs.reservationInputs.setTime(date.getHours(), date.getMinutes())
+        this.$refs.reservationInputsEdit.setTime(date.getHours(), date.getMinutes())
       }
     },
     showTimetable(e) {

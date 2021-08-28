@@ -65,7 +65,7 @@
               "
               type="button"
               value="変更"
-              @click.prevent="goToEdit"
+              @click.prevent="goToEdit(arryIndex)"
             />
           </td>
         </tr>
@@ -177,7 +177,9 @@ export default {
         params: { isFromHistory: false },
       })
     },
-    goToEdit() {
+    goToEdit(arryIndex) {
+      // Vuex store
+      this.$store.dispatch("userReservationDetail/update", arryIndex),
       Router.push({
         name: "ReservationEdit",
         params: { isFromHistory: false },
