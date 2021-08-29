@@ -14,21 +14,21 @@ services:
     tty: true
     stdin_open: true
 
-  rails:
-    build:
-      context: ./rails_app
-      dockerfile: Dockerfile
-    ports:
-      - ${BACKEND_PORT}:3000
-    volumes:
-      - ./rails_app/:/rails_app
-      - rails-bundle:/user/local/bundle
-      - ./_roothome/:/root
-    depends_on:
-      - db
-    env_file: .env
-    tty: true
-    stdin_open: true
+  # rails:
+  #   build:
+  #     context: ./rails_app
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - ${BACKEND_PORT}:3000
+  #   volumes:
+  #     - ./rails_app/:/rails_app
+  #     - rails-bundle:/user/local/bundle
+  #     - ./_roothome/:/root
+  #   depends_on:
+  #     - db
+  #   env_file: .env
+  #   tty: true
+  #   stdin_open: true
 
   # 今回フロントで、phpmyadminは、使用しないのでコメントアウト
   # phpmyadmin:
@@ -44,6 +44,6 @@ services:
   #   env_file: .env
 
 volumes:
-  rails-bundle:
+  # rails-bundle:
   db-data:
   # pma-session:
