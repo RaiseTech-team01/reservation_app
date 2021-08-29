@@ -3,10 +3,10 @@
 # Table name: calendars
 #
 #  id              :bigint           not null, primary key
-#  body            :text(65535)
-#  business_hours  :string(255)
-#  regular_holiday :string(255)
-#  title           :string(255)
+#  body            :text
+#  business_hours  :string
+#  regular_holiday :string
+#  title           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  store_id        :bigint           not null

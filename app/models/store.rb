@@ -5,31 +5,31 @@
 # Table name: stores
 #
 #  id                     :bigint           not null, primary key
-#  address                :string(255)
+#  address                :string
 #  allow_password_change  :boolean          default(FALSE)
 #  confirmation_sent_at   :datetime
-#  confirmation_token     :string(255)
+#  confirmation_token     :string
 #  confirmed_at           :datetime
-#  email                  :string(255)
-#  encrypted_password     :string(255)      default(""), not null
-#  fax                    :string(255)
-#  furigana               :string(255)
-#  genre                  :string(255)
-#  name                   :string(255)
-#  other                  :string(255)
-#  postal_code            :string(255)
-#  provider               :string(255)      default("email"), not null
+#  email                  :string
+#  encrypted_password     :string           default(""), not null
+#  fax                    :string
+#  furigana               :string
+#  genre                  :string
+#  name                   :string
+#  other                  :string
+#  postal_code            :string
+#  provider               :string           default("email"), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
-#  reset_password_token   :string(255)
-#  responsible_party      :string(255)
-#  restaurant             :string(255)
+#  reset_password_token   :string
+#  responsible_party      :string
+#  restaurant             :string
 #  seat                   :integer
-#  tel                    :string(255)
-#  tokens                 :text(65535)
-#  uid                    :string(255)      default(""), not null
-#  unconfirmed_email      :string(255)
-#  url                    :string(255)
+#  tel                    :string
+#  tokens                 :text
+#  uid                    :string           default(""), not null
+#  unconfirmed_email      :string
+#  url                    :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

@@ -1,4 +1,4 @@
-(1..3).each do |i| # rubocop:disable Metrics/BlockLength
+(1..9).each do |i| # rubocop:disable Metrics/BlockLength
   user_pass = Faker::Internet.password(min_length: 8, max_length: 20)
   store_pass = Faker::Internet.password(min_length: 8, max_length: 20)
 
@@ -25,7 +25,7 @@
                         postal_code: "1234567",
                         url: "http://sample#{i}.com",
                         address: "大阪",
-                        seat: i * 100,
+                        seat: i * 10,
                         restaurant: "店舗名#{i}",
                         genre: "飲食業",
                         responsible_party: "担当者#{i}",
@@ -33,8 +33,8 @@
                         password: store_pass,
                         password_confirmation: store_pass)
 
-  Reservation.create!(date_at: "2021-0#{i}-0#{i}",
-                      date_on: "2021-0#{i}-0#{i}",
+  Reservation.create!(date_at: "2021-09-1#{i}",
+                      date_on: "2021-09-1#{i}",
                       number_people: "#{i}#{i}#{i}",
                       menu: "メニュー#{i}",
                       budget: 10000,

@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2021_07_28_163935) do
 
-  create_table "calendars", charset: "utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "calendars", force: :cascade do |t|
     t.string "business_hours"
     t.string "regular_holiday"
     t.string "title"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_163935) do
     t.index ["store_id"], name: "index_calendars_on_store_id"
   end
 
-  create_table "deliveries", charset: "utf8mb4", force: :cascade do |t|
+  create_table "deliveries", force: :cascade do |t|
     t.integer "deliverer"
     t.bigint "user_id", null: false
     t.bigint "store_id", null: false
@@ -33,14 +36,14 @@ ActiveRecord::Schema.define(version: 2021_07_28_163935) do
     t.index ["user_id"], name: "index_deliveries_on_user_id"
   end
 
-  create_table "payments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "payments", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "reservation_id"
     t.index ["reservation_id"], name: "index_payments_on_reservation_id"
   end
 
-  create_table "question_answers", charset: "utf8mb4", force: :cascade do |t|
+  create_table "question_answers", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.bigint "store_id", null: false
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_163935) do
     t.index ["store_id"], name: "index_question_answers_on_store_id"
   end
 
-  create_table "reservations", charset: "utf8mb4", force: :cascade do |t|
+  create_table "reservations", force: :cascade do |t|
     t.datetime "date_at"
     t.datetime "date_on"
     t.integer "number_people"
@@ -67,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_163935) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "store_discount_info_notifications", charset: "utf8mb4", force: :cascade do |t|
+  create_table "store_discount_info_notifications", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.bigint "user_id", null: false
@@ -78,14 +81,14 @@ ActiveRecord::Schema.define(version: 2021_07_28_163935) do
     t.index ["user_id"], name: "index_store_discount_info_notifications_on_user_id"
   end
 
-  create_table "storemaps", charset: "utf8mb4", force: :cascade do |t|
+  create_table "storemaps", force: :cascade do |t|
     t.text "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "store_id"
   end
 
-  create_table "stores", charset: "utf8mb4", force: :cascade do |t|
+  create_table "stores", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -119,7 +122,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_163935) do
     t.index ["uid", "provider"], name: "index_stores_on_uid_and_provider", unique: true
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -153,7 +156,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_163935) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  create_table "word_mouths", charset: "utf8mb4", force: :cascade do |t|
+  create_table "word_mouths", force: :cascade do |t|
     t.datetime "visit_day"
     t.string "title"
     t.text "body"

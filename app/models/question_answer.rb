@@ -3,8 +3,8 @@
 # Table name: question_answers
 #
 #  id         :bigint           not null, primary key
-#  body       :text(65535)
-#  title      :string(255)
+#  body       :text
+#  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  store_id   :bigint           not null

@@ -3,10 +3,10 @@
 # Table name: storemaps
 #
 #  id         :bigint           not null, primary key
-#  url        :text(65535)
+#  url        :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  store_id   :string(255)
+#  store_id   :string
 #
 require "rails_helper"
 

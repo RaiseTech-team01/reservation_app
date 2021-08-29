@@ -1,18 +1,37 @@
-version: '3'
+version: "3.2"
+# version: '3'
+# services:
+#   db:
+#     # image: mariadb:10.5.9
+#     image: postgres:latest
+
+#     restart: always
+#     ports:
+#       - 5432:5432
+#     volumes:
+#       # - db-data:/var/lib/mysql
+#       - "db-data:/var/lib/postgresql/data"
+#     environment:
+#       # MYSQL_ROOT_PASSWORD: password
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgres
+#     env_file: .env
+#     tty: true
+#     stdin_open: true
+
+volumes:
+  db-data:
+
 services:
   db:
-    image: mariadb:10.5.9
-
-    restart: always
-    ports:
-      - ${DB_PORT}:3306
+    image: postgres:latest
     volumes:
-      - db-data:/var/lib/mysql
+      - "db-data:/var/lib/postgresql/"
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    env_file: .env
-    tty: true
-    stdin_open: true
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
 
   # rails:
   #   build:

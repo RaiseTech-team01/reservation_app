@@ -6,10 +6,10 @@
 #  budget             :integer
 #  date_at            :datetime
 #  date_on            :datetime
-#  inquiry            :text(65535)
-#  menu               :string(255)
+#  inquiry            :text
+#  menu               :string
 #  number_people      :integer
-#  reservation_number :string(255)
+#  reservation_number :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  payment_id         :bigint

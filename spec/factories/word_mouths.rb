@@ -3,8 +3,8 @@
 # Table name: word_mouths
 #
 #  id         :bigint           not null, primary key
-#  body       :text(65535)
-#  title      :string(255)
+#  body       :text
+#  title      :string
 #  visit_day  :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

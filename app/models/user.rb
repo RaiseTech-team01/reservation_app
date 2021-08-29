@@ -5,31 +5,31 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
-#  address                :string(255)
+#  address                :string
 #  allow_password_change  :boolean          default(FALSE)
-#  birthday               :string(255)
+#  birthday               :string
 #  confirmation_sent_at   :datetime
-#  confirmation_token     :string(255)
+#  confirmation_token     :string
 #  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
-#  current_sign_in_ip     :string(255)
-#  email                  :string(255)
-#  encrypted_password     :string(255)      default(""), not null
-#  furigana               :string(255)
-#  gender                 :string(255)
-#  image                  :string(255)
+#  current_sign_in_ip     :string
+#  email                  :string
+#  encrypted_password     :string           default(""), not null
+#  furigana               :string
+#  gender                 :string
+#  image                  :string
 #  last_sign_in_at        :datetime
-#  last_sign_in_ip        :string(255)
-#  name                   :string(255)
-#  provider               :string(255)      default("email"), not null
+#  last_sign_in_ip        :string
+#  name                   :string
+#  provider               :string           default("email"), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
-#  reset_password_token   :string(255)
+#  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
-#  tel                    :string(255)
-#  tokens                 :text(65535)
-#  uid                    :string(255)      default(""), not null
-#  unconfirmed_email      :string(255)
+#  tel                    :string
+#  tokens                 :text
+#  uid                    :string           default(""), not null
+#  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
