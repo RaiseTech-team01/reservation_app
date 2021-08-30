@@ -21,7 +21,7 @@
 #
 FactoryBot.define do
   factory :calendar do
-    I18n.locale = "ja"
+    # I18n.locale = "ja"
     business_hours { Faker::Time.between(from: DateTime.now, to: DateTime.now) }
     regular_holiday { Faker::Business.credit_card_expiry_date }
     title { Faker::Blockchain::Ethereum.address }
