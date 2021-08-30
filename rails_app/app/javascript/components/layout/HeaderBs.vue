@@ -4,7 +4,7 @@
     aria-label="Main navigation"
   >
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">予約アプリ（仮）</a>
+      <a class="navbar-brand" href="#">予約サービス（仮）</a>
       <button
         @click="toggleHamburger"
         class="navbar-toggler p-0 border-0"
