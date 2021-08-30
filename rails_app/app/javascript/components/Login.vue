@@ -3,7 +3,7 @@
     <dir class="header m-0 pl-0 text-center">
       <Header />
     </dir>
-    <main>
+    <main class="mt-16">
       <!-- min-widthを設定する -->
       <div class="flex justify-center">
         <div class="bg-gray-300 info-container">
@@ -187,7 +187,8 @@
 <script>
 import axios from "axios"
 import Router from "../router/router"
-import Header from "./layout/Header.vue"
+// import Header from "./layout/Header.vue"
+import Header from "./layout/HeaderBs.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
 import BreadClumbList from "./commons/layouts/BreadClumbList.vue"
