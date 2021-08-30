@@ -1,8 +1,8 @@
 test:
-  adapter: mysql
+  adapter: postgresql
   encoding: unicode
   pool: 5
   database: rails_app_test
-  username: root
-  password: root
+  username: postgres
+  password: postgres
   host: localhost
