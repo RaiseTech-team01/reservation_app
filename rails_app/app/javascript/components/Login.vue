@@ -6,11 +6,11 @@
     <main class="mt-32">
       <div class="text-center">
         <main class="form-signin">
-          <form>
+          <form class="needs-validation" novalidate>
             <h1 class="h1 mb-5 fw-normal text-nowrap">ようこそ</h1>
 
             <div
-              v-show="hasError"
+              v-show="hasError()"
               class="my-4 pb-0 alert alert-danger"
               role="alert"
             >
@@ -19,22 +19,31 @@
             <div class="form-floating">
               <input
                 type="email"
-                class="form-control"
+                class="form-control was-validated"
                 id="user_email"
                 v-model="typedEmail"
                 placeholder="name@example.com"
+                required
               />
               <label for="floatingInput">メールアドレス</label>
+              <div class="invalid-feedback">
+                メールアドレスをご記載ください。
+              </div>
             </div>
             <div class="form-floating mb-3">
               <input
                 type="password"
-                class="form-control"
+                class="form-control was-validated"
                 id="user_pass"
                 v-model="typedPassword"
                 placeholder="Password"
+                minlength="6"
+                required
               />
               <label for="floatingPassword">パスワード</label>
+              <div class="invalid-feedback">
+                パスワード（6文字以上）をご入力ください。
+              </div>
             </div>
 
             <div class="checkbox mb-4 text-rt-cyan">
@@ -47,7 +56,6 @@
               class="w-100 btn btn-lg text-white bg-rt-cyan"
               type="submit"
               :loading="loading"
-              @click.prevent="submit"
             >
               ログイン
             </button>
@@ -78,6 +86,7 @@ import BreadClumbList from "./commons/layouts/BreadClumbList.vue"
 export default {
   data: function () {
     return {
+      errorMessage: "",
       typedEmail: "",
       typedPassword: "",
       loginedUserData: {
@@ -143,8 +152,8 @@ export default {
           // TODO: 適切な Error 表示
           console.log(error.response)
           console.log(error.response.data.errors)
+          this.errorMessage = error.response.data.errors[0]
           this.$store.dispatch("userData/updateErr", error.response.data.errors)
-          Router.push("/")
         })
         .finally(() => {
           this.loading = false
@@ -157,6 +166,54 @@ export default {
     back() {
       Router.back()
     },
+    hasError() {
+      return !!this.errorMessage
+    },
+    initializeValidation(validatedCallback) {
+      const instance0 = this
+      this.$nextTick(function () {
+        console.log(this)
+        const instance = this
+        //("use strict");
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation")
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              console.log("# 100")
+              if (!form.checkValidity()) {
+                console.log("invalid")
+                event.preventDefault()
+                event.stopPropagation()
+              } else {
+                console.log("valid")
+                console.log("instance:")
+                console.log(instance)
+                console.log("instance0:")
+                console.log(instance0)
+                event.preventDefault()
+                event.stopPropagation()
+                console.log(this)
+
+                validatedCallback()
+              }
+              form.classList.add("was-validated")
+            },
+            false
+          )
+        })
+      })
+    },
+  },
+  mounted() {
+    this.initializeValidation(() => {
+      console.log("success validation")
+      this.submit()
+    })
   },
 }
 </script>
