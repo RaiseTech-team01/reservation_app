@@ -218,6 +218,7 @@ export default {
 </script>
 
 <style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 /* --- start signin.css ---- */
 
@@ -275,37 +276,5 @@ body {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
-}
-
-.text-rt-indigo {
-  color: rgb(19, 29, 50) !important;
-}
-
-.text-rt-cyan {
-  color: rgb(27, 153, 177) !important;
-}
-
-.text-rt-cyan:hover {
-  color: rgb(33, 121, 137) !important;
-}
-
-.bg-rt-cyan {
-  background-color: rgb(27, 153, 177) !important;
-}
-
-.bg-rt-cyan:hover {
-  background-color: rgb(35, 139, 159) !important;
-}
-
-.bg-rt-gray {
-  background-color: rgb(116, 152, 159) !important;
-}
-
-.bg-rt-lightgreen {
-  background-color: rgb(158, 215, 77) !important;
-}
-
-.bg-rt-lightgreen:hover {
-  background-color: rgb(139, 195, 61) !important;
 }
 </style>
