@@ -8,7 +8,7 @@
     </div>
     <div id="fa_container" />
     <dir class="header m-0 text-center pl-0">
-      <Header />
+      <Header :currentIndex="0" />
     </dir>
     <main>
       <dir class="navigation hidden md:block m-0 p-0">

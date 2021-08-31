@@ -4,7 +4,11 @@
     aria-label="Main navigation"
   >
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">予約サービス（仮）</a>
+      <div class="w-44 navbar-brand">
+        <a href="#"
+          ><img src="/header-logo.png" class="float-start" alt="header logo"
+        /></a>
+      </div>
       <button
         @click="toggleHamburger"
         class="navbar-toggler p-0 border-0"
@@ -19,25 +23,25 @@
         class="navbar-collapse offcanvas-collapse"
         id="navbarsExampleDefault"
       >
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-if="isLogin === true">
-          <li class="nav-item">
-            <span
-              class="nav-link active"
-              aria-current="page"
-              @click="goToDashBoard"
-              >予約する</span
+        <ul
+          class="navbar-nav me-auto mb-2 ml-5 mb-lg-0 space-x-8"
+          v-if="isLogin === true"
+        >
+          <template v-for="(nav, index) in navList">
+            <li
+              v-if="index === currentIndex"
+              class="nav-link active fs-6"
+              @click="nav.callback"
+              :key="index"
             >
-          </li>
-          <li class="nav-item">
-            <span class="nav-link" @click="goToReservationList">予約中</span>
-          </li>
-          <li class="nav-item">
-            <span class="nav-link" @click="goToUserList">利用履歴</span>
-          </li>
-          <li class="nav-item">
-            <span class="nav-link" @click="goToSettings">設定</span>
-          </li>
+              <i :class="nav.icon" />　{{ nav.title }}
+            </li>
+            <li v-else :key="index" class="nav-link fs-6" @click="nav.callback">
+              <i :class="nav.icon" />　{{ nav.title }}
+            </li>
+          </template>
         </ul>
+        <p v-else class="text-white fs-5 p-0 m-0 title">予約受付サービス</p>
       </div>
     </div>
   </nav>
@@ -48,23 +52,49 @@ import Router from "../../router/router"
 
 export default {
   data: function () {
-    return {}
+    return {
+      navList: [
+        {
+          title: "予約する",
+          icon: "fas fa-plus-square",
+          callback: this.goToReservationForm,
+        },
+        {
+          title: "予約中",
+          icon: "fas fa-list-ol",
+          callback: this.goToReservationList,
+        },
+        {
+          title: "利用履歴",
+          icon: "fas fa-book-reader",
+          callback: this.goToReservationHistory,
+        },
+        {
+          title: "ユーザ設定",
+          icon: "fas fa-cog",
+          callback: this.goToAccountSettings,
+        },
+      ],
+    }
+  },
+  props: {
+    currentIndex: Number,
   },
   methods: {
     toggleHamburger() {
       document.querySelector(".offcanvas-collapse").classList.toggle("open")
     },
-    goToDashBoard() {
-      Router.push("/store_dash_board")
+    goToReservationForm() {
+      Router.push("/reservation_form")
     },
     goToReservationList() {
-      Router.push("/store_reservation_list")
+      Router.push("/reservation_list")
     },
-    goToUserList() {
-      Router.push("/store_user_list")
+    goToReservationHistory() {
+      Router.push("/api/v1/user/reservation_history")
     },
-    goToSettings() {
-      Router.push("/store_settings")
+    goToAccountSettings() {
+      Router.push("/api/v1/user/account_info")
     },
   },
   computed: {
@@ -95,5 +125,9 @@ export default {
 
 .bg-rt-indigo {
   background-color: rgb(19, 29, 50) !important;
+}
+
+.title {
+  letter-spacing: 0.2rem;
 }
 </style>
