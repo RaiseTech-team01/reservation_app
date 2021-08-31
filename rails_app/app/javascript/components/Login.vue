@@ -77,8 +77,7 @@
 <script>
 import axios from "axios"
 import Router from "../router/router"
-// import Header from "./layout/Header.vue"
-import Header from "./layout/HeaderBs.vue"
+import Header from "./layout/Header.vue"
 import Navigation from "./layout/Navigation.vue"
 import Footer from "./layout/Footer.vue"
 import BreadClumbList from "./commons/layouts/BreadClumbList.vue"
