@@ -10,8 +10,14 @@
         </div>
         <div class="row g-5 mb-4 flex justify-center">
           <div class="col-md-7 col-lg-8">
-            <div class="col-12 alert alert-danger" v-show="hasError()">
-              <p>{{ errorMessage }}</p>
+            <div class="col-12 p-2 alert alert-danger" v-show="hasError()">
+              <p
+                class="fs-6 m-0"
+                v-for="(e, index) in errorMessage"
+                :key="index"
+              >
+                {{ e }}
+              </p>
             </div>
             <form class="row g-3 needs-validation" novalidate>
               <div class="col-12">
@@ -225,7 +231,7 @@ export default {
   },
   methods: {
     hasError() {
-      return !!this.errorMessage
+      return this.errorMessage.length !== 0
     },
     confirm() {
       console.log(this.userData)
@@ -313,6 +319,7 @@ export default {
       console.log("success validation")
       this.confirm()
     })
+    this.errorMessage = this.$store.getters.registrationUserData.errs
   },
   computed: {
     ...mapGetters(["registrationUserData"]),
