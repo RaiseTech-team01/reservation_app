@@ -144,9 +144,13 @@
                       required
                     >
                       <option selected disabled value="">選択...</option>
-                      <option value="2019">2019</option>
-                      <option value="2020">2020</option>
-                      <option value="2021">2021</option>
+                      <option
+                        v-for="(item, index) in getYearList()"
+                        :key="index"
+                        :value="item"
+                      >
+                        {{ item }}
+                      </option>
                     </select>
                     <div class="invalid-feedback">年を入力してください。</div>
                   </div>
@@ -159,9 +163,13 @@
                       required
                     >
                       <option selected disabled value="">選択...</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                      <option
+                        v-for="(item, index) in getMonthList()"
+                        :key="index"
+                        :value="item"
+                      >
+                        {{ item }}
+                      </option>
                     </select>
                     <div class="invalid-feedback">月を入力してください。</div>
                   </div>
@@ -174,9 +182,13 @@
                       required
                     >
                       <option selected disabled value="">選択...</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                      <option
+                        v-for="(item, index) in getDayList()"
+                        :key="index"
+                        :value="item"
+                      >
+                        {{ item }}
+                      </option>
                     </select>
                     <div class="invalid-feedback">日を入力してください。</div>
                   </div>
@@ -323,6 +335,34 @@ export default {
       const day = ("0" + this.userData.a_birth_day).slice(-2)
       return year + month + day
     },
+    makeList(from, to, order) {
+      let num = to - from + 1
+      let arr = []
+      switch (order) {
+        case "ascend":
+          for (let i = 0; i < num; i++) {
+            arr.push(from + i)
+          }
+          break
+        case "descend":
+          for (let i = num - 1; i >= 0; i--) {
+            arr.push(from + i)
+          }
+          break
+      }
+      return arr
+    },
+    getYearList() {
+      const thisYear = new Date(Date.now()).getFullYear()
+      return this.makeList(1930, thisYear, "descend")
+    },
+    getMonthList() {
+      return this.makeList(1, 12, "ascend")
+    },
+    getDayList() {
+      return this.makeList(1, 31, "ascend")
+    },
+
     // Vuexに保管したデータをローカル変数に反映
     reflectUserDataByVuex() {
       this.userData.first_name = this.registrationUserData.first_name
