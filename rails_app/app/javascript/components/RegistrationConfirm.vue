@@ -217,15 +217,3 @@ p {
   font-size: 2em;
 }
 </style>
-
-// calc age // name: `${this.registrationUserData.last_name} + " " +
-${this.registrationUserData.first_name}`, // furigana:
-`${this.registrationUserData.last_furigana} + " " +
-${this.registrationUserData.first_furigana}`, // // email:
-`${this.registrationUserData.email}`, // tel:
-`${this.registrationUserData.tel}`, // birthday:
-`${this.registrationUserData.birthday}`, // gender:
-`${this.registrationUserData.gender}`, // address:
-`${this.registrationUserData.address}`, // password:
-`${this.registrationUserData.password}`, // password_confirmation:
-`${this.registrationUserData.password_confirmation}`, // }
