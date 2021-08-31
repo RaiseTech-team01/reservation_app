@@ -24,7 +24,7 @@
         id="navbarsExampleDefault"
       >
         <ul
-          class="navbar-nav me-auto mb-2 ml-5 mb-lg-0 space-x-8"
+          class="navbar-nav me-auto mb-2 ml-5 mb-lg-0 space-x-8 cursor-pointer"
           v-if="isLogin === true"
         >
           <template v-for="(nav, index) in navList">
