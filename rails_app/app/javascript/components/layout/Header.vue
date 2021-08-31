@@ -56,12 +56,12 @@ export default {
       navList: [
         {
           title: "予約する",
-          icon: "fas fa-plus-square",
+          icon: "fas fa-user-plus",
           callback: this.goToReservationForm,
         },
         {
           title: "予約中",
-          icon: "fas fa-list-ol",
+          icon: "fas fa-user-check",
           callback: this.goToReservationList,
         },
         {
@@ -71,7 +71,7 @@ export default {
         },
         {
           title: "ユーザ設定",
-          icon: "fas fa-cog",
+          icon: "fas fa-user-cog",
           callback: this.goToAccountSettings,
         },
       ],
