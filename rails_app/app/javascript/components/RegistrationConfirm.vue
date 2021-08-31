@@ -52,6 +52,18 @@
                     </td>
                   </tr>
                   <tr>
+                    <td>性別</td>
+                    <td>
+                      {{ registrationUserData.gender }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>生年月日</td>
+                    <td>
+                      {{ registrationUserData.birthday }}
+                    </td>
+                  </tr>
+                  <tr>
                     <td>住所</td>
                     <td>
                       {{ registrationUserData.address }}

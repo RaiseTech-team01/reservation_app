@@ -113,6 +113,77 @@
                 <div class="invalid-feedback">電話番号を記載してください。</div>
               </div>
               <div class="col-12">
+                <label for="tel" class="form-label"
+                  >性別 <span class="text-muted">必須</span></label
+                >
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  v-model="userData.gender"
+                  required
+                >
+                  <option selected disabled value="">選択...</option>
+                  <option value="不明">不明</option>
+                  <option value="男性">男性</option>
+                  <option value="女性">女性</option>
+                  <option value="適用不能">適用不能</option>
+                </select>
+                <div class="invalid-feedback">性別を記載してください。</div>
+              </div>
+              <div class="col-12">
+                <label for="tel" class="form-label"
+                  >生年月日 <span class="text-muted">必須</span></label
+                >
+
+                <div class="row">
+                  <div class="col-3">
+                    <select
+                      id="sel-year"
+                      class="form-select"
+                      v-model="userData.birth_year"
+                      required
+                    >
+                      <option selected disabled value="">選択...</option>
+                      <option value="2019">2019</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                    </select>
+                    <div class="invalid-feedback">年を入力してください。</div>
+                  </div>
+                  年
+                  <div class="col-3">
+                    <select
+                      id="sel-month"
+                      class="form-select"
+                      v-model="userData.birth_month"
+                      required
+                    >
+                      <option selected disabled value="">選択...</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                    <div class="invalid-feedback">月を入力してください。</div>
+                  </div>
+                  月
+                  <div class="col-3">
+                    <select
+                      id="sel-day"
+                      class="form-select"
+                      v-model="userData.a_birth_day"
+                      required
+                    >
+                      <option selected disabled value="">選択...</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                    <div class="invalid-feedback">日を入力してください。</div>
+                  </div>
+                  日
+                </div>
+              </div>
+              <div class="col-12">
                 <label for="address" class="form-label"
                   >住所 <span class="text-muted">必須</span></label
                 >
@@ -201,6 +272,9 @@ export default {
         last_furigana: "",
         tel: "",
         birthday: "",
+        birth_year: "",
+        birth_month: "",
+        a_birth_day: "",
         gender: "",
         address: "",
         password: "",
@@ -234,6 +308,7 @@ export default {
       return this.errorMessage.length !== 0
     },
     confirm() {
+      this.userData.birthday = this.makeBirthDate()
       console.log(this.userData)
       this.$store.dispatch("registrationUserData/update", this.userData)
       //  画面遷移先を変更
@@ -241,6 +316,12 @@ export default {
     },
     back() {
       Router.push("/login")
+    },
+    makeBirthDate() {
+      const year = this.userData.birth_year
+      const month = ("0" + this.userData.birth_month).slice(-2)
+      const day = ("0" + this.userData.a_birth_day).slice(-2)
+      return year + month + day
     },
     // Vuexに保管したデータをローカル変数に反映
     reflectUserDataByVuex() {
@@ -251,6 +332,18 @@ export default {
       this.userData.last_furigana = this.registrationUserData.last_furigana
       this.userData.tel = this.registrationUserData.tel
       this.userData.birthday = this.registrationUserData.birthday
+      if (this.registrationUserData.birthday) {
+        this.userData.birth_year = this.registrationUserData.birthday.slice(
+          0,
+          4
+        )
+        this.userData.birth_month = String(
+          parseInt(this.registrationUserData.birthday.slice(4, 6))
+        )
+        this.userData.a_birth_day = String(
+          parseInt(this.registrationUserData.birthday.slice(6, 8))
+        )
+      }
       this.userData.gender = this.registrationUserData.gender
       this.userData.address = this.registrationUserData.address
       this.userData.password = this.registrationUserData.password
