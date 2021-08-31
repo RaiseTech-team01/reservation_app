@@ -1,430 +1,178 @@
 <template>
   <div class="main m-0">
-    <dir class="header m-0 text-center pl-0">
+    <dir class="storeheader m-0 text-center">
       <Header />
     </dir>
-    <main>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <BreadClumbList :bcList="breadClumbList" />
-          <div class="mt-16">
-            <div>
-              <p
-                class="
-                  whitespace-nowrap
-                  flex
-                  justify-around
-                  md:justify-center
-                  md:space-x-12
-                  md:transform
-                  md:scale-125
-                  md:flex-none
-                "
-              >
-                <span class="arrow-block">入力</span>
-                <span class="arrow-block-inactive">確認</span>
-                <span class="arrow-block-inactive">登録</span>
-              </p>
+    <div class="container mt-16">
+      <main>
+        <div class="mt-5 py-5 text-center">
+          <h2>アカウント登録</h2>
+        </div>
+        <div class="row g-5 mb-4 flex justify-center">
+          <div class="col-md-7 col-lg-8">
+            <div class="col-12 alert alert-danger" v-show="hasError()">
+              <p>{{ errorMessage }}</p>
             </div>
-          </div>
-          <div>
-            <h2
-              class="
-                mt-16
-                mb-8
-                font-bold
-                text-3xl
-                md:text-4xl
-                text-center text-blue-800
-              "
-            >
-              お客様の情報を入力してください
-            </h2>
-            <p v-for="item in registrationUserData.errs" class="text-red-800">
-              {{ item }}
-            </p>
-            <form>
-              <table class="m-2 md:m-10 table-auto">
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      mg:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    氏名
-                  </td>
-                  <td class="space-x-4">
-                    <div class="flex justify-between space-x-2 md:flex-none">
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:mr-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.last_name"
-                        placeholder="田中"
-                      />
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:ml-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.first_name"
-                        placeholder="一郎"
-                      />
+            <form class="row g-3 needs-validation" novalidate>
+              <div class="col-12">
+                <label for="firstName" class="form-label"
+                  >名前 <span class="text-muted">必須</span></label
+                >
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control was-validated"
+                      id="firstName"
+                      placeholder="居酒屋"
+                      v-model="userData.last_name"
+                      required
+                    />
+                    <div class="invalid-feedback">姓を記載してください。</div>
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control was-validated"
+                      id="lastName"
+                      placeholder="太郎"
+                      v-model="userData.first_name"
+                      required
+                    />
+                    <div class="invalid-feedback">名を記載してください。</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="firstName" class="form-label"
+                  >ふりがな <span class="text-muted">必須</span></label
+                >
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstNameKana"
+                      placeholder="いざかや"
+                      v-model="userData.last_furigana"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      姓のふりがなを記載してください。
                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      mg:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    カナ
-                  </td>
-                  <td>
-                    <div class="flex justify-between space-x-2 md:flex-none">
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:mr-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.last_furigana"
-                        placeholder="タナカ"
-                      />
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:ml-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.first_furigana"
-                        placeholder="イチロウ"
-                      />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstNameKana"
+                      placeholder="たろう"
+                      v-model="userData.first_furigana"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      名のふりがなを記載してください。
                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-2xl
-                      md:text-3xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    メール<br class="md:hidden" />アドレス
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="email"
-                      v-model="userData.email"
-                      placeholder="tanaka@sample.com"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-2xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    電話<br class="md:hidden" />番号
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="tel"
-                      v-model="userData.tel"
-                      placeholder="080-1111-2222"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    年齢
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-1/2
-                        md:w-44
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="text"
-                      v-model="userData.birthday"
-                      placeholder="28"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    性別
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-1/2
-                        md:w-44
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="text"
-                      v-model="userData.gender"
-                      placeholder="男性"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    住所
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="text"
-                      v-model="userData.address"
-                      placeholder="千葉県千葉市美浜区1-1"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    パスワード
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="password"
-                      v-model="userData.password"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    パスワード確認
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="password"
-                      v-model="userData.password_confirmation"
-                    />
-                  </td>
-                </tr>
-              </table>
-              <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="email" class="form-label"
+                  >メールアドレス <span class="text-muted">必須</span></label
+                >
                 <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
-                  type="button"
-                  value="登　録"
-                  @click.prevent="confirm"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="you@example.com"
+                  v-model="userData.email"
+                  required
                 />
+                <div class="invalid-feedback">
+                  有効なメールアドレスを記載してください。
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="tel" class="form-label"
+                  >電話番号 <span class="text-muted">必須</span></label
+                >
                 <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
+                  type="tel"
+                  class="form-control"
+                  id="tel"
+                  placeholder="080-1111-2222"
+                  v-model="userData.tel"
+                  required
+                />
+                <div class="invalid-feedback">電話番号を記載してください。</div>
+              </div>
+              <div class="col-12">
+                <label for="address" class="form-label"
+                  >住所 <span class="text-muted">必須</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="東京都台東区駒形1-1"
+                  v-model="userData.address"
+                  required
+                />
+                <div class="invalid-feedback">住所を記載してください。</div>
+              </div>
+              <div class="col-12">
+                <label for="password" class="form-label"
+                  >パスワード <span class="text-muted">必須</span></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  minlength="6"
+                  v-model="userData.password"
+                  required
+                />
+                <div class="invalid-feedback">
+                  パスワード（6文字以上）を入力してください。
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="password-confirm" class="form-label"
+                  >パスワード（確認）
+                  <span class="text-muted">必須</span></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password-confirm"
+                  minlength="6"
+                  v-model="userData.password_confirmation"
+                  required
+                />
+                <div class="invalid-feedback">
+                  パスワード（6文字以上）を入力してください。
+                </div>
+              </div>
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
+                >
+                  登録確認
+                </button>
+                <button
                   type="button"
-                  value="戻　る"
+                  class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
                   @click.prevent="back"
-                />
+                >
+                  戻　る
+                </button>
               </div>
             </form>
           </div>
         </div>
-      </div>
-    </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -438,6 +186,7 @@ import { mapGetters } from "vuex"
 export default {
   data: function () {
     return {
+      errorMessage: "",
       userData: {
         first_name: "",
         last_name: "",
@@ -475,6 +224,9 @@ export default {
     BreadClumbList,
   },
   methods: {
+    hasError() {
+      return !!this.errorMessage
+    },
     confirm() {
       console.log(this.userData)
       this.$store.dispatch("registrationUserData/update", this.userData)
@@ -503,6 +255,64 @@ export default {
     initializeErrMessage() {
       this.$store.dispatch("registrationUserData/updateErr", "")
     },
+    appendBootstrapScriptTag() {
+      let linkEl = document.createElement("link")
+      linkEl.setAttribute(
+        "href",
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      )
+      linkEl.setAttribute("rel", "stylesheet")
+      linkEl.setAttribute(
+        "integrity",
+        "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      )
+      linkEl.setAttribute("crossorigin", "anonymous")
+      document.head.appendChild(linkEl)
+    },
+    initializeValidation(validatedCallback) {
+      const instance0 = this
+      this.$nextTick(function () {
+        console.log(this)
+        const instance = this
+        //("use strict");
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation")
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (!form.checkValidity()) {
+                console.log("invalid")
+                event.preventDefault()
+                event.stopPropagation()
+              } else {
+                console.log("valid")
+                console.log("instance:")
+                console.log(instance)
+                console.log("instance0:")
+                console.log(instance0)
+                event.preventDefault()
+                event.stopPropagation()
+                console.log(this)
+
+                validatedCallback()
+              }
+              form.classList.add("was-validated")
+            },
+            false
+          )
+        })
+      })
+    },
+  },
+  mounted() {
+    this.initializeValidation(() => {
+      console.log("success validation")
+      this.confirm()
+    })
   },
   computed: {
     ...mapGetters(["registrationUserData"]),
@@ -518,10 +328,11 @@ export default {
     }
     console.log("this.userData", this.userData)
   },
-  mounted: function () {},
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;
