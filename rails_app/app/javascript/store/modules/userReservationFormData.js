@@ -1,47 +1,47 @@
-import axios from "axios";
-import Router from "../../router/router";
+import axios from "axios"
+import Router from "../../router/router"
 
 // atode 後から編集
-const state =  {
-  date:"",
-  hour:"",
-  minute:"",
-  number_people:"",
-  menu:"みかん",
-  budget:"",
-  inquiry:"テキスト",
-  errs:[],
+const state = {
+  store_name: "",
+  date: "",
+  hour: "",
+  minute: "",
+  number_people: "",
+  menu: "みかん",
+  budget: "",
+  inquiry: "テキスト",
+  errs: [],
 }
 
 const mutations = {
   setdata(state, data) {
-    state.date=data.date;
-    state.hour=data.hour;
-    state.minute=data.minute;
-    state.number_people=data.number_people;
+    state.store_name = data.store_name
+    state.date = data.date
+    state.hour = data.hour
+    state.minute = data.minute
+    state.number_people = data.number_people
     // menu:"";
-    state.budget=data.budget;
+    state.budget = data.budget
     // inquiry:"";
   },
-  setErr(state, data){
+  setErr(state, data) {
     state.errs = data
-  }
+  },
 }
 
 const actions = {
   updateErr({ commit }, data) {
-    commit('setErr', data)
+    commit("setErr", data)
   },
   update({ commit }, data) {
-    console.log(data)
-    commit('setdata', data)
-  }
+    commit("setdata", data)
+  },
 }
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 }
-

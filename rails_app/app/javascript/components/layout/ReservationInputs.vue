@@ -25,6 +25,7 @@
                   id="storeName"
                   class="form-select"
                   aria-label="Default select example"
+                  v-model="reservationInputData.store_name"
                   required
                 >
                   <option selected disabled value="">選択...</option>
@@ -292,6 +293,7 @@
                   class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
                   v-show="isShowButton1"
                   v-bind:value="confirmButtonTitle"
+                  @click.prevent="confirmButtonCallback(reservationInputData)"
                 >
                   登録確認
                 </button>
@@ -445,6 +447,7 @@ export default {
       this.confirmButtonCallback(this.reservationInputData)
     })
     // this.errorMessage = this.$store.getters.registrationUserData.errs
+    this.errorMessage = this.$store.getters.userReservationFormData.errs
   },
 }
 </script>

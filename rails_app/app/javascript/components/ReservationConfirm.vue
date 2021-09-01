@@ -4,262 +4,78 @@
       <Header />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="0" />
-      </dir>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <BreadClumbList :bcList="breadClumbList" />
-          <div class="mt-16">
-            <div>
-              <p
-                class="
-                  text-center
-                  whitespace-nowrap
-                  flex
-                  justify-around
-                  md:justify-center
-                  md:space-x-12
-                  md:transform
-                  md:scale-125
-                  md:flex-none
-                "
-              >
-                <span class="arrow-block-inactive">入力</span>
-                <span class="arrow-block">確認</span>
-                <span class="arrow-block-inactive">登録</span>
-              </p>
-            </div>
-          </div>
-          <div>
-            <h2
-              class="
-                mt-16
-                mb-8
-                font-bold
-                text-3xl
-                md:text-4xl
-                text-center text-blue-800
-              "
-            >
-              ご予約内容は下記でよろしいですか？
-            </h2>
-            <form>
-              <table
-                class="m-2 mt-10 table-auto max-w-full md:w-full md:text-center"
-              >
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:w-1/5 md:table-cell
-                      text-3xl
-                      md:text-4xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    店舗
-                  </td>
-                  <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
-                    <div>
-                      <p
-                        class="
-                          inline-block
-                          md:pr-16
-                          text-3xl text-blue-800
-                          font-bold
-                        "
-                      >
-                        <!--                                                atode 後で編集-->
-                        どうやってもってこうよう。
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      md:text-4xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    日付
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <div>
-                      <p
-                        class="
-                          inline-block
-                          md:pr-16
-                          text-3xl text-blue-800
-                          font-bold
-                        "
-                      >
-                        {{ userReservationFormData.date }}
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    時間帯
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                        break-all
-                      "
-                    >
-                      {{ userReservationFormData.hour }}:{{
-                        userReservationFormData.minute
-                      }}～
-                    </p>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                      whitespace-nowrap
-                    "
-                  >
-                    ご利用人数
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
-                      {{ userReservationFormData.number_people }}名様
-                    </p>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    ご予算
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
-                      {{ userReservationFormData.budget }}円
-                    </p>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    個人情報<br class="hidden md:block" />保護方針
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
-                      同意する
-                    </p>
-                  </td>
-                </tr>
+      <main>
+        <div class="mt-5 py-5 text-center">
+          <h2>入力内容の確認</h2>
+        </div>
+        <div class="row g-5 flex justify-center">
+          <div class="col-md-7 col-lg-8">
+            <form class="needs-validation" @submit="goToComplete" novalidate>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>種別</th>
+                    <th>入力内容</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>店舗名</td>
+                    <td>
+                      {{ userReservationFormData.store_name }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>予約日</td>
+                    <td>
+                      {{ makeDateStr() }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>開始時刻</td>
+                    <td>
+                      {{ makeTimeStr() }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>ご利用人数</td>
+                    <td>
+                      {{ userReservationFormData.number_people }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>ご予算</td>
+                    <td>
+                      {{ userReservationFormData.budget }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>個人情報保護方針</td>
+                    <td>同意する</td>
+                  </tr>
+                </tbody>
               </table>
-              <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-                <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
-                  type="button"
-                  value="送　信"
-                  @click.prevent="goToComplete"
-                />
-                <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
-                  type="button"
-                  value="戻　る"
-                  @click.prevent="back"
-                />
-              </div>
             </form>
           </div>
         </div>
-      </div>
+        <div class="text-center mt-5">
+          <button
+            type="button"
+            class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
+            @click.prevent="goToComplete"
+          >
+            登　録
+          </button>
+          <button
+            type="button"
+            class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
+            @click.prevent="back"
+          >
+            戻　る
+          </button>
+        </div>
+      </main>
     </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
   </div>
 </template>
 
@@ -302,21 +118,32 @@ export default {
     convertTwoDigit(value) {
       return ("0" + value).slice(-2)
     },
-    goToComplete() {
-      Router.push("/reservation_complete")
-      var addReservationParams = [] // 配列を新しく定義する
-      addReservationParams.date_on =
-        // 日にち
+    makeDateStr() {
+      return (
         this.userReservationFormData.date.getFullYear() +
         "-" +
         this.convertTwoDigit(this.userReservationFormData.date.getMonth() + 1) +
         "-" +
-        this.convertTwoDigit(this.userReservationFormData.date.getDate()) +
-        " " +
-        // 時間
+        this.convertTwoDigit(this.userReservationFormData.date.getDate())
+      )
+    },
+    makeTimeStr() {
+      return (
         this.userReservationFormData.hour +
         ":" +
         this.userReservationFormData.minute
+      )
+    },
+    goToComplete() {
+      // Router.push("/reservation_complete")
+      var addReservationParams = [] // 配列を新しく定義する
+      addReservationParams.store_name = this.userReservationFormData.store_name
+      addReservationParams.date_on =
+        // 日にち
+        this.makeDateStr() +
+        " " +
+        // 時間
+        this.makeTimeStr()
       addReservationParams.date_at = addReservationParams.date_on
       addReservationParams.number_people =
         this.userReservationFormData.number_people
@@ -358,9 +185,10 @@ export default {
         })
         .catch((error) => {
           console.log(error.response.data.error)
+          const errs = error.response.data.error
           this.$store.dispatch(
             "userReservationFormData/updateErr",
-            error.response.data.error
+            this.isTypeArray(errs) ? errs : [errs]
           )
           Router.push({
             name: "ReservationForm",
@@ -368,7 +196,16 @@ export default {
           })
         })
     },
-
+    isTypeArray(val) {
+      var toString = Object.prototype.toString
+      return toString.call(val) === "[object Array]"
+    },
+    getHiddenPasswordString(isConfirmation) {
+      const passwordLen = isConfirmation
+        ? this.$store.getters.registrationUserData.password_confirmation.length
+        : this.$store.getters.registrationUserData.password.length
+      return "*".repeat(passwordLen)
+    },
     back() {
       Router.back()
     },
@@ -376,6 +213,8 @@ export default {
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;
