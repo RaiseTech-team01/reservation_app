@@ -7,7 +7,7 @@
       <div class="text-center">
         <main class="form-signin">
           <form class="needs-validation" novalidate>
-            <h1 class="h1 mb-5 fw-normal text-nowrap">ようこそ</h1>
+            <h1 class="h1 mb-5 fw-normal text-nowrap">ようこそ！</h1>
 
             <div
               v-show="hasError()"
