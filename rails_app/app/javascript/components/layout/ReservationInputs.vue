@@ -25,7 +25,6 @@
                   id="storeName"
                   class="form-select"
                   aria-label="Default select example"
-                  v-model="userData.gender"
                   required
                 >
                   <option selected disabled value="">選択...</option>
@@ -153,16 +152,23 @@
                 v-show="isShowPersonalInformationProtectionForm"
                 class="border border-color-cyan"
               >
-                <div class="checkbox mt-3 ml-2 mb-2 fs-5 text-rt-cyan">
-                  <label>
-                    <input
-                      type="checkbox"
-                      name="privacy_policy"
-                      value="yes"
-                      required
-                    />
+                <div
+                  class="checkbox form-check mt-3 ml-2 mb-2 fs-5 text-rt-cyan"
+                >
+                  <input
+                    id="privacy_policy"
+                    class="form-check-input"
+                    type="checkbox"
+                    name="privacy_policy"
+                    value="yes"
+                    required
+                  />
+                  <label class="form-check-label" for="privacy_policy">
                     個人情報保護方針に同意する
                   </label>
+                  <div class="invalid-feedback">
+                    個人情報保護方針に同意いただく必要があります。
+                  </div>
                 </div>
                 <div class="col-12">
                   <p class="col-12 ml-2 fs-6 text-start">
@@ -282,11 +288,10 @@
               </div>
               <div class="text-center" v-show="isShowButton">
                 <button
-                  type="button"
+                  type="submit"
                   class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
                   v-show="isShowButton1"
                   v-bind:value="confirmButtonTitle"
-                  @click.prevent="confirmButtonCallback(reservationInputData)"
                 >
                   登録確認
                 </button>
@@ -381,6 +386,44 @@ export default {
       let date = new Date()
       return date.setMonth(date.getMonth() + month)
     },
+    initializeValidation(validatedCallback) {
+      const instance0 = this
+      this.$nextTick(function () {
+        console.log(this)
+        const instance = this
+        //("use strict");
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation")
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (!form.checkValidity()) {
+                console.log("invalid")
+                event.preventDefault()
+                event.stopPropagation()
+              } else {
+                console.log("valid")
+                console.log("instance:")
+                console.log(instance)
+                console.log("instance0:")
+                console.log(instance0)
+                event.preventDefault()
+                event.stopPropagation()
+                console.log(this)
+
+                validatedCallback()
+              }
+              form.classList.add("was-validated")
+            },
+            false
+          )
+        })
+      })
+    },
   },
   computed: {
     isShowButton() {
@@ -395,6 +438,13 @@ export default {
     isShowButton2() {
       return this.cancelButtonTitle !== undefined
     },
+  },
+  mounted() {
+    this.initializeValidation(() => {
+      console.log("success validation")
+      this.confirmButtonCallback(this.reservationInputData)
+    })
+    // this.errorMessage = this.$store.getters.registrationUserData.errs
   },
 }
 </script>
