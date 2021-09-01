@@ -10,11 +10,7 @@
         </div>
         <div class="row g-5 flex justify-center">
           <div class="col-5">
-            <img
-              src="/kanpai.png"
-              class="rounded mx-auto d-block"
-              alt="kanpai"
-            />
+            <img src="/ojigi.png" class="rounded mx-auto d-block" alt="ojigi" />
             <p class="mt-3 fs-4">ご登録ありがとうございました！</p>
             <p class="fs-4">予約画面にご移動ください。</p>
           </div>
@@ -31,74 +27,6 @@
       </main>
     </div>
   </div>
-  <!-- <div class="main m-0 h-screen flex flex-col justify-between">
-    <dir class="header m-0 text-center pl-0">
-      <Header />
-    </dir>
-    <main class="flex justify-center h-full">
-      <div class="bg-gray-300 info-container">
-        <BreadClumbList :bcList="breadClumbList" />
-        <div class="mt-16">
-          <div>
-            <p
-              class="
-                whitespace-nowrap
-                flex
-                justify-around
-                md:justify-center
-                md:space-x-12
-                md:transform
-                md:scale-125
-                md:flex-none
-              "
-            >
-              <span class="arrow-block-inactive">入力</span>
-              <span class="arrow-block-inactive">確認</span>
-              <span class="arrow-block">登録</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <h2
-            class="
-              mt-16
-              mb-8
-              font-bold
-              text-3xl
-              md:text-4xl
-              text-center text-blue-800
-            "
-          >
-            登録を完了いたしました。<br />ありがとうございました。
-          </h2>
-          <form>
-            <div class="text-center space-x-4 md:space-x-8 mt-14 pb-28">
-              <input
-                class="
-                  inline-block
-                  w-3/5
-                  py-2
-                  rounded-xl
-                  font-bold
-                  bg-yellow-300
-                  text-4xl text-blue-800
-                  cursor-pointer
-                  hover:bg-yellow-200 hover:text-blue-600
-                  active:bg-red-200
-                "
-                type="button"
-                value="ログインする"
-                @click.prevent="login"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
-    </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
-  </div> -->
 </template>
 
 <script>
