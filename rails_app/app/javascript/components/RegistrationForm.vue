@@ -128,7 +128,7 @@
                   <option value="女性">女性</option>
                   <option value="適用不能">適用不能</option>
                 </select>
-                <div class="invalid-feedback">性別を記載してください。</div>
+                <div class="invalid-feedback">性別を選択してください。</div>
               </div>
               <div class="col-12">
                 <label for="tel" class="form-label"
@@ -152,7 +152,7 @@
                         {{ item }}
                       </option>
                     </select>
-                    <div class="invalid-feedback">年を入力してください。</div>
+                    <div class="invalid-feedback">年を選択してください。</div>
                   </div>
                   年
                   <div class="col-3">
@@ -171,7 +171,7 @@
                         {{ item }}
                       </option>
                     </select>
-                    <div class="invalid-feedback">月を入力してください。</div>
+                    <div class="invalid-feedback">月を選択してください。</div>
                   </div>
                   月
                   <div class="col-3">
@@ -190,7 +190,7 @@
                         {{ item }}
                       </option>
                     </select>
-                    <div class="invalid-feedback">日を入力してください。</div>
+                    <div class="invalid-feedback">日を選択してください。</div>
                   </div>
                   日
                 </div>

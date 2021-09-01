@@ -31,7 +31,6 @@
             <li
               v-if="index === currentIndex"
               class="nav-link active fs-6"
-              @click="nav.callback"
               :key="index"
             >
               <i :class="nav.icon" />　{{ nav.title }}

@@ -11,9 +11,6 @@
       <Header :currentIndex="0" />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="0" />
-      </dir>
       <ReservationInputs
         ref="reservationInputs"
         title="ご希望のご予約内容"
@@ -24,9 +21,6 @@
         v-bind:confirmButtonCallback="goToConfirm"
         v-bind:showTimetableCallback="showTimetable"
       />
-      <dir class="footer m-0 pl-0">
-        <Footer />
-      </dir>
     </main>
   </div>
 </template>
