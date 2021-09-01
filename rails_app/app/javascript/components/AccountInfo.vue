@@ -4,237 +4,77 @@
       <Header :currentIndex="3" />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="3" />
-      </dir>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <BreadClumbList :bcList="breadClumbList" />
-          <div>
-            <table
-              class="m-2 mt-10 table-auto max-w-full md:w-full md:text-center"
-            >
-              <tr class="h-24">
-                <td
-                  class="
-                    block
-                    md:w-1/5 md:table-cell
-                    text-3xl
-                    md:text-4xl
-                    form-table-padding
-                    md:pl-6
-                    text-blue-800
-                  "
-                >
-                  氏名
-                </td>
-                <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
-                  <div>
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
-                      {{ userData.name }}
-                    </p>
-                  </div>
-                </td>
-              </tr>
-              <tr class="h-24">
-                <td
-                  class="
-                    block
-                    md:table-cell
-                    text-3xl
-                    md:text-4xl
-                    form-table-padding
-                    md:pl-6
-                    text-blue-800
-                  "
-                >
-                  カナ
-                </td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <div>
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
-                      {{ userData.furigana }}
-                    </p>
-                  </div>
-                </td>
-              </tr>
-              <tr class="h-24">
-                <td
-                  class="
-                    block
-                    md:table-cell
-                    text-3xl
-                    form-table-padding
-                    md:pl-6
-                    text-blue-800
-                  "
-                >
-                  メール<br class="hidden md:block" />アドレス
-                </td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <p
-                    class="
-                      inline-block
-                      md:pr-16
-                      text-3xl text-blue-800
-                      font-bold
-                      break-all
-                    "
-                  >
+      <div class="mt-5 py-5 text-center">
+        <h2>ユーザ登録内容</h2>
+      </div>
+      <div class="row g-5 flex justify-center">
+        <div class="col-md-7 col-lg-8">
+          <form class="needs-validation" @submit="goToComplete" novalidate>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>種別</th>
+                  <th>入力内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>名前</td>
+                  <td>
+                    {{ userData.name }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>ふりがな</td>
+                  <td>
+                    {{ userData.furigana }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>メールアドレス</td>
+                  <td>
                     {{ userData.email }}
-                  </p>
-                </td>
-              </tr>
-              <tr class="h-24">
-                <td
-                  class="
-                    block
-                    md:table-cell
-                    text-3xl
-                    form-table-padding
-                    md:pl-6
-                    text-blue-800
-                  "
-                >
-                  電話<br class="hidden md:block" />番号
-                </td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <p
-                    class="
-                      inline-block
-                      md:pr-16
-                      text-3xl text-blue-800
-                      font-bold
-                    "
-                  >
+                  </td>
+                </tr>
+                <tr>
+                  <td>電話番号</td>
+                  <td>
                     {{ userData.tel }}
-                  </p>
-                </td>
-              </tr>
-              <tr class="h-24">
-                <td
-                  class="
-                    block
-                    md:table-cell
-                    text-3xl
-                    md:text-4xl
-                    form-table-padding
-                    md:pl-6
-                    text-blue-800
-                  "
-                >
-                  年齢
-                </td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <p
-                    class="
-                      inline-block
-                      md:pr-16
-                      text-3xl text-blue-800
-                      font-bold
-                    "
-                  >
-                    {{ getAgeStr(userData.birthday) }} 歳
-                  </p>
-                </td>
-              </tr>
-              <tr class="h-24">
-                <td
-                  class="
-                    block
-                    md:table-cell
-                    text-3xl
-                    md:text-4xl
-                    form-table-padding
-                    md:pl-6
-                    text-blue-800
-                  "
-                >
-                  性別
-                </td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <p
-                    class="
-                      inline-block
-                      md:pr-16
-                      text-3xl text-blue-800
-                      font-bold
-                    "
-                  >
+                  </td>
+                </tr>
+                <tr>
+                  <td>性別</td>
+                  <td>
                     {{ userData.gender }}
-                  </p>
-                </td>
-              </tr>
-
-              <tr class="h-24">
-                <td
-                  class="
-                    block
-                    md:table-cell
-                    text-3xl
-                    md:text-4xl
-                    form-table-padding
-                    md:pl-6
-                    text-blue-800
-                  "
-                >
-                  住所
-                </td>
-                <td class="block md:table-cell pb-6 md:pb-0">
-                  <p
-                    class="
-                      inline-block
-                      md:pr-16
-                      text-3xl text-blue-800
-                      font-bold
-                      break-all
-                    "
-                  >
-                    {{ userData.address }}<br />
-                  </p>
-                </td>
-              </tr>
+                  </td>
+                </tr>
+                <tr>
+                  <td>生年月日</td>
+                  <td>
+                    {{ userData.birthday }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>住所</td>
+                  <td>
+                    {{ userData.address }}
+                  </td>
+                </tr>
+              </tbody>
             </table>
-            <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-              <input
-                class="
-                  inline-block
-                  w-2/5
-                  py-2
-                  rounded-xl
-                  font-bold
-                  bg-yellow-300
-                  text-4xl text-blue-800
-                  cursor-pointer
-                  hover:bg-yellow-200 hover:text-blue-600
-                  active:bg-red-200
-                "
-                type="button"
-                value="編　集"
-                @click.prevent="goToAccountEdit"
-              />
-            </div>
-          </div>
+          </form>
         </div>
       </div>
+      <div class="text-center mt-5">
+        <button
+          type="button"
+          class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
+          @click.prevent="goToAccountEdit"
+        >
+          編　集
+        </button>
+      </div>
     </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
   </div>
 </template>
 
@@ -284,6 +124,8 @@ export default {
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;
