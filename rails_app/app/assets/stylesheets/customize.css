@@ -72,3 +72,7 @@
 .border-color-gray {
     border-color: rgb(206, 212, 218) !important;
 }
+
+.border-color-white {
+    border-color: rgb(255, 255, 255) !important;
+}

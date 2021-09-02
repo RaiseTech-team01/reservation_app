@@ -42,12 +42,28 @@
         </ul>
         <p v-else class="text-white fs-5 p-0 m-0 title">予約受付サービス</p>
       </div>
+      <button
+        v-if="isLogin === true"
+        type="button"
+        class="
+          m-1
+          me-3
+          px-3
+          btn btn-sm btn-block
+          text-white
+          border border-color-white
+        "
+        @click.prevent="signout"
+      >
+        ログアウト
+      </button>
     </div>
   </nav>
 </template>
 
 <script>
 import Router from "../../router/router"
+import axios from "axios"
 
 export default {
   data: function () {
@@ -80,6 +96,39 @@ export default {
     currentIndex: Number,
   },
   methods: {
+    async signout() {
+      // TODO ログアウト処理
+      // DELETE http://localhost:3000/api/v1/auth/sign_out
+
+      var key_headers = {
+        headers: {
+          Accept: "application/json",
+          "access-token": localStorage.getItem("access-token"),
+          uid: localStorage.getItem("uid"),
+          client: localStorage.getItem("client"),
+        },
+      }
+
+      // rail logout api
+      await axios
+        .delete("/api/v1/auth/sign_out", key_headers)
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          // console.log(error);
+          return false
+        })
+        .finally(function () {
+          // always executed
+        })
+
+      localStorage.removeItem("access-token")
+      localStorage.removeItem("uid")
+      localStorage.removeItem("client")
+      this.$store.dispatch("auth/updateLogin", false)
+      Router.push("/login")
+    },
     toggleHamburger() {
       document.querySelector(".offcanvas-collapse").classList.toggle("open")
     },
@@ -101,6 +150,10 @@ export default {
       // TODO ログイン状態を真偽値で返す
       return this.$store.getters.auth.isLogin
     },
+  },
+  mounted() {
+    if (localStorage.getItem("access-token"))
+      this.$store.dispatch("auth/updateLogin", true)
   },
 }
 </script>
