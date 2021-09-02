@@ -4,21 +4,11 @@
       <Header :currentIndex="1" />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="1" />
-      </dir>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <BreadClumbList :bcList="breadClumbList" />
-          <div class="mt-16 flex flex-col mx-16 mb-16">
-            <ReservationListData :type="reservListType.reservList" />
-          </div>
-        </div>
+      <div class="mt-5 py-5 text-center">
+        <h2>予約一覧</h2>
       </div>
+      <ReservationListData :type="reservListType.reservList" />
     </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
   </div>
 </template>
 
@@ -124,6 +114,8 @@ export default {
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;

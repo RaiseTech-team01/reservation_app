@@ -9,6 +9,10 @@
     color: rgb(33, 121, 137) !important;
 }
 
+.bg-rt-indigo {
+    background-color: rgb(19, 29, 50) !important;
+}
+
 .bg-rt-cyan {
     background-color: rgb(27, 153, 177) !important;
 }
@@ -45,6 +49,11 @@
     color: #fff !important;
     background-color: rgb(19, 29, 50) !important;
     border-color: rgb(19, 29, 50) !important;
+}
+
+.badge-outline-cyan {
+    color: rgb(27, 153, 177) !important;
+    border-color: rgb(27, 153, 177) !important;
 }
 
 .border-color-cyan {

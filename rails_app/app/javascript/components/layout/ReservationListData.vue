@@ -1,83 +1,53 @@
 <template>
-  <div>
-    <div
-      v-for="(
-        item, arryIndex
-      ) in userReservationData.reservationDataArray.filter((d) =>
-        isShowItem(d.date_at)
-      )"
-      :key="arryIndex"
-    >
-      <table
-        class="
-          text-2xl
-          font-bold
-          text-blue-800
-          border-t-2 border-blue-800
-          mx-4
-          md:table
-          block
-        "
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2 p-4 g-4">
+      <div
+        v-for="(
+          item, arryIndex
+        ) in userReservationData.reservationDataArray.filter((d) =>
+          isShowItem(d.date_at)
+        )"
+        :key="arryIndex"
       >
-        <tr class="md:table-row block">
-          <td class="pl-2 md:p-2 md:table-cell block">店舗：</td>
-          <td class="pl-2 md:p-2 md:table-cell block">
-            {{ item.store.name }}
-          </td>
-          <td class="p-2 md:table-cell hidden">
-            <input
-              class="
-                inline-block
-                w-20
-                py-1
-                rounded-xl
-                font-bold
-                bg-yellow-300
-                md:text-xl
-                text-lg text-blue-800
-                cursor-pointer
-                hover:bg-yellow-200 hover:text-blue-600
-                active:bg-red-200
-              "
-              type="button"
-              value="詳細"
-              @click.prevent="goToDetail(arryIndex)"
-            />
-          </td>
-        </tr>
-        <tr class="md:table-row block mt-4">
-          <td class="pl-2 md:p-2 md:table-cell block">予約日時：</td>
-          <td class="pl-2 md:p-2 md:table-cell block">{{ item.date_at }}～</td>
-          <td class="p-2 md:table-cell hidden">
-            <input
-              class="
-                inline-block
-                w-20
-                py-1
-                rounded-xl
-                font-bold
-                bg-yellow-300
-                md:text-xl
-                text-lg text-blue-800
-                cursor-pointer
-                hover:bg-yellow-200 hover:text-blue-600
-                active:bg-red-200
-              "
-              type="button"
-              value="変更"
-              @click.prevent="goToEdit"
-            />
-          </td>
-        </tr>
-        <tr class="md:table-row block mt-4">
-          <td class="pl-2 md:p-2 md:table-cell block" />
-          <td class="pl-2 md:p-2 md:table-cell block">
-            人数：{{ item.number_people }}名<br
-              class="md:hidden"
-            />コース予約：{{ item.menu }}
-          </td>
-        </tr>
-      </table>
+        <div class="col">
+          <div class="card border-color-cyan">
+            <div class="card-body">
+              <h5 class="card-title">
+                <span class="badge border badge-outline-cyan mr-2">店舗名</span>
+                {{ item.store.name }}
+              </h5>
+              <p class="card-text mt-4">
+                <span class="badge border badge-outline-cyan mr-2"
+                  >予約日時</span
+                >
+                {{ getDateString(item.date_at) }}
+              </p>
+              <p class="card-text">
+                <span class="badge border badge-outline-cyan mr-2"
+                  >予約人数</span
+                >
+                {{ item.number_people + " 名様" }}
+              </p>
+              <div class="space-x-2 text-right">
+                <button
+                  href="#"
+                  class="btn text-white bg-rt-cyan"
+                  @click.prevent="goToDetail(arryIndex)"
+                >
+                  詳　細
+                </button>
+                <button
+                  href="#"
+                  class="btn text-white btn-outline-cyan"
+                  @click.prevent="goToEdit"
+                >
+                  変　更
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -158,6 +128,30 @@ export default {
           return this.isDateExpired(date_at)
       }
     },
+    getDateString(date_at) {
+      if (date_at) {
+        const matches = date_at.match(
+          /^([0-9]{4})-([01][0-9])-([0-3][0-9])T([0-2][0-9]):([0-5][0-9])/
+        )
+        const year = matches[1]
+        const month = matches[2]
+        const day = matches[3]
+        const hours = matches[4]
+        const minutes = matches[5]
+        return (
+          year +
+          "年" +
+          month +
+          "月" +
+          day +
+          "日 " +
+          hours +
+          ":" +
+          minutes +
+          " 〜"
+        )
+      }
+    },
     // 予約データが期限切れか否かを判定
     isDateExpired(date_at, date_on) {
       // TODO サーバから date_at: 日付、date_on: 時間 で返される対応がされたら修正する
@@ -186,3 +180,6 @@ export default {
   },
 }
 </script>
+
+<style scoped src="../../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../../assets/stylesheets/customize.css"></style>
