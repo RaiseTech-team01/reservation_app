@@ -149,11 +149,16 @@
                 class="d-block w-100"
                 alt="image 1"
               />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
+              <div
+                class="
+                  carousel-caption
+                  d-none d-md-block
+                  text-rt-red
+                  bg-gradation
+                "
+              >
+                <h5>当店人気 No.1 メニュー</h5>
+                <p>漁港直送！越前がにと鮮魚の桶盛</p>
               </div>
             </div>
             <div class="carousel-item">
@@ -162,11 +167,16 @@
                 class="d-block w-100"
                 alt="image 2"
               />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>
-                  Some representative placeholder content for the second slide.
-                </p>
+              <div
+                class="
+                  carousel-caption
+                  d-none d-md-block
+                  text-rt-red
+                  bg-gradation
+                "
+              >
+                <h5>当店人気 No.2 メニュー</h5>
+                <p>最高級！越前がにの炭火焼</p>
               </div>
             </div>
             <div class="carousel-item">
@@ -175,11 +185,16 @@
                 class="d-block w-100"
                 alt="image 3"
               />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>
-                  Some representative placeholder content for the third slide.
-                </p>
+              <div
+                class="
+                  carousel-caption
+                  d-none d-md-block
+                  text-rt-red
+                  bg-gradation
+                "
+              >
+                <h5>当店人気 No.3 メニュー</h5>
+                <p>天然岩牡蠣！食べ比べセット</p>
               </div>
             </div>
           </div>
@@ -388,4 +403,20 @@ p {
 .storemenu_img {
   height: 500px;
 }
+
+.bg-gradation {
+  background: -moz-radial-gradient(
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0)
+  );
+  background: -webkit-radial-gradient(
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0)
+  );
+  background: radial-gradient(
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0)
+  );
+}
 </style>
+s
