@@ -293,7 +293,6 @@
                   class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
                   v-show="isShowButton1"
                   v-bind:value="confirmButtonTitle"
-                  @click.prevent="confirmButtonCallback(reservationInputData)"
                 >
                   登録確認
                 </button>
@@ -470,7 +469,6 @@ export default {
       console.log("success validation")
       this.confirmButtonCallback(this.reservationInputData)
     })
-    // this.errorMessage = this.$store.getters.registrationUserData.errs
     if (this.type === "edit") {
       this.initializeEdittedData()
     }
