@@ -3,294 +3,107 @@
     <dir class="header m-0 text-center pl-0">
       <Header />
     </dir>
-    <main>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <BreadClumbList :bcList="breadClumbList" />
-          <div class="mt-16">
-            <div>
-              <p
-                class="
-                  text-center
-                  whitespace-nowrap
-                  flex
-                  justify-around
-                  md:justify-center
-                  md:space-x-12
-                  md:transform
-                  md:scale-125
-                  md:flex-none
-                "
-              >
-                <span class="arrow-block-inactive">入力</span>
-                <span class="arrow-block">確認</span>
-                <span class="arrow-block-inactive">登録</span>
-              </p>
-            </div>
-          </div>
-          <div>
-            <h2
-              class="
-                mt-16
-                mb-8
-                font-bold
-                text-3xl
-                md:text-4xl
-                text-center text-blue-800
-              "
-            >
-              下記の情報を登録して良いですか？
-            </h2>
-            <form>
-              <table
-                class="m-2 mt-10 table-auto max-w-full md:w-full md:text-center"
-              >
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:w-1/5 md:table-cell
-                      text-3xl
-                      md:text-4xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    氏名
-                  </td>
-                  <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
-                    <div>
-                      <p
-                        class="
-                          inline-block
-                          md:pr-16
-                          text-3xl text-blue-800
-                          font-bold
-                        "
-                      >
-                        {{
-                          registrationUserData.last_name +
-                          " " +
-                          registrationUserData.first_name
-                        }}
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      md:text-4xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    カナ
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <div>
-                      <p
-                        class="
-                          inline-block
-                          md:pr-16
-                          text-3xl text-blue-800
-                          font-bold
-                        "
-                      >
-                        {{
-                          registrationUserData.last_furigana +
-                          " " +
-                          registrationUserData.first_furigana
-                        }}
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    メール<br class="hidden md:block" />アドレス
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                        break-all
-                      "
-                    >
+    <div class="container mt-16">
+      <main>
+        <div class="mt-5 py-5 text-center">
+          <h2>入力内容の確認</h2>
+        </div>
+        <div class="row g-5 flex justify-center">
+          <div class="col-md-7 col-lg-8">
+            <form class="needs-validation" @submit="goToComplete" novalidate>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>種別</th>
+                    <th>入力内容</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>名前</td>
+                    <td>
+                      {{
+                        registrationUserData.last_name +
+                        " " +
+                        registrationUserData.first_name
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>ふりがな</td>
+                    <td>
+                      {{
+                        registrationUserData.last_furigana +
+                        " " +
+                        registrationUserData.first_furigana
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>メールアドレス</td>
+                    <td>
                       {{ registrationUserData.email }}
-                    </p>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    電話<br class="hidden md:block" />番号
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>電話番号</td>
+                    <td>
                       {{ registrationUserData.tel }}
-                    </p>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      md:text-4xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    年齢
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
-                      {{ registrationUserData.birthday }}歳
-                    </p>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      md:text-4xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    性別
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                      "
-                    >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>性別</td>
+                    <td>
                       {{ registrationUserData.gender }}
-                    </p>
-                  </td>
-                </tr>
-                <tr class="h-24">
-                  <td
-                    class="
-                      block
-                      md:table-cell
-                      text-3xl
-                      md:text-4xl
-                      form-table-padding
-                      md:pl-6
-                      text-blue-800
-                    "
-                  >
-                    住所
-                  </td>
-                  <td class="block md:table-cell pb-6 md:pb-0">
-                    <p
-                      class="
-                        inline-block
-                        md:pr-16
-                        text-3xl text-blue-800
-                        font-bold
-                        break-all
-                      "
-                    >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>生年月日</td>
+                    <td>
+                      {{ registrationUserData.birthday }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>住所</td>
+                    <td>
                       {{ registrationUserData.address }}
-                    </p>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>パスワード</td>
+                    <td>
+                      {{ getHiddenPasswordString(false) }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>パスワード（確認）</td>
+                    <td>
+                      {{ getHiddenPasswordString(true) }}
+                    </td>
+                  </tr>
+                </tbody>
               </table>
-              <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
-                <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
-                  @click.prevent="goToComplete"
-                  type="button"
-                  value="登録完了"
-                />
-                <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
-                  @click.prevent="toForm"
-                  type="button"
-                  value="戻　る"
-                />
-              </div>
             </form>
           </div>
         </div>
-      </div>
-    </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
+        <div class="text-center mt-5">
+          <button
+            type="button"
+            class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
+            @click.prevent="goToComplete"
+          >
+            登　録
+          </button>
+          <button
+            type="button"
+            class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
+            @click.prevent="back"
+          >
+            戻　る
+          </button>
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -375,11 +188,20 @@ export default {
         })
       // this.$store.dispatch('registrationUserData/post')
     },
+    back() {
+      Router.back()
+    },
     toForm() {
       Router.push({
         name: "RegistrationForm",
         params: { isFirstDraw: false },
       })
+    },
+    getHiddenPasswordString(isConfirmation) {
+      const passwordLen = isConfirmation
+        ? this.$store.getters.registrationUserData.password_confirmation.length
+        : this.$store.getters.registrationUserData.password.length
+      return "*".repeat(passwordLen)
     },
   },
   computed: {
@@ -388,20 +210,10 @@ export default {
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;
 }
 </style>
-
-// calc age // name: `${this.registrationUserData.last_name} + " " +
-${this.registrationUserData.first_name}`, // furigana:
-`${this.registrationUserData.last_furigana} + " " +
-${this.registrationUserData.first_furigana}`, // // email:
-`${this.registrationUserData.email}`, // tel:
-`${this.registrationUserData.tel}`, // birthday:
-`${this.registrationUserData.birthday}`, // gender:
-`${this.registrationUserData.gender}`, // address:
-`${this.registrationUserData.address}`, // password:
-`${this.registrationUserData.password}`, // password_confirmation:
-`${this.registrationUserData.password_confirmation}`, // }

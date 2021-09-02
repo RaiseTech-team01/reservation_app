@@ -8,25 +8,19 @@
     </div>
     <div id="fa_container" />
     <dir class="header m-0 text-center pl-0">
-      <Header />
+      <Header :currentIndex="0" />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="0" />
-      </dir>
       <ReservationInputs
         ref="reservationInputs"
-        title="ご希望のご予約内容"
-        subTitle="予約登録入力"
+        type="new"
+        title="予約登録"
         v-bind:isShowGuideNavi="true"
         v-bind:isShowPersonalInformationProtectionForm="true"
         confirmButtonTitle="送信確認"
         v-bind:confirmButtonCallback="goToConfirm"
         v-bind:showTimetableCallback="showTimetable"
       />
-      <dir class="footer m-0 pl-0">
-        <Footer />
-      </dir>
     </main>
   </div>
 </template>

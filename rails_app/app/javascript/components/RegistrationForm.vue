@@ -1,430 +1,267 @@
 <template>
   <div class="main m-0">
-    <dir class="header m-0 text-center pl-0">
+    <dir class="storeheader m-0 text-center">
       <Header />
     </dir>
-    <main>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <BreadClumbList :bcList="breadClumbList" />
-          <div class="mt-16">
-            <div>
+    <div class="container mt-16">
+      <main>
+        <div class="mt-5 py-5 text-center">
+          <h2>アカウント登録</h2>
+        </div>
+        <div class="row g-5 mb-4 flex justify-center">
+          <div class="col-md-7 col-lg-8">
+            <div class="col-12 p-2 alert alert-danger" v-show="hasError()">
               <p
-                class="
-                  whitespace-nowrap
-                  flex
-                  justify-around
-                  md:justify-center
-                  md:space-x-12
-                  md:transform
-                  md:scale-125
-                  md:flex-none
-                "
+                class="fs-6 m-0"
+                v-for="(e, index) in errorMessage"
+                :key="index"
               >
-                <span class="arrow-block">入力</span>
-                <span class="arrow-block-inactive">確認</span>
-                <span class="arrow-block-inactive">登録</span>
+                {{ e }}
               </p>
             </div>
-          </div>
-          <div>
-            <h2
-              class="
-                mt-16
-                mb-8
-                font-bold
-                text-3xl
-                md:text-4xl
-                text-center text-blue-800
-              "
-            >
-              お客様の情報を入力してください
-            </h2>
-            <p v-for="item in registrationUserData.errs" class="text-red-800">
-              {{ item }}
-            </p>
-            <form>
-              <table class="m-2 md:m-10 table-auto">
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      mg:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    氏名
-                  </td>
-                  <td class="space-x-4">
-                    <div class="flex justify-between space-x-2 md:flex-none">
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:mr-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.last_name"
-                        placeholder="田中"
-                      />
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:ml-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.first_name"
-                        placeholder="一郎"
-                      />
+            <form class="row g-3 needs-validation" novalidate>
+              <div class="col-12">
+                <label for="firstName" class="form-label"
+                  >名前 <span class="text-muted">必須</span></label
+                >
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control was-validated"
+                      id="firstName"
+                      placeholder="居酒屋"
+                      v-model="userData.last_name"
+                      required
+                    />
+                    <div class="invalid-feedback">姓を記載してください。</div>
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control was-validated"
+                      id="lastName"
+                      placeholder="太郎"
+                      v-model="userData.first_name"
+                      required
+                    />
+                    <div class="invalid-feedback">名を記載してください。</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="firstName" class="form-label"
+                  >ふりがな <span class="text-muted">必須</span></label
+                >
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstNameKana"
+                      placeholder="いざかや"
+                      v-model="userData.last_furigana"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      姓のふりがなを記載してください。
                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      mg:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    カナ
-                  </td>
-                  <td>
-                    <div class="flex justify-between space-x-2 md:flex-none">
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:mr-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.last_furigana"
-                        placeholder="タナカ"
-                      />
-                      <input
-                        class="
-                          w-1/2
-                          md:w-44
-                          h-12
-                          md:ml-4
-                          border-2
-                          md:border-4
-                          border-blue-700
-                          bg-gray-100
-                          pl-4
-                          text-3xl
-                        "
-                        type="text"
-                        v-model="userData.first_furigana"
-                        placeholder="イチロウ"
-                      />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstNameKana"
+                      placeholder="たろう"
+                      v-model="userData.first_furigana"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      名のふりがなを記載してください。
                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-2xl
-                      md:text-3xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    メール<br class="md:hidden" />アドレス
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="email"
-                      v-model="userData.email"
-                      placeholder="tanaka@sample.com"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-2xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    電話<br class="md:hidden" />番号
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="tel"
-                      v-model="userData.tel"
-                      placeholder="080-1111-2222"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    年齢
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-1/2
-                        md:w-44
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="text"
-                      v-model="userData.birthday"
-                      placeholder="28"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    性別
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-1/2
-                        md:w-44
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="text"
-                      v-model="userData.gender"
-                      placeholder="男性"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    住所
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="text"
-                      v-model="userData.address"
-                      placeholder="千葉県千葉市美浜区1-1"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    パスワード
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="password"
-                      v-model="userData.password"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    class="
-                      text-3xl
-                      md:text-4xl
-                      whitespace-nowrap
-                      form-table-padding
-                      p-4
-                      md:p-6
-                      text-blue-800
-                    "
-                  >
-                    パスワード確認
-                  </td>
-                  <td>
-                    <input
-                      class="
-                        w-full
-                        md:w-96
-                        h-12
-                        border-2
-                        md:border-4
-                        border-blue-700
-                        bg-gray-100
-                        pl-4
-                        text-3xl
-                      "
-                      type="password"
-                      v-model="userData.password_confirmation"
-                    />
-                  </td>
-                </tr>
-              </table>
-              <div class="text-center space-x-4 md:space-x-8 mt-14 mb-28">
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="email" class="form-label"
+                  >メールアドレス <span class="text-muted">必須</span></label
+                >
                 <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
-                  type="button"
-                  value="登　録"
-                  @click.prevent="confirm"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="you@example.com"
+                  v-model="userData.email"
+                  required
                 />
+                <div class="invalid-feedback">
+                  有効なメールアドレスを記載してください。
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="tel" class="form-label"
+                  >電話番号 <span class="text-muted">必須</span></label
+                >
                 <input
-                  class="
-                    inline-block
-                    w-2/5
-                    py-2
-                    rounded-xl
-                    font-bold
-                    bg-yellow-300
-                    text-4xl text-blue-800
-                    cursor-pointer
-                    hover:bg-yellow-200 hover:text-blue-600
-                    active:bg-red-200
-                  "
+                  type="tel"
+                  class="form-control"
+                  id="tel"
+                  placeholder="080-1111-2222"
+                  v-model="userData.tel"
+                  required
+                />
+                <div class="invalid-feedback">電話番号を記載してください。</div>
+              </div>
+              <div class="col-12">
+                <label for="tel" class="form-label"
+                  >性別 <span class="text-muted">必須</span></label
+                >
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  v-model="userData.gender"
+                  required
+                >
+                  <option selected disabled value="">選択...</option>
+                  <option value="不明">不明</option>
+                  <option value="男性">男性</option>
+                  <option value="女性">女性</option>
+                  <option value="適用不能">適用不能</option>
+                </select>
+                <div class="invalid-feedback">性別を選択してください。</div>
+              </div>
+              <div class="col-12">
+                <label for="tel" class="form-label"
+                  >生年月日 <span class="text-muted">必須</span></label
+                >
+
+                <div class="row">
+                  <div class="col-3">
+                    <select
+                      id="sel-year"
+                      class="form-select"
+                      v-model="userData.birth_year"
+                      required
+                    >
+                      <option selected disabled value="">選択...</option>
+                      <option
+                        v-for="(item, index) in getYearList()"
+                        :key="index"
+                        :value="item"
+                      >
+                        {{ item }}
+                      </option>
+                    </select>
+                    <div class="invalid-feedback">年を選択してください。</div>
+                  </div>
+                  年
+                  <div class="col-3">
+                    <select
+                      id="sel-month"
+                      class="form-select"
+                      v-model="userData.birth_month"
+                      required
+                    >
+                      <option selected disabled value="">選択...</option>
+                      <option
+                        v-for="(item, index) in getMonthList()"
+                        :key="index"
+                        :value="item"
+                      >
+                        {{ item }}
+                      </option>
+                    </select>
+                    <div class="invalid-feedback">月を選択してください。</div>
+                  </div>
+                  月
+                  <div class="col-3">
+                    <select
+                      id="sel-day"
+                      class="form-select"
+                      v-model="userData.a_birth_day"
+                      required
+                    >
+                      <option selected disabled value="">選択...</option>
+                      <option
+                        v-for="(item, index) in getDayList()"
+                        :key="index"
+                        :value="item"
+                      >
+                        {{ item }}
+                      </option>
+                    </select>
+                    <div class="invalid-feedback">日を選択してください。</div>
+                  </div>
+                  日
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="address" class="form-label"
+                  >住所 <span class="text-muted">必須</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="東京都台東区駒形1-1"
+                  v-model="userData.address"
+                  required
+                />
+                <div class="invalid-feedback">住所を記載してください。</div>
+              </div>
+              <div class="col-12">
+                <label for="password" class="form-label"
+                  >パスワード <span class="text-muted">必須</span></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  minlength="6"
+                  v-model="userData.password"
+                  required
+                />
+                <div class="invalid-feedback">
+                  パスワード（6文字以上）を入力してください。
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="password-confirm" class="form-label"
+                  >パスワード（確認）
+                  <span class="text-muted">必須</span></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password-confirm"
+                  minlength="6"
+                  v-model="userData.password_confirmation"
+                  required
+                />
+                <div class="invalid-feedback">
+                  パスワード（6文字以上）を入力してください。
+                </div>
+              </div>
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
+                >
+                  登録確認
+                </button>
+                <button
                   type="button"
-                  value="戻　る"
+                  class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
                   @click.prevent="back"
-                />
+                >
+                  戻　る
+                </button>
               </div>
             </form>
           </div>
         </div>
-      </div>
-    </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -438,6 +275,7 @@ import { mapGetters } from "vuex"
 export default {
   data: function () {
     return {
+      errorMessage: "",
       userData: {
         first_name: "",
         last_name: "",
@@ -446,6 +284,9 @@ export default {
         last_furigana: "",
         tel: "",
         birthday: "",
+        birth_year: "",
+        birth_month: "",
+        a_birth_day: "",
         gender: "",
         address: "",
         password: "",
@@ -475,7 +316,11 @@ export default {
     BreadClumbList,
   },
   methods: {
+    hasError() {
+      return this.errorMessage.length !== 0
+    },
     confirm() {
+      this.userData.birthday = this.makeBirthDate()
       console.log(this.userData)
       this.$store.dispatch("registrationUserData/update", this.userData)
       //  画面遷移先を変更
@@ -484,6 +329,40 @@ export default {
     back() {
       Router.push("/login")
     },
+    makeBirthDate() {
+      const year = this.userData.birth_year
+      const month = ("0" + this.userData.birth_month).slice(-2)
+      const day = ("0" + this.userData.a_birth_day).slice(-2)
+      return year + month + day
+    },
+    makeList(from, to, order) {
+      let num = to - from + 1
+      let arr = []
+      switch (order) {
+        case "ascend":
+          for (let i = 0; i < num; i++) {
+            arr.push(from + i)
+          }
+          break
+        case "descend":
+          for (let i = num - 1; i >= 0; i--) {
+            arr.push(from + i)
+          }
+          break
+      }
+      return arr
+    },
+    getYearList() {
+      const thisYear = new Date(Date.now()).getFullYear()
+      return this.makeList(1930, thisYear, "descend")
+    },
+    getMonthList() {
+      return this.makeList(1, 12, "ascend")
+    },
+    getDayList() {
+      return this.makeList(1, 31, "ascend")
+    },
+
     // Vuexに保管したデータをローカル変数に反映
     reflectUserDataByVuex() {
       this.userData.first_name = this.registrationUserData.first_name
@@ -493,6 +372,18 @@ export default {
       this.userData.last_furigana = this.registrationUserData.last_furigana
       this.userData.tel = this.registrationUserData.tel
       this.userData.birthday = this.registrationUserData.birthday
+      if (this.registrationUserData.birthday) {
+        this.userData.birth_year = this.registrationUserData.birthday.slice(
+          0,
+          4
+        )
+        this.userData.birth_month = String(
+          parseInt(this.registrationUserData.birthday.slice(4, 6))
+        )
+        this.userData.a_birth_day = String(
+          parseInt(this.registrationUserData.birthday.slice(6, 8))
+        )
+      }
       this.userData.gender = this.registrationUserData.gender
       this.userData.address = this.registrationUserData.address
       this.userData.password = this.registrationUserData.password
@@ -503,6 +394,65 @@ export default {
     initializeErrMessage() {
       this.$store.dispatch("registrationUserData/updateErr", "")
     },
+    appendBootstrapScriptTag() {
+      let linkEl = document.createElement("link")
+      linkEl.setAttribute(
+        "href",
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      )
+      linkEl.setAttribute("rel", "stylesheet")
+      linkEl.setAttribute(
+        "integrity",
+        "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      )
+      linkEl.setAttribute("crossorigin", "anonymous")
+      document.head.appendChild(linkEl)
+    },
+    initializeValidation(validatedCallback) {
+      const instance0 = this
+      this.$nextTick(function () {
+        console.log(this)
+        const instance = this
+        //("use strict");
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation")
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (!form.checkValidity()) {
+                console.log("invalid")
+                event.preventDefault()
+                event.stopPropagation()
+              } else {
+                console.log("valid")
+                console.log("instance:")
+                console.log(instance)
+                console.log("instance0:")
+                console.log(instance0)
+                event.preventDefault()
+                event.stopPropagation()
+                console.log(this)
+
+                validatedCallback()
+              }
+              form.classList.add("was-validated")
+            },
+            false
+          )
+        })
+      })
+    },
+  },
+  mounted() {
+    this.initializeValidation(() => {
+      console.log("success validation")
+      this.confirm()
+    })
+    this.errorMessage = this.$store.getters.registrationUserData.errs
   },
   computed: {
     ...mapGetters(["registrationUserData"]),
@@ -518,10 +468,11 @@ export default {
     }
     console.log("this.userData", this.userData)
   },
-  mounted: function () {},
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;

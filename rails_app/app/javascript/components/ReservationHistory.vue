@@ -1,24 +1,14 @@
 <template>
   <div class="main m-0">
     <dir class="header m-0 text-center pl-0">
-      <Header />
+      <Header :currentIndex="2" />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="2" />
-      </dir>
-      <div class="flex justify-center">
-        <div class="bg-gray-300 info-container">
-          <BreadClumbList :bcList="breadClumbList" />
-          <div class="mt-16 flex flex-col mx-16 mb-16">
-            <ReservationListData :type="reservListType.historyList" />
-          </div>
-        </div>
+      <div class="mt-5 py-5 text-center">
+        <h2>利用履歴</h2>
       </div>
+      <ReservationListData :type="reservListType.historyList" />
     </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
   </div>
 </template>
 
@@ -72,6 +62,8 @@ export default {
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;

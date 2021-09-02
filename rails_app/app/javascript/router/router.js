@@ -66,7 +66,9 @@ const router = new Router({
     },
     {
       path: "/reservation_form",
+      name: "ReservationForm",
       component: ReservationForm,
+      props: true,
     },
     {
       path: "/reservation_confirm",

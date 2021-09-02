@@ -1,0 +1,82 @@
+.text-rt-indigo {
+    color: rgb(19, 29, 50) !important;
+}
+
+.text-rt-red {
+    color: rgb(198, 71, 76) !important;
+}
+
+.text-rt-cyan {
+    color: rgb(27, 153, 177) !important;
+}
+.text-rt-cyan:hover {
+    color: rgb(33, 121, 137) !important;
+}
+
+.bg-rt-indigo {
+    background-color: rgb(19, 29, 50) !important;
+}
+
+.bg-rt-cyan {
+    background-color: rgb(27, 153, 177) !important;
+}
+.bg-rt-cyan:hover {
+    background-color: rgb(35, 139, 159) !important;
+}
+
+.bg-rt-gray {
+    background-color: rgb(116, 152, 159) !important;
+}
+
+.bg-rt-lightgreen {
+    background-color: rgb(158, 215, 77) !important;
+}
+.bg-rt-lightgreen:hover {
+    background-color: rgb(139, 195, 61) !important;
+}
+
+.btn-outline-cyan {
+    color: rgb(27, 153, 177) !important;
+    border-color: rgb(27, 153, 177) !important;
+}
+.btn-outline-cyan:hover {
+    color: #fff !important;
+    background-color: rgb(27, 153, 177) !important;
+    border-color: rgb(27, 153, 177) !important;
+}
+
+.btn-outline-indigo {
+    color: rgb(19, 29, 50) !important;
+    border-color: rgb(19, 29, 50) !important;
+}
+.btn-outline-indigo:hover {
+    color: #fff !important;
+    background-color: rgb(19, 29, 50) !important;
+    border-color: rgb(19, 29, 50) !important;
+}
+
+.badge-outline-cyan {
+    color: rgb(27, 153, 177) !important;
+    border-color: rgb(27, 153, 177) !important;
+}
+
+.badge-outline-indigo {
+    color: rgb(19, 29, 50) !important;
+    border-color: rgb(19, 29, 50) !important;
+}
+
+.border-color-cyan {
+    border-color: rgb(27, 153, 177) !important;
+}
+
+.border-color-indigo {
+    border-color: rgb(19, 29, 50) !important;
+}
+
+.border-color-gray {
+    border-color: rgb(206, 212, 218) !important;
+}
+
+.border-color-white {
+    border-color: rgb(255, 255, 255) !important;
+}
