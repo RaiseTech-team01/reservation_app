@@ -56,6 +56,15 @@
     border-color: rgb(27, 153, 177) !important;
 }
 
+.badge-outline-indigo {
+    color: rgb(19, 29, 50) !important;
+    border-color: rgb(19, 29, 50) !important;
+}
+
 .border-color-cyan {
     border-color: rgb(27, 153, 177) !important;
+}
+
+.border-color-indigo {
+    border-color: rgb(19, 29, 50) !important;
 }

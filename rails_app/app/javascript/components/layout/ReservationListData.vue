@@ -10,20 +10,45 @@
         :key="arryIndex"
       >
         <div class="col">
-          <div class="card border-color-cyan">
+          <div
+            class="card"
+            :class="
+              isReserveList() ? 'border-color-cyan' : 'border-color-indigo'
+            "
+          >
             <div class="card-body">
               <h5 class="card-title">
-                <span class="badge border badge-outline-cyan mr-2">店舗名</span>
+                <span
+                  class="badge border mr-2"
+                  :class="
+                    isReserveList()
+                      ? 'badge-outline-cyan'
+                      : 'badge-outline-indigo'
+                  "
+                  >店舗名</span
+                >
                 {{ item.store.name }}
               </h5>
               <p class="card-text mt-4">
-                <span class="badge border badge-outline-cyan mr-2"
+                <span
+                  class="badge border mr-2"
+                  :class="
+                    isReserveList()
+                      ? 'badge-outline-cyan'
+                      : 'badge-outline-indigo'
+                  "
                   >予約日時</span
                 >
                 {{ getDateString(item.date_at) }}
               </p>
               <p class="card-text">
-                <span class="badge border badge-outline-cyan mr-2"
+                <span
+                  class="badge border mr-2"
+                  :class="
+                    isReserveList()
+                      ? 'badge-outline-cyan'
+                      : 'badge-outline-indigo'
+                  "
                   >予約人数</span
                 >
                 {{ item.number_people + " 名様" }}
@@ -31,12 +56,14 @@
               <div class="space-x-2 text-right">
                 <button
                   href="#"
-                  class="btn text-white bg-rt-cyan"
+                  class="btn text-white"
+                  :class="isReserveList() ? 'bg-rt-cyan' : 'bg-rt-indigo'"
                   @click.prevent="goToDetail(arryIndex)"
                 >
                   詳　細
                 </button>
                 <button
+                  v-show="isReserveList()"
                   href="#"
                   class="btn text-white btn-outline-cyan"
                   @click.prevent="goToEdit"
@@ -127,6 +154,9 @@ export default {
         case this.reservListType.historyList:
           return this.isDateExpired(date_at)
       }
+    },
+    isReserveList() {
+      return this.type === this.reservListType.reservList
     },
     getDateString(date_at) {
       if (date_at) {
