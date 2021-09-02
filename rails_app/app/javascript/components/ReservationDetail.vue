@@ -4,231 +4,215 @@
       <Header />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="navIndex" />
-      </dir>
-      <div>
-        <div>
-          <div class="grid grid-cols-6 grid-rows-6 gap-2">
-            <div class="col-span-2 row-span-6 h-auto">
+      <div class="mt-5 py-5 text-center">
+        <h2>予約詳細</h2>
+      </div>
+      <div class="row g-5 flex justify-center">
+        <div class="col-md-7 col-lg-8">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>種別</th>
+                <th>入力内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>予約番号</td>
+                <td>
+                  {{ reservationDetailData.reservation_number }}
+                </td>
+              </tr>
+              <tr>
+                <td>店舗名</td>
+                <td>
+                  {{ reservationDetailData.store_name }}
+                </td>
+              </tr>
+              <tr>
+                <td>予約日</td>
+                <td>
+                  {{ makeDateStr() }}
+                </td>
+              </tr>
+              <tr>
+                <td>開始時刻</td>
+                <td>
+                  {{ makeTimeStr() }}
+                </td>
+              </tr>
+              <tr>
+                <td>ご利用人数</td>
+                <td>
+                  {{ reservationDetailData.number_people }}
+                </td>
+              </tr>
+              <tr>
+                <td>ご予算</td>
+                <td>
+                  {{ reservationDetailData.budget }}
+                </td>
+              </tr>
+              <tr>
+                <td>店舗住所</td>
+                <td>
+                  {{ reservationDetailData.store_address }}
+                </td>
+              </tr>
+              <tr>
+                <td>店舗電話番号</td>
+                <td>
+                  {{ reservationDetailData.store_tel }}
+                </td>
+              </tr>
+              <tr>
+                <td>店舗メールアドレス</td>
+                <td>
+                  {{ reservationDetailData.store_email }}
+                </td>
+              </tr>
+              <tr>
+                <td>店舗URL</td>
+                <td>
+                  {{ reservationDetailData.store_url }}
+                </td>
+              </tr>
+              <tr>
+                <td>個人情報保護方針</td>
+                <td>同意する</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <button
+          type="button"
+          class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
+          @click.prevent="back"
+        >
+          戻　る
+        </button>
+      </div>
+      <div class="mt-5 py-5 text-center">
+        <h2>店舗地図</h2>
+      </div>
+      <div class="row g-5 flex justify-center">
+        <div class="col-6">
+          <p class="mt-3 fs-4">
+            住所：{{ reservationDetailData.store_address }}
+          </p>
+          <img
+            src="/map-sample.png"
+            class="rounded mx-auto d-block"
+            alt="map"
+          />
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <button
+          type="button"
+          class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
+          @click.prevent="back"
+        >
+          戻　る
+        </button>
+      </div>
+      <div class="mt-5 py-5 text-center">
+        <h2>メニュー例</h2>
+      </div>
+      <div class="col-6 m-auto">
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <ol class="carousel-indicators">
+            <li
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+            />
+            <li
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+            />
+            <li
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+            />
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
               <img
-                class="storemenu_img"
-                v-bind:src="storemenu_src"
-                alt="storemenu"
+                src="/storemenu/image01.png"
+                class="d-block w-100"
+                alt="image 1"
               />
-            </div>
-            <div class="col-span-2 row-span-6 bg-blue-100 h-auto">
-              <form v-model="dataIndex">
-                <table
-                  class="m-2 table-auto max-w-full md:w-full md:text-center"
-                >
-                  <tr class="h-24">
-                    <td
-                      class="
-                        block
-                        md:w-1/5 md:table-cell
-                        text-3xl
-                        md:text-4xl
-                        form-table-padding
-                        md:pl-6
-                        text-blue-800
-                      "
-                    >
-                      店舗
-                    </td>
-                    <td class="block md:table-cell space-x-4 pb-6 md:pb-0">
-                      <div>
-                        <p
-                          class="
-                            inline-block
-                            md:pr-16
-                            text-3xl text-blue-800
-                            font-bold
-                          "
-                        >
-                          {{
-                            userReservationData.reservationDataArray[
-                              userReservationDetail.rdId
-                            ].store.name
-                          }}
-                        </p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="h-24">
-                    <td
-                      class="
-                        block
-                        md:table-cell
-                        text-3xl
-                        md:text-4xl
-                        form-table-padding
-                        md:pl-6
-                        text-blue-800
-                      "
-                    >
-                      日付
-                    </td>
-                    <td class="block md:table-cell pb-6 md:pb-0">
-                      <div>
-                        <p
-                          class="
-                            inline-block
-                            md:pr-16
-                            text-3xl text-blue-800
-                            font-bold
-                          "
-                        >
-                          {{
-                            userReservationData.reservationDataArray[
-                              userReservationDetail.rdId
-                            ].date_on
-                          }}
-                        </p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="h-24">
-                    <td
-                      class="
-                        block
-                        md:table-cell
-                        text-3xl
-                        form-table-padding
-                        md:pl-6
-                        text-blue-800
-                      "
-                    >
-                      時間帯
-                    </td>
-                    <td class="block md:table-cell pb-6 md:pb-0">
-                      <p
-                        class="
-                          inline-block
-                          md:pr-16
-                          text-3xl text-blue-800
-                          font-bold
-                          break-all
-                        "
-                      >
-                        {{
-                          userReservationData.reservationDataArray[
-                            userReservationDetail.rdId
-                          ].date_at
-                        }}～
-                      </p>
-                    </td>
-                  </tr>
-                  <tr class="h-24">
-                    <td
-                      class="
-                        block
-                        md:table-cell
-                        text-3xl
-                        form-table-padding
-                        md:pl-6
-                        text-blue-800
-                        whitespace-nowrap
-                      "
-                    >
-                      ご利用人数
-                    </td>
-                    <td class="block md:table-cell pb-6 md:pb-0">
-                      <p
-                        class="
-                          inline-block
-                          md:pr-16
-                          text-3xl text-blue-800
-                          font-bold
-                        "
-                      >
-                        {{
-                          userReservationData.reservationDataArray[
-                            userReservationDetail.rdId
-                          ].number_people
-                        }}名様
-                      </p>
-                    </td>
-                  </tr>
-                  <tr class="h-24">
-                    <td
-                      class="
-                        block
-                        md:table-cell
-                        text-3xl
-                        form-table-padding
-                        md:pl-6
-                        text-blue-800
-                      "
-                    >
-                      ご予算
-                    </td>
-                    <td class="block md:table-cell pb-6 md:pb-0">
-                      <p
-                        class="
-                          inline-block
-                          md:pr-16
-                          text-3xl text-blue-800
-                          font-bold
-                        "
-                      >
-                        {{
-                          userReservationData.reservationDataArray[
-                            userReservationDetail.rdId
-                          ].budget
-                        }}円
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-              </form>
-            </div>
-            <div class="col-span-2 row-span-5 bg-green-100 h-auto">detail</div>
-            <div class="col-span-2 row-span-1 bg-purple-100 w-full flex">
-              <button
-                class="
-                  flex-1
-                  bg-green-500
-                  hover:bg-green-700
-                  text-white
-                  font-bold
-                  py-2
-                  px-4
-                  rounded
-                "
-              >
-                Cancel
-              </button>
-              <div class="flex justify-center items-center w-20">
-                <input id="cancel" type="checkbox" />
-              </div>
-              <div class="flex w-56 items-center justify-center">
-                <label class="text-red-400" for="cancel"
-                  >cancel料金がかかります</label
-                >
-              </div>
-              <div class="flex w-24 justify-center items-center text-red-400">
-                2000円
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
               </div>
             </div>
-            <div class="col-span-6 row-apan-6">
-              <div class="google_map">
-                <iframe
-                  v-bind:src="destination_url"
-                  width="100%"
-                  height="500px"
-                  style="border: 0"
-                  loading="lazy"
-                />
+            <div class="carousel-item">
+              <img
+                src="/storemenu/image02.png"
+                class="d-block w-100"
+                alt="image 2"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>
+                  Some representative placeholder content for the second slide.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="/storemenu/image03.png"
+                class="d-block w-100"
+                alt="image 3"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>
+                  Some representative placeholder content for the third slide.
+                </p>
               </div>
             </div>
           </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleCaptions"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true" />
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleCaptions"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true" />
+            <span class="visually-hidden">Next</span>
+          </a>
         </div>
       </div>
+      <div class="text-center mt-5">
+        <button
+          type="button"
+          class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
+          @click.prevent="back"
+        >
+          戻　る
+        </button>
+      </div>
     </main>
-    <dir class="footer m-0 pl-0">
-      <Footer />
-    </dir>
   </div>
 </template>
 
@@ -260,6 +244,19 @@ var count = {
 export default {
   data: function () {
     return {
+      reservationDetailData: {
+        reservation_number: "",
+        store_name: "",
+        store_address: "",
+        store_tel: "",
+        store_email: "",
+        store_url: "",
+        date: new Date(),
+        hour: "",
+        minute: "",
+        number_people: "",
+        budget: "",
+      },
       destination_url: "",
       storemenu_src: "/storemenu/image01.png",
       navIndex: -1,
@@ -307,15 +304,77 @@ export default {
         count.num = 0
       }
     },
+    addOption(select, value) {
+      if (select.childNodes.length > 0) {
+        select.removeChild(select.firstChild)
+      }
+      let option = document.createElement("option")
+      option.setAttribute("value", value)
+      option.innerHTML = value
+      select.appendChild(option)
+    },
+    convertTwoDigit(value) {
+      return ("0" + value).slice(-2)
+    },
+    makeDateStr() {
+      return (
+        this.reservationDetailData.date.getFullYear() +
+        "-" +
+        this.convertTwoDigit(this.reservationDetailData.date.getMonth() + 1) +
+        "-" +
+        this.convertTwoDigit(this.reservationDetailData.date.getDate())
+      )
+    },
+    makeTimeStr() {
+      return (
+        this.reservationDetailData.hour +
+        ":" +
+        this.reservationDetailData.minute
+      )
+    },
+    initializeDetailData() {
+      const idx = this.userReservationDetail.rdId
+      const rsrvData = this.userReservationData.reservationDataArray.find(
+        (r) => r.id === idx
+      )
+      console.log("rd", rsrvData)
+      this.reservationDetailData.reservation_number =
+        rsrvData.reservation_number
+      this.reservationDetailData.store_name = rsrvData.store.name
+      this.reservationDetailData.store_address = rsrvData.store.address
+      this.reservationDetailData.store_tel = rsrvData.store.tel
+      this.reservationDetailData.store_email = rsrvData.store.email
+      this.reservationDetailData.store_url = rsrvData.store.url
+      const matches = rsrvData.date_at.match(
+        /^([0-9]{4})-([01][0-9])-([0-3][0-9])T([0-2][0-9]):([0-5][0-9])/
+      )
+      const year = matches[1]
+      const month = matches[2]
+      const day = matches[3]
+      const hours = matches[4]
+      const minutes = matches[5]
+
+      this.reservationDetailData.date = new Date(rsrvData.date_at)
+      this.reservationDetailData.hour = hours
+      this.reservationDetailData.minute = minutes
+      // this.setTime(hours, minutes)
+      this.reservationDetailData.number_people = rsrvData.number_people
+      this.reservationDetailData.budget = rsrvData.budget
+    },
   },
   computed: {
     ...mapGetters(["userData"]),
     ...mapGetters(["userReservationData"]),
     ...mapGetters(["userReservationDetail"]),
   },
+  mounted() {
+    this.initializeDetailData()
+  },
 }
 </script>
 
+<style scoped src="../../assets/stylesheets/bootstrap.min.css"></style>
+<style scoped src="../../assets/stylesheets/customize.css"></style>
 <style scoped>
 p {
   font-size: 2em;

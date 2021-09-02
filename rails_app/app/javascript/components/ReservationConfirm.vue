@@ -4,77 +4,75 @@
       <Header />
     </dir>
     <main>
-      <main>
-        <div class="mt-5 py-5 text-center">
-          <h2>入力内容の確認</h2>
+      <div class="mt-5 py-5 text-center">
+        <h2>入力内容の確認</h2>
+      </div>
+      <div class="row g-5 flex justify-center">
+        <div class="col-md-7 col-lg-8">
+          <form class="needs-validation" @submit="goToComplete" novalidate>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>種別</th>
+                  <th>入力内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>店舗名</td>
+                  <td>
+                    {{ userReservationFormData.store_name }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>予約日</td>
+                  <td>
+                    {{ makeDateStr() }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>開始時刻</td>
+                  <td>
+                    {{ makeTimeStr() }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>ご利用人数</td>
+                  <td>
+                    {{ userReservationFormData.number_people }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>ご予算</td>
+                  <td>
+                    {{ userReservationFormData.budget }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>個人情報保護方針</td>
+                  <td>同意する</td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
         </div>
-        <div class="row g-5 flex justify-center">
-          <div class="col-md-7 col-lg-8">
-            <form class="needs-validation" @submit="goToComplete" novalidate>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>種別</th>
-                    <th>入力内容</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>店舗名</td>
-                    <td>
-                      {{ userReservationFormData.store_name }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>予約日</td>
-                    <td>
-                      {{ makeDateStr() }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>開始時刻</td>
-                    <td>
-                      {{ makeTimeStr() }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ご利用人数</td>
-                    <td>
-                      {{ userReservationFormData.number_people }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ご予算</td>
-                    <td>
-                      {{ userReservationFormData.budget }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>個人情報保護方針</td>
-                    <td>同意する</td>
-                  </tr>
-                </tbody>
-              </table>
-            </form>
-          </div>
-        </div>
-        <div class="text-center mt-5">
-          <button
-            type="button"
-            class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
-            @click.prevent="goToComplete"
-          >
-            登　録
-          </button>
-          <button
-            type="button"
-            class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
-            @click.prevent="back"
-          >
-            戻　る
-          </button>
-        </div>
-      </main>
+      </div>
+      <div class="text-center mt-5">
+        <button
+          type="button"
+          class="m-3 px-5 btn btn-lg btn-block text-white bg-rt-cyan"
+          @click.prevent="goToComplete"
+        >
+          登　録
+        </button>
+        <button
+          type="button"
+          class="m-3 px-5 btn btn-lg btn-block btn-outline-cyan"
+          @click.prevent="back"
+        >
+          戻　る
+        </button>
+      </div>
     </main>
   </div>
 </template>

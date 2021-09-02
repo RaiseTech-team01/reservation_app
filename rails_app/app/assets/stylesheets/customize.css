@@ -68,3 +68,7 @@
 .border-color-indigo {
     border-color: rgb(19, 29, 50) !important;
 }
+
+.border-color-gray {
+    border-color: rgb(206, 212, 218) !important;
+}

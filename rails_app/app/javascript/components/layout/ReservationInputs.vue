@@ -151,7 +151,7 @@
               </div>
               <div
                 v-show="isShowPersonalInformationProtectionForm"
-                class="border border-color-cyan"
+                class="border border-color-gray"
               >
                 <div
                   class="checkbox form-check mt-3 ml-2 mb-2 fs-5 text-rt-cyan"
