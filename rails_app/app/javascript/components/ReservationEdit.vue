@@ -1,21 +1,20 @@
 <template>
   <div class="main m-0">
-    <FullCalendarDialog
-      ref="calendarDialog"
-      v-bind:handleUpdateDate="updateDate"
-    />
+    <div>
+      <FullCalendarDialog
+        ref="calendarDialog"
+        v-bind:handleUpdateDate="updateDate"
+      />
+    </div>
     <div id="fa_container" />
     <dir class="header m-0 text-center pl-0">
-      <Header />
+      <Header :currentIndex="1" />
     </dir>
     <main>
-      <dir class="navigation hidden md:block m-0 p-0">
-        <Navigation :currentIndex="navIndex" />
-      </dir>
       <ReservationInputs
         ref="reservationInputs"
-        title="ご予約内容の変更"
-        subTitle="予約内容変更"
+        type="edit"
+        title="予約変更"
         v-bind:isShowGuideNavi="false"
         v-bind:isShowPersonalInformationProtectionForm="false"
         confirmButtonTitle="更新"
@@ -24,9 +23,6 @@
         v-bind:cancelButtonCallback="cancel"
         v-bind:showTimetableCallback="showTimetable"
       />
-      <dir class="footer m-0 pl-0">
-        <Footer />
-      </dir>
     </main>
   </div>
 </template>

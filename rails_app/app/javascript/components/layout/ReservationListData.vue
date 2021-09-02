@@ -58,7 +58,7 @@
                   href="#"
                   class="btn text-white"
                   :class="isReserveList() ? 'bg-rt-cyan' : 'bg-rt-indigo'"
-                  @click.prevent="goToDetail(arryIndex)"
+                  @click.prevent="goToDetail(item.id)"
                 >
                   詳　細
                 </button>
@@ -66,7 +66,7 @@
                   v-show="isReserveList()"
                   href="#"
                   class="btn text-white btn-outline-cyan"
-                  @click.prevent="goToEdit"
+                  @click.prevent="goToEdit(item.id)"
                 >
                   変　更
                 </button>
@@ -190,18 +190,21 @@ export default {
       const nowDateLong = Date.now()
       return nowDateLong > expiredDateLong
     },
-    goToDetail(arryIndex) {
-      console.log(`${arryIndex}`)
+    goToDetail(rsrvId) {
+      console.log(`${rsrvId}`)
       // this.selected_rdId = counter
-      console.log("indexNo:" + arryIndex)
+      console.log("indexNo:" + rsrvId)
       // Vuex store
-      this.$store.dispatch("userReservationDetail/update", arryIndex)
+      this.$store.dispatch("userReservationDetail/update", rsrvId)
       Router.push({
         name: "ReservationDetail",
         params: { isFromHistory: false },
       })
     },
-    goToEdit() {
+    goToEdit(rsrvId) {
+      console.log(`${rsrvId}`)
+      console.log("indexNo:" + rsrvId)
+      this.$store.dispatch("userReservationEdit/update", rsrvId)
       Router.push({
         name: "ReservationEdit",
         params: { isFromHistory: false },

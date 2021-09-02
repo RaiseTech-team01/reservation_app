@@ -13,8 +13,8 @@
     <main>
       <ReservationInputs
         ref="reservationInputs"
-        title="ご希望のご予約内容"
-        subTitle="予約登録入力"
+        type="new"
+        title="予約登録"
         v-bind:isShowGuideNavi="true"
         v-bind:isShowPersonalInformationProtectionForm="true"
         confirmButtonTitle="送信確認"

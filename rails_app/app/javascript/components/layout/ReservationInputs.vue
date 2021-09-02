@@ -3,7 +3,7 @@
     <div class="info-container">
       <main>
         <div class="mt-5 py-5 text-center">
-          <h2>予約登録</h2>
+          <h2>{{ title }}</h2>
         </div>
         <div class="row g-5 mb-4 flex justify-center">
           <div class="col-md-7 col-lg-8">
@@ -29,9 +29,9 @@
                   required
                 >
                   <option selected disabled value="">選択...</option>
-                  <option value="渋谷駅前店">渋谷駅前店</option>
-                  <option value="新宿駅前店">新宿駅前店</option>
-                  <option value="品川駅前店">品川駅前店</option>
+                  <option value="店舗1">店舗1</option>
+                  <option value="店舗2">店舗2</option>
+                  <option value="店舗3">店舗3</option>
                 </select>
                 <div class="invalid-feedback">店舗を選択してください。</div>
               </div>
@@ -59,7 +59,7 @@
                       type="text"
                       class="form-control"
                       id="address"
-                      placeholder="東京都台東区駒形1-1"
+                      placeholder=""
                       :value="inputValue"
                       v-on="inputEvents"
                       required
@@ -316,6 +316,7 @@
 </template>
 <script>
 import BreadClumbList from "../commons/layouts/BreadClumbList.vue"
+import { mapGetters } from "vuex"
 
 export default {
   data: function () {
@@ -330,7 +331,6 @@ export default {
         budget: "",
         // inquiry:"",
       },
-      date: new Date(),
       breadClumbList: [
         {
           title: "トップ",
@@ -349,7 +349,7 @@ export default {
 
   props: {
     title: String,
-    subTitle: String,
+    type: String,
     isShowGuideNavi: Boolean,
     isShowPersonalInformationProtectionForm: Boolean,
     confirmButtonTitle: String,
@@ -387,6 +387,28 @@ export default {
     getDateAfterMonths(month) {
       let date = new Date()
       return date.setMonth(date.getMonth() + month)
+    },
+    initializeEdittedData() {
+      const idx = this.userReservationEdit.rdId
+      const rsrvData = this.userReservationData.reservationDataArray.find(
+        (r) => r.id === idx
+      )
+      this.reservationInputData.store_name = rsrvData.store.name
+      const matches = rsrvData.date_at.match(
+        /^([0-9]{4})-([01][0-9])-([0-3][0-9])T([0-2][0-9]):([0-5][0-9])/
+      )
+      const year = matches[1]
+      const month = matches[2]
+      const day = matches[3]
+      const hours = matches[4]
+      const minutes = matches[5]
+
+      this.reservationInputData.date = new Date(rsrvData.date_at)
+      this.reservationInputData.hour = hours
+      this.reservationInputData.minute = minutes
+      this.setTime(hours, minutes)
+      this.reservationInputData.number_people = rsrvData.number_people
+      this.reservationInputData.budget = rsrvData.budget
     },
     initializeValidation(validatedCallback) {
       const instance0 = this
@@ -428,6 +450,8 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["userReservationData"]),
+    ...mapGetters(["userReservationEdit"]),
     isShowButton() {
       return (
         this.confirmButtonTitle !== undefined ||
@@ -447,6 +471,9 @@ export default {
       this.confirmButtonCallback(this.reservationInputData)
     })
     // this.errorMessage = this.$store.getters.registrationUserData.errs
+    if (this.type === "edit") {
+      this.initializeEdittedData()
+    }
     this.errorMessage = this.$store.getters.userReservationFormData.errs
   },
 }
