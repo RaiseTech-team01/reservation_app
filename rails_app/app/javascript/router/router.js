@@ -79,6 +79,8 @@ const router = new Router({
     {
       path: "/reservation_list",
       component: ReservationList,
+      name:"ReservationList",
+      props: true,
     },
     {
       path: "/reservation_detail",

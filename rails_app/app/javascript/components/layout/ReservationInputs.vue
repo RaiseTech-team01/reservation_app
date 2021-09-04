@@ -68,6 +68,7 @@
                     name="store_name"
                     type="text"
                     placeholder="イロハ駅前店"
+                    v-model="reservationInputData.store_name"
                   />
                 </div>
               </td>
@@ -392,6 +393,7 @@ export default {
   data: function () {
     return {
       reservationInputData: {
+        store_name: "",
         date: new Date(),
         hour: "",
         minute: "",

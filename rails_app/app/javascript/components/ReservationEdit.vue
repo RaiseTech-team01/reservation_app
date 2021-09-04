@@ -45,6 +45,7 @@ import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid"
 
 import FullCalendarDialog from "./dialog/FullCalendarDialog.vue"
+import axios from "axios";
 
 export default {
   data: function () {
@@ -96,6 +97,8 @@ export default {
         initalValue.date_at.slice(14,16), // mm
     );
 
+    this.$refs.reservationInputsEdit.reservationInputData.store_name = initalValue.store.name
+
     this.$refs.reservationInputsEdit.reservationInputData.date = dt
     this.$refs.reservationInputsEdit.setTime(dt.getHours(), dt.getMinutes());
     this.$refs.reservationInputsEdit.reservationInputData.number_people = initalValue.number_people
@@ -106,6 +109,9 @@ export default {
   },
 
   methods: {
+    convertTwoDigit(value) {
+      return ("0" + value).slice(-2)
+    },
     updateDate(date) {
       if (date !== null) {
         this.$refs.reservationInputsEdit.setTime(date.getHours(), date.getMinutes())
@@ -114,10 +120,77 @@ export default {
     showTimetable(e) {
       this.$refs.calendarDialog.showTimetable(e)
     },
-    update() {
+    update(reservationInputs) {
       // TODO データの更新処理
+      var editReservationParams = [] // 配列を新しく定義する
+      editReservationParams.date_on =
+          // 日にち
+          reservationInputs.date.getFullYear() +
+          "-" +
+          // JavaScriptの日にちオブジェクトをつくる。月が０から始まる
+          //例２）年月日を指定して生成する(2016/3/29)
+          // var dt = new Date(2016, 2, 29);
+          this.convertTwoDigit(reservationInputs.date.getMonth() + 1) +
+          "-" +
+          this.convertTwoDigit(reservationInputs.date.getDate()) +
+          " " +
+          // 時間
+          reservationInputs.hour +
+          ":" +
+          reservationInputs.minute
+      editReservationParams.date_at = editReservationParams.date_on
+      editReservationParams.number_people =
+          reservationInputs.number_people
+      editReservationParams.menu = reservationInputs.menu
+      editReservationParams.budget = reservationInputs.budget
+      editReservationParams.inquiry = reservationInputs.inquiry
 
-      Router.back()
+
+      editReservationParams.id =  this.userReservationData.reservationDataArray[
+          this.userReservationDetail.rdId
+          ].id
+      // editReservationParams.user_id = this.userData.id
+      // store_idがわからないので、１を指定しておく
+      // atokara 後から編集
+      // editReservationParams.store_id = 1
+      // 以下の書式でいらないデータを削除
+      // delete editReservationParams.errs
+      // delete editReservationParams.date;
+      // delete editReservationParams.hour;
+      // delete editReservationParams.minute;
+      console.log(editReservationParams)
+      // 配列をaxiosで送れるオブジェクトへ変換
+      var convertAddReservationParams = Object.assign({}, editReservationParams)
+      console.log(convertAddReservationParams)
+
+      var key_headers = {
+        headers: {
+          Accept: "application/json",
+          "access-token": localStorage.getItem("access-token"),
+          uid: localStorage.getItem("uid"),
+          client: localStorage.getItem("client"),
+        }
+      }
+
+      const storeId = this.userReservationData.reservationDataArray[
+          this.userReservationDetail.rdId
+          ].store.id
+      axios
+          .put(
+              `/api/v1/user/reservations/${storeId}`,
+              convertAddReservationParams,
+              key_headers
+          )
+          .then(function (response) {
+            console.log(response)
+            Router.push({
+              name: "ReservationList",
+              params: { isFirstDraw: false },
+            })
+          })
+          .catch((error) => {
+
+          })
     },
     cancel() {
       Router.back()
@@ -138,3 +211,33 @@ p {
   transform: scale(2, 2);
 }
 </style>
+
+
+///
+
+http -v PUT  http://localhost:3000/api/v1/user/reservations/2 \　/#最後の数字は、ストアーのID 送信時はけすこと
+uid:user1@sample.com access-token:letcBr7nca4Tw5UXQsxnkw client:7GyPMiEKHOpJktgbisGkvg \
+id=4 \ /#予約のID 送信時はけすこと
+date_at=2021-5-5 15:00:00 \
+date_on=2021-5-5 15:00:00 \
+number_people=55 \
+menu=55mikan \
+budget=55555 \
+inquiry=MyText
+
+///
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+http -v POST http://localhost:3000/api/v1/user/reservations \
+uid:user1@sample.com access-token:23Wt8AWEezA_EOd9XpnzVA client:P9PFqA5G91K3R4dJFmr4pg \
+date_at=2021-10-05 03:00 \
+date_on=2021-10-05 03:00 \
+number_people=234 \
+menu=mikan \
+budget=4000 \
+inquiry=MyText \
+user_id=1 \
+store_id=3
